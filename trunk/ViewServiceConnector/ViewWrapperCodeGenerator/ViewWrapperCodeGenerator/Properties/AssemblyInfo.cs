@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ViewWrapperCodeGenerator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PCW")]
+[assembly: AssemblyCompany("VirindiPlugins")]
 [assembly: AssemblyProduct("ViewWrapperCodeGenerator")]
-[assembly: AssemblyCopyright("Copyright © PCW 2009")]
+[assembly: AssemblyCopyright("Copyright © VirindiPlugins 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
