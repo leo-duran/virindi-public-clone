@@ -1,7 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 //File: Form1.cs
 //
-//Description: A program for generating basic MetaViewWrapper usage code
+//Description: A program for generating basic MetaViewWrapper usage code.
+//  This is just a quick-and-dirty utility; it is not meant to be much else.
 //
 //This file is Copyright (c) 2009 VirindiPlugins
 //
