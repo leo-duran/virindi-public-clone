@@ -1,0 +1,130 @@
+constants
+logindelay=40000
+chardelay=30000
+z=454
+newname=0
+accountnum=0
+end
+Constructs 
+  File1=File
+end
+
+FileOpen file1, c:\t.txt
+filereset file1
+
+loop 9
+
+setactivewindow Asheron's Call Dual Client [version: 7.2.2]
+delay 1000
+mousepos 520,446
+leftclick
+keys {home}
+delay 1000
+loop $accountnum
+	keys {down}
+	delay 1000
+end
+mousepos 820,446
+leftclick
+delay 100
+leftclick
+
+delay $logindelay
+
+mousepos 965,312
+leftclick
+delay 100
+leftclick
+delay 100
+leftclick
+delay 100
+
+//setactivewindow Asheron's Call
+//delay 500
+loop 7
+///////////////////////////////
+//Roll a new char
+//click create new char button
+mousepos 580,464
+leftclick
+delay 1000
+//select aluvian
+mousepos 308,375
+leftclick
+delay 1000
+//select summary
+mousepos 943,253
+leftclick
+delay 1000
+//make character name
+FileRead file1, $newname
+saypaste $newname
+delay 1000
+//click finish
+mousepos 956,785
+leftclick
+//char rolled and logging in
+//////////////////////////////
+
+//mousepos 350,$z
+//doubleclick
+
+//////////////////////
+//Logged in as a char
+//wait to get logged in
+delay $chardelay
+//Use door
+keys \
+keys r
+delay 8000
+//Walk forward
+loop 7
+	keys ~w
+	delay 2000
+end
+//select jonathan
+keys =
+delay 1000
+keys =
+delay 1000
+keys =
+delay 1000
+//talk to jonathan
+keys r
+delay 10000
+//open pack
+mousepos 1125,839
+leftclick
+delay 1000
+//select gem
+mousepos 881,555
+leftclick
+delay 1000
+//give him gem
+keys v
+delay 10000
+///////////////////////////////
+//Now in holt
+///////////////////////////////
+
+///////////////////////////////
+//log off!
+mousepos 1139,150
+leftclick
+delay 500
+mousepos 559,559
+leftclick
+delay 10000
+//////////////////////
+delay 500
+//compute z = $z + 46
+end
+
+//Close AC
+mousepos 1030,210
+leftclick
+
+compute accountnum=$accountnum+1
+end
+
+fileclose file1

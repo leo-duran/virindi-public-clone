@@ -1,0 +1,177 @@
+constants
+logindelay=40000
+chardelay=30000
+account1=0
+char1=0
+account2=1
+char2=0
+charname=""
+z=0
+good = 0
+end
+Constructs 
+  File1=File
+end
+
+FileOpen file1, c:\ranktree.txt
+filereset file1
+
+loop 62
+
+
+fileread file1, $account1
+fileread file1, $char1
+fileread file1, $account2
+fileread file1, $char2
+
+While 1=1
+
+//Start game with client
+setactivewindow Asheron's Call Dual Client [version: 7.2.2]
+delay 1000
+mousepos 520,446
+leftclick
+keys {home}
+delay 1000
+loop $account1
+	keys {down}
+	delay 1000
+end
+mousepos 820,446
+leftclick
+delay 100
+leftclick
+
+delay $logindelay
+
+//Client started
+mousepos 778,608
+leftclick
+delay 100
+leftclick
+delay 100
+
+//Log in
+compute $z=455 + (45 * $char1)
+mousepos 341,$z
+leftclick
+delay 100
+mousepos 585,611
+leftclick
+
+delay $chardelay
+
+set charname = _myname
+
+//Start game with client
+setactivewindow Asheron's Call Dual Client [version: 7.2.2]
+delay 1000
+mousepos 520,446
+leftclick
+keys {home}
+delay 1000
+loop $account2
+	keys {down}
+	delay 1000
+end
+mousepos 820,446
+leftclick
+delay 100
+leftclick
+
+delay $logindelay
+
+//Client started
+mousepos 778,608
+leftclick
+delay 100
+leftclick
+delay 100
+
+//Log in
+compute $z=455 + (45 * $char2)
+mousepos 341,$z
+leftclick
+delay 100
+mousepos 585,611
+leftclick
+
+delay $chardelay
+
+//Select person to swear to
+Select $charname
+delay 1000
+Select $charname
+delay 1000
+Select $charname
+delay 1000
+Select $charname
+delay 1000
+
+//Open allegiance panel
+mousepos 923,828
+leftclick
+delay 2000
+
+//Swear to
+mousepos 903,796
+leftclick
+delay 2000
+
+//Yes
+mousepos 560,539
+leftclick
+delay 2000
+
+//Select patron AC window
+keys @{tab}{tab}
+delay 2000
+
+//Accept vassal
+mousepos 560,539
+leftclick
+delay 5000
+
+//Select vassal AC window
+keys @{tab}
+delay 5000
+
+//Open verifyer
+mousepos 167,176
+leftclick
+delay 1000
+IsRed  255,296
+  // Do these commands if true 
+	//Close AC
+	mousepos 1142,126
+	leftclick
+	delay 5000
+
+	//Close AC
+	mousepos 1142,126
+	leftclick
+	delay 5000
+
+	break
+Else
+  // Do these commands if false 
+End
+
+//pause
+
+
+//Close AC
+mousepos 1142,126
+leftclick
+delay 5000
+
+//Close AC
+mousepos 1142,126
+leftclick
+delay 5000
+
+end
+
+end
+
+fileclose file1

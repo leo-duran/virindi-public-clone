@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<view icon="10667" title="Verifyer" width="200" height="200">
+<control progid="DecalControls.PushButton" name="btnAdd" left="0" top="0" width="200" height="200" text=""/>
+</view>
