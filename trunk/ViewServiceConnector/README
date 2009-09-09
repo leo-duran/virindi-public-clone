@@ -1,0 +1,21 @@
+These source files are designed to assist plugin developers in the use of the
+Virindi View Service.
+
+The Wrapper*.cs files contain a set of classes which abstract the concept of
+an AC view provider, allowing a plugin to easily switch between Decal views
+and Virindi Views.
+
+ViewSystemSelector.cs contains a class which detects the presence of the
+Virindi View System, which allows a plugin to use VVS when it is available
+but fall-back to normal Decal views when it is not. The View System Selector
+returns classes implementing the MetaViewWrapper interfaces.
+
+The AddonControls directory contains additional controls, built on the
+MetaViewWrappers, which may be useful. They are designed to provide the same
+interface whether created with Decal or Virindi views.
+
+The ViewWrapperCodeGenerator directory contains a simple utility to assist
+in coding plugins which use the view wrappers. It takes as input a view .xml
+file and outputs C# code defining common UI element classes, as well as
+initialization and disposal functions. NOTE: By default, the output code must
+be modified to specify your .xml's source.
