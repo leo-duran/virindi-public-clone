@@ -19,3 +19,6 @@ in coding plugins which use the view wrappers. It takes as input a view .xml
 file and outputs C# code defining common UI element classes, as well as
 initialization and disposal functions. NOTE: By default, the output code must
 be modified to specify your .xml's source.
+
+The ExamplePlugin directory contains an example plugin using the
+MetaViewWrappers.
