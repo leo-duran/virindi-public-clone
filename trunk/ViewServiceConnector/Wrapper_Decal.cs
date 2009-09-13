@@ -201,11 +201,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         {
             get
             {
-                throw new Exception("The method or operation is not implemented.");
+                return ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Text;
+                //throw new Exception("The method or operation is not implemented.");
             }
             set
             {
-                throw new Exception("The method or operation is not implemented.");
+                ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Text = value;
+                //throw new Exception("The method or operation is not implemented.");
             }
         }
 
