@@ -35,8 +35,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
 
+#if METAVIEW_PUBLIC_NS
+namespace MetaViewWrappers
+#else
 namespace MyClasses.MetaViewWrappers
+#endif
 {
     internal static class ViewSystemSelector
     {
@@ -45,6 +50,10 @@ namespace MyClasses.MetaViewWrappers
             DecalInject,
             VirindiViewService,
         }
+
+
+        ///////////////////////////////System presence detection///////////////////////////////
+
         public static bool IsPresent(Decal.Adapter.Wrappers.PluginHost pHost, eViewSystem VSystem)
         {
             switch (VSystem)
@@ -60,20 +69,24 @@ namespace MyClasses.MetaViewWrappers
         static bool VirindiViewsPresent(Decal.Adapter.Wrappers.PluginHost pHost)
         {
 #if VVS_REFERENCED
-            Guid g = new Guid("DBAC9286-B38D-4570-961F-D4D9349AE3D4");
+            System.Reflection.Assembly[] asms = AppDomain.CurrentDomain.GetAssemblies();
 
-            Decal.Interop.Core.DecalEnum esv = null;
-            try
+            foreach (System.Reflection.Assembly a in asms)
             {
-                esv = pHost.Underlying.Decal.get_Configuration("Services", ref g);
-                return esv.Enabled;
+                string nm = a.GetName().Name;
+                if (nm == "VirindiViewService")
+                {
+                    try
+                    {
+                        return Curtain_VVS_Running();
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
             }
-            catch { }
-            finally
-            {
-                if (esv != null)
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(esv);
-            }
+
             return false;
 #else
             return false;
@@ -82,27 +95,36 @@ namespace MyClasses.MetaViewWrappers
         public static bool VirindiViewsPresent(Decal.Adapter.Wrappers.PluginHost pHost, Version minver)
         {
 #if VVS_REFERENCED
-            Guid g = new Guid("DBAC9286-B38D-4570-961F-D4D9349AE3D4");
+            System.Reflection.Assembly[] asms = AppDomain.CurrentDomain.GetAssemblies();
 
-            Decal.Interop.Core.DecalEnum esv = null;
-            try
+            foreach (System.Reflection.Assembly a in asms)
             {
-                esv = pHost.Underlying.Decal.get_Configuration("Services", ref g);
-                if (!esv.Enabled) return false;
-                Version curver = new Version(esv.Version);
-                return (curver >= minver);
+                AssemblyName nm = a.GetName();
+                if ((nm.Name == "VirindiViewService") && (nm.Version >= minver))
+                {
+                    try
+                    {
+                        return Curtain_VVS_Running();
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
             }
-            catch { }
-            finally
-            {
-                if (esv != null)
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(esv);
-            }
+
             return false;
 #else
             return false;
 #endif
         }
+        static bool Curtain_VVS_Running()
+        {
+            return VirindiViewService.Service.Running;
+        }
+
+        ///////////////////////////////CreateViewResource///////////////////////////////
+
         public static IView CreateViewResource(Decal.Adapter.Wrappers.PluginHost pHost, string pXMLResource)
         {
 #if VVS_REFERENCED
@@ -130,7 +152,7 @@ namespace MyClasses.MetaViewWrappers
         }
         static IView CreateDecalViewResource(Decal.Adapter.Wrappers.PluginHost pHost, string pXMLResource)
         {
-            IView ret = new MyClasses.MetaViewWrappers.DecalControls.View();
+            IView ret = new DecalControls.View();
             ret.Initialize(pHost, pXMLResource);
             return ret;
         }
@@ -138,11 +160,59 @@ namespace MyClasses.MetaViewWrappers
 #if VVS_REFERENCED
         static IView CreateMyHudViewResource(Decal.Adapter.Wrappers.PluginHost pHost, string pXMLResource)
         {
-            IView ret = new MyClasses.MetaViewWrappers.VirindiViewServiceHudControls.View();
+            IView ret = new VirindiViewServiceHudControls.View();
             ret.Initialize(pHost, pXMLResource);
             return ret;
         }
 #endif
+
+
+        ///////////////////////////////CreateViewXML///////////////////////////////
+
+        public static IView CreateViewXML(Decal.Adapter.Wrappers.PluginHost pHost, string pXML)
+        {
+#if VVS_REFERENCED
+            if (IsPresent(pHost, eViewSystem.VirindiViewService))
+                return CreateViewXML(pHost, pXML, eViewSystem.VirindiViewService);
+            else
+#endif
+                return CreateViewXML(pHost, pXML, eViewSystem.DecalInject);
+        }
+
+        public static IView CreateViewXML(Decal.Adapter.Wrappers.PluginHost pHost, string pXML, eViewSystem VSystem)
+        {
+            if (!IsPresent(pHost, VSystem)) return null;
+            switch (VSystem)
+            {
+                case eViewSystem.DecalInject:
+                    return CreateDecalViewXML(pHost, pXML);
+                case eViewSystem.VirindiViewService:
+#if VVS_REFERENCED
+                    return CreateMyHudViewXML(pHost, pXML);
+#else
+                    break;
+#endif
+            }
+            return null;
+        }
+        static IView CreateDecalViewXML(Decal.Adapter.Wrappers.PluginHost pHost, string pXML)
+        {
+            IView ret = new DecalControls.View();
+            ret.InitializeRawXML(pHost, pXML);
+            return ret;
+        }
+
+#if VVS_REFERENCED
+        static IView CreateMyHudViewXML(Decal.Adapter.Wrappers.PluginHost pHost, string pXML)
+        {
+            IView ret = new VirindiViewServiceHudControls.View();
+            ret.InitializeRawXML(pHost, pXML);
+            return ret;
+        }
+#endif
+
+
+        ///////////////////////////////HasChatOpen///////////////////////////////
 
         public static bool AnySystemHasChatOpen(Decal.Adapter.Wrappers.PluginHost pHost)
         {
