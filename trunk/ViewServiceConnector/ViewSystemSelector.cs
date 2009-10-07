@@ -118,10 +118,13 @@ namespace MyClasses.MetaViewWrappers
             return false;
 #endif
         }
+		
+#if VVS_REFERENCED
         static bool Curtain_VVS_Running()
         {
             return VirindiViewService.Service.Running;
         }
+#endif
 
         ///////////////////////////////CreateViewResource///////////////////////////////
 
