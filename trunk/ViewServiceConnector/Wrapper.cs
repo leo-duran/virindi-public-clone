@@ -33,41 +33,85 @@ using System.Text;
 
 namespace MyClasses.MetaViewWrappers
 {
-    internal delegate void dClickedList(object sender, int row, int col);
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    delegate void dClickedList(object sender, int row, int col);
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IView: IDisposable
     {
         void Initialize(Decal.Adapter.Wrappers.PluginHost p, string pXML);
+        void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML);
 
         void SetIcon(int icon, int iconlibrary);
         void SetIcon(int portalicon);
 
         string Title { get; set; }
         bool Visible { get; set; }
+#if !VVS_WRAPPERS_PUBLIC
         ViewSystemSelector.eViewSystem ViewType { get; }
+#endif
 
         IControl this[string id] { get; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IControl : IDisposable
     {
         string Name { get; }
         bool Visible { get; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IButton : IControl
     {
         string Text { get; set; }
         event EventHandler Hit;
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface ICheckBox : IControl
     {
         string Text { get; set; }
         bool Checked { get; set; }
         event EventHandler Change;
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface ITextBox : IControl
     {
         string Text { get; set; }
         event EventHandler Change;
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface ICombo : IControl
     {
         IComboIndexer Text { get; }
@@ -79,15 +123,33 @@ namespace MyClasses.MetaViewWrappers
         void RemoveAt(int index);
         void Clear();
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IComboIndexer
     {
         string this[int index] { get; set; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface ISlider : IControl
     {
         int Position { get; set; }
         event EventHandler Change;
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IList : IControl
     {
         event dClickedList Click;
@@ -99,10 +161,22 @@ namespace MyClasses.MetaViewWrappers
         void RemoveRow(int index);
         int ColCount { get; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IListRow
     {
         IListCell this[int col] { get; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IListCell
     {
         System.Drawing.Color Color { get; set; }
@@ -110,16 +184,34 @@ namespace MyClasses.MetaViewWrappers
         object this[int subval] { get; set; }
         void ResetColor();
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IStaticText : IControl
     {
         string Text { get; set; }
         event EventHandler Click;
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface INotebook : IControl
     {
         event EventHandler Change;
         int ActiveTab { get; set; }
     }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface IProgressBar : IControl
     {
         int Position { get; set; }

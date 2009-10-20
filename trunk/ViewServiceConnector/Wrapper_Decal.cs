@@ -32,9 +32,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#if METAVIEW_PUBLIC_NS
+namespace MetaViewWrappers.DecalControls
+#else
 namespace MyClasses.MetaViewWrappers.DecalControls
+#endif
+
 {
-    internal class View : IView
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class View : IView
     {
         Decal.Adapter.Wrappers.ViewWrapper myView;
         public Decal.Adapter.Wrappers.ViewWrapper Underlying { get { return myView; } }
@@ -46,6 +56,11 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             myView = p.LoadViewResource(pXML);
         }
 
+        public void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML)
+        {
+            myView = p.LoadView(pXML);
+        }
+
         public void SetIcon(int icon, int iconlibrary)
         {
             myView.SetIcon(icon, iconlibrary);
@@ -53,7 +68,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         public void SetIcon(int portalicon)
         {
-            throw new Exception("The method or operation is not implemented.");
+            //throw new Exception("The method or operation is not implemented.");
         }
 
         public string Title
@@ -80,7 +95,12 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
-        public ViewSystemSelector.eViewSystem ViewType { get { return ViewSystemSelector.eViewSystem.DecalInject; } }
+#if VVS_WRAPPERS_PUBLIC
+        internal
+#else
+        public
+#endif
+        ViewSystemSelector.eViewSystem ViewType { get { return ViewSystemSelector.eViewSystem.DecalInject; } }
 
         public IControl this[string id]
         {
@@ -137,7 +157,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class Control : IControl
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Control : IControl
     {
         internal Decal.Adapter.Wrappers.IControlWrapper myControl;
         public Decal.Adapter.Wrappers.IControlWrapper Underlying { get { return myControl; } }
@@ -175,7 +201,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class Button : Control, IButton
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Button : Control, IButton
     {
         public override void Initialize()
         {
@@ -215,7 +247,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class CheckBox : Control, ICheckBox
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class CheckBox : Control, ICheckBox
     {
         public override void Initialize()
         {
@@ -265,7 +303,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class TextBox : Control, ITextBox
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class TextBox : Control, ITextBox
     {
         public override void Initialize()
         {
@@ -303,7 +347,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class Combo : Control, ICombo
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Combo : Control, ICombo
     {
         public override void Initialize()
         {
@@ -401,7 +451,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             #endregion
         }
     }
-    internal class Slider : Control, ISlider
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Slider : Control, ISlider
     {
         public override void Initialize()
         {
@@ -439,7 +495,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class List : Control, IList
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class List : Control, IList
     {
         public override void Initialize()
         {
@@ -588,7 +650,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         }
 
     }
-    internal class StaticText : Control, IStaticText
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class StaticText : Control, IStaticText
     {
 
         #region IStaticText Members
@@ -611,7 +679,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class Notebook : Control, INotebook
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Notebook : Control, INotebook
     {
         public override void Initialize()
         {
@@ -649,7 +723,13 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         #endregion
     }
-    internal class ProgressBar : Control, IProgressBar
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class ProgressBar : Control, IProgressBar
     {
 
         #region IProgressBar Members

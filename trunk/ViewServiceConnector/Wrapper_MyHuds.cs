@@ -36,9 +36,18 @@ using System.Collections.Generic;
 using System.Text;
 using VirindiViewService;
 
+#if METAVIEW_PUBLIC_NS
+namespace MetaViewWrappers.VirindiViewServiceHudControls
+#else
 namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
+#endif
 {
-    internal class View : IView
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class View : IView
     {
         HudView myView;
         public HudView Underlying { get { return myView; } }
@@ -51,6 +60,15 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             ViewProperties iprop;
             ControlGroup igroup;
             ps.ParseFromResource(pXML, out iprop, out igroup);
+            myView = new VirindiViewService.HudView(iprop, igroup);
+        }
+
+        public void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML)
+        {
+            VirindiViewService.XMLParsers.Decal3XMLParser ps = new VirindiViewService.XMLParsers.Decal3XMLParser();
+            ViewProperties iprop;
+            ControlGroup igroup;
+            ps.Parse(pXML, out iprop, out igroup);
             myView = new VirindiViewService.HudView(iprop, igroup);
         }
 
@@ -88,7 +106,12 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
-        public ViewSystemSelector.eViewSystem ViewType { get { return ViewSystemSelector.eViewSystem.VirindiViewService; } }
+#if VVS_WRAPPERS_PUBLIC
+        internal
+#else
+        public
+#endif
+        ViewSystemSelector.eViewSystem ViewType { get { return ViewSystemSelector.eViewSystem.VirindiViewService; } }
 
         public IControl this[string id]
         {
@@ -145,7 +168,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         List<Control> allocatedcontrols = new List<Control>();
     }
-    internal class Control : IControl
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Control : IControl
     {
         internal VirindiViewService.Controls.HudControl myControl;
         internal string myName;
@@ -183,7 +212,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class Button : Control, IButton
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Button : Control, IButton
     {
         public override void Initialize()
         {
@@ -226,7 +261,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class CheckBox : Control, ICheckBox
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class CheckBox : Control, ICheckBox
     {
         public override void Initialize()
         {
@@ -276,7 +317,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class TextBox : Control, ITextBox
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class TextBox : Control, ITextBox
     {
         public override void Initialize()
         {
@@ -314,7 +361,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class Combo : Control, ICombo
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Combo : Control, ICombo
     {
 
         public class ComboIndexer : IComboIndexer
@@ -408,7 +461,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class Slider : Control, ISlider
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Slider : Control, ISlider
     {
         public override void Initialize()
         {
@@ -446,7 +505,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class List : Control, IList
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class List : Control, IList
     {
         public override void Initialize()
         {
@@ -599,7 +664,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class StaticText : Control, IStaticText
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class StaticText : Control, IStaticText
     {
         public override void Initialize()
         {
@@ -632,7 +703,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class Notebook : Control, INotebook
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class Notebook : Control, INotebook
     {
         public override void Initialize()
         {
@@ -665,7 +742,13 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 
         #endregion
     }
-    internal class ProgressBar : Control, IProgressBar
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class ProgressBar : Control, IProgressBar
     {
 
         #region IProgressBar Members
