@@ -31,7 +31,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#if METAVIEW_PUBLIC_NS
+namespace MetaViewWrappers
+#else
 namespace MyClasses.MetaViewWrappers
+#endif
 {
 #if VVS_WRAPPERS_PUBLIC
     public

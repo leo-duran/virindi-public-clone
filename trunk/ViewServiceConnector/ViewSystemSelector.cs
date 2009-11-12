@@ -73,8 +73,8 @@ namespace MyClasses.MetaViewWrappers
 
             foreach (System.Reflection.Assembly a in asms)
             {
-                string nm = a.GetName().Name;
-                if (nm == "VirindiViewService")
+                AssemblyName nmm = a.GetName();
+                if ((nmm.Name == "VirindiViewService") && (nmm.Version >= new System.Version("1.0.0.14")))
                 {
                     try
                     {

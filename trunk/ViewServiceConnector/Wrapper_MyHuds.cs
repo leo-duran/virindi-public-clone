@@ -598,19 +598,35 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
                 get
                 {
                     VirindiViewService.Controls.HudControl c = ((VirindiViewService.Controls.HudList)myList.myControl)[myRow][myCol];
-                    if (c.GetType() == typeof(VirindiViewService.Controls.HudStaticText))
-                        return ((VirindiViewService.Controls.HudStaticText)c).Text;
-                    if (c.GetType() == typeof(VirindiViewService.Controls.HudCheckBox))
-                        return ((VirindiViewService.Controls.HudCheckBox)c).Checked;
+                    if (subval == 0)
+                    {
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudStaticText))
+                            return ((VirindiViewService.Controls.HudStaticText)c).Text;
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudCheckBox))
+                            return ((VirindiViewService.Controls.HudCheckBox)c).Checked;
+                    }
+                    else if (subval == 1)
+                    {
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudPictureBox))
+                            return ((VirindiViewService.Controls.HudPictureBox)c).Image.PortalImageID;
+                    }
                     return null;
                 }
                 set
                 {
                     VirindiViewService.Controls.HudControl c = ((VirindiViewService.Controls.HudList)myList.myControl)[myRow][myCol];
-                    if (c.GetType() == typeof(VirindiViewService.Controls.HudStaticText))
-                        ((VirindiViewService.Controls.HudStaticText)c).Text = (string)value;
-                    if (c.GetType() == typeof(VirindiViewService.Controls.HudCheckBox))
-                        ((VirindiViewService.Controls.HudCheckBox)c).Checked = (bool)value;
+                    if (subval == 0)
+                    {
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudStaticText))
+                            ((VirindiViewService.Controls.HudStaticText)c).Text = (string)value;
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudCheckBox))
+                            ((VirindiViewService.Controls.HudCheckBox)c).Checked = (bool)value;
+                    }
+                    else if (subval == 1)
+                    {
+                        if (c.GetType() == typeof(VirindiViewService.Controls.HudPictureBox))
+                            ((VirindiViewService.Controls.HudPictureBox)c).Image = (int)value;
+                    }
                 }
             }
 
