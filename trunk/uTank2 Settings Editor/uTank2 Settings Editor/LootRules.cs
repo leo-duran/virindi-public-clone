@@ -261,6 +261,31 @@ namespace uTank2
 
             #endregion
         }
+
+        internal class ObjectClass : iLootRule
+        {
+            public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
+            public Decal.Adapter.Wrappers.ObjectClass vk = Decal.Adapter.Wrappers.ObjectClass.Armor;
+
+            public ObjectClass() { }
+            public ObjectClass(Decal.Adapter.Wrappers.ObjectClass v) { vk = v; }
+
+            #region iLootRule Members
+
+            public int GetRuleType() { return 7; }
+
+            public void Read(System.IO.StreamReader inf)
+            {
+                vk = (Decal.Adapter.Wrappers.ObjectClass)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            public void Write(System.IO.StreamWriter inf)
+            {
+                inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+        }
     }
 
     //A set of rules with an action attached
@@ -301,6 +326,7 @@ namespace uTank2
                     case 4: newrule = new LootRules.DoubleValKeyLE(); break;
                     case 5: newrule = new LootRules.DoubleValKeyGE(); break;
                     case 6: newrule = new LootRules.DamagePercentGE(); break;
+                    case 7: newrule = new LootRules.ObjectClass(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);

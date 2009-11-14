@@ -64,6 +64,7 @@ namespace uTank2_Settings_Editor
         SortedList<int, Decal.Adapter.Wrappers.StringValueKey> SVKOptions = new SortedList<int,Decal.Adapter.Wrappers.StringValueKey>();
         SortedList<int, Decal.Adapter.Wrappers.LongValueKey> LVKOptions = new SortedList<int,Decal.Adapter.Wrappers.LongValueKey>();
         SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey> DVKOptions = new SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey>();
+        SortedList<int, Decal.Adapter.Wrappers.ObjectClass> OCOptions = new SortedList<int, Decal.Adapter.Wrappers.ObjectClass>();
         void InitKeys()
         {
             int i = 0;
@@ -126,6 +127,39 @@ namespace uTank2_Settings_Editor
             DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.SalvageWorkmanship);
             DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.SlashProt);
             DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.Variance);
+
+            i = 0;
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Armor);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseAlchemy);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseCooking);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseFletching);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Book);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Bundle);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Clothing);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Container);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedAlchemy);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedCooking);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedFletching);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Foci);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Food);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Gem);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.HealingKit);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Jewelry);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Journal);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Key);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Lockpick);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.ManaStone);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.MeleeWeapon);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Misc);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.MissileWeapon);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Money);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Plant);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Salvage);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Scroll);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.SpellComponent);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.TradeNote);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Ust);
+            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.WandStaffOrb);
         }
 
         Decal.Adapter.Wrappers.StringValueKey SVKFromIndex(int i)
@@ -151,6 +185,14 @@ namespace uTank2_Settings_Editor
         int IndexFromDVK(Decal.Adapter.Wrappers.DoubleValueKey k)
         {
             return DVKOptions.Keys[DVKOptions.IndexOfValue(k)];
+        }
+        Decal.Adapter.Wrappers.ObjectClass OCFromIndex(int i)
+        {
+            return OCOptions[i];
+        }
+        int IndexFromOC(Decal.Adapter.Wrappers.ObjectClass k)
+        {
+            return OCOptions.Keys[OCOptions.IndexOfValue(k)];
         }
 
         void SetCurrentRule(cLootItemRule cr, int crn)
@@ -217,6 +259,9 @@ namespace uTank2_Settings_Editor
                         case 6:
                             lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2]);
                             break;
+                        case 7:
+                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " = " + (((uTank2.LootRules.ObjectClass)newlr).vk).ToString());
+                            break;
                     }
                 }
             }
@@ -245,6 +290,7 @@ namespace uTank2_Settings_Editor
                 cmbReqType.Items.Add("Double Value Key <=");
                 cmbReqType.Items.Add("Double Value Key >=");
                 cmbReqType.Items.Add("Damage Percentage >=");
+                cmbReqType.Items.Add("ObjectClass");
                 cmbReqType.SelectedIndex = cr.GetRuleType();
 
                 cmbActsOn.Items.Clear();
@@ -329,6 +375,16 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         txtValue.Visible = true;
                         txtValue.Text = ((uTank2.LootRules.DamagePercentGE)cr).keyval.ToString();
+                        break;
+                    case 7:
+                        lblActsOn.Visible = false;
+                        cmbActsOn.Visible = false;
+                        lblKey.Visible = true;
+                        cmbKey.Visible = true;
+                        for (int i = 0; i < OCOptions.Count; ++i) cmbKey.Items.Add(OCOptions[i]);
+                        cmbKey.SelectedIndex = IndexFromOC(((uTank2.LootRules.ObjectClass)cr).vk);
+                        lblValue.Visible = false;
+                        txtValue.Visible = false;
                         break;
                 }
             }
@@ -581,6 +637,9 @@ namespace uTank2_Settings_Editor
                 case 6:
                     newlr = new uTank2.LootRules.DamagePercentGE();
                     break;
+                case 7:
+                    newlr = new uTank2.LootRules.ObjectClass();
+                    break;
                 default:
                     newlr = CurrentReq;
                     break;
@@ -612,6 +671,9 @@ namespace uTank2_Settings_Editor
                         lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.DoubleValKeyGE)newlr).vk).ToString();
                         break;
                     case 6:
+                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
+                        break;
+                    case 7:
                         lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
                         break;
                 }
@@ -657,6 +719,14 @@ namespace uTank2_Settings_Editor
         {
             if (Working) return;
             FileChanged = true;
+
+            Working = true;
+            if (CurrentReq.GetRuleType() == 7)
+            {
+                ((uTank2.LootRules.ObjectClass)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
+                lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " = " + OCFromIndex(cmbKey.SelectedIndex).ToString();
+            }
+            Working = false;
         }
 
         private void txtValue_TextChanged(object sender, EventArgs e)
