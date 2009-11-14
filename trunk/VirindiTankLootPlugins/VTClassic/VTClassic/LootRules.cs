@@ -100,13 +100,13 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             rx = new System.Text.RegularExpressions.Regex(inf.ReadLine());
-            vk = (StringValueKey)Convert.ToInt32(inf.ReadLine());
+            vk = (Decal.Adapter.Wrappers.StringValueKey)Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
             inf.WriteLine(rx.ToString());
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -130,14 +130,14 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToInt32(inf.ReadLine());
-            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine());
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (Decal.Adapter.Wrappers.LongValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            inf.WriteLine(keyval);
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -161,14 +161,14 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToInt32(inf.ReadLine());
-            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine());
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (Decal.Adapter.Wrappers.LongValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            inf.WriteLine(keyval);
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -192,14 +192,14 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine());
-            vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine());
+            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            inf.WriteLine(keyval);
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -223,14 +223,14 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine());
-            vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine());
+            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            inf.WriteLine(keyval);
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -253,12 +253,12 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine());
+            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            inf.WriteLine(keyval);
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -281,14 +281,12 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            //keyval = Convert.ToInt32(inf.ReadLine());
-            vk = (ObjectClass)Convert.ToUInt32(inf.ReadLine());
+            vk = (ObjectClass)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
         {
-            //inf.WriteLine(keyval);
-            inf.WriteLine(Convert.ToString((int)vk));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -327,14 +325,14 @@ namespace VTClassic
             string[] clines = inf.ReadLine().Split(new char[] { ';' });
             //Priority, Action
 
-            pri = Convert.ToInt32(clines[0]);
-            act = (eLootAction)Convert.ToInt32(clines[1]);
+            pri = Convert.ToInt32(clines[0], System.Globalization.CultureInfo.InvariantCulture);
+            act = (eLootAction)Convert.ToInt32(clines[1], System.Globalization.CultureInfo.InvariantCulture);
 
             //Rules
             IntRules.Clear();
             for (int i = 2; i < clines.Length; ++i)
             {
-                int ruletype = Convert.ToInt32(clines[i]);
+                int ruletype = Convert.ToInt32(clines[i], System.Globalization.CultureInfo.InvariantCulture);
                 iLootRule newrule;
                 switch (ruletype)
                 {
@@ -357,13 +355,13 @@ namespace VTClassic
         {
             inf.WriteLine(name);
             StringBuilder s = new StringBuilder();
-            s.Append(pri);
+            s.Append(Convert.ToString(pri, System.Globalization.CultureInfo.InvariantCulture));
             s.Append(";");
-            s.Append((int)act);
+            s.Append(Convert.ToString((int)act, System.Globalization.CultureInfo.InvariantCulture));
             foreach (iLootRule lr in IntRules)
             {
                 s.Append(";");
-                s.Append(lr.GetRuleType());
+                s.Append(Convert.ToString(lr.GetRuleType(), System.Globalization.CultureInfo.InvariantCulture));
             }
             inf.WriteLine(s.ToString());
             foreach (iLootRule lr in IntRules)
@@ -411,7 +409,7 @@ namespace VTClassic
             try
             {
                 Rules.Clear();
-                int count = Convert.ToInt32(inf.ReadLine());
+                int count = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
                 for (int i = 0; i < count; ++i)
                 {
                     cLootItemRule R = new cLootItemRule();
@@ -431,7 +429,7 @@ namespace VTClassic
         {
             try
             {
-                inf.WriteLine(Rules.Count.ToString());
+                inf.WriteLine(Convert.ToString(Rules.Count, System.Globalization.CultureInfo.InvariantCulture));
                 foreach (cLootItemRule R in Rules)
                     R.Write(inf);
 
