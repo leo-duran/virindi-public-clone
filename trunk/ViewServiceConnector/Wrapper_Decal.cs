@@ -315,18 +315,26 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         {
             base.Initialize();
             ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).Change += new EventHandler<Decal.Adapter.TextBoxChangeEventArgs>(TextBox_Change);
+            ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).End += new EventHandler<Decal.Adapter.TextBoxEndEventArgs>(TextBox_End);
         }
 
         public override void Dispose()
         {
             base.Dispose();
             ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).Change -= new EventHandler<Decal.Adapter.TextBoxChangeEventArgs>(TextBox_Change);
+            ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).End -= new EventHandler<Decal.Adapter.TextBoxEndEventArgs>(TextBox_End);
         }
 
         void TextBox_Change(object sender, Decal.Adapter.TextBoxChangeEventArgs e)
         {
             if (Change != null)
                 Change(this, null);
+        }
+
+        void TextBox_End(object sender, Decal.Adapter.TextBoxEndEventArgs e)
+        {
+            if (End != null)
+                End(this, null);
         }
 
         #region ITextBox Members
@@ -344,6 +352,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         }
 
         public event EventHandler Change;
+        public event EventHandler End;
 
         #endregion
     }

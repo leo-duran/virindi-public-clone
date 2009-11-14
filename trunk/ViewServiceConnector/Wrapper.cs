@@ -109,6 +109,7 @@ namespace MyClasses.MetaViewWrappers
     {
         string Text { get; set; }
         event EventHandler Change;
+        event EventHandler End;
     }
 
 #if VVS_WRAPPERS_PUBLIC

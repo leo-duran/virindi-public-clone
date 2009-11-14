@@ -329,18 +329,28 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         {
             base.Initialize();
             ((VirindiViewService.Controls.HudTextBox)myControl).Change += new EventHandler(TextBox_Change);
+            myControl.LostFocus += new EventHandler(myControl_LostFocus);
         }
 
         public override void Dispose()
         {
             base.Dispose();
             ((VirindiViewService.Controls.HudTextBox)myControl).Change -= new EventHandler(TextBox_Change);
+            myControl.LostFocus -= new EventHandler(myControl_LostFocus);
         }
 
         void TextBox_Change(object sender, EventArgs e)
         {
             if (Change != null)
                 Change(this, null);
+        }
+
+        void myControl_LostFocus(object sender, EventArgs e)
+        {
+            if (!myControl.HasFocus) return;
+
+            if (End != null)
+                End(this, null);
         }
 
         #region ITextBox Members
@@ -358,6 +368,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         }
 
         public event EventHandler Change;
+        public event EventHandler End;
 
         #endregion
     }
