@@ -104,6 +104,7 @@ namespace Decal.Adapter.Wrappers
         FishingSkill = 192,
         KeysHeld = 193,
         ElementalDmgBonus = 204,
+        ArmorSetID = 265,
         Type = 218103808,
         Icon = 218103809,
         Container = 218103810,

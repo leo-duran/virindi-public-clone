@@ -74,6 +74,7 @@ namespace uTank2_Settings_Editor
             i = 0;
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ActivationReqSkillId);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorLevel);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorSetID);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Burden);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Category);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Coverage);
