@@ -100,7 +100,7 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             rx = new System.Text.RegularExpressions.Regex(inf.ReadLine());
-            vk = (Decal.Adapter.Wrappers.StringValueKey)Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (StringValueKey)Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
@@ -131,7 +131,7 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-            vk = (Decal.Adapter.Wrappers.LongValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
@@ -162,7 +162,7 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-            vk = (Decal.Adapter.Wrappers.LongValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
@@ -193,7 +193,7 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-            vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
@@ -224,7 +224,7 @@ namespace VTClassic
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-            vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void Write(System.IO.StreamWriter inf)
