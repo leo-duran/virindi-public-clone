@@ -106,11 +106,13 @@ namespace VTClassic
                     {
                         using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
                         {
-                            LootRules.Read(sr);
+                            if (LootRules.Read(sr))
+                                Host.AddChatText("Load profile " + filename + " successful.");
+                            else
+                                Host.AddChatText("Load profile " + filename + " returned an error. Your entire profile may not have loaded properly.");
                         }
                     }
 
-                    Host.AddChatText("Load profile " + filename + " successful.");
                 }
             }
             catch (Exception ex)
