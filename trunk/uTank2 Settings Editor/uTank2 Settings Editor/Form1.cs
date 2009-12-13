@@ -34,6 +34,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using uTank2;
+using uTank2.LootRules;
 
 namespace uTank2_Settings_Editor
 {
@@ -50,6 +51,8 @@ namespace uTank2_Settings_Editor
             this.Text = AppName + " - New File";
             SetCurrentReq(null, 0);
             SetCurrentRule(null, 0);
+
+            InitInfoArea();
         }
 
         string FileName = "";
@@ -65,6 +68,31 @@ namespace uTank2_Settings_Editor
         SortedList<int, Decal.Adapter.Wrappers.LongValueKey> LVKOptions = new SortedList<int,Decal.Adapter.Wrappers.LongValueKey>();
         SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey> DVKOptions = new SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey>();
         SortedList<int, Decal.Adapter.Wrappers.ObjectClass> OCOptions = new SortedList<int, Decal.Adapter.Wrappers.ObjectClass>();
+
+        void InitInfoArea()
+        {
+            this.cmbSet.Items.Clear();
+            this.cmbSet.Items.Add("<Select a set>");
+            this.cmbSet.SelectedIndex = 0;
+            foreach (KeyValuePair<string, int> kv in GameInfo.getSetInfo())
+                this.cmbSet.Items.Add(kv.Key);
+            this.cmbSet.SelectedIndexChanged += new EventHandler(cmbSet_SelectedIndexChanged);
+
+            this.cmbSkill.Items.Clear();
+            this.cmbSkill.Items.Add("<Select a skill>");
+            this.cmbSkill.SelectedIndex = 0;
+            foreach (KeyValuePair<string, int> kv in GameInfo.getSkillInfo())
+                this.cmbSkill.Items.Add(kv.Key);
+            this.cmbSkill.SelectedIndexChanged += new EventHandler(cmbSkill_SelectedIndexChanged);
+
+            this.cmbMaterial.Items.Clear();
+            this.cmbMaterial.Items.Add("<Select a material>");
+            this.cmbMaterial.SelectedIndex = 0;
+            foreach (KeyValuePair<string, int> kv in GameInfo.getMaterialInfo())
+                this.cmbMaterial.Items.Add(kv.Key);
+            this.cmbMaterial.SelectedIndexChanged += new EventHandler(cmbMaterial_SelectedIndexChanged);
+        }
+
         void InitKeys()
         {
             int i = 0;

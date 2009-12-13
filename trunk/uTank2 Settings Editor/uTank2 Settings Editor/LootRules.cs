@@ -141,6 +141,148 @@ namespace uTank2
                     default: return true;
                 }
             }
+
+            public static SortedDictionary<string, int> getSetInfo()
+            {
+                int i = 32;
+                SortedDictionary<string, int> r = new SortedDictionary<string, int>();
+                r.Add("Protective Clothing", i--);
+                r.Add("Gladiatorial Clothing", i--);
+                r.Add("Dedication", i--);
+                r.Add("Lightning Proof", i--);
+                r.Add("Cold Proof", i--);
+                r.Add("Acid Proof", i--);
+                r.Add("Flame Proof", i--);
+                r.Add("Interlocking", i--);
+                r.Add("Reinforced", i--);
+                r.Add("Hardenend", i--);
+                r.Add("Swift", i--);
+                r.Add("Wise", i--);
+                r.Add("Dexterous", i--);
+                r.Add("Hearty", i--);
+                r.Add("Crafter's", i--);
+                r.Add("Tinker's", i--);
+                r.Add("Defender's", i--);
+                r.Add("Archer's", i--);
+                r.Add("Adept's", i--);
+                r.Add("Soldier's", i--);
+                r.Add("Leggings of Perfect Light", i--);
+                r.Add("Coat of the Perfect Light", i--);
+                r.Add("Arm, Mind, Heart", i--);
+                r.Add("Empyrean Rings", i--);
+                r.Add("Shou-jen", i--);
+                r.Add("Relic Alduressa", i--);
+                r.Add("Ancient Relic", i--);
+                r.Add("Noble Relic", i--);
+
+                return r;
+            }
+
+            public static SortedDictionary<string, int> getSkillInfo()
+            {
+                SortedDictionary<string, int> r = new SortedDictionary<string, int>();
+                r.Add("Axe", 1);
+                r.Add("Bow", 2);
+                r.Add("Crossbow", 3);
+                r.Add("Dagger", 4);
+                r.Add("Mace", 5);
+                r.Add("MeleeD", 6);
+                r.Add("MissileD", 7);
+                r.Add("Spear", 9);
+                r.Add("Staff", 10);
+                r.Add("Sword", 11);
+                r.Add("Thrown Weapons", 12);
+                r.Add("Unarmed Combat", 13);
+                r.Add("MagicD", 15);
+                r.Add("ManaCon", 16);
+                r.Add("Creature", 31);
+                r.Add("Item", 32);
+                r.Add("Life", 33);
+                r.Add("War", 34);
+                r.Add("Two-Handed Combat", 41);
+
+                return r;
+            }
+
+            public static SortedDictionary<string, int> getMaterialInfo()
+            {
+                SortedDictionary<string, int> r = new SortedDictionary<string, int>();
+                r.Add("Agate", 10);
+                r.Add("Alabaster", 66);
+                r.Add("Amber", 11);
+                r.Add("Amethyst", 12);
+                r.Add("Aquamarine", 13);
+                r.Add("Armoredillo Hide", 53);
+                r.Add("Azurite", 14);
+                r.Add("Black Garnet", 15);
+                r.Add("Black Opal", 16);
+                r.Add("Bloodstone", 17);
+                r.Add("Brass", 57);
+                r.Add("Bronze", 58);
+                r.Add("Carnelian", 18);
+                r.Add("Ceramic", 1);
+                r.Add("Citrine", 19);
+                r.Add("Copper", 59);
+                r.Add("Diamond", 20);
+                r.Add("Ebony", 73);
+                r.Add("Emerald", 21);
+                r.Add("Fire Opal", 22);
+                r.Add("Gold", 60);
+                r.Add("Granite", 67);
+                r.Add("Green Garnet", 23);
+                r.Add("Green Jade", 24);
+                r.Add("Gromnie Hide", 54);
+                r.Add("Hematite", 25);
+                r.Add("Imperial Topaz", 26);
+                r.Add("Iron", 61);
+                r.Add("Ivory", 51);
+                r.Add("Jet", 27);
+                r.Add("Lapis Lazuli", 28);
+                r.Add("Lavender Jade", 29);
+                r.Add("Leather", 52);
+                r.Add("Linen", 4);
+                r.Add("Mahogany", 74);
+                r.Add("Malachite", 30);
+                r.Add("Marble", 68);
+                r.Add("Moonstone", 31);
+                r.Add("Oak", 75);
+                r.Add("Obsidian", 69);
+                r.Add("Onyx", 32);
+                r.Add("Opal", 33);
+                r.Add("Peridot", 34);
+                r.Add("Pine", 76);
+                r.Add("Porcelain", 2);
+                r.Add("Pyreal", 62);
+                r.Add("Red Garnet", 35);
+                r.Add("Red Jade", 36);
+                r.Add("Reed Shark Hide", 55);
+                r.Add("Rose Quartz", 37);
+                r.Add("Ruby", 38);
+                r.Add("Sandstone", 70);
+                r.Add("Sapphire", 39);
+                r.Add("Satin", 5);
+                r.Add("Serpentine", 71);
+                r.Add("Silk", 6);
+                r.Add("Silver", 63);
+                r.Add("Smokey Quartz", 40);
+                r.Add("Steel", 64);
+                r.Add("Sunstone", 41);
+                r.Add("Teak", 77);
+                r.Add("Tiger Eye", 42);
+                r.Add("Tourmaline", 43);
+                r.Add("Turquoise", 44);
+                r.Add("Velvet", 7);
+                r.Add("White Jade", 45);
+                r.Add("White Quartz", 46);
+                r.Add("White Sapphire", 47);
+                r.Add("Wool", 8);
+                r.Add("Yellow Garnet", 48);
+                r.Add("Yellow Topaz", 49);
+                r.Add("Zircon", 50);
+
+                return r;
+            }
+
         }
 
         internal class SpellNameMatch : iLootRule

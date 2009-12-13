@@ -29,6 +29,7 @@ using System;
 using System.Windows.Forms;
 using uTank2;
 using uTank2.LootRules;
+using System.Collections.Generic;
 namespace uTank2_Settings_Editor
 {
     partial class Form1
@@ -90,9 +91,17 @@ namespace uTank2_Settings_Editor
             this.cmdNewReq = new System.Windows.Forms.Button();
             this.cmdDeleteRule = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSet = new System.Windows.Forms.TextBox();
+            this.cmbSet = new System.Windows.Forms.ComboBox();
+            this.txtSkill = new System.Windows.Forms.TextBox();
+            this.cmbSkill = new System.Windows.Forms.ComboBox();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupRule.SuspendLayout();
             this.groupReqs.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -101,7 +110,7 @@ namespace uTank2_Settings_Editor
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(583, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -181,8 +190,8 @@ namespace uTank2_Settings_Editor
             this.lstRules.Name = "lstRules";
             this.lstRules.Size = new System.Drawing.Size(160, 303);
             this.lstRules.TabIndex = 1;
+            this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
             this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
-            this.lstRules.DrawItem += new DrawItemEventHandler(lstRules_DrawItem);
             // 
             // cmdNewRule
             // 
@@ -391,11 +400,72 @@ namespace uTank2_Settings_Editor
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtSet);
+            this.groupBox1.Controls.Add(this.cmbSet);
+            this.groupBox1.Controls.Add(this.txtSkill);
+            this.groupBox1.Controls.Add(this.cmbSkill);
+            this.groupBox1.Controls.Add(this.txtMaterial);
+            this.groupBox1.Controls.Add(this.cmbMaterial);
+            this.groupBox1.Location = new System.Drawing.Point(13, 398);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(558, 45);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Info";
+            // 
+            // txtSet
+            // 
+            this.txtSet.Location = new System.Drawing.Point(517, 15);
+            this.txtSet.Name = "txtSet";
+            this.txtSet.Size = new System.Drawing.Size(30, 20);
+            this.txtSet.TabIndex = 5;
+            // 
+            // cmbSet
+            // 
+            this.cmbSet.FormattingEnabled = true;
+            this.cmbSet.Location = new System.Drawing.Point(371, 15);
+            this.cmbSet.Name = "cmbSet";
+            this.cmbSet.Size = new System.Drawing.Size(140, 21);
+            this.cmbSet.TabIndex = 4;
+            // 
+            // txtSkill
+            // 
+            this.txtSkill.Location = new System.Drawing.Point(335, 15);
+            this.txtSkill.Name = "txtSkill";
+            this.txtSkill.Size = new System.Drawing.Size(30, 20);
+            this.txtSkill.TabIndex = 3;
+            // 
+            // cmbSkill
+            // 
+            this.cmbSkill.FormattingEnabled = true;
+            this.cmbSkill.Location = new System.Drawing.Point(189, 14);
+            this.cmbSkill.Name = "cmbSkill";
+            this.cmbSkill.Size = new System.Drawing.Size(140, 21);
+            this.cmbSkill.TabIndex = 2;
+            // 
+            // txtMaterial
+            // 
+            this.txtMaterial.Location = new System.Drawing.Point(153, 15);
+            this.txtMaterial.Name = "txtMaterial";
+            this.txtMaterial.Size = new System.Drawing.Size(30, 20);
+            this.txtMaterial.TabIndex = 1;
+            // 
+            // cmbMaterial
+            // 
+            this.cmbMaterial.FormattingEnabled = true;
+            this.cmbMaterial.Location = new System.Drawing.Point(7, 15);
+            this.cmbMaterial.Name = "cmbMaterial";
+            this.cmbMaterial.Size = new System.Drawing.Size(140, 21);
+            this.cmbMaterial.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 400);
+            this.ClientSize = new System.Drawing.Size(585, 446);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cmdDeleteRule);
             this.Controls.Add(this.groupRule);
@@ -411,10 +481,48 @@ namespace uTank2_Settings_Editor
             this.groupRule.PerformLayout();
             this.groupReqs.ResumeLayout(false);
             this.groupReqs.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        void cmbSet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSet.SelectedIndex > 0)
+            {
+                SortedDictionary<string, int> setIds = GameInfo.getSetInfo();
+                if (setIds.ContainsKey(cmbSet.Items[cmbSet.SelectedIndex].ToString()))
+                {
+                    txtSet.Text = setIds[cmbSet.Items[cmbSet.SelectedIndex].ToString()].ToString();
+                }
+            }
+        }
+
+        void cmbSkill_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSkill.SelectedIndex > 0)
+            {
+                SortedDictionary<string, int> skillIds = GameInfo.getSkillInfo();
+                if (skillIds.ContainsKey(cmbSkill.Items[cmbSkill.SelectedIndex].ToString()))
+                {
+                    txtSkill.Text = skillIds[cmbSkill.Items[cmbSkill.SelectedIndex].ToString()].ToString();
+                }
+            }
+        }
+
+        void cmbMaterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbMaterial.SelectedIndex > 0)
+            {
+                SortedDictionary<string, int> matIds = GameInfo.getMaterialInfo();
+                if (matIds.ContainsKey(cmbMaterial.Items[cmbMaterial.SelectedIndex].ToString()))
+                {
+                    txtMaterial.Text = matIds[cmbMaterial.Items[cmbMaterial.SelectedIndex].ToString()].ToString();
+                }
+            }
+        }        
 
         void lstRules_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -546,6 +654,13 @@ namespace uTank2_Settings_Editor
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.Button button1;
+        private GroupBox groupBox1;
+        private TextBox txtSet;
+        private ComboBox cmbSet;
+        private TextBox txtSkill;
+        private ComboBox cmbSkill;
+        private TextBox txtMaterial;
+        private ComboBox cmbMaterial;
 
 
     }
