@@ -79,6 +79,18 @@ namespace uTank2
             string DisplayString();
         }
 
+        internal static class GameInfo
+        {
+            public static double HaxConvertDouble(string s)
+            {
+                string ss = s.Replace(',', '.');
+                double res;
+                if (!double.TryParse(ss, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out res))
+                    return 0d;
+                return res;
+            }
+        }
+
         internal class SpellNameMatch : iLootRule
         {
             public cUniqueID tn; public void SetID(cUniqueID ttnn) {tn=ttnn;} public cUniqueID GetID() {return tn;}
@@ -209,7 +221,7 @@ namespace uTank2
 
             public void Read(System.IO.StreamReader inf)
             {
-                keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+                keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
                 vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
             }
 
@@ -238,7 +250,7 @@ namespace uTank2
 
             public void Read(System.IO.StreamReader inf)
             {
-                keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+                keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
                 vk = (Decal.Adapter.Wrappers.DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
             }
 
@@ -266,7 +278,7 @@ namespace uTank2
 
             public void Read(System.IO.StreamReader inf)
             {
-                keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+                keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
             }
 
             public void Write(System.IO.StreamWriter inf)

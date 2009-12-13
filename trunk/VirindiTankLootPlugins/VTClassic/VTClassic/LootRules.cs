@@ -47,6 +47,15 @@ namespace VTClassic
 
     internal static class GameInfo
     {
+        public static double HaxConvertDouble(string s)
+        {
+            string ss = s.Replace(',', '.');
+            double res;
+            if (!double.TryParse(ss, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out res))
+                return 0d;
+            return res;
+        }
+
         public static bool IsIDProperty(StringValueKey vk)
         {
             switch (vk)
@@ -326,7 +335,7 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
             vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
@@ -371,7 +380,7 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
             vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
@@ -407,7 +416,7 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf)
         {
-            keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
         }
 
         public void Write(System.IO.StreamWriter inf)
