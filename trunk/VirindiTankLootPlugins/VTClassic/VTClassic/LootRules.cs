@@ -540,10 +540,10 @@ namespace VTClassic
                 bool im;
                 R.EarlyMatch(id, out hd, out im);
 
-                if (hd && (!im))
+                if (hd && im)
                 {
                     hasdecision = true;
-                    ismatch = false;
+                    ismatch = true;
                     return;
                 }
 
