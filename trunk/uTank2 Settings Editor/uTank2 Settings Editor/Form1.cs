@@ -85,6 +85,9 @@ namespace uTank2_Settings_Editor
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipSkill);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipType);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.HealKitSkillBonus);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOutline);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOverlay);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconUnderlay);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.LockpickSkillBonus);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.LoreRequirement);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ManaCost);
@@ -746,11 +749,6 @@ namespace uTank2_Settings_Editor
             SetCurrentReq(null, 0);
             SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex - 1], lstRules.SelectedIndex - 1);
         }
-
-
-
-
-
 
     }
 }
