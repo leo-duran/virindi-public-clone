@@ -588,6 +588,7 @@ namespace VTClassic
                     case 5: newrule = new c5DoubleValKeyGE(); break;
                     case 6: newrule = new c6DamagePercentGE(); break;
                     case 7: newrule = new c7ObjectClassE(); break;
+                    case 8: newrule = new c8SpellCountGE(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
