@@ -533,34 +533,32 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            bool needid = false;
+            bool outputmatch = true;
+
             foreach (iLootRule R in IntRules)
             {
                 bool hd;
                 bool im;
                 R.EarlyMatch(id, out hd, out im);
 
-                if (hd && im)
+                if (!hd)
                 {
-                    hasdecision = true;
-                    ismatch = true;
+                    hasdecision = false;
+                    ismatch = false;
                     return;
                 }
 
-                if (!hd)
-                    needid = true;
+                //hd is true
+                if (!im)
+                {
+                    outputmatch = false;
+                }
             }
 
-            if (needid)
-            {
-                hasdecision = false;
-                ismatch = false;
-            }
-            else
-            {
-                hasdecision = true;
-                ismatch = true;
-            }
+            //All requirements had decision
+            hasdecision = true;
+            ismatch = outputmatch;
+            return;
         }
 
         #region iSettingsCollection Members
