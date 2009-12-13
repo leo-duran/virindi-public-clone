@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using Decal.Adapter.Wrappers;
 
 namespace uTank2
 {
@@ -77,6 +78,7 @@ namespace uTank2
             void SetID(cUniqueID ttnn);
             cUniqueID GetID();
             string DisplayString();
+            bool requiresID();
         }
 
         internal static class GameInfo
@@ -88,6 +90,56 @@ namespace uTank2
                 if (!double.TryParse(ss, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out res))
                     return 0d;
                 return res;
+            }
+
+            public static bool IsIDProperty(DoubleValueKey vk)
+            {
+                switch (vk)
+                {
+                    case DoubleValueKey.ApproachDistance: return false;
+                    case DoubleValueKey.SalvageWorkmanship: return false;
+                    default: return true;
+                }
+            }
+
+            public static bool IsIDProperty(LongValueKey vk)
+            {
+                switch (vk)
+                {
+                    case LongValueKey.CreateFlags1: return false;
+                    case LongValueKey.Type: return false;
+                    case LongValueKey.Icon: return false;
+                    case LongValueKey.Category: return false;
+                    case LongValueKey.Behavior: return false;
+                    case LongValueKey.CreateFlags2: return false;
+                    case LongValueKey.IconUnderlay: return false;
+                    case LongValueKey.ItemSlots: return false;
+                    case LongValueKey.PackSlots: return false;
+                    case LongValueKey.MissileType: return false;
+                    case LongValueKey.Material: return false;
+                    case LongValueKey.Value: return false;
+                    case LongValueKey.Unknown10: return false;
+                    case LongValueKey.UsageMask: return false;
+                    case LongValueKey.IconOutline: return false;
+                    case LongValueKey.EquipType: return false;
+                    case LongValueKey.UsesRemaining: return false;
+                    case LongValueKey.UsesTotal: return false;
+                    case LongValueKey.StackCount: return false;
+                    case LongValueKey.StackMax: return false;
+                    case LongValueKey.Container: return false;
+                    case LongValueKey.Slot: return false;
+                    case LongValueKey.EquipableSlots: return false;
+                    case LongValueKey.EquippedSlots: return false;
+                    case LongValueKey.Coverage: return false;
+                    case LongValueKey.Unknown100000: return false;
+                    case LongValueKey.Unknown800000: return false;
+                    case LongValueKey.Unknown8000000: return false;
+                    //case LongValueKey.Burden: return false;
+                    case LongValueKey.Monarch: return false;
+                    case LongValueKey.HookMask: return false;
+                    case LongValueKey.IconOverlay: return false;
+                    default: return true;
+                }
             }
         }
 
@@ -104,6 +156,8 @@ namespace uTank2
             public int GetRuleType() { return 0; }
 
             public string DisplayString() { return "SpellNameMatch: " + rx.ToString(); }
+
+            public bool requiresID() { return true; }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -130,7 +184,9 @@ namespace uTank2
 
             public int GetRuleType() { return 1; }
 
-            public string DisplayString() { return "StringValueMatch: " + rx.ToString(); }
+            public string DisplayString() { return string.Format("{0} matches: {1}", vk, rx); }
+
+            public bool requiresID() { return false; }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -150,7 +206,7 @@ namespace uTank2
         {
             public cUniqueID tn; public void SetID(cUniqueID ttnn) {tn=ttnn;} public cUniqueID GetID() {return tn;}
             public int keyval;
-            public Decal.Adapter.Wrappers.LongValueKey vk = Decal.Adapter.Wrappers.LongValueKey.ActivationReqSkillId;
+            public LongValueKey vk = Decal.Adapter.Wrappers.LongValueKey.ActivationReqSkillId;
 
             public LongValKeyLE() { }
             public LongValKeyLE(int k, Decal.Adapter.Wrappers.LongValueKey v) { keyval = k; vk = v; }
@@ -158,6 +214,8 @@ namespace uTank2
             #region iLootRule Members
 
             public int GetRuleType() { return 2; }
+
+            public bool requiresID() { return GameInfo.IsIDProperty(vk); }
 
             public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
 
@@ -190,6 +248,8 @@ namespace uTank2
 
             public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
 
+            public bool requiresID() { return GameInfo.IsIDProperty(vk); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -218,6 +278,8 @@ namespace uTank2
             public int GetRuleType() { return 4; }
 
             public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
+
+            public bool requiresID() { return GameInfo.IsIDProperty(vk); }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -248,6 +310,8 @@ namespace uTank2
 
             public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
 
+            public bool requiresID() { return GameInfo.IsIDProperty(vk); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
@@ -276,6 +340,8 @@ namespace uTank2
 
             public string DisplayString() { return string.Format("DamagePercentGE >= {0}", keyval); }
 
+            public bool requiresID() { return true; }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
@@ -302,6 +368,8 @@ namespace uTank2
 
             public string DisplayString() { return string.Format("ObjectClass = {0}", vk); }
 
+            public bool requiresID() { return false; }
+
             public void Read(System.IO.StreamReader inf)
             {
                 vk = (Decal.Adapter.Wrappers.ObjectClass)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -327,6 +395,8 @@ namespace uTank2
             public int GetRuleType() { return 8; }
 
             public string DisplayString() { return string.Format("SpellCount >= {0}", keyval); }
+
+            public bool requiresID() { return true; }
 
             public void Read(System.IO.StreamReader inf)
             {

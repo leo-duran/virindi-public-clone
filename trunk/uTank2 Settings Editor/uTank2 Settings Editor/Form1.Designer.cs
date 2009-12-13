@@ -24,6 +24,8 @@
 //  THE SOFTWARE.
 ///////////////////////////////////////////////////////////////////////////////
 
+using System.Drawing;
+using System;
 namespace uTank2_Settings_Editor
 {
     partial class Form1
@@ -259,6 +261,7 @@ namespace uTank2_Settings_Editor
             // 
             // cmbActsOn
             // 
+            this.cmbActsOn.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbActsOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbActsOn.FormattingEnabled = true;
             this.cmbActsOn.Location = new System.Drawing.Point(6, 72);
@@ -266,6 +269,7 @@ namespace uTank2_Settings_Editor
             this.cmbActsOn.Size = new System.Drawing.Size(142, 21);
             this.cmbActsOn.TabIndex = 6;
             this.cmbActsOn.SelectedIndexChanged += new System.EventHandler(this.cmbActsOn_SelectedIndexChanged);
+            this.cmbActsOn.DrawItem += new System.Windows.Forms.DrawItemEventHandler(cmbActsOn_DrawItem);
             // 
             // lblActsOn
             // 
@@ -333,11 +337,13 @@ namespace uTank2_Settings_Editor
             // 
             // lstRequirements
             // 
+            this.lstRequirements.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRequirements.FormattingEnabled = true;
             this.lstRequirements.Location = new System.Drawing.Point(6, 115);
             this.lstRequirements.Name = "lstRequirements";
             this.lstRequirements.Size = new System.Drawing.Size(222, 199);
             this.lstRequirements.TabIndex = 0;
+            this.lstRequirements.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRequirements_DrawItem);
             this.lstRequirements.SelectedIndexChanged += new System.EventHandler(this.lstRequirements_SelectedIndexChanged);
             // 
             // cmdDeleteReq
@@ -403,6 +409,71 @@ namespace uTank2_Settings_Editor
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        void cmbActsOn_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Brush myBrush = Brushes.Black;
+            System.Windows.Forms.ComboBox s = (System.Windows.Forms.ComboBox)sender;
+            try
+            {
+                if (CurrentReq.GetRuleType() == 2 || CurrentReq.GetRuleType() == 3)
+                {
+                    if (uTank2.LootRules.GameInfo.IsIDProperty(LVKFromIndex(e.Index)))
+                    {
+                        myBrush = Brushes.DarkRed;
+                    }
+                }
+                else if (CurrentReq.GetRuleType() == 4 || CurrentReq.GetRuleType() == 5)
+                {
+                    if (uTank2.LootRules.GameInfo.IsIDProperty(DVKFromIndex(e.Index)))
+                    {
+                        myBrush = Brushes.DarkRed;
+                    }
+                }
+                e.Graphics.DrawString(s.Items[e.Index].ToString(),
+                    e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+            }
+            catch (Exception ex)
+            {
+                // TODO?
+            }
+            e.DrawFocusRectangle();
+        }
+
+        void lstRequirements_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        {
+            //
+            // Draw the background of the ListBox control for each item.
+            // Create a new Brush and initialize to a Black colored brush
+            // by default.
+            //
+            e.DrawBackground();
+            Brush myBrush = Brushes.Black;
+            //
+            // Determine the color of the brush to draw each item based on 
+            // the index of the item to draw.
+            //
+            try
+            {
+                if (CurrentRule.IntRules[e.Index].requiresID())
+                {
+                    myBrush = Brushes.DarkRed;
+                }
+
+                e.Graphics.DrawString(((System.Windows.Forms.ListBox)sender).Items[e.Index].ToString(),
+                    e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+            }
+            catch (Exception ex)
+            {
+                // TODO?
+            }
+            //
+            // If the ListBox has focus, draw a focus rectangle 
+            // around the selected item.
+            //
+            e.DrawFocusRectangle();
         }
 
         #endregion
