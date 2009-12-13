@@ -536,7 +536,7 @@ namespace uTank2_Settings_Editor
             uTank2.LootRules.SpellNameMatch lr = new uTank2.LootRules.SpellNameMatch();
 
             CurrentRule.IntRules.Add(lr);
-            lstRequirements.Items.Add(lr.GetType().ToString().Split(new char[] {'.'})[2]);
+            lstRequirements.Items.Add(lr.DisplayString());
             SetCurrentReq(lr, CurrentRule.IntRules.Count-1);
         }
 
@@ -653,23 +653,23 @@ namespace uTank2_Settings_Editor
             {
                 case 1:
                     ((uTank2.LootRules.StringValueMatch)CurrentReq).vk = SVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " - " + SVKFromIndex(cmbActsOn.SelectedIndex).ToString();
+                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 2:
                     ((uTank2.LootRules.LongValKeyLE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " - " + LVKFromIndex(cmbActsOn.SelectedIndex).ToString();
+                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 3:
                     ((uTank2.LootRules.LongValKeyGE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " - " + LVKFromIndex(cmbActsOn.SelectedIndex).ToString();
+                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 4:
                     ((uTank2.LootRules.DoubleValKeyLE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " - " + DVKFromIndex(cmbActsOn.SelectedIndex).ToString();
+                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 5:
                     ((uTank2.LootRules.DoubleValKeyGE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " - " + DVKFromIndex(cmbActsOn.SelectedIndex).ToString();
+                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
             }
 
@@ -685,7 +685,7 @@ namespace uTank2_Settings_Editor
             if (CurrentReq.GetRuleType() == 7)
             {
                 ((uTank2.LootRules.ObjectClass)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
-                lstRequirements.Items[CurrentReqNum] = CurrentReq.GetType().ToString().Split(new char[] { '.' })[2] + " = " + OCFromIndex(cmbKey.SelectedIndex).ToString();
+                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             }
             Working = false;
         }
@@ -724,12 +724,12 @@ namespace uTank2_Settings_Editor
                         ((uTank2.LootRules.SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
                 }
+                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             }
             catch (Exception)
             {
 
-            }
-
+            }            
             Working = false;
         }
 
