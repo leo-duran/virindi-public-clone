@@ -653,25 +653,22 @@ namespace uTank2_Settings_Editor
             {
                 case 1:
                     ((uTank2.LootRules.StringValueMatch)CurrentReq).vk = SVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 2:
                     ((uTank2.LootRules.LongValKeyLE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 3:
                     ((uTank2.LootRules.LongValKeyGE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 4:
                     ((uTank2.LootRules.DoubleValKeyLE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
                 case 5:
                     ((uTank2.LootRules.DoubleValKeyGE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
                     break;
             }
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
 
             Working = false;
         }
