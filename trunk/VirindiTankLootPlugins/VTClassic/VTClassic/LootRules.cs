@@ -452,6 +452,51 @@ namespace VTClassic
         #endregion
     }
 
+    internal class c8SpellCountGE : iLootRule
+    {
+        public int keyval;
+
+        public c8SpellCountGE() { }
+        public c8SpellCountGE(int k) { keyval = k; }
+
+        #region iLootRule Members
+
+        public int GetRuleType() { return 8; }
+
+        public bool Match(GameItemInfo id)
+        {
+            return id.Spells.Count >= keyval;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            //Is the object magical?
+            bool ismagical = ((id.GetValueInt(IntValueKey.IconOutline, 0) & 0x01) > 0);
+            if (ismagical)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
+
+        public void Read(System.IO.StreamReader inf)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public void Write(System.IO.StreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        #endregion
+    }
+
     //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
     {
