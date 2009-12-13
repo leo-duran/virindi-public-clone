@@ -42,8 +42,7 @@ namespace VTClassic
     {
         int GetRuleType();
         bool Match(GameItemInfo id);
-        //void Read(System.IO.StreamReader inf);
-        //void Write(System.IO.StreamWriter inf);
+        void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch);
     }
 
     internal class c0SpellNameMatch : iLootRule
@@ -66,6 +65,12 @@ namespace VTClassic
                     return true;
             }
             return false;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -95,6 +100,12 @@ namespace VTClassic
         public bool Match(GameItemInfo id)
         {
             return rx.Match(id.GetValueString(vk, "")).Success;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -128,6 +139,12 @@ namespace VTClassic
             return (id.GetValueInt(vk, 0) <= keyval);
         }
 
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
+
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -157,6 +174,12 @@ namespace VTClassic
         public bool Match(GameItemInfo id)
         {
             return (id.GetValueInt(vk, 0) >= keyval);
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -190,6 +213,12 @@ namespace VTClassic
             return (((float)id.GetValueDouble(vk, 0)) <= ((float)keyval));
         }
 
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
+
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -219,6 +248,12 @@ namespace VTClassic
         public bool Match(GameItemInfo id)
         {
             return (((float)id.GetValueDouble(vk, 0)) >= ((float)keyval));
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -251,6 +286,12 @@ namespace VTClassic
             return false;
         }
 
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
+
         public void Read(System.IO.StreamReader inf)
         {
             keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -277,6 +318,12 @@ namespace VTClassic
         public bool Match(GameItemInfo id)
         {
             return (id.ObjectClass == vk);
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -315,6 +362,38 @@ namespace VTClassic
             foreach (iLootRule R in IntRules)
                 if (!R.Match(id)) return false;
             return true;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            bool needid = false;
+            foreach (iLootRule R in IntRules)
+            {
+                bool hd;
+                bool im;
+                R.EarlyMatch(id, out hd, out im);
+
+                if (hd && (!im))
+                {
+                    hasdecision = true;
+                    ismatch = false;
+                    return;
+                }
+
+                if (!hd)
+                    needid = true;
+            }
+
+            if (needid)
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = true;
+            }
         }
 
         #region iSettingsCollection Members
@@ -395,6 +474,28 @@ namespace VTClassic
                     return R.Action();
 
             return eLootAction.NoLoot;
+        }
+
+        public bool NeedsID(GameItemInfo id)
+        {
+            foreach (cLootItemRule R in Rules)
+            {
+                bool hd;
+                bool im;
+                R.EarlyMatch(id, out hd, out im);
+
+                //All higher priority rules don't need ID, and don't match
+                //thus if this rule matches and doesn't need ID, we know it
+                //will also be the final match and we don't need to ID
+                if (hd && im)
+                    return false;
+
+                if (!hd)
+                    return true;
+            }
+
+            //Nothing needs an ID, and nothing matches
+            return false;
         }
 
         public void Clear()

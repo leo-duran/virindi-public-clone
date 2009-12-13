@@ -43,7 +43,9 @@ namespace VTClassic
         {
             try
             {
+                if (item.HasIDData) return false;
 
+                return LootRules.NeedsID(item);
             }
             catch (Exception ex)
             {
