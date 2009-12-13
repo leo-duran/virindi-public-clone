@@ -236,34 +236,7 @@ namespace uTank2_Settings_Editor
                 lstRequirements.Items.Clear();
                 foreach (uTank2.LootRules.iLootRule newlr in cr.IntRules)
                 {
-                    //lstRequirements.Items.Add(ilr.GetType().ToString().Split(new char[] { '.' })[2]);
-                    switch (newlr.GetRuleType())
-                    {
-                        case 0:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2]);
-                            break;
-                        case 1:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.StringValueMatch)newlr).vk).ToString());
-                            break;
-                        case 2:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.LongValKeyLE)newlr).vk).ToString());
-                            break;
-                        case 3:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.LongValKeyGE)newlr).vk).ToString());
-                            break;
-                        case 4:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.DoubleValKeyLE)newlr).vk).ToString());
-                            break;
-                        case 5:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.DoubleValKeyGE)newlr).vk).ToString());
-                            break;
-                        case 6:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2]);
-                            break;
-                        case 7:
-                            lstRequirements.Items.Add(newlr.GetType().ToString().Split(new char[] { '.' })[2] + " = " + (((uTank2.LootRules.ObjectClass)newlr).vk).ToString());
-                            break;
-                    }
+                    lstRequirements.Items.Add(newlr.DisplayString());
                 }
             }
             Working = false;
@@ -292,6 +265,7 @@ namespace uTank2_Settings_Editor
                 cmbReqType.Items.Add("Double Value Key >=");
                 cmbReqType.Items.Add("Damage Percentage >=");
                 cmbReqType.Items.Add("ObjectClass");
+                cmbReqType.Items.Add("Spell Count >=");
                 cmbReqType.SelectedIndex = cr.GetRuleType();
 
                 cmbActsOn.Items.Clear();
@@ -386,6 +360,15 @@ namespace uTank2_Settings_Editor
                         cmbKey.SelectedIndex = IndexFromOC(((uTank2.LootRules.ObjectClass)cr).vk);
                         lblValue.Visible = false;
                         txtValue.Visible = false;
+                        break;
+                    case 8:
+                        lblActsOn.Visible = false;
+                        cmbActsOn.Visible = false;
+                        lblKey.Visible = false;
+                        cmbKey.Visible = false;
+                        lblValue.Visible = false;
+                        txtValue.Visible = true;
+                        txtValue.Text = ((uTank2.LootRules.SpellCountGE)cr).keyval.ToString();
                         break;
                 }
             }
@@ -641,6 +624,9 @@ namespace uTank2_Settings_Editor
                 case 7:
                     newlr = new uTank2.LootRules.ObjectClass();
                     break;
+                case 8:
+                    newlr = new uTank2.LootRules.SpellCountGE();
+                    break;
                 default:
                     newlr = CurrentReq;
                     break;
@@ -651,33 +637,7 @@ namespace uTank2_Settings_Editor
                 //lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
                 CurrentRule.IntRules[CurrentReqNum] = newlr;
                 SetCurrentReq(newlr, CurrentReqNum);
-                switch (newlr.GetRuleType())
-                {
-                    case 0:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
-                        break;
-                    case 1:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.StringValueMatch)newlr).vk).ToString();
-                        break;
-                    case 2:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.LongValKeyLE)newlr).vk).ToString();
-                        break;
-                    case 3:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.LongValKeyGE)newlr).vk).ToString();
-                        break;
-                    case 4:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.DoubleValKeyLE)newlr).vk).ToString();
-                        break;
-                    case 5:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2] + " - " + (((uTank2.LootRules.DoubleValKeyGE)newlr).vk).ToString();
-                        break;
-                    case 6:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
-                        break;
-                    case 7:
-                        lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
-                        break;
-                }
+                lstRequirements.Items[CurrentReqNum] = newlr.DisplayString();
             }
 
             Working = false;
@@ -759,6 +719,9 @@ namespace uTank2_Settings_Editor
                         break;
                     case 6:
                         ((uTank2.LootRules.DamagePercentGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
+                        break;
+                    case 8:
+                        ((uTank2.LootRules.SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
                 }
             }

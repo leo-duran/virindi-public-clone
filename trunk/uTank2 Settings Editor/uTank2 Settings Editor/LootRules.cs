@@ -76,6 +76,7 @@ namespace uTank2
             void Write(System.IO.StreamWriter inf);
             void SetID(cUniqueID ttnn);
             cUniqueID GetID();
+            string DisplayString();
         }
 
         internal class SpellNameMatch : iLootRule
@@ -89,6 +90,8 @@ namespace uTank2
             #region iLootRule Members
 
             public int GetRuleType() { return 0; }
+
+            public string DisplayString() { return "SpellNameMatch: " + rx.ToString(); }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -114,6 +117,8 @@ namespace uTank2
             #region iLootRule Members
 
             public int GetRuleType() { return 1; }
+
+            public string DisplayString() { return "StringValueMatch: " + rx.ToString(); }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -142,6 +147,8 @@ namespace uTank2
 
             public int GetRuleType() { return 2; }
 
+            public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -168,6 +175,8 @@ namespace uTank2
             #region iLootRule Members
 
             public int GetRuleType() { return 3; }
+
+            public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -196,6 +205,8 @@ namespace uTank2
 
             public int GetRuleType() { return 4; }
 
+            public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -223,6 +234,8 @@ namespace uTank2
 
             public int GetRuleType() { return 5; }
 
+            public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -249,6 +262,8 @@ namespace uTank2
 
             public int GetRuleType() { return 6; }
 
+            public string DisplayString() { return string.Format("DamagePercentGE >= {0}", keyval); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 keyval = Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -261,7 +276,6 @@ namespace uTank2
 
             #endregion
         }
-
         internal class ObjectClass : iLootRule
         {
             public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
@@ -274,6 +288,8 @@ namespace uTank2
 
             public int GetRuleType() { return 7; }
 
+            public string DisplayString() { return string.Format("ObjectClass = {0}", vk); }
+
             public void Read(System.IO.StreamReader inf)
             {
                 vk = (Decal.Adapter.Wrappers.ObjectClass)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
@@ -282,6 +298,32 @@ namespace uTank2
             public void Write(System.IO.StreamWriter inf)
             {
                 inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+        }
+        internal class SpellCountGE : iLootRule
+        {
+            public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
+            public int keyval;
+
+            public SpellCountGE() { }
+            public SpellCountGE(int k) { keyval = k; }
+
+            #region iLootRule Members
+
+            public int GetRuleType() { return 8; }
+
+            public string DisplayString() { return string.Format("SpellCount >= {0}", keyval); }
+
+            public void Read(System.IO.StreamReader inf)
+            {
+                keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            public void Write(System.IO.StreamWriter inf)
+            {
+                inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
             }
 
             #endregion
@@ -327,6 +369,7 @@ namespace uTank2
                     case 5: newrule = new LootRules.DoubleValKeyGE(); break;
                     case 6: newrule = new LootRules.DamagePercentGE(); break;
                     case 7: newrule = new LootRules.ObjectClass(); break;
+                    case 8: newrule = new LootRules.SpellCountGE(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
