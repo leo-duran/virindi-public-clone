@@ -102,6 +102,7 @@ namespace VTClassic
                 case IntValueKey.Monarch: return false;
                 case IntValueKey.HookMask: return false;
                 case IntValueKey.IconOverlay: return false;
+                case IntValueKey.Material: return false;
                 default: return true;
             }
         }
@@ -646,8 +647,14 @@ namespace VTClassic
 
         public bool NeedsID(GameItemInfo id)
         {
+            bool iswalking = false;
+            eLootAction walkaction = eLootAction.NoLoot;
+
             foreach (cLootItemRule R in Rules)
             {
+                if (iswalking && (R.act != walkaction))
+                    return true;
+
                 bool hd;
                 bool im;
                 R.EarlyMatch(id, out hd, out im);
@@ -656,14 +663,33 @@ namespace VTClassic
                 //thus if this rule matches and doesn't need ID, we know it
                 //will also be the final match and we don't need to ID
                 if (hd && im)
+                {
+#if DEBUGMSG
+                    if (iswalking)
+                        LootCore.WriteToChat("Walking to next match saved an ID on " + id.GetValueString(StringValueKey.Name, "") + "!");
+#endif
                     return false;
+                }
 
                 if (!hd)
-                    return true;
+                {
+                    //As long as the action is the same, priority is irrelevant,
+                    //so continue to match as long as action is the same
+                    iswalking = true;
+                    walkaction = R.act;
+                    //return true;
+                }
             }
 
-            //Nothing needs an ID, and nothing matches
-            return false;
+            if (iswalking)
+            {
+                return true;
+            }
+            else
+            {
+                //Nothing needs an ID, and nothing matches
+                return false;
+            }
         }
 
         public void Clear()

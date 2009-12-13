@@ -34,10 +34,23 @@ namespace VTClassic
 {
     public class LootCore: uTank2.LootPlugins.LootPluginBase
     {
+        internal static LootCore Instance;
+
+        internal static void WriteToChat(string s)
+        {
+            if (Instance == null) return;
+            Instance.Host.AddChatText(s);
+        }
+
         void ExceptionHandler(Exception ex)
         {
             Host.AddChatText("Exception: " + ex.ToString(), 6, 1);
         }
+
+#if DEBUGMSG
+        int neededid = 0;
+        int noid = 0;
+#endif
 
         public override bool DoesPotentialItemNeedID(uTank2.LootPlugins.GameItemInfo item)
         {
@@ -45,7 +58,25 @@ namespace VTClassic
             {
                 if (item.HasIDData) return false;
 
-                return LootRules.NeedsID(item);
+                bool ret = LootRules.NeedsID(item);
+
+#if DEBUGMSG
+                if (ret)
+                    Host.AddChatText("Item " + item.GetValueString(StringValueKey.Name, "") + " will get ID.", 0);
+                else
+                    Host.AddChatText("Item " + item.GetValueString(StringValueKey.Name, "") + " does not need ID.", 6);
+
+
+                if (ret)
+                    neededid++;
+                else
+                    noid++;
+
+                if (((neededid + noid) % 20) == 0)
+                    Host.AddChatText((neededid + noid).ToString() + " items seen, ID rate " + Math.Round(100d * (double)(neededid) / (double)(neededid + noid), 1).ToString() + "%");
+#endif
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -84,6 +115,11 @@ namespace VTClassic
         {
             try
             {
+#if DEBUGMSG
+                neededid = 0;
+                noid = 0;
+#endif
+
                 if (newprofile)
                 {
                     LootRules = new cLootRules();
@@ -164,7 +200,7 @@ namespace VTClassic
         {
             try
             {
-
+                Instance = this;
             }
             catch (Exception ex)
             {
@@ -178,7 +214,7 @@ namespace VTClassic
         {
             try
             {
-
+                Instance = null;
             }
             catch (Exception ex)
             {
