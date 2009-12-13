@@ -45,6 +45,69 @@ namespace VTClassic
         void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch);
     }
 
+    internal static class GameInfo
+    {
+        public static bool IsIDProperty(StringValueKey vk)
+        {
+            switch (vk)
+            {
+                case StringValueKey.Name: return false;
+                case StringValueKey.SecondaryName: return false;
+                default: return true;
+            }
+        }
+
+        public static bool IsIDProperty(IntValueKey vk)
+        {
+            switch (vk)
+            {
+                case IntValueKey.CreateFlags1: return false;
+                case IntValueKey.Type: return false;
+                case IntValueKey.Icon: return false;
+                case IntValueKey.Category: return false;
+                case IntValueKey.Behavior: return false;
+                case IntValueKey.CreateFlags2: return false;
+                case IntValueKey.IconUnderlay: return false;
+                case IntValueKey.ItemSlots: return false;
+                case IntValueKey.PackSlots: return false;
+                case IntValueKey.MissileType: return false;
+                case IntValueKey.Value: return false;
+                case IntValueKey.Unknown10: return false;
+                case IntValueKey.UsageMask: return false;
+                case IntValueKey.IconOutline: return false;
+                case IntValueKey.EquipType: return false;
+                case IntValueKey.UsesRemaining: return false;
+                case IntValueKey.UsesTotal: return false;
+                case IntValueKey.StackCount: return false;
+                case IntValueKey.StackMax: return false;
+                case IntValueKey.Container: return false;
+                case IntValueKey.Slot: return false;
+                case IntValueKey.EquipableSlots: return false;
+                case IntValueKey.EquippedSlots: return false;
+                case IntValueKey.Coverage: return false;
+                case IntValueKey.Unknown100000: return false;
+                case IntValueKey.Unknown800000: return false;
+                case IntValueKey.Unknown8000000: return false;
+                //case IntValueKey.Burden: return false;
+                case IntValueKey.OwnedBy: return false;
+                case IntValueKey.Monarch: return false;
+                case IntValueKey.HookMask: return false;
+                case IntValueKey.IconOverlay: return false;
+                default: return true;
+            }
+        }
+
+        public static bool IsIDProperty(DoubleValueKey vk)
+        {
+            switch (vk)
+            {
+                case DoubleValueKey.ApproachDistance: return false;
+                case DoubleValueKey.SalvageWorkmanship: return false;
+                default: return true;
+            }
+        }
+    }
+
     internal class c0SpellNameMatch : iLootRule
     {
         System.Text.RegularExpressions.Regex rx;
@@ -69,8 +132,18 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            //Is the object magical?
+            bool ismagical = ((id.GetValueInt(IntValueKey.IconOutline, 0) & 0x01) > 0);
+            if (ismagical)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -104,8 +177,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -141,8 +222,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -178,8 +267,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -215,8 +312,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -252,8 +357,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
@@ -322,8 +435,8 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            hasdecision = true;
+            ismatch = Match(id);
         }
 
         public void Read(System.IO.StreamReader inf)
