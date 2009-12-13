@@ -26,6 +26,9 @@
 
 using System.Drawing;
 using System;
+using System.Windows.Forms;
+using uTank2;
+using uTank2.LootRules;
 namespace uTank2_Settings_Editor
 {
     partial class Form1
@@ -172,12 +175,14 @@ namespace uTank2_Settings_Editor
             // 
             // lstRules
             // 
+            this.lstRules.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRules.FormattingEnabled = true;
             this.lstRules.Location = new System.Drawing.Point(12, 59);
             this.lstRules.Name = "lstRules";
             this.lstRules.Size = new System.Drawing.Size(160, 303);
             this.lstRules.TabIndex = 1;
             this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
+            this.lstRules.DrawItem += new DrawItemEventHandler(lstRules_DrawItem);
             // 
             // cmdNewRule
             // 
@@ -268,8 +273,8 @@ namespace uTank2_Settings_Editor
             this.cmbActsOn.Name = "cmbActsOn";
             this.cmbActsOn.Size = new System.Drawing.Size(142, 21);
             this.cmbActsOn.TabIndex = 6;
+            this.cmbActsOn.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbActsOn_DrawItem);
             this.cmbActsOn.SelectedIndexChanged += new System.EventHandler(this.cmbActsOn_SelectedIndexChanged);
-            this.cmbActsOn.DrawItem += new System.Windows.Forms.DrawItemEventHandler(cmbActsOn_DrawItem);
             // 
             // lblActsOn
             // 
@@ -411,68 +416,101 @@ namespace uTank2_Settings_Editor
 
         }
 
+        void lstRules_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
+
+            Brush bgBrush = Brushes.White;
+
+            bool badRule = true;
+
+            if (e.Index > -1)
+            {
+                cLootItemRule r = LootRules.Rules[e.Index];
+                foreach (iLootRule ir in r.IntRules)
+                {
+                    if (!ir.requiresID())
+                    {
+                        badRule = false;
+                        break;
+                    }
+                }
+
+                if (badRule)
+                {
+                    bool hilight = e.State == DrawItemState.Selected
+                        || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
+                        || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
+
+                    bgBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                }
+            }
+
+            e.DrawBackground();
+            if (badRule)
+                e.Graphics.FillRectangle(bgBrush, e.Bounds);
+            if (e.Index > -1)
+                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+            e.DrawFocusRectangle();
+        }
+
         void cmbActsOn_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
-            e.DrawBackground();
-            Brush myBrush = Brushes.Black;
             System.Windows.Forms.ComboBox s = (System.Windows.Forms.ComboBox)sender;
+
+            Brush textBrush = Brushes.Black;
+
+            bool hilight = e.State == DrawItemState.Selected
+                || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
+                || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
+
             try
             {
                 if (CurrentReq.GetRuleType() == 2 || CurrentReq.GetRuleType() == 3)
                 {
                     if (uTank2.LootRules.GameInfo.IsIDProperty(LVKFromIndex(e.Index)))
                     {
-                        myBrush = Brushes.DarkRed;
+                        textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
                 else if (CurrentReq.GetRuleType() == 4 || CurrentReq.GetRuleType() == 5)
                 {
                     if (uTank2.LootRules.GameInfo.IsIDProperty(DVKFromIndex(e.Index)))
                     {
-                        myBrush = Brushes.DarkRed;
+                        textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
-                e.Graphics.DrawString(s.Items[e.Index].ToString(),
-                    e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+                
             }
             catch (Exception ex)
             {
                 // TODO?
             }
+
+            e.DrawBackground();
+            if (e.Index > -1)
+                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, textBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
         }
 
         void lstRequirements_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
-            //
-            // Draw the background of the ListBox control for each item.
-            // Create a new Brush and initialize to a Black colored brush
-            // by default.
-            //
-            e.DrawBackground();
-            Brush myBrush = Brushes.Black;
-            //
-            // Determine the color of the brush to draw each item based on 
-            // the index of the item to draw.
-            //
-            try
-            {
-                if (CurrentRule.IntRules[e.Index].requiresID())
-                {
-                    myBrush = Brushes.DarkRed;
-                }
+            System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
 
-                e.Graphics.DrawString(((System.Windows.Forms.ListBox)sender).Items[e.Index].ToString(),
-                    e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
-            }
-            catch (Exception ex)
+            Brush textBrush = Brushes.Black;
+
+            bool hilight = e.State == DrawItemState.Selected
+                || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
+                || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
+
+            if (e.Index > -1 && CurrentRule.IntRules[e.Index].requiresID())
             {
-                // TODO?
+                textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
             }
-            //
-            // If the ListBox has focus, draw a focus rectangle 
-            // around the selected item.
-            //
+
+            e.DrawBackground();
+            if (e.Index > -1)
+                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, textBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
         }
 
