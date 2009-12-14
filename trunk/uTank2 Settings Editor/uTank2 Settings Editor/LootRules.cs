@@ -375,6 +375,20 @@ namespace uTank2
                         }
                     }
                 }
+                else if (vk == LongValueKey.WieldReqAttribute)
+                {
+                    SortedDictionary<string, int> skillIds = GameInfo.getSkillInfo();
+                    if (skillIds.ContainsValue((int)keyval))
+                    {
+                        foreach (KeyValuePair<string, int> kv in skillIds)
+                        {
+                            if (kv.Value == (int)keyval)
+                            {
+                                return string.Format("{0} <= {1} ({2})", vk, keyval, kv.Key);
+                            }
+                        }
+                    }
+                }
                 return string.Format("{0} <= {1}", vk, keyval);
             }
 
@@ -419,7 +433,21 @@ namespace uTank2
                                 return string.Format("{0} >= {1} ({2})", vk, keyval, kv.Key);
                             }
                         }
-                    }                    
+                    }
+                }
+                else if (vk == LongValueKey.WieldReqAttribute)
+                {
+                    SortedDictionary<string, int> skillIds = GameInfo.getSkillInfo();
+                    if (skillIds.ContainsValue((int)keyval))
+                    {
+                        foreach (KeyValuePair<string, int> kv in skillIds)
+                        {
+                            if (kv.Value == (int)keyval)
+                            {
+                                return string.Format("{0} >= {1} ({2})", vk, keyval, kv.Key);
+                            }
+                        }
+                    }
                 }
                 return string.Format("{0} >= {1}", vk, keyval);
             }
