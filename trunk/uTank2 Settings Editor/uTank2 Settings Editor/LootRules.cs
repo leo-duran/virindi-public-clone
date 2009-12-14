@@ -359,7 +359,24 @@ namespace uTank2
 
             public bool requiresID() { return GameInfo.IsIDProperty(vk); }
 
-            public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
+            public string DisplayString()
+            {
+                if (vk == LongValueKey.Material)
+                {
+                    SortedDictionary<string, int> matIds = GameInfo.getMaterialInfo();
+                    if (matIds.ContainsValue((int)keyval))
+                    {
+                        foreach (KeyValuePair<string, int> kv in matIds)
+                        {
+                            if (kv.Value == (int)keyval)
+                            {
+                                return string.Format("{0} <= {1} ({2})", vk, keyval, kv.Key);
+                            }
+                        }
+                    }
+                }
+                return string.Format("{0} <= {1}", vk, keyval);
+            }
 
             public void Read(System.IO.StreamReader inf)
             {
@@ -388,7 +405,24 @@ namespace uTank2
 
             public int GetRuleType() { return 3; }
 
-            public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
+            public string DisplayString()
+            {
+                if (vk == LongValueKey.Material)
+                {
+                    SortedDictionary<string, int> matIds = GameInfo.getMaterialInfo();
+                    if (matIds.ContainsValue((int)keyval))
+                    {
+                        foreach (KeyValuePair<string, int> kv in matIds)
+                        {
+                            if (kv.Value == (int)keyval)
+                            {
+                                return string.Format("{0} >= {1} ({2})", vk, keyval, kv.Key);
+                            }
+                        }
+                    }                    
+                }
+                return string.Format("{0} >= {1}", vk, keyval);
+            }
 
             public bool requiresID() { return GameInfo.IsIDProperty(vk); }
 
