@@ -148,6 +148,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         {
             if (disposed) return;
             disposed = true;
+            GC.SuppressFinalize(this);
 
             foreach (Control c in allocatedcontrols)
                 c.Dispose();
