@@ -299,6 +299,7 @@ namespace uTank2_Settings_Editor
                 cmbReqType.Items.Add("ObjectClass");
                 cmbReqType.Items.Add("Spell Count >=");
                 cmbReqType.Items.Add("Spell Match and Count");
+                cmbReqType.Items.Add("MinDamage >=");
                 cmbReqType.SelectedIndex = cr.GetRuleType();
 
                 cmbActsOn.Items.Clear();
@@ -465,6 +466,20 @@ namespace uTank2_Settings_Editor
                         txtValue3.Visible = true;
                         txtValue3.Text = ((uTank2.LootRules.SpellMatch)cr).cnt.ToString();
                         break;
+                    case 10:
+                        lblActsOn.Visible = false;
+                        cmbActsOn.Visible = false;
+                        lblKey.Visible = false;
+                        cmbKey.Visible = false;
+                        lblValue.Visible = true;
+                        lblValue.Text = "Value";
+                        txtValue.Visible = true;
+                        txtValue.Text = ((uTank2.LootRules.MinDamageGE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
+                        break;
                 }
             }
 
@@ -599,7 +614,7 @@ namespace uTank2_Settings_Editor
                 lr.act = CurrentRule.act;
                 foreach (iLootRule r in CurrentRule.IntRules)
                 {
-                    lr.IntRules.Add(r);
+                    lr.IntRules.Add((iLootRule)r.Clone());
                 }
                 LootRules.Rules.Add(lr);
                 lstRules.Items.Add(lr.name);
@@ -742,6 +757,9 @@ namespace uTank2_Settings_Editor
                 case 9:
                     newlr = new uTank2.LootRules.SpellMatch();
                     break;
+                case 10:
+                    newlr = new uTank2.LootRules.MinDamageGE();
+                    break;
                 default:
                     newlr = CurrentReq;
                     break;
@@ -837,6 +855,9 @@ namespace uTank2_Settings_Editor
                         break;
                     case 9:
                         ((uTank2.LootRules.SpellMatch)CurrentReq).rxp = new System.Text.RegularExpressions.Regex(txtValue.Text);
+                        break;
+                    case 10:
+                        ((uTank2.LootRules.MinDamageGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
                         break;
                 }
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();

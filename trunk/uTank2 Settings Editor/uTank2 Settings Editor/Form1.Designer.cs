@@ -666,8 +666,6 @@ namespace uTank2_Settings_Editor
 
         void lstRequirements_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
-            if (CurrentRule == null) return;
-
             System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
 
             Brush textBrush = Brushes.Black;
@@ -676,7 +674,7 @@ namespace uTank2_Settings_Editor
                 || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
                 || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
 
-            if (e.Index > -1 && CurrentRule.IntRules[e.Index].requiresID())
+            if (e.Index > -1 && CurrentRule != null && CurrentRule.IntRules[e.Index].requiresID())
             {
                 textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
             }

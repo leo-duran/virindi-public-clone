@@ -71,7 +71,7 @@ namespace uTank2
     namespace LootRules
     {
         //A single rule
-        internal interface iLootRule
+        internal interface iLootRule : ICloneable
         {
             int GetRuleType();
             void Read(System.IO.StreamReader inf);
@@ -313,6 +313,18 @@ namespace uTank2
             }
 
             #endregion
+
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                SpellNameMatch c = (SpellNameMatch)this.MemberwiseClone();
+                c.rx = new System.Text.RegularExpressions.Regex(rx.ToString());
+                return c;
+            }
+
+            #endregion
         }
         internal class StringValueMatch : iLootRule
         {
@@ -341,6 +353,17 @@ namespace uTank2
             {
                 inf.WriteLine(rx.ToString());
                 inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                StringValueMatch c = (StringValueMatch)this.MemberwiseClone();
+                c.rx = new System.Text.RegularExpressions.Regex(rx.ToString());
+                return c;
             }
 
             #endregion
@@ -406,6 +429,15 @@ namespace uTank2
             }
 
             #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
+            }
+
+            #endregion
         }
         internal class LongValKeyGE : iLootRule
         {
@@ -468,6 +500,15 @@ namespace uTank2
             }
 
             #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
+            }
+
+            #endregion
         }
         internal class DoubleValKeyLE : iLootRule
         {
@@ -496,6 +537,15 @@ namespace uTank2
             {
                 inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
                 inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
             }
 
             #endregion
@@ -530,6 +580,15 @@ namespace uTank2
             }
 
             #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
+            }
+
+            #endregion
         }
         internal class DamagePercentGE : iLootRule
         {
@@ -555,6 +614,15 @@ namespace uTank2
             public void Write(System.IO.StreamWriter inf)
             {
                 inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
             }
 
             #endregion
@@ -586,6 +654,15 @@ namespace uTank2
             }
 
             #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
+            }
+
+            #endregion
         }
         internal class SpellCountGE : iLootRule
         {
@@ -614,6 +691,15 @@ namespace uTank2
             }
 
             #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
+            }
+
+            #endregion
         }
         internal class SpellMatch : iLootRule
         {
@@ -631,6 +717,11 @@ namespace uTank2
 
             public string DisplayString()
             {
+                if (string.Empty.Equals(rxn.ToString().Trim()))
+                {
+                    return string.Format("SpellMatch: {0} [{1} times]",
+                    rxp, cnt);
+                }
                 return string.Format("SpellMatch: {0}, but not {1} [{2} times]",
                     rxp, rxn, cnt);
             }
@@ -649,6 +740,59 @@ namespace uTank2
                 inf.WriteLine(rxp.ToString());
                 inf.WriteLine(rxn.ToString());
                 inf.WriteLine(cnt.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                SpellMatch c = (SpellMatch)this.MemberwiseClone();
+                c.rxp = new System.Text.RegularExpressions.Regex(rxp.ToString());
+                c.rxn = new System.Text.RegularExpressions.Regex(rxn.ToString());
+                return c;
+            }
+
+            #endregion
+        }
+
+        internal class MinDamageGE : iLootRule
+        {
+            public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
+            public double keyval;
+
+            public MinDamageGE() { keyval = 0; }
+            public MinDamageGE(double v) { keyval = v; }
+
+            #region iLootRule Members
+
+            public int GetRuleType() { return 10; }
+
+            public string DisplayString()
+            {
+                return string.Format("MinDamage >= {0}", keyval);
+            }
+
+            public bool requiresID() { return true; }
+
+            public void Read(System.IO.StreamReader inf)
+            {
+                keyval = Math.Round(Convert.ToDouble(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture), 2);
+            }
+
+            public void Write(System.IO.StreamWriter inf)
+            {
+                inf.WriteLine(keyval.ToString());
+            }
+
+            #endregion
+
+            #region ICloneable Member
+
+            public object Clone()
+            {
+                return this.MemberwiseClone();
             }
 
             #endregion
@@ -696,6 +840,7 @@ namespace uTank2
                     case 7: newrule = new LootRules.ObjectClass(); break;
                     case 8: newrule = new LootRules.SpellCountGE(); break;
                     case 9: newrule = new LootRules.SpellMatch(); break;
+                    case 10: newrule = new LootRules.MinDamageGE(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
