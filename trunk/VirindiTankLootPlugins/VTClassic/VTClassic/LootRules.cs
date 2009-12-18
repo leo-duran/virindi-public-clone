@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using uTank2.LootPlugins;
+using System.Text.RegularExpressions;
 
 namespace VTClassic
 {
@@ -507,6 +508,68 @@ namespace VTClassic
         #endregion
     }
 
+    internal class c9SpellMatch : iLootRule
+    {
+        public Regex rxp;
+        public Regex rxn;
+        public int cnt;
+
+        public c9SpellMatch() { rxp = new Regex(""); rxn = new Regex(""); cnt = 1; }
+        public c9SpellMatch(Regex p, Regex n, int c) { rxp = p; rxn = n; cnt = c; }
+
+        #region iLootRule Members
+
+        public int GetRuleType() { return 9; }
+
+        public bool Match(GameItemInfo id)
+        {
+            int c = 0;
+            System.Collections.ObjectModel.ReadOnlyCollection<uTank2.MySpell> Spells = id.Spells;
+            bool rxnEmpty = string.Empty.Equals(rxn.ToString().Trim());
+
+            foreach (uTank2.MySpell sp in Spells)
+            {
+                if (rxp.Match(sp.Name).Success && (rxnEmpty || !rxn.Match(sp.Name).Success))
+                {
+                    c++; if (c >= cnt) return true;
+                }
+            }
+            return false;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            //Is the object magical?
+            bool ismagical = ((id.GetValueInt(IntValueKey.IconOutline, 0) & 0x01) > 0);
+            if (ismagical)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
+
+        public void Read(System.IO.StreamReader inf)
+        {
+            rxp = new Regex(inf.ReadLine());
+            rxn = new Regex(inf.ReadLine());
+            cnt = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public void Write(System.IO.StreamWriter inf)
+        {
+            inf.WriteLine(rxp.ToString());
+            inf.WriteLine(rxn.ToString());
+            inf.WriteLine(cnt.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        #endregion
+    }
+
     //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
     {
@@ -592,6 +655,7 @@ namespace VTClassic
                     case 6: newrule = new c6DamagePercentGE(); break;
                     case 7: newrule = new c7ObjectClassE(); break;
                     case 8: newrule = new c8SpellCountGE(); break;
+                    case 9: newrule = new c9SpellMatch(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
