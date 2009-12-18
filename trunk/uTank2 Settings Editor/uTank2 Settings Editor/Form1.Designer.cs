@@ -73,6 +73,7 @@ namespace uTank2_Settings_Editor
             this.lstRules = new System.Windows.Forms.ListBox();
             this.cmdNewRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
+            this.cmdCloneReq = new System.Windows.Forms.Button();
             this.groupReqs = new System.Windows.Forms.GroupBox();
             this.txtValue3 = new System.Windows.Forms.TextBox();
             this.lblValue3 = new System.Windows.Forms.Label();
@@ -211,6 +212,7 @@ namespace uTank2_Settings_Editor
             // 
             // groupRule
             // 
+            this.groupRule.Controls.Add(this.cmdCloneReq);
             this.groupRule.Controls.Add(this.groupReqs);
             this.groupRule.Controls.Add(this.label2);
             this.groupRule.Controls.Add(this.cmbAction);
@@ -225,6 +227,16 @@ namespace uTank2_Settings_Editor
             this.groupRule.TabIndex = 3;
             this.groupRule.TabStop = false;
             this.groupRule.Text = "Rule";
+            // 
+            // cmdCloneReq
+            // 
+            this.cmdCloneReq.Location = new System.Drawing.Point(83, 320);
+            this.cmdCloneReq.Name = "cmdCloneReq";
+            this.cmdCloneReq.Size = new System.Drawing.Size(68, 23);
+            this.cmdCloneReq.TabIndex = 5;
+            this.cmdCloneReq.Text = "Clone";
+            this.cmdCloneReq.UseVisualStyleBackColor = true;
+            this.cmdCloneReq.Click += new System.EventHandler(this.cmdCloneReq_Click);
             // 
             // groupReqs
             // 
@@ -403,9 +415,9 @@ namespace uTank2_Settings_Editor
             // 
             // cmdDeleteReq
             // 
-            this.cmdDeleteReq.Location = new System.Drawing.Point(161, 320);
+            this.cmdDeleteReq.Location = new System.Drawing.Point(157, 320);
             this.cmdDeleteReq.Name = "cmdDeleteReq";
-            this.cmdDeleteReq.Size = new System.Drawing.Size(67, 23);
+            this.cmdDeleteReq.Size = new System.Drawing.Size(68, 23);
             this.cmdDeleteReq.TabIndex = 2;
             this.cmdDeleteReq.Text = "Delete";
             this.cmdDeleteReq.UseVisualStyleBackColor = true;
@@ -415,7 +427,7 @@ namespace uTank2_Settings_Editor
             // 
             this.cmdNewReq.Location = new System.Drawing.Point(9, 320);
             this.cmdNewReq.Name = "cmdNewReq";
-            this.cmdNewReq.Size = new System.Drawing.Size(63, 23);
+            this.cmdNewReq.Size = new System.Drawing.Size(68, 23);
             this.cmdNewReq.TabIndex = 1;
             this.cmdNewReq.Text = "New";
             this.cmdNewReq.UseVisualStyleBackColor = true;
@@ -730,6 +742,7 @@ namespace uTank2_Settings_Editor
         private TextBox txtValue3;
         private Label lblValue3;
         private Button button2;
+        private Button cmdCloneReq;
 
 
     }

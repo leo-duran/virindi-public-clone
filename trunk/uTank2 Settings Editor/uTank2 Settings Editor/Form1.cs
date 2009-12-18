@@ -667,6 +667,19 @@ namespace uTank2_Settings_Editor
             SetCurrentReq(lr, CurrentRule.IntRules.Count-1);
         }
 
+        private void cmdCloneReq_Click(object sender, EventArgs e)
+        {
+            if (CurrentReq != null)
+            {
+                FileChanged = true;
+                iLootRule lr = (iLootRule)CurrentReq.Clone();
+
+                CurrentRule.IntRules.Add(lr);
+                lstRequirements.Items.Add(lr.DisplayString());
+                SetCurrentReq(lr, CurrentRule.IntRules.Count - 1);
+            }
+        }
+
         private void cmdDeleteReq_Click(object sender, EventArgs e)
         {
             if (CurrentReq == null) return;
