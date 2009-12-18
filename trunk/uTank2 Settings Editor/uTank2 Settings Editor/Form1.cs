@@ -101,6 +101,7 @@ namespace uTank2_Settings_Editor
 
             i = 0;
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ActivationReqSkillId);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.AffectsVitalAmt);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorLevel);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorSetID);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Burden);
@@ -112,7 +113,6 @@ namespace uTank2_Settings_Editor
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipableSlots);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipSkill);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.HealKitSkillBonus);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Heritage);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOutline);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOverlay);
