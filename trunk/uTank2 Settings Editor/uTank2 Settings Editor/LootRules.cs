@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using Decal.Adapter.Wrappers;
+using System.Text.RegularExpressions;
 
 namespace uTank2
 {
@@ -614,6 +615,44 @@ namespace uTank2
 
             #endregion
         }
+        internal class SpellMatch : iLootRule
+        {
+            public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
+            public Regex rxp;
+            public Regex rxn;
+            public int cnt;
+
+            public SpellMatch() { rxp = new Regex(""); rxn = new Regex(""); cnt = 1; }
+            public SpellMatch(Regex p, Regex n, int c) { rxp = p; rxn = n; cnt = c; }
+
+            #region iLootRule Members
+
+            public int GetRuleType() { return 9; }
+
+            public string DisplayString()
+            {
+                return string.Format("SpellMatch: {0}, but not {1} [{2} times]",
+                    rxp, rxn, cnt);
+            }
+
+            public bool requiresID() { return true; }
+
+            public void Read(System.IO.StreamReader inf)
+            {
+                rxp = new Regex(inf.ReadLine());
+                rxn = new Regex(inf.ReadLine());
+                cnt = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            public void Write(System.IO.StreamWriter inf)
+            {
+                inf.WriteLine(rxp.ToString());
+                inf.WriteLine(rxn.ToString());
+                inf.WriteLine(cnt.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            #endregion
+        }
     }
 
     //A set of rules with an action attached
@@ -656,6 +695,7 @@ namespace uTank2
                     case 6: newrule = new LootRules.DamagePercentGE(); break;
                     case 7: newrule = new LootRules.ObjectClass(); break;
                     case 8: newrule = new LootRules.SpellCountGE(); break;
+                    case 9: newrule = new LootRules.SpellMatch(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);

@@ -74,6 +74,10 @@ namespace uTank2_Settings_Editor
             this.cmdNewRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
             this.groupReqs = new System.Windows.Forms.GroupBox();
+            this.txtValue3 = new System.Windows.Forms.TextBox();
+            this.lblValue3 = new System.Windows.Forms.Label();
+            this.lblValue2 = new System.Windows.Forms.Label();
+            this.txtValue2 = new System.Windows.Forms.TextBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.lblValue = new System.Windows.Forms.Label();
             this.cmbKey = new System.Windows.Forms.ComboBox();
@@ -98,6 +102,8 @@ namespace uTank2_Settings_Editor
             this.cmbSkill = new System.Windows.Forms.ComboBox();
             this.txtMaterial = new System.Windows.Forms.TextBox();
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
+            this.cmdCloneRule = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupRule.SuspendLayout();
             this.groupReqs.SuspendLayout();
@@ -197,7 +203,7 @@ namespace uTank2_Settings_Editor
             // 
             this.cmdNewRule.Location = new System.Drawing.Point(12, 368);
             this.cmdNewRule.Name = "cmdNewRule";
-            this.cmdNewRule.Size = new System.Drawing.Size(75, 23);
+            this.cmdNewRule.Size = new System.Drawing.Size(40, 23);
             this.cmdNewRule.TabIndex = 2;
             this.cmdNewRule.Text = "New";
             this.cmdNewRule.UseVisualStyleBackColor = true;
@@ -222,6 +228,10 @@ namespace uTank2_Settings_Editor
             // 
             // groupReqs
             // 
+            this.groupReqs.Controls.Add(this.txtValue3);
+            this.groupReqs.Controls.Add(this.lblValue3);
+            this.groupReqs.Controls.Add(this.lblValue2);
+            this.groupReqs.Controls.Add(this.txtValue2);
             this.groupReqs.Controls.Add(this.txtValue);
             this.groupReqs.Controls.Add(this.lblValue);
             this.groupReqs.Controls.Add(this.cmbKey);
@@ -237,6 +247,38 @@ namespace uTank2_Settings_Editor
             this.groupReqs.TabStop = false;
             this.groupReqs.Text = "Requirements";
             // 
+            // txtValue3
+            // 
+            this.txtValue3.Location = new System.Drawing.Point(5, 230);
+            this.txtValue3.Name = "txtValue3";
+            this.txtValue3.Size = new System.Drawing.Size(142, 20);
+            this.txtValue3.TabIndex = 14;
+            this.txtValue3.TextChanged += new System.EventHandler(this.txtValue3_TextChanged);
+            // 
+            // lblValue3
+            // 
+            this.lblValue3.Location = new System.Drawing.Point(7, 214);
+            this.lblValue3.Name = "lblValue3";
+            this.lblValue3.Size = new System.Drawing.Size(140, 13);
+            this.lblValue3.TabIndex = 13;
+            this.lblValue3.Text = "Value 3";
+            // 
+            // lblValue2
+            // 
+            this.lblValue2.Location = new System.Drawing.Point(7, 175);
+            this.lblValue2.Name = "lblValue2";
+            this.lblValue2.Size = new System.Drawing.Size(140, 13);
+            this.lblValue2.TabIndex = 12;
+            this.lblValue2.Text = "Value 2";
+            // 
+            // txtValue2
+            // 
+            this.txtValue2.Location = new System.Drawing.Point(6, 191);
+            this.txtValue2.Name = "txtValue2";
+            this.txtValue2.Size = new System.Drawing.Size(142, 20);
+            this.txtValue2.TabIndex = 11;
+            this.txtValue2.TextChanged += new System.EventHandler(this.txtValue2_TextChanged);
+            // 
             // txtValue
             // 
             this.txtValue.Location = new System.Drawing.Point(6, 152);
@@ -247,10 +289,9 @@ namespace uTank2_Settings_Editor
             // 
             // lblValue
             // 
-            this.lblValue.AutoSize = true;
             this.lblValue.Location = new System.Drawing.Point(6, 136);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(34, 13);
+            this.lblValue.Size = new System.Drawing.Size(140, 13);
             this.lblValue.TabIndex = 9;
             this.lblValue.Text = "Value";
             // 
@@ -382,9 +423,9 @@ namespace uTank2_Settings_Editor
             // 
             // cmdDeleteRule
             // 
-            this.cmdDeleteRule.Location = new System.Drawing.Point(97, 368);
+            this.cmdDeleteRule.Location = new System.Drawing.Point(118, 368);
             this.cmdDeleteRule.Name = "cmdDeleteRule";
-            this.cmdDeleteRule.Size = new System.Drawing.Size(75, 23);
+            this.cmdDeleteRule.Size = new System.Drawing.Size(54, 23);
             this.cmdDeleteRule.TabIndex = 4;
             this.cmdDeleteRule.Text = "Delete";
             this.cmdDeleteRule.UseVisualStyleBackColor = true;
@@ -394,7 +435,7 @@ namespace uTank2_Settings_Editor
             // 
             this.button1.Location = new System.Drawing.Point(12, 33);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 20);
+            this.button1.Size = new System.Drawing.Size(75, 20);
             this.button1.TabIndex = 5;
             this.button1.Text = "Move Up";
             this.button1.UseVisualStyleBackColor = true;
@@ -460,11 +501,33 @@ namespace uTank2_Settings_Editor
             this.cmbMaterial.Size = new System.Drawing.Size(140, 21);
             this.cmbMaterial.TabIndex = 0;
             // 
+            // cmdCloneRule
+            // 
+            this.cmdCloneRule.Location = new System.Drawing.Point(58, 368);
+            this.cmdCloneRule.Name = "cmdCloneRule";
+            this.cmdCloneRule.Size = new System.Drawing.Size(54, 23);
+            this.cmdCloneRule.TabIndex = 7;
+            this.cmdCloneRule.Text = "Clone";
+            this.cmdCloneRule.UseVisualStyleBackColor = true;
+            this.cmdCloneRule.Click += new System.EventHandler(this.cmdCloneRule_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(97, 33);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 20);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Move Down";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 446);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cmdCloneRule);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cmdDeleteRule);
@@ -603,6 +666,8 @@ namespace uTank2_Settings_Editor
 
         void lstRequirements_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
+            if (CurrentRule == null) return;
+
             System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
 
             Brush textBrush = Brushes.Black;
@@ -661,6 +726,12 @@ namespace uTank2_Settings_Editor
         private ComboBox cmbSkill;
         private TextBox txtMaterial;
         private ComboBox cmbMaterial;
+        private Button cmdCloneRule;
+        private TextBox txtValue2;
+        private Label lblValue2;
+        private TextBox txtValue3;
+        private Label lblValue3;
+        private Button button2;
 
 
     }

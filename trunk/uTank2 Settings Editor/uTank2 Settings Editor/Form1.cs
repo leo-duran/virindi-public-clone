@@ -113,6 +113,7 @@ namespace uTank2_Settings_Editor
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipSkill);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipType);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.HealKitSkillBonus);
+            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Heritage);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOutline);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOverlay);
             LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconUnderlay);
@@ -297,6 +298,7 @@ namespace uTank2_Settings_Editor
                 cmbReqType.Items.Add("Damage Percentage >=");
                 cmbReqType.Items.Add("ObjectClass");
                 cmbReqType.Items.Add("Spell Count >=");
+                cmbReqType.Items.Add("Spell Match and Count");
                 cmbReqType.SelectedIndex = cr.GetRuleType();
 
                 cmbActsOn.Items.Clear();
@@ -310,8 +312,13 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         txtValue.Text = ((uTank2.LootRules.SpellNameMatch)cr).rx.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 1:
                         lblActsOn.Visible = true;
@@ -320,10 +327,15 @@ namespace uTank2_Settings_Editor
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
                         txtValue.Visible = true;
+                        lblValue.Text = "Value";
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < SVKOptions.Count; ++i) cmbActsOn.Items.Add(SVKOptions[i]);
                         cmbActsOn.SelectedIndex = IndexFromSVK(((uTank2.LootRules.StringValueMatch)cr).vk);
                         txtValue.Text = ((uTank2.LootRules.StringValueMatch)cr).rx.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 2:
                         lblActsOn.Visible = true;
@@ -331,11 +343,16 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < LVKOptions.Count; ++i) cmbActsOn.Items.Add(LVKOptions[i]);
                         cmbActsOn.SelectedIndex = IndexFromLVK(((uTank2.LootRules.LongValKeyLE)cr).vk);
                         txtValue.Text = ((uTank2.LootRules.LongValKeyLE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 3:
                         lblActsOn.Visible = true;
@@ -343,11 +360,16 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < LVKOptions.Count; ++i) cmbActsOn.Items.Add(LVKOptions[i]);
                         cmbActsOn.SelectedIndex = IndexFromLVK(((uTank2.LootRules.LongValKeyGE)cr).vk);
                         txtValue.Text = ((uTank2.LootRules.LongValKeyGE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 4:
                         lblActsOn.Visible = true;
@@ -355,11 +377,16 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < DVKOptions.Count; ++i) cmbActsOn.Items.Add(DVKOptions[i]);
                         cmbActsOn.SelectedIndex = IndexFromDVK(((uTank2.LootRules.DoubleValKeyLE)cr).vk);
                         txtValue.Text = ((uTank2.LootRules.DoubleValKeyLE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 5:
                         lblActsOn.Visible = true;
@@ -367,11 +394,16 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < DVKOptions.Count; ++i) cmbActsOn.Items.Add(DVKOptions[i]);
                         cmbActsOn.SelectedIndex = IndexFromDVK(((uTank2.LootRules.DoubleValKeyGE)cr).vk);
                         txtValue.Text = ((uTank2.LootRules.DoubleValKeyGE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 6:
                         lblActsOn.Visible = false;
@@ -379,8 +411,13 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
                         lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         txtValue.Text = ((uTank2.LootRules.DamagePercentGE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 7:
                         lblActsOn.Visible = false;
@@ -391,15 +428,42 @@ namespace uTank2_Settings_Editor
                         cmbKey.SelectedIndex = IndexFromOC(((uTank2.LootRules.ObjectClass)cr).vk);
                         lblValue.Visible = false;
                         txtValue.Visible = false;
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
                         break;
                     case 8:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
                         cmbKey.Visible = false;
-                        lblValue.Visible = false;
+                        lblValue.Visible = true;
+                        lblValue.Text = "Value";
                         txtValue.Visible = true;
                         txtValue.Text = ((uTank2.LootRules.SpellCountGE)cr).keyval.ToString();
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
+                        break;
+                    case 9:
+                        lblActsOn.Visible = false;
+                        cmbActsOn.Visible = false;
+                        lblKey.Visible = false;
+                        cmbKey.Visible = false;
+                        lblValue.Visible = true;
+                        lblValue.Text = "Does match";
+                        txtValue.Visible = true;
+                        txtValue.Text = ((uTank2.LootRules.SpellMatch)cr).rxp.ToString();
+                        lblValue2.Visible = true;
+                        lblValue2.Text = "Does NOT match";
+                        txtValue2.Visible = true;
+                        txtValue2.Text = ((uTank2.LootRules.SpellMatch)cr).rxn.ToString();
+                        lblValue3.Visible = true;
+                        lblValue3.Text = "Miminum spells that match";
+                        txtValue3.Visible = true;
+                        txtValue3.Text = ((uTank2.LootRules.SpellMatch)cr).cnt.ToString();
                         break;
                 }
             }
@@ -526,6 +590,23 @@ namespace uTank2_Settings_Editor
                 SetCurrentRule(null, 0);
         }
 
+        private void cmdCloneRule_Click(object sender, EventArgs e)
+        {
+            if (CurrentRule != null)
+            {
+                cLootItemRule lr = new cLootItemRule();
+                lr.name = CurrentRule.name;
+                lr.act = CurrentRule.act;
+                foreach (iLootRule r in CurrentRule.IntRules)
+                {
+                    lr.IntRules.Add(r);
+                }
+                LootRules.Rules.Add(lr);
+                lstRules.Items.Add(lr.name);
+                SetCurrentRule(lr, LootRules.Rules.Count - 1);
+            }
+        }
+
         private void cmdNewRule_Click(object sender, EventArgs e)
         {
             FileChanged = true;
@@ -533,7 +614,7 @@ namespace uTank2_Settings_Editor
             lr.name = "New Rule";
             lr.act = eLootAction.Keep;
             LootRules.Rules.Add(lr);
-            lstRules.Items.Add("New Rule");
+            lstRules.Items.Add(lr.name);
             SetCurrentRule(lr, LootRules.Rules.Count - 1);
         }
 
@@ -658,6 +739,9 @@ namespace uTank2_Settings_Editor
                 case 8:
                     newlr = new uTank2.LootRules.SpellCountGE();
                     break;
+                case 9:
+                    newlr = new uTank2.LootRules.SpellMatch();
+                    break;
                 default:
                     newlr = CurrentReq;
                     break;
@@ -751,15 +835,52 @@ namespace uTank2_Settings_Editor
                     case 8:
                         ((uTank2.LootRules.SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
+                    case 9:
+                        ((uTank2.LootRules.SpellMatch)CurrentReq).rxp = new System.Text.RegularExpressions.Regex(txtValue.Text);
+                        break;
+                }
+                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            } catch (Exception) { }
+            Working = false;
+        }
+
+        void txtValue2_TextChanged(object sender, EventArgs e)
+        {
+            if (Working) return;
+            FileChanged = true;
+            Working = true;
+            try
+            {
+                switch (CurrentReq.GetRuleType())
+                {
+                    case 9:
+                        ((uTank2.LootRules.SpellMatch)CurrentReq).rxn = new System.Text.RegularExpressions.Regex(txtValue2.Text);
+                        break;
+                }
+                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            } catch (Exception) { }
+            Working = false;
+        }
+
+        void txtValue3_TextChanged(object sender, EventArgs e)
+        {
+            if (Working) return;
+            FileChanged = true;
+            Working = true;
+            try
+            {
+                switch (CurrentReq.GetRuleType())
+                {
+                    case 9:
+                        ((uTank2.LootRules.SpellMatch)CurrentReq).cnt = Convert.ToInt32(txtValue3.Text);
+                        break;
                 }
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             }
-            catch (Exception)
-            {
-
-            }            
+            catch (Exception) { }
             Working = false;
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -776,6 +897,23 @@ namespace uTank2_Settings_Editor
 
             SetCurrentReq(null, 0);
             SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex - 1], lstRules.SelectedIndex - 1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lstRules.SelectedIndex + 1 >= lstRules.Items.Count) return;
+            string swap;
+            cLootItemRule swapl;
+
+            swap = (string)lstRules.Items[lstRules.SelectedIndex + 1];
+            swapl = LootRules.Rules[lstRules.SelectedIndex + 1];
+            lstRules.Items[lstRules.SelectedIndex + 1] = lstRules.Items[lstRules.SelectedIndex];
+            LootRules.Rules[lstRules.SelectedIndex + 1] = LootRules.Rules[lstRules.SelectedIndex];
+            lstRules.Items[lstRules.SelectedIndex] = swap;
+            LootRules.Rules[lstRules.SelectedIndex] = swapl;
+
+            SetCurrentReq(null, 0);
+            SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex + 1], lstRules.SelectedIndex + 1);
         }
 
     }

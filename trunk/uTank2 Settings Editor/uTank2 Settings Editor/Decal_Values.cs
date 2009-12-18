@@ -68,7 +68,6 @@ namespace Decal.Adapter.Wrappers
         MaxLevelRestrict = 87,
         LockpickSkillBonus = 88,
         AffectsVitalId = 89,
-        HealKitSkillBonus = 90,
         AffectsVitalAmt = 90,
         UsesTotal = 91,
         UsesRemaining = 92,
