@@ -570,6 +570,44 @@ namespace VTClassic
         #endregion
     }
 
+    internal class c10MinDamageGE : iLootRule
+    {
+        public double keyval;
+
+        public c10MinDamageGE() { keyval = 0; }
+        public c10MinDamageGE(double v) { keyval = v; }
+
+        #region iLootRule Members
+
+        public int GetRuleType() { return 6; }
+
+        public bool Match(GameItemInfo id)
+        {
+            int maxdamage = id.GetValueInt(IntValueKey.MaxDamage, 0);
+            double variance = id.GetValueDouble(DoubleValueKey.Variance, 0.0);
+            return maxdamage - (variance * maxdamage) >= keyval;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
+
+        public void Read(System.IO.StreamReader inf)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+        }
+
+        public void Write(System.IO.StreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        #endregion
+    }
+
+
     //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
     {
@@ -656,6 +694,7 @@ namespace VTClassic
                     case 7: newrule = new c7ObjectClassE(); break;
                     case 8: newrule = new c8SpellCountGE(); break;
                     case 9: newrule = new c9SpellMatch(); break;
+                    case 10: newrule = new c10MinDamageGE(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
