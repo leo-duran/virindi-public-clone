@@ -590,8 +590,16 @@ namespace VTClassic
 
         public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
         {
-            hasdecision = false;
-            ismatch = false;
+            if (id.ObjectClass == ObjectClass.MeleeWeapon)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
         }
 
         public void Read(System.IO.StreamReader inf)
