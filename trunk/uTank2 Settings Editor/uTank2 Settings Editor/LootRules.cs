@@ -84,6 +84,8 @@ namespace uTank2
 
         internal static class GameInfo
         {
+            private static SortedDictionary<string, int> matIds;
+
             public static double HaxConvertDouble(string s)
             {
                 string ss = s.Replace(',', '.');
@@ -207,80 +209,129 @@ namespace uTank2
 
             public static SortedDictionary<string, int> getMaterialInfo()
             {
-                SortedDictionary<string, int> r = new SortedDictionary<string, int>();
-                r.Add("Agate", 10);
-                r.Add("Alabaster", 66);
-                r.Add("Amber", 11);
-                r.Add("Amethyst", 12);
-                r.Add("Aquamarine", 13);
-                r.Add("Armoredillo Hide", 53);
-                r.Add("Azurite", 14);
-                r.Add("Black Garnet", 15);
-                r.Add("Black Opal", 16);
-                r.Add("Bloodstone", 17);
-                r.Add("Brass", 57);
-                r.Add("Bronze", 58);
-                r.Add("Carnelian", 18);
-                r.Add("Ceramic", 1);
-                r.Add("Citrine", 19);
-                r.Add("Copper", 59);
-                r.Add("Diamond", 20);
-                r.Add("Ebony", 73);
-                r.Add("Emerald", 21);
-                r.Add("Fire Opal", 22);
-                r.Add("Gold", 60);
-                r.Add("Granite", 67);
-                r.Add("Green Garnet", 23);
-                r.Add("Green Jade", 24);
-                r.Add("Gromnie Hide", 54);
-                r.Add("Hematite", 25);
-                r.Add("Imperial Topaz", 26);
-                r.Add("Iron", 61);
-                r.Add("Ivory", 51);
-                r.Add("Jet", 27);
-                r.Add("Lapis Lazuli", 28);
-                r.Add("Lavender Jade", 29);
-                r.Add("Leather", 52);
-                r.Add("Linen", 4);
-                r.Add("Mahogany", 74);
-                r.Add("Malachite", 30);
-                r.Add("Marble", 68);
-                r.Add("Moonstone", 31);
-                r.Add("Oak", 75);
-                r.Add("Obsidian", 69);
-                r.Add("Onyx", 32);
-                r.Add("Opal", 33);
-                r.Add("Peridot", 34);
-                r.Add("Pine", 76);
-                r.Add("Porcelain", 2);
-                r.Add("Pyreal", 62);
-                r.Add("Red Garnet", 35);
-                r.Add("Red Jade", 36);
-                r.Add("Reed Shark Hide", 55);
-                r.Add("Rose Quartz", 37);
-                r.Add("Ruby", 38);
-                r.Add("Sandstone", 70);
-                r.Add("Sapphire", 39);
-                r.Add("Satin", 5);
-                r.Add("Serpentine", 71);
-                r.Add("Silk", 6);
-                r.Add("Silver", 63);
-                r.Add("Smokey Quartz", 40);
-                r.Add("Steel", 64);
-                r.Add("Sunstone", 41);
-                r.Add("Teak", 77);
-                r.Add("Tiger Eye", 42);
-                r.Add("Tourmaline", 43);
-                r.Add("Turquoise", 44);
-                r.Add("Velvet", 7);
-                r.Add("White Jade", 45);
-                r.Add("White Quartz", 46);
-                r.Add("White Sapphire", 47);
-                r.Add("Wool", 8);
-                r.Add("Yellow Garnet", 48);
-                r.Add("Yellow Topaz", 49);
-                r.Add("Zircon", 50);
+                if (matIds == null)
+                {
+                    matIds = new SortedDictionary<string, int>();
+                    matIds.Add("Agate", 10);
+                    matIds.Add("Alabaster", 66);
+                    matIds.Add("Amber", 11);
+                    matIds.Add("Amethyst", 12);
+                    matIds.Add("Aquamarine", 13);
+                    matIds.Add("Armoredillo Hide", 53);
+                    matIds.Add("Azurite", 14);
+                    matIds.Add("Black Garnet", 15);
+                    matIds.Add("Black Opal", 16);
+                    matIds.Add("Bloodstone", 17);
+                    matIds.Add("Brass", 57);
+                    matIds.Add("Bronze", 58);
+                    matIds.Add("Carnelian", 18);
+                    matIds.Add("Ceramic", 1);
+                    matIds.Add("Citrine", 19);
+                    matIds.Add("Copper", 59);
+                    matIds.Add("Diamond", 20);
+                    matIds.Add("Ebony", 73);
+                    matIds.Add("Emerald", 21);
+                    matIds.Add("Fire Opal", 22);
+                    matIds.Add("Gold", 60);
+                    matIds.Add("Granite", 67);
+                    matIds.Add("Green Garnet", 23);
+                    matIds.Add("Green Jade", 24);
+                    matIds.Add("Gromnie Hide", 54);
+                    matIds.Add("Hematite", 25);
+                    matIds.Add("Imperial Topaz", 26);
+                    matIds.Add("Iron", 61);
+                    matIds.Add("Ivory", 51);
+                    matIds.Add("Jet", 27);
+                    matIds.Add("Lapis Lazuli", 28);
+                    matIds.Add("Lavender Jade", 29);
+                    matIds.Add("Leather", 52);
+                    matIds.Add("Linen", 4);
+                    matIds.Add("Mahogany", 74);
+                    matIds.Add("Malachite", 30);
+                    matIds.Add("Marble", 68);
+                    matIds.Add("Moonstone", 31);
+                    matIds.Add("Oak", 75);
+                    matIds.Add("Obsidian", 69);
+                    matIds.Add("Onyx", 32);
+                    matIds.Add("Opal", 33);
+                    matIds.Add("Peridot", 34);
+                    matIds.Add("Pine", 76);
+                    matIds.Add("Porcelain", 2);
+                    matIds.Add("Pyreal", 62);
+                    matIds.Add("Red Garnet", 35);
+                    matIds.Add("Red Jade", 36);
+                    matIds.Add("Reed Shark Hide", 55);
+                    matIds.Add("Rose Quartz", 37);
+                    matIds.Add("Ruby", 38);
+                    matIds.Add("Sandstone", 70);
+                    matIds.Add("Sapphire", 39);
+                    matIds.Add("Satin", 5);
+                    matIds.Add("Serpentine", 71);
+                    matIds.Add("Silk", 6);
+                    matIds.Add("Silver", 63);
+                    matIds.Add("Smokey Quartz", 40);
+                    matIds.Add("Steel", 64);
+                    matIds.Add("Sunstone", 41);
+                    matIds.Add("Teak", 77);
+                    matIds.Add("Tiger Eye", 42);
+                    matIds.Add("Tourmaline", 43);
+                    matIds.Add("Turquoise", 44);
+                    matIds.Add("Velvet", 7);
+                    matIds.Add("White Jade", 45);
+                    matIds.Add("White Quartz", 46);
+                    matIds.Add("White Sapphire", 47);
+                    matIds.Add("Wool", 8);
+                    matIds.Add("Yellow Garnet", 48);
+                    matIds.Add("Yellow Topaz", 49);
+                    matIds.Add("Zircon", 50);
+                }
+                return matIds;
+            }
 
+            public static string getMaterialName(int materialId)
+            {
+                if (matIds == null) getMaterialInfo();
+                if (matIds.ContainsValue(materialId))
+                {
+                    foreach (KeyValuePair<string, int> kv in matIds)
+                    {
+                        if (kv.Value == materialId)
+                        {
+                            return kv.Key;
+                        }
+                    }
+                }
+
+                return string.Empty;
+            }
+
+
+
+            public static SortedDictionary<string, int[]> getMaterialGroups()
+            {
+                SortedDictionary<string, int[]> r = new SortedDictionary<string, int[]>();
+                // Armor Tinkering: Alabaster, Armoredillo Hide, Bronze, Ceramic, Marble, Peridot, Reedshark Hide, Steel, Wool, Yellow Topaz, Zircon
+                r.Add("Armor Tinkering", new int[] { 66, 53, 58, 1, 68, 34, 55, 64, 8, 49, 50 });
+                // Item Tinkering: Copper, Ebony, Gold, Linen, Pine, Porcelain, Moonstone, Silk, Silver, Teak
+                r.Add("Item Tinkering", new int[] { 59, 73, 60, 4, 76, 2, 31, 6, 63, 77 });
+                // Magic Item Tinkering: Agate, Azurite, Black Opal, Bloodstone, Carnelian, Citrine, Fire Opal, Hematite, Lavender Jade, Malachite, Opal, Red Jade, Rose Quartz, Sunstone
+                r.Add("Magic Item Tinkering", new int[] { 10, 14, 16, 17, 18, 19, 22, 25, 29, 30, 33, 36, 37, 41 });
+                // Weapon Tinkering: Aquamarine, Black Garnet, Brass, Emerald, Granite, Iron, Imperial Topaz, Jet, Mahogany, Oak, Red Garnet, Velvet, White Sapphire
+                r.Add("Weapon Tinkering", new int[] { 13, 15, 57, 21, 67, 61, 26, 27, 74, 75, 35, 7, 47 });
+                // Basic Tinkering: Ivory, Leather
+                r.Add("Basic Tinkering", new int[] { 51, 52 });
+                // Gearcrafting: Amber, Diamond, Gromnie Hide, Pyreal, Ruby, Sapphire
+                r.Add("Gearcrafting", new int[] { 11, 20, 54, 62, 38, 39 });
+                // Armor Imbues: Peridot, Yellow Topaz, Zircon
+                r.Add("Armor Imbues", new int[] { 34, 49, 50 });
+                // Protection Tinks: Alabaster, Armoredillo Hide, Bronze, Ceramic, Marble, Reedshark Hide, Steel, Wool
+                r.Add("Protection Tinks", new int[] { 66, 53, 58, 1, 68, 55, 64, 8 });
+                // Weapon Imbues: Aquamarine, Black Garnet, Emerald, Imperial Topaz, Jet, Red Garnet, White Sapphire, Sunstone, Black Opal
+                r.Add("Weapon Imbues", new int[] { 13, 15, 21, 26, 27, 35, 47, 41, 16 });
+                // Brass/Iron/Granite/Hog
+                r.Add("Brass/Granite/Iron/Mahog", new int[] { 57, 67, 61, 74 } );
+                // RG/BG/Jet
+                r.Add("RG/BG/Jet", new int[] { 35, 15, 27 });
                 return r;
             }
 
@@ -811,6 +862,18 @@ namespace uTank2
 
         public int Priority() { return pri; }
 
+        public bool requiresID()
+        {
+            foreach (LootRules.iLootRule i in IntRules)
+            {
+                if (i.requiresID())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #region iSettingsCollection Members
 
         public void Read(System.IO.StreamReader inf)
@@ -868,7 +931,7 @@ namespace uTank2
         #endregion
     }
 
-    internal enum eLootAction
+    public enum eLootAction
     {
         NoLoot = 0,
         Keep = 1,

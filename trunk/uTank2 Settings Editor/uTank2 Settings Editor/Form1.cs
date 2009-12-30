@@ -236,6 +236,7 @@ namespace uTank2_Settings_Editor
             if (cr == null)
             {
                 groupRule.Visible = false;
+                if (lstRules.SelectedIndex >= 0) lstRules.SelectedIndex = -1;
             }
             else
             {
@@ -918,36 +919,73 @@ namespace uTank2_Settings_Editor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (lstRules.SelectedIndex <= 0) return;
-            string swap;
-            cLootItemRule swapl;
-
-            swap = (string)lstRules.Items[lstRules.SelectedIndex - 1];
-            swapl = LootRules.Rules[lstRules.SelectedIndex - 1];
-            lstRules.Items[lstRules.SelectedIndex - 1] = lstRules.Items[lstRules.SelectedIndex];
-            LootRules.Rules[lstRules.SelectedIndex - 1] = LootRules.Rules[lstRules.SelectedIndex];
-            lstRules.Items[lstRules.SelectedIndex] = swap;
-            LootRules.Rules[lstRules.SelectedIndex] = swapl;
-
-            SetCurrentReq(null, 0);
-            SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex - 1], lstRules.SelectedIndex - 1);
+            ruleMoveUp(lstRules.SelectedIndex, true);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (lstRules.SelectedIndex + 1 >= lstRules.Items.Count) return;
-            string swap;
-            cLootItemRule swapl;
+            ruleMoveDown(lstRules.SelectedIndex, true);
+        }
 
-            swap = (string)lstRules.Items[lstRules.SelectedIndex + 1];
-            swapl = LootRules.Rules[lstRules.SelectedIndex + 1];
-            lstRules.Items[lstRules.SelectedIndex + 1] = lstRules.Items[lstRules.SelectedIndex];
-            LootRules.Rules[lstRules.SelectedIndex + 1] = LootRules.Rules[lstRules.SelectedIndex];
-            lstRules.Items[lstRules.SelectedIndex] = swap;
-            LootRules.Rules[lstRules.SelectedIndex] = swapl;
+        private void addSalvageRulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddSalvageRulesForm asr = new AddSalvageRulesForm();
+            DialogResult r = asr.ShowDialog(this);
+            if (r == DialogResult.OK || r == DialogResult.Yes)
+            {
+                try
+                {
+                    int[] matIds = GameInfo.getMaterialGroups()[asr.grp];
+                    this.addMaterialRules(matIds, asr.wrk, r == DialogResult.Yes);
+                }
+                catch (Exception ex) { }
+            }
+            asr.Dispose();
+        }
 
-            SetCurrentReq(null, 0);
-            SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex + 1], lstRules.SelectedIndex + 1);
+        private void increaseSalvageWorkmanshipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateWorkReqsForm f = new UpdateWorkReqsForm();
+            DialogResult r = f.ShowDialog(this);
+            if (r == DialogResult.OK)
+            {
+                try
+                {
+                    this.alterWorkmanshipReqs(f.act, f.wrk);
+                    SetCurrentReq(null, 0);
+                    SetCurrentRule(null, -1);
+                }
+                catch (Exception ex) { }
+            }
+            f.Dispose();
+        }
+
+        private void autoSortRulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lstRules.Visible = false;
+            try
+            {
+                SetCurrentReq(null, 0);
+                SetCurrentRule(null, -1);
+
+                int i, j;
+                bool swap;
+                for (i = lstRules.Items.Count - 1; i > 0; i--)
+                {
+                    for (j = 0; j < i; j++)
+                    {
+                        swap = (LootRules.Rules[j].act > LootRules.Rules[j + 1].act)
+                            || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
+                                && LootRules.Rules[j].requiresID() && !LootRules.Rules[j + 1].requiresID())
+                            || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
+                                && LootRules.Rules[j].requiresID() == LootRules.Rules[j + 1].requiresID()
+                                && LootRules.Rules[j].name.CompareTo(LootRules.Rules[j + 1].name) > 0);
+                        if (swap) ruleMoveDown(j, false);
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            lstRules.Visible = true;
         }
 
     }

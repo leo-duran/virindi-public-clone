@@ -70,6 +70,9 @@ namespace uTank2_Settings_Editor
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSalvageRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.increaseSalvageWorkmanshipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lstRules = new System.Windows.Forms.ListBox();
             this.cmdNewRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
@@ -105,6 +108,7 @@ namespace uTank2_Settings_Editor
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.cmdCloneRule = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.autoSortRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupRule.SuspendLayout();
             this.groupReqs.SuspendLayout();
@@ -114,7 +118,8 @@ namespace uTank2_Settings_Editor
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(585, 24);
@@ -188,6 +193,30 @@ namespace uTank2_Settings_Editor
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addSalvageRulesToolStripMenuItem,
+            this.increaseSalvageWorkmanshipsToolStripMenuItem,
+            this.autoSortRulesToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // addSalvageRulesToolStripMenuItem
+            // 
+            this.addSalvageRulesToolStripMenuItem.Name = "addSalvageRulesToolStripMenuItem";
+            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.addSalvageRulesToolStripMenuItem.Text = "Add/Update Salvage Rules";
+            this.addSalvageRulesToolStripMenuItem.Click += new System.EventHandler(this.addSalvageRulesToolStripMenuItem_Click);
+            // 
+            // increaseSalvageWorkmanshipsToolStripMenuItem
+            // 
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Name = "increaseSalvageWorkmanshipsToolStripMenuItem";
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Text = "Update Workmanship Requirements";
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Click += new System.EventHandler(this.increaseSalvageWorkmanshipsToolStripMenuItem_Click);
             // 
             // lstRules
             // 
@@ -533,6 +562,13 @@ namespace uTank2_Settings_Editor
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // autoSortRulesToolStripMenuItem
+            // 
+            this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
+            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
+            this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -743,6 +779,10 @@ namespace uTank2_Settings_Editor
         private Label lblValue3;
         private Button button2;
         private Button cmdCloneReq;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem addSalvageRulesToolStripMenuItem;
+        private ToolStripMenuItem increaseSalvageWorkmanshipsToolStripMenuItem;
+        private ToolStripMenuItem autoSortRulesToolStripMenuItem;
 
 
     }
