@@ -31,9 +31,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="utank2-i, Version=0.3.0.30, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="utank2-i, Version=0.3.1.19, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\VirindiPlugins\Virindi Tank\utank2-i.dll</HintPath>
+      <HintPath>..\..\..\..\..\Plugins\VirindiTank\uTank2\bin\Debug\utank2-i.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

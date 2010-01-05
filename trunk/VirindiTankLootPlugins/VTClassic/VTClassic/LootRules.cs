@@ -579,7 +579,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 6; }
+        public int GetRuleType() { return 10; }
 
         public bool Match(GameItemInfo id)
         {
@@ -625,7 +625,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 2; }
+        public int GetRuleType() { return 11; }
 
         public bool Match(GameItemInfo id)
         {
@@ -794,12 +794,16 @@ namespace VTClassic
     internal class cLootRules
     {
         public List<cLootItemRule> Rules = new List<cLootItemRule>();
-        public eLootAction Classify(GameItemInfo id)
+        public eLootAction Classify(GameItemInfo id, out string matchedrulename)
         {
             foreach (cLootItemRule R in Rules)
                 if (R.Match(id))
+                {
+                    matchedrulename = R.name;
                     return R.Action();
+                }
 
+            matchedrulename = "";
             return eLootAction.NoLoot;
         }
 

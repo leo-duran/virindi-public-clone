@@ -92,16 +92,23 @@ namespace VTClassic
             {
                 if (LootRules == null) return uTank2.LootPlugins.LootAction.NoLoot;
 
-                eLootAction act = LootRules.Classify(item);
+                string matchedrulename;
+                eLootAction act = LootRules.Classify(item, out matchedrulename);
+                LootAction vtaction = LootAction.NoLoot;
                 switch (act)
                 {
                     case eLootAction.Keep:
-                        return LootAction.Keep;
+                        vtaction = LootAction.Keep;
+                        break;
                     case eLootAction.NoLoot:
-                        return LootAction.NoLoot;
+                        vtaction = LootAction.NoLoot;
+                        break;
                     case eLootAction.Salvage:
-                        return LootAction.Salvage;
+                        vtaction = LootAction.Salvage;
+                        break;
                 }
+                vtaction.RuleName = matchedrulename;
+                return vtaction;
             }
             catch (Exception ex)
             {
