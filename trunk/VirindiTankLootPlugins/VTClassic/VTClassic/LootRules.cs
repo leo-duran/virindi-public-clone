@@ -615,6 +615,52 @@ namespace VTClassic
         #endregion
     }
 
+    internal class c11LongValKeyFlagExists : iLootRule
+    {
+        public int keyval;
+        public IntValueKey vk;
+
+        public c11LongValKeyFlagExists() { }
+        public c11LongValKeyFlagExists(int k, IntValueKey v) { keyval = k; vk = v; }
+
+        #region iLootRule Members
+
+        public int GetRuleType() { return 2; }
+
+        public bool Match(GameItemInfo id)
+        {
+            return (id.GetValueInt(vk, 0) & keyval) > 0;
+        }
+
+        public void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
+        }
+
+        public void Read(System.IO.StreamReader inf)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public void Write(System.IO.StreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        #endregion
+    }
+
 
     //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
@@ -703,6 +749,7 @@ namespace VTClassic
                     case 8: newrule = new c8SpellCountGE(); break;
                     case 9: newrule = new c9SpellMatch(); break;
                     case 10: newrule = new c10MinDamageGE(); break;
+                    case 11: newrule = new c11LongValKeyFlagExists(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
