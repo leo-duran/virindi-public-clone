@@ -578,6 +578,18 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
+        public int ScrollPosition
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.ListWrapper)myControl).ScrollPosition;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.ListWrapper)myControl).ScrollPosition = value;
+            }
+        }
+
         #endregion
 
         public class ListRow : IListRow

@@ -165,6 +165,7 @@ namespace MyClasses.MetaViewWrappers
         int RowCount { get; }
         void RemoveRow(int index);
         int ColCount { get; }
+        int ScrollPosition { get; set;}
     }
 
 #if VVS_WRAPPERS_PUBLIC

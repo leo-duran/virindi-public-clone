@@ -690,6 +690,18 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+        public int ScrollPosition
+        {
+            get
+            {
+                return ((VirindiViewService.Controls.HudList)myControl).ScrollPosition;
+            }
+            set
+            {
+                ((VirindiViewService.Controls.HudList)myControl).ScrollPosition = value;
+            }
+        }
+
         #endregion
     }
 

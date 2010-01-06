@@ -33,16 +33,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
+#if METAVIEW_PUBLIC_NS
+using MetaViewWrappers;
+#else
+using MyClasses.MetaViewWrappers;
+#endif
+
 namespace MyClasses
 {
-    class SelectableWrappedList : MyClasses.MetaViewWrappers.IList
+    class SelectableWrappedList : IList
     {
         MyClasses.MetaViewWrappers.IList Underlying;
         int[] iSelectChangeColumns;
-        public SelectableWrappedList(MyClasses.MetaViewWrappers.IList mylist, int[] SelectChangeColumns)
+        public SelectableWrappedList(IList mylist, int[] SelectChangeColumns)
         {
             Underlying = mylist;
-            Underlying.Click += new MyClasses.MetaViewWrappers.dClickedList(Underlying_Click);
+            Underlying.Click += new dClickedList(Underlying_Click);
             iSelectChangeColumns = SelectChangeColumns;
         }
 
@@ -131,24 +137,24 @@ namespace MyClasses
 
         #region IList Members
 
-        public event MyClasses.MetaViewWrappers.dClickedList Click;
+        public event dClickedList Click;
 
         public virtual void Clear()
         {
             Underlying.Clear();
         }
 
-        public MyClasses.MetaViewWrappers.IListRow this[int row]
+        public IListRow this[int row]
         {
             get { return Underlying[row]; }
         }
 
-        public virtual MyClasses.MetaViewWrappers.IListRow AddRow()
+        public virtual IListRow AddRow()
         {
             return Underlying.AddRow();
         }
 
-        public virtual MyClasses.MetaViewWrappers.IListRow InsertRow(int pos)
+        public virtual IListRow InsertRow(int pos)
         {
             if (SelectedRow >= pos)
                 iselectedrow++;
@@ -174,6 +180,18 @@ namespace MyClasses
             get
             {
                 return Underlying.ColCount;
+            }
+        }
+
+        public int ScrollPosition
+        {
+            get
+            {
+                return Underlying.ScrollPosition;
+            }
+            set
+            {
+                Underlying.ScrollPosition = value;
             }
         }
 
