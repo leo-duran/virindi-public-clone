@@ -35,21 +35,27 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
+#if METAVIEW_PUBLIC_NS
+using MetaViewWrappers;
+#else
+using MyClasses.MetaViewWrappers;
+#endif
+
 namespace MyClasses
 {
     class SelectableWrappedDataList<T>: SelectableWrappedList, IEnumerable<T>
     {
         List<T> data = new List<T>();
-        public SelectableWrappedDataList(MyClasses.MetaViewWrappers.IList mylist, int[] SelectChangeColumns)
+        public SelectableWrappedDataList(IList mylist, int[] SelectChangeColumns)
             :base(mylist,SelectChangeColumns)
         {
 
         }
-        public override MyClasses.MetaViewWrappers.IListRow AddRow()
+        public override IListRow AddRow()
         {
             throw new Exception("Cannot use unparameterized methods.");
         }
-        public override MyClasses.MetaViewWrappers.IListRow InsertRow(int pos)
+        public override IListRow InsertRow(int pos)
         {
             throw new Exception("Cannot use unparameterized methods.");
         }
@@ -63,12 +69,12 @@ namespace MyClasses
             base.RemoveRow(index);
             data.RemoveAt(index);
         }
-        public MyClasses.MetaViewWrappers.IListRow AddRow(T pdata)
+        public IListRow AddRow(T pdata)
         {
             data.Add(pdata);
             return base.AddRow();
         }
-        public MyClasses.MetaViewWrappers.IListRow InsertRow(int pos, T pdata)
+        public IListRow InsertRow(int pos, T pdata)
         {
             data.Insert(pos, pdata);
             return base.InsertRow(pos);
@@ -80,6 +86,10 @@ namespace MyClasses
         public void SetData(int pos, T d)
         {
             data[pos] = d;
+        }
+        public int IndexOf(T d)
+        {
+            return data.IndexOf(d);
         }
 
         #region IEnumerable<T> Members
