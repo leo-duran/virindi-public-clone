@@ -63,6 +63,8 @@ namespace MyClasses.MetaViewWrappers
         ViewSystemSelector.eViewSystem ViewType { get; }
 #endif
 
+        System.Drawing.Point Location { get; set;}
+
         IControl this[string id] { get; }
     }
 

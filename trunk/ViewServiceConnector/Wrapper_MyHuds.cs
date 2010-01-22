@@ -106,6 +106,18 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+        public System.Drawing.Point Location
+        {
+            get
+            {
+                return myView.Location;
+            }
+            set
+            {
+                myView.Location = value;
+            }
+        }
+
 #if VVS_WRAPPERS_PUBLIC
         internal
 #else

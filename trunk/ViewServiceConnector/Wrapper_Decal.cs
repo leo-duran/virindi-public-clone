@@ -95,6 +95,20 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
+        public System.Drawing.Point Location
+        {
+            get
+            {
+                return new System.Drawing.Point(myView.Position.X, myView.Position.Y);
+            }
+            set
+            {
+                int w = myView.Position.Width;
+                int h = myView.Position.Height;
+                myView.Position = new System.Drawing.Rectangle(value.X, value.Y, w, h);
+            }
+        }
+
 #if VVS_WRAPPERS_PUBLIC
         internal
 #else
