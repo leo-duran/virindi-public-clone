@@ -109,6 +109,14 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
+        public System.Drawing.Size Size
+        {
+            get
+            {
+                return new System.Drawing.Size(myView.Position.Width, myView.Position.Height);
+            }
+        }
+
 #if VVS_WRAPPERS_PUBLIC
         internal
 #else
@@ -199,6 +207,18 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         public bool Visible
         {
             get { throw new Exception("The method or operation is not implemented."); }
+        }
+
+        public string TooltipText
+        {
+            get
+            {
+                return "";
+            }
+            set
+            {
+
+            }
         }
 
         #endregion

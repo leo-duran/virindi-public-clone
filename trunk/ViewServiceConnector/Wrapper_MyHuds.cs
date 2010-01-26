@@ -118,6 +118,14 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+        public System.Drawing.Size Size
+        {
+            get
+            {
+                return new System.Drawing.Size(myView.Width, myView.Height);
+            }
+        }
+
 #if VVS_WRAPPERS_PUBLIC
         internal
 #else
@@ -208,6 +216,30 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         public bool Visible
         {
             get { return myControl.Visible; }
+        }
+
+        VirindiViewService.TooltipSystem.cTooltipInfo itooltipinfo = null;
+        public string TooltipText
+        {
+            get
+            {
+                if (itooltipinfo != null)
+                    return itooltipinfo.Text;
+                else
+                    return "";
+            }
+            set
+            {
+                if (itooltipinfo != null)
+                {
+                    VirindiViewService.TooltipSystem.RemoveTooltip(itooltipinfo);
+                    itooltipinfo = null;
+                }
+                if (!String.IsNullOrEmpty(value))
+                {
+                    itooltipinfo = VirindiViewService.TooltipSystem.AssociateTooltip(myControl, value);
+                }
+            }
         }
 
         #endregion

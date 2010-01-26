@@ -63,7 +63,8 @@ namespace MyClasses.MetaViewWrappers
         ViewSystemSelector.eViewSystem ViewType { get; }
 #endif
 
-        System.Drawing.Point Location { get; set;}
+        System.Drawing.Point Location { get; set; }
+        System.Drawing.Size Size { get; }
 
         IControl this[string id] { get; }
     }
@@ -77,6 +78,7 @@ namespace MyClasses.MetaViewWrappers
     {
         string Name { get; }
         bool Visible { get; }
+        string TooltipText { get; set;}
     }
 
 #if VVS_WRAPPERS_PUBLIC
