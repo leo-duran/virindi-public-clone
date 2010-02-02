@@ -7,7 +7,7 @@
 //  System.Drawing
 //  Decal.Adapter
 //
-//This file is Copyright (c) 2009 VirindiPlugins
+//This file is Copyright (c) 2010 VirindiPlugins
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
