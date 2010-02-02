@@ -44,6 +44,116 @@ namespace MyClasses.MetaViewWrappers
 #endif
     delegate void dClickedList(object sender, int row, int col);
 
+    
+    #region EventArgs Classes
+
+    public class MVControlEventArgs : EventArgs
+    {
+        private int id;
+
+        internal MVControlEventArgs(int ID)
+        {
+            this.id = ID;
+        }
+
+        public int Id
+        {
+            get { return this.id; }
+        }
+    }
+
+    public class MVIndexChangeEventArgs : MVControlEventArgs
+    {
+        private int index;
+
+        internal MVIndexChangeEventArgs(int ID, int Index)
+            : base(ID)
+        {
+            this.index = Index;
+        }
+
+        public int Index
+        {
+            get { return this.index; }
+        }
+    }
+
+    public class MVListSelectEventArgs : MVControlEventArgs
+    {
+        private int row;
+        private int col;
+
+        internal MVListSelectEventArgs(int ID, int Row, int Column)
+            : base(ID)
+        {
+            this.row = Row;
+            this.col = Column;
+        }
+
+        public int Row
+        {
+            get { return this.row; }
+        }
+
+        public int Column
+        {
+            get { return this.col; }
+        }
+    }
+
+    public class MVCheckBoxChangeEventArgs : MVControlEventArgs
+    {
+        private bool check;
+
+        internal MVCheckBoxChangeEventArgs(int ID, bool Check)
+            : base(ID)
+        {
+            this.check = Check;
+        }
+
+        public bool Checked
+        {
+            get { return this.check; }
+        }
+    }
+
+    public class MVTextBoxChangeEventArgs : MVControlEventArgs
+    {
+        private string text;
+
+        internal MVTextBoxChangeEventArgs(int ID, string text)
+            : base(ID)
+        {
+            this.text = text;
+        }
+
+        public string Text
+        {
+            get { return this.text; }
+        }
+    }
+
+    public class MVTextBoxEndEventArgs : MVControlEventArgs
+    {
+        private bool success;
+
+        internal MVTextBoxEndEventArgs(int ID, bool success)
+            : base(ID)
+        {
+            this.success = success;
+        }
+
+        public bool Success
+        {
+            get { return this.success; }
+        }
+    }
+
+    #endregion EventArgs Classes
+
+
+    #region View
+
 #if VVS_WRAPPERS_PUBLIC
     public
 #else
@@ -64,10 +174,19 @@ namespace MyClasses.MetaViewWrappers
 #endif
 
         System.Drawing.Point Location { get; set; }
+        System.Drawing.Rectangle Position { get; set; }
         System.Drawing.Size Size { get; }
 
         IControl this[string id] { get; }
+
+        void Activate();
+        void Deactivate();
+        bool Activated { get; set; }
     }
+
+    #endregion View
+
+    #region Controls
 
 #if VVS_WRAPPERS_PUBLIC
     public
@@ -90,6 +209,8 @@ namespace MyClasses.MetaViewWrappers
     {
         string Text { get; set; }
         event EventHandler Hit;
+        event EventHandler<MVControlEventArgs> Click;
+        System.Drawing.Color TextColor { get; set; }
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -101,7 +222,8 @@ namespace MyClasses.MetaViewWrappers
     {
         string Text { get; set; }
         bool Checked { get; set; }
-        event EventHandler Change;
+        event EventHandler<MVCheckBoxChangeEventArgs> Change;
+        event EventHandler Change_Old;
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -112,8 +234,10 @@ namespace MyClasses.MetaViewWrappers
     interface ITextBox : IControl
     {
         string Text { get; set; }
-        event EventHandler Change;
-        event EventHandler End;
+        event EventHandler<MVTextBoxChangeEventArgs> Change;
+        event EventHandler Change_Old;
+        event EventHandler<MVTextBoxEndEventArgs> End;
+        int Caret { get; set; }
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -124,12 +248,16 @@ namespace MyClasses.MetaViewWrappers
     interface ICombo : IControl
     {
         IComboIndexer Text { get; }
+        IComboDataIndexer Data { get; }
         int Count { get; }
         int Selected { get; set; }
-        event EventHandler Change;
+        event EventHandler<MVIndexChangeEventArgs> Change;
+        event EventHandler Change_Old;
         void Add(string text);
+        void Add(string text, object obj);
         void Insert(int index, string text);
         void RemoveAt(int index);
+        void Remove(int index);
         void Clear();
     }
 
@@ -148,10 +276,21 @@ namespace MyClasses.MetaViewWrappers
 #else
     internal
 #endif
+ interface IComboDataIndexer
+    {
+        object this[int index] { get; set; }
+    }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
     interface ISlider : IControl
     {
         int Position { get; set; }
-        event EventHandler Change;
+        event EventHandler<MVIndexChangeEventArgs> Change;
+        event EventHandler Change_Old;
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -161,13 +300,17 @@ namespace MyClasses.MetaViewWrappers
 #endif
     interface IList : IControl
     {
+        event EventHandler<MVListSelectEventArgs> Selected;
         event dClickedList Click;
         void Clear();
         IListRow this[int row] { get; }
         IListRow AddRow();
+        IListRow Add();
         IListRow InsertRow(int pos);
+        IListRow Insert(int pos);
         int RowCount { get; }
         void RemoveRow(int index);
+        void Delete(int index);
         int ColCount { get; }
         int ScrollPosition { get; set;}
     }
@@ -203,7 +346,7 @@ namespace MyClasses.MetaViewWrappers
     interface IStaticText : IControl
     {
         string Text { get; set; }
-        event EventHandler Click;
+        event EventHandler<MVControlEventArgs> Click;
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -213,7 +356,7 @@ namespace MyClasses.MetaViewWrappers
 #endif
     interface INotebook : IControl
     {
-        event EventHandler Change;
+        event EventHandler<MVIndexChangeEventArgs> Change;
         int ActiveTab { get; set; }
     }
 
@@ -225,6 +368,9 @@ namespace MyClasses.MetaViewWrappers
     interface IProgressBar : IControl
     {
         int Position { get; set; }
+        int Value { get; set; }
         string PreText { get; set; }
     }
+
+    #endregion Controls
 }

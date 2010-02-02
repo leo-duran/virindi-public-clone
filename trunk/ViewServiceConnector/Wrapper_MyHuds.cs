@@ -106,6 +106,28 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+        public bool Activated
+        {
+            get
+            {
+                return Visible;
+            }
+            set
+            {
+                Visible = value;
+            }
+        }
+
+        public void Activate()
+        {
+            Visible = true;
+        }
+
+        public void Deactivate()
+        {
+            Visible = false;
+        }
+
         public System.Drawing.Point Location
         {
             get
@@ -123,6 +145,19 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             get
             {
                 return new System.Drawing.Size(myView.Width, myView.Height);
+            }
+        }
+
+        public System.Drawing.Rectangle Position
+        {
+            get
+            {
+                return new System.Drawing.Rectangle(Location, Size);
+            }
+            set
+            {
+                Location = value.Location;
+                myView.ClientArea = value.Size;
             }
         }
 
@@ -282,6 +317,10 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             switch (e.EventType)
             {
                 case VirindiViewService.Controls.ControlMouseEventArgs.MouseEventType.MouseHit:
+                    if (Click != null)
+                        Click(this, new MVControlEventArgs(0));
+                    return;
+                case VirindiViewService.Controls.ControlMouseEventArgs.MouseEventType.MouseDown:
                     if (Hit != null)
                         Hit(this, null);
                     return;
@@ -302,7 +341,20 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+        public System.Drawing.Color TextColor
+        {
+            get
+            {
+                return System.Drawing.Color.Black;
+            }
+            set
+            {
+
+            }
+        }
+
         public event EventHandler Hit;
+        public event EventHandler<MVControlEventArgs> Click;
 
         #endregion
     }
@@ -329,7 +381,9 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void CheckBox_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVCheckBoxChangeEventArgs(0, Checked));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ICheckBox Members
@@ -358,7 +412,8 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVCheckBoxChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         #endregion
     }
@@ -387,7 +442,9 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void TextBox_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVTextBoxChangeEventArgs(0, Text));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         void myControl_LostFocus(object sender, EventArgs e)
@@ -395,7 +452,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             if (!myControl.HasFocus) return;
 
             if (End != null)
-                End(this, null);
+                End(this, new MVTextBoxEndEventArgs(0, true));
         }
 
         #region ITextBox Members
@@ -412,8 +469,21 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
-        public event EventHandler Change;
-        public event EventHandler End;
+        public int Caret
+        {
+            get
+            {
+                return 0;
+            }
+            set
+            {
+
+            }
+        }
+
+        public event EventHandler<MVTextBoxChangeEventArgs> Change;
+        public event EventHandler Change_Old;
+        public event EventHandler<MVTextBoxEndEventArgs> End;
 
         #endregion
     }
@@ -425,6 +495,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
 #endif
     class Combo : Control, ICombo
     {
+        List<object> iData = new List<object>();
 
         public class ComboIndexer : IComboIndexer
         {
@@ -451,6 +522,31 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             #endregion
         }
 
+        public class ComboDataIndexer : IComboDataIndexer
+        {
+            Combo underlying;
+            internal ComboDataIndexer(Combo c)
+            {
+                underlying = c;
+            }
+
+            #region IComboIndexer Members
+
+            public object this[int index]
+            {
+                get
+                {
+                    return underlying.iData[index];
+                }
+                set
+                {
+                    underlying.iData[index] = value;
+                }
+            }
+
+            #endregion
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -466,7 +562,9 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void Combo_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVIndexChangeEventArgs(0, Selected));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ICombo Members
@@ -474,6 +572,11 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         public IComboIndexer Text
         {
             get { return new ComboIndexer(this); }
+        }
+
+        public IComboDataIndexer Data
+        {
+            get { return new ComboDataIndexer(this); }
         }
 
         public int Count
@@ -493,26 +596,42 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVIndexChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         public void Add(string text)
         {
             ((VirindiViewService.Controls.HudCombo)myControl).AddItem(text, null);
+            iData.Add(null);
+        }
+
+        public void Add(string text, object obj)
+        {
+            ((VirindiViewService.Controls.HudCombo)myControl).AddItem(text, null);
+            iData.Add(obj);
         }
 
         public void Insert(int index, string text)
         {
             ((VirindiViewService.Controls.HudCombo)myControl).InsertItem(index, text, null);
+            iData.Insert(index, null);
         }
 
         public void RemoveAt(int index)
         {
             ((VirindiViewService.Controls.HudCombo)myControl).DeleteItem(index);
+            iData.RemoveAt(index);
+        }
+
+        public void Remove(int index)
+        {
+            RemoveAt(index);
         }
 
         public void Clear()
         {
             ((VirindiViewService.Controls.HudCombo)myControl).Clear();
+            iData.Clear();
         }
 
         #endregion
@@ -540,7 +659,9 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void Slider_Changed(int min, int max, int pos)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVIndexChangeEventArgs(0, pos));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ISlider Members
@@ -557,7 +678,8 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVIndexChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         #endregion
     }
@@ -585,6 +707,8 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         {
             if (Click != null)
                 Click(this, row, col);
+            if (Selected != null)
+                Selected(this, new MVListSelectEventArgs(0, row, col));
         }
 
         public class ListRow : IListRow
@@ -692,6 +816,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         #region IList Members
 
         public event dClickedList Click;
+        public event EventHandler<MVListSelectEventArgs> Selected;
 
         public void Clear()
         {
@@ -709,10 +834,20 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             return new ListRow(((VirindiViewService.Controls.HudList)myControl).RowCount - 1, this);
         }
 
+        public IListRow Add()
+        {
+            return AddRow();
+        }
+
         public IListRow InsertRow(int pos)
         {
             ((VirindiViewService.Controls.HudList)myControl).InsertRow(pos);
             return new ListRow(pos, this);
+        }
+
+        public IListRow Insert(int pos)
+        {
+            return InsertRow(pos);
         }
 
         public int RowCount
@@ -723,6 +858,11 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         public void RemoveRow(int index)
         {
             ((VirindiViewService.Controls.HudList)myControl).RemoveRow(index);
+        }
+
+        public void Delete(int index)
+        {
+            RemoveRow(index);
         }
 
         public int ColCount
@@ -782,7 +922,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         }
 
 #pragma warning disable 0067
-        public event EventHandler Click;
+        public event EventHandler<MVControlEventArgs> Click;
 #pragma warning restore 0067
 
         #endregion
@@ -798,19 +938,24 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         public override void Initialize()
         {
             base.Initialize();
-            //((VirindiViewService.Controls.HudTabView)myControl)
+            ((VirindiViewService.Controls.HudTabView)myControl).OpenTabChange += new EventHandler(Notebook_OpenTabChange);
         }
 
         public override void Dispose()
         {
+            ((VirindiViewService.Controls.HudTabView)myControl).OpenTabChange -= new EventHandler(Notebook_OpenTabChange);
             base.Dispose();
+        }
+
+        void Notebook_OpenTabChange(object sender, EventArgs e)
+        {
+            if (Change != null)
+                Change(this, new MVIndexChangeEventArgs(0, ActiveTab));
         }
 
         #region INotebook Members
 
-#pragma warning disable 0067
-        public event EventHandler Change;
-#pragma warning restore 0067
+        public event EventHandler<MVIndexChangeEventArgs> Change;
 
         public int ActiveTab
         {
@@ -821,6 +966,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             set
             {
                 ((VirindiViewService.Controls.HudTabView)myControl).CurrentTab = value;
+                ((VirindiViewService.Controls.HudTabView)myControl).Invalidate();
             }
         }
 
@@ -846,6 +992,18 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             set
             {
                 ((VirindiViewService.Controls.HudProgressBar)myControl).Position = value;
+            }
+        }
+
+        public int Value
+        {
+            get
+            {
+                return Position;
+            }
+            set
+            {
+                Position = value;
             }
         }
 

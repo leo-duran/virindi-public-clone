@@ -95,6 +95,28 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
+        public bool Activated
+        {
+            get
+            {
+                return Visible;
+            }
+            set
+            {
+                Visible = value;
+            }
+        }
+
+        public void Activate()
+        {
+            Visible = true;
+        }
+
+        public void Deactivate()
+        {
+            Visible = false;
+        }
+
         public System.Drawing.Point Location
         {
             get
@@ -106,6 +128,18 @@ namespace MyClasses.MetaViewWrappers.DecalControls
                 int w = myView.Position.Width;
                 int h = myView.Position.Height;
                 myView.Position = new System.Drawing.Rectangle(value.X, value.Y, w, h);
+            }
+        }
+
+        public System.Drawing.Rectangle Position
+        {
+            get
+            {
+                return myView.Position;
+            }
+            set
+            {
+                myView.Position = value;
             }
         }
 
@@ -248,18 +282,26 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         {
             base.Initialize();
             ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Hit += new EventHandler<Decal.Adapter.ControlEventArgs>(Button_Hit);
+            ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Click += new EventHandler<Decal.Adapter.ControlEventArgs>(Button_Click);
         }
 
         public override void Dispose()
         {
             base.Dispose();
             ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Hit -= new EventHandler<Decal.Adapter.ControlEventArgs>(Button_Hit);
+            ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).Click -= new EventHandler<Decal.Adapter.ControlEventArgs>(Button_Click);
         }
 
         void Button_Hit(object sender, Decal.Adapter.ControlEventArgs e)
         {
             if (Hit != null)
                 Hit(this, null);
+        }
+
+        void Button_Click(object sender, Decal.Adapter.ControlEventArgs e)
+        {
+            if (Click != null)
+                Click(this, new MVControlEventArgs(0));
         }
 
         #region IButton Members
@@ -278,7 +320,20 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
+        public System.Drawing.Color TextColor
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).TextColor;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.PushButtonWrapper)myControl).TextColor = value;
+            }
+        }
+
         public event EventHandler Hit;
+        public event EventHandler<MVControlEventArgs> Click;
 
         #endregion
     }
@@ -305,7 +360,9 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void CheckBox_Change(object sender, Decal.Adapter.CheckBoxChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVCheckBoxChangeEventArgs(0, Checked));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ICheckBox Members
@@ -334,7 +391,8 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVCheckBoxChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         #endregion
     }
@@ -363,13 +421,15 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void TextBox_Change(object sender, Decal.Adapter.TextBoxChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVTextBoxChangeEventArgs(0, e.Text));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         void TextBox_End(object sender, Decal.Adapter.TextBoxEndEventArgs e)
         {
             if (End != null)
-                End(this, null);
+                End(this, new MVTextBoxEndEventArgs(0, e.Success));
         }
 
         #region ITextBox Members
@@ -386,8 +446,21 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
-        public event EventHandler Change;
-        public event EventHandler End;
+        public int Caret
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).Caret;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.TextBoxWrapper)myControl).Caret = value;
+            }
+        }
+
+        public event EventHandler<MVTextBoxChangeEventArgs> Change;
+        public event EventHandler Change_Old;
+        public event EventHandler<MVTextBoxEndEventArgs> End;
 
         #endregion
     }
@@ -414,7 +487,9 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Combo_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVIndexChangeEventArgs(0, e.Index));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ICombo Members
@@ -424,6 +499,14 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             get
             {
                 return new ComboIndexer(this);
+            }
+        }
+
+        public IComboDataIndexer Data
+        {
+            get
+            {
+                return new ComboDataIndexer(this);
             }
         }
 
@@ -447,11 +530,17 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVIndexChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         public void Add(string text)
         {
             ((Decal.Adapter.Wrappers.ChoiceWrapper)myControl).Add(text, null);
+        }
+
+        public void Add(string text, object obj)
+        {
+            ((Decal.Adapter.Wrappers.ChoiceWrapper)myControl).Add(text, obj);
         }
 
         public void Insert(int index, string text)
@@ -464,12 +553,18 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             ((Decal.Adapter.Wrappers.ChoiceWrapper)myControl).Remove(index);
         }
 
+        public void Remove(int index)
+        {
+            RemoveAt(index);
+        }
+
         public void Clear()
         {
             ((Decal.Adapter.Wrappers.ChoiceWrapper)myControl).Clear();
         }
 
         #endregion
+
         internal class ComboIndexer: IComboIndexer
         {
             Combo myCombo;
@@ -489,6 +584,31 @@ namespace MyClasses.MetaViewWrappers.DecalControls
                 set
                 {
                     ((Decal.Adapter.Wrappers.ChoiceWrapper)myCombo.myControl).Text[index] = value;
+                }
+            }
+
+            #endregion
+        }
+
+        internal class ComboDataIndexer : IComboDataIndexer
+        {
+            Combo myCombo;
+            internal ComboDataIndexer(Combo c)
+            {
+                myCombo = c;
+            }
+
+            #region IComboIndexer Members
+
+            public object this[int index]
+            {
+                get
+                {
+                    return ((Decal.Adapter.Wrappers.ChoiceWrapper)myCombo.myControl).Data[index];
+                }
+                set
+                {
+                    ((Decal.Adapter.Wrappers.ChoiceWrapper)myCombo.myControl).Data[index] = value;
                 }
             }
 
@@ -518,7 +638,9 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Slider_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVIndexChangeEventArgs(0, e.Index));
+            if (Change_Old != null)
+                Change_Old(this, null);
         }
 
         #region ISlider Members
@@ -535,7 +657,8 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             }
         }
 
-        public event EventHandler Change;
+        public event EventHandler<MVIndexChangeEventArgs> Change;
+        public event EventHandler Change_Old;
 
         #endregion
     }
@@ -563,11 +686,14 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         {
             if (Click != null)
                 Click(this, e.Row, e.Column);
+            if (Selected != null)
+                Selected(this, new MVListSelectEventArgs(0, e.Row, e.Column));
         }
 
         #region IList Members
 
         public event dClickedList Click;
+        public event EventHandler<MVListSelectEventArgs> Selected;
 
         public void Clear()
         {
@@ -588,10 +714,20 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             return new ListRow(this, ((Decal.Adapter.Wrappers.ListWrapper)myControl).RowCount - 1);
         }
 
+        public IListRow Add()
+        {
+            return AddRow();
+        }
+
         public IListRow InsertRow(int pos)
         {
             ((Decal.Adapter.Wrappers.ListWrapper)myControl).Insert(pos);
             return new ListRow(this, pos);
+        }
+
+        public IListRow Insert(int pos)
+        {
+            return InsertRow(pos);
         }
 
         public int RowCount
@@ -602,6 +738,11 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         public void RemoveRow(int index)
         {
             ((Decal.Adapter.Wrappers.ListWrapper)myControl).Delete(index);
+        }
+
+        public void Delete(int index)
+        {
+            RemoveRow(index);
         }
 
         public int ColCount
@@ -730,7 +871,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         }
 
 #pragma warning disable 0067
-        public event EventHandler Click;
+        public event EventHandler<MVControlEventArgs> Click;
 #pragma warning restore 0067
 
         #endregion
@@ -758,12 +899,12 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Notebook_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, null);
+                Change(this, new MVIndexChangeEventArgs(0, e.Index));
         }
 
         #region INotebook Members
 
-        public event EventHandler Change;
+        public event EventHandler<MVIndexChangeEventArgs> Change;
 
         public int ActiveTab
         {
@@ -799,6 +940,18 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             set
             {
                 ((Decal.Adapter.Wrappers.ProgressWrapper)myControl).Value = value;
+            }
+        }
+
+        public int Value
+        {
+            get
+            {
+                return Position;
+            }
+            set
+            {
+                Position = value;
             }
         }
 
