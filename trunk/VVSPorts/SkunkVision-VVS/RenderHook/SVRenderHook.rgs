@@ -1,0 +1,27 @@
+HKCR
+{
+	RenderHook.SVRenderHook.1 = s 'SVRenderHook Class'
+	{
+		CLSID = s '{084DB7D3-FCA8-4C37-8748-18232FE9CF9A}'
+	}
+	RenderHook.SVRenderHook = s 'SVRenderHook Class'
+	{
+		CLSID = s '{084DB7D3-FCA8-4C37-8748-18232FE9CF9A}'
+		CurVer = s 'RenderHook.SVRenderHook.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {084DB7D3-FCA8-4C37-8748-18232FE9CF9A} = s 'SVRenderHook Class'
+		{
+			ProgID = s 'RenderHook.SVRenderHook.1'
+			VersionIndependentProgID = s 'RenderHook.SVRenderHook'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{7C0C5FE2-98CC-470C-9B43-A41F6C08551D}'
+		}
+	}
+}

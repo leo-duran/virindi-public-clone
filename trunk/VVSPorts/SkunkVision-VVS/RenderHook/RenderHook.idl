@@ -1,0 +1,55 @@
+// RenderHook.idl : IDL source for RenderHook
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RenderHook.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(F5E367AA-6FC9-473B-8BC8-9060C25EFA39),
+	dual,
+	nonextensible,
+	helpstring("ISVRenderHook Interface"),
+	pointer_default(unique)
+]
+interface ISVRenderHook : IDispatch{
+	[propget, id(1), helpstring("property fEnabled")] HRESULT fEnabled([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(1), helpstring("property fEnabled")] HRESULT fEnabled([in] VARIANT_BOOL newVal);
+	[propget, id(2), helpstring("property fSlope")] HRESULT fSlope([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(2), helpstring("property fSlope")] HRESULT fSlope([in] VARIANT_BOOL newVal);
+	[propget, id(3), helpstring("property fTrace")] HRESULT fTrace([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(3), helpstring("property fTrace")] HRESULT fTrace([in] VARIANT_BOOL newVal);
+	[id(4), helpstring("method TraceOneFrame")] HRESULT TraceOneFrame(void);
+	[id(5), helpstring("method Init")] HRESULT Init([in] IUnknown* punkNetSvc);
+	[propget, id(6), helpstring("property fWater")] HRESULT fWater([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(6), helpstring("property fWater")] HRESULT fWater([in] VARIANT_BOOL newVal);
+	[propget, id(7), helpstring("property colorSlope")] HRESULT colorSlope([out, retval] LONG* pVal);
+	[propput, id(7), helpstring("property colorSlope")] HRESULT colorSlope([in] LONG newVal);
+	[propget, id(8), helpstring("property colorWater")] HRESULT colorWater([out, retval] LONG* pVal);
+	[propput, id(8), helpstring("property colorWater")] HRESULT colorWater([in] LONG newVal);
+	[id(9), helpstring("method Finalize")] HRESULT Finalize(void);
+	[propget, id(10), helpstring("property fLight")] HRESULT fLight([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(10), helpstring("property fLight")] HRESULT fLight([in] VARIANT_BOOL newVal);
+	[propget, id(11), helpstring("property colorLight")] HRESULT colorLight([out, retval] LONG* pVal);
+	[propput, id(11), helpstring("property colorLight")] HRESULT colorLight([in] LONG newVal);
+	};
+[
+	uuid(7C0C5FE2-98CC-470C-9B43-A41F6C08551D),
+	version(1.0),
+	helpstring("RenderHook 1.0 Type Library")
+]
+library RenderHookLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(084DB7D3-FCA8-4C37-8748-18232FE9CF9A),
+		helpstring("SVRenderHook Class")
+	]
+	coclass SVRenderHook
+	{
+		[default] interface ISVRenderHook;
+	};
+};

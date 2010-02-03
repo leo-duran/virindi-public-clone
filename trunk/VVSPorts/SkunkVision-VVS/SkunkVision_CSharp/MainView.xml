@@ -1,0 +1,19 @@
+<view icon="8914" title="SkunkVision" width="160" height="92">
+  <control progid="DecalControls.FixedLayout">
+    
+    <control name="chkSlope" progid="DecalControls.Checkbox" 
+      left="4" top="4" width="126" height="16" text="Unclimbable slopes"/>
+    <control name="bSetSlope" progid="DecalControls.PushButton"
+      left="130" top="4" width="26" height="16" text="Set"/>
+      
+    <control name="chkWater" progid="DecalControls.Checkbox" 
+      left="4" top="24" width="126" height="16" text="Impassable water"/>
+    <control name="bSetWater" progid="DecalControls.PushButton"
+      left="130" top="24" width="26" height="16" text="Set"/>
+      
+    <control name="chkLight" progid="DecalControls.Checkbox" 
+      left="4" top="44" width="126" height="16" text="Dungeon light"/>
+    <control name="bSetLight" progid="DecalControls.PushButton"
+      left="130" top="44" width="26" height="16" text="Set"/>
+  </control>
+</view>
