@@ -74,7 +74,7 @@ namespace MyClasses.MetaViewWrappers
             foreach (System.Reflection.Assembly a in asms)
             {
                 AssemblyName nmm = a.GetName();
-                if ((nmm.Name == "VirindiViewService") && (nmm.Version >= new System.Version("1.0.0.18")))
+                if ((nmm.Name == "VirindiViewService") && (nmm.Version >= new System.Version("1.0.0.21")))
                 {
                     try
                     {
@@ -238,6 +238,25 @@ namespace MyClasses.MetaViewWrappers
             return false;
 #endif
         }
-        
+
+        public delegate void delConditionalSplit(object data);
+        public static void ViewConditionalSplit(IView v, delConditionalSplit onDecal, delConditionalSplit onVVS, object data)
+        {
+            Type vtype = v.GetType();
+
+#if VVS_REFERENCED
+            if (vtype == typeof(VirindiViewServiceHudControls.View))
+            {
+                if (onVVS != null)
+                    onVVS(data);
+            }
+#endif
+
+            if (vtype == typeof(DecalControls.View))
+            {
+                if (onDecal != null)
+                    onDecal(data);
+            }
+        }
     }
 }

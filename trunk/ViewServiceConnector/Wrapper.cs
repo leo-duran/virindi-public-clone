@@ -47,7 +47,12 @@ namespace MyClasses.MetaViewWrappers
     
     #region EventArgs Classes
 
-    public class MVControlEventArgs : EventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVControlEventArgs : EventArgs
     {
         private int id;
 
@@ -62,7 +67,12 @@ namespace MyClasses.MetaViewWrappers
         }
     }
 
-    public class MVIndexChangeEventArgs : MVControlEventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVIndexChangeEventArgs : MVControlEventArgs
     {
         private int index;
 
@@ -78,7 +88,12 @@ namespace MyClasses.MetaViewWrappers
         }
     }
 
-    public class MVListSelectEventArgs : MVControlEventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVListSelectEventArgs : MVControlEventArgs
     {
         private int row;
         private int col;
@@ -101,7 +116,12 @@ namespace MyClasses.MetaViewWrappers
         }
     }
 
-    public class MVCheckBoxChangeEventArgs : MVControlEventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVCheckBoxChangeEventArgs : MVControlEventArgs
     {
         private bool check;
 
@@ -117,7 +137,12 @@ namespace MyClasses.MetaViewWrappers
         }
     }
 
-    public class MVTextBoxChangeEventArgs : MVControlEventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVTextBoxChangeEventArgs : MVControlEventArgs
     {
         private string text;
 
@@ -133,7 +158,12 @@ namespace MyClasses.MetaViewWrappers
         }
     }
 
-    public class MVTextBoxEndEventArgs : MVControlEventArgs
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    class MVTextBoxEndEventArgs : MVControlEventArgs
     {
         private bool success;
 
@@ -196,8 +226,10 @@ namespace MyClasses.MetaViewWrappers
     interface IControl : IDisposable
     {
         string Name { get; }
-        bool Visible { get; }
+        bool Visible { get; set; }
         string TooltipText { get; set;}
+        int Id { get; }
+        System.Drawing.Rectangle LayoutPosition { get; set; }
     }
 
 #if VVS_WRAPPERS_PUBLIC
@@ -370,6 +402,21 @@ namespace MyClasses.MetaViewWrappers
         int Position { get; set; }
         int Value { get; set; }
         string PreText { get; set; }
+        int MaxValue { get; set; }
+    }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+    interface IImageButton : IControl
+    {
+        event EventHandler<MVControlEventArgs> Click;
+        void SetImages(int unpressed, int pressed);
+        void SetImages(int hmodule, int unpressed, int pressed);
+        int Background { set; }
+        System.Drawing.Color Matte { set; }
     }
 
     #endregion Controls

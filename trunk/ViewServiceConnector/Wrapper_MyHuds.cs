@@ -192,6 +192,8 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
                     ret = new Notebook();
                 if (iret.GetType() == typeof(VirindiViewService.Controls.HudProgressBar))
                     ret = new ProgressBar();
+                if (iret.GetType() == typeof(VirindiViewService.Controls.HudImageButton))
+                    ret = new ImageButton();
 
                 if (ret == null) return null;
 
@@ -251,6 +253,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         public bool Visible
         {
             get { return myControl.Visible; }
+            set { myControl.Visible = value; }
         }
 
         VirindiViewService.TooltipSystem.cTooltipInfo itooltipinfo = null;
@@ -274,6 +277,61 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
                 {
                     itooltipinfo = VirindiViewService.TooltipSystem.AssociateTooltip(myControl, value);
                 }
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return myControl.XMLID;
+            }
+        }
+
+        public System.Drawing.Rectangle LayoutPosition
+        {
+            get
+            {
+                //Relative to what?!??!
+                if (Underlying.Group.HeadControl == null)
+                    return new System.Drawing.Rectangle();
+
+                if (Underlying.Group.HeadControl.Name == Underlying.Name)
+                    return new System.Drawing.Rectangle();
+
+                VirindiViewService.Controls.HudControl myparent = Underlying.Group.ParentOf(Underlying.Name);
+
+                if (myparent == null)
+                    return new System.Drawing.Rectangle();
+
+                //Position only valid inside fixedlayouts
+                VirindiViewService.Controls.HudFixedLayout layoutparent = myparent as VirindiViewService.Controls.HudFixedLayout;
+
+                if (layoutparent == null)
+                    return new System.Drawing.Rectangle();
+
+                return layoutparent.GetControlRect(Underlying);
+            }
+            set
+            {
+                if (Underlying.Group.HeadControl == null)
+                    return;
+
+                if (Underlying.Group.HeadControl.Name == Underlying.Name)
+                    return;
+
+                VirindiViewService.Controls.HudControl myparent = Underlying.Group.ParentOf(Underlying.Name);
+
+                if (myparent == null)
+                    return;
+
+                //Position only valid inside fixedlayouts
+                VirindiViewService.Controls.HudFixedLayout layoutparent = myparent as VirindiViewService.Controls.HudFixedLayout;
+
+                if (layoutparent == null)
+                    return;
+
+                layoutparent.SetControlRect(Underlying, value);
             }
         }
 
@@ -318,7 +376,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             {
                 case VirindiViewService.Controls.ControlMouseEventArgs.MouseEventType.MouseHit:
                     if (Click != null)
-                        Click(this, new MVControlEventArgs(0));
+                        Click(this, new MVControlEventArgs(this.Id));
                     return;
                 case VirindiViewService.Controls.ControlMouseEventArgs.MouseEventType.MouseDown:
                     if (Hit != null)
@@ -381,7 +439,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void CheckBox_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, new MVCheckBoxChangeEventArgs(0, Checked));
+                Change(this, new MVCheckBoxChangeEventArgs(this.Id, Checked));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -442,7 +500,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void TextBox_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, new MVTextBoxChangeEventArgs(0, Text));
+                Change(this, new MVTextBoxChangeEventArgs(this.Id, Text));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -452,7 +510,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             if (!myControl.HasFocus) return;
 
             if (End != null)
-                End(this, new MVTextBoxEndEventArgs(0, true));
+                End(this, new MVTextBoxEndEventArgs(this.Id, true));
         }
 
         #region ITextBox Members
@@ -562,7 +620,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void Combo_Change(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, Selected));
+                Change(this, new MVIndexChangeEventArgs(this.Id, Selected));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -659,7 +717,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void Slider_Changed(int min, int max, int pos)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, pos));
+                Change(this, new MVIndexChangeEventArgs(this.Id, pos));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -708,7 +766,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             if (Click != null)
                 Click(this, row, col);
             if (Selected != null)
-                Selected(this, new MVListSelectEventArgs(0, row, col));
+                Selected(this, new MVListSelectEventArgs(this.Id, row, col));
         }
 
         public class ListRow : IListRow
@@ -950,7 +1008,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         void Notebook_OpenTabChange(object sender, EventArgs e)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, ActiveTab));
+                Change(this, new MVIndexChangeEventArgs(this.Id, ActiveTab));
         }
 
         #region INotebook Members
@@ -1019,8 +1077,100 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             }
         }
 
+
+        public int MaxValue
+        {
+            get
+            {
+                return ((VirindiViewService.Controls.HudProgressBar)myControl).Max;
+            }
+            set
+            {
+                ((VirindiViewService.Controls.HudProgressBar)myControl).Max = value;
+            }
+        }
+
+        #endregion
+    }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+ class ImageButton : Control, IImageButton
+    {
+        public override void Initialize()
+        {
+            base.Initialize();
+            myControl.MouseEvent += new EventHandler<VirindiViewService.Controls.ControlMouseEventArgs>(Button_MouseEvent);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            myControl.MouseEvent -= new EventHandler<VirindiViewService.Controls.ControlMouseEventArgs>(Button_MouseEvent);
+        }
+
+        void Button_MouseEvent(object sender, VirindiViewService.Controls.ControlMouseEventArgs e)
+        {
+            switch (e.EventType)
+            {
+                case VirindiViewService.Controls.ControlMouseEventArgs.MouseEventType.MouseHit:
+                    if (Click != null)
+                        Click(this, new MVControlEventArgs(this.Id));
+                    return;
+            }
+        }
+
+        #region IImageButton Members
+
+        public event EventHandler<MVControlEventArgs> Click;
+
+        public void SetImages(int unpressed, int pressed)
+        {
+            ACImage upimg;
+            if (!VirindiViewService.Service.PortalBitmapExists(unpressed | 0x06000000))
+                upimg = new ACImage();
+            else
+                upimg = new ACImage(unpressed, ACImage.eACImageDrawOptions.DrawStretch);
+
+            ACImage pimg;
+            if (!VirindiViewService.Service.PortalBitmapExists(pressed | 0x06000000))
+                pimg = new ACImage();
+            else
+                pimg = new ACImage(pressed, ACImage.eACImageDrawOptions.DrawStretch);
+
+            ((VirindiViewService.Controls.HudImageButton)myControl).Image_Up = upimg;
+            ((VirindiViewService.Controls.HudImageButton)myControl).Image_Up_Pressing = pimg;
+        }
+
+        public void SetImages(int hmodule, int unpressed, int pressed)
+        {
+            ((VirindiViewService.Controls.HudImageButton)myControl).Image_Up = ACImage.FromIconLibrary(unpressed, hmodule);
+            ((VirindiViewService.Controls.HudImageButton)myControl).Image_Up_Pressing = ACImage.FromIconLibrary(pressed, hmodule);
+        }
+
+        public int Background
+        {
+            set
+            {
+                ((VirindiViewService.Controls.HudImageButton)myControl).Image_Background2 = new ACImage(value, ACImage.eACImageDrawOptions.DrawStretch);
+            }
+        }
+
+        public System.Drawing.Color Matte
+        {
+            set
+            {
+                ((VirindiViewService.Controls.HudImageButton)myControl).Image_Background = new ACImage(value);
+            }
+        }
+
         #endregion
     }
 }
 
+#else
+#warning VVS_REFERENCED not defined, MetaViewWrappers for VVS will not be available.
 #endif

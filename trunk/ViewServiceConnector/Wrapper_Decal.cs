@@ -182,6 +182,8 @@ namespace MyClasses.MetaViewWrappers.DecalControls
                     ret = new Notebook();
                 if (iret.GetType() == typeof(Decal.Adapter.Wrappers.ProgressWrapper))
                     ret = new ProgressBar();
+                if (iret.GetType() == typeof(Decal.Adapter.Wrappers.ButtonWrapper))
+                    ret = new ImageButton();
 
                 if (ret == null) return null;
 
@@ -240,7 +242,8 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         public bool Visible
         {
-            get { throw new Exception("The method or operation is not implemented."); }
+            get { return true; }
+            set { }
         }
 
         public string TooltipText
@@ -252,6 +255,42 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             set
             {
 
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return myControl.Id;
+            }
+        }
+
+        public System.Drawing.Rectangle LayoutPosition
+        {
+            get
+            {
+#if DECAL_INTEROP
+                //This is kinda bad, but whatever
+                Decal.Interop.Inject.ILayer Ly = (Decal.Interop.Inject.ILayer)(Underlying.Underlying);
+                Decal.Interop.Core.tagRECT rct = Ly.get_Position();
+                return new System.Drawing.Rectangle(rct.left, rct.top, rct.right - rct.left, rct.bottom - rct.top);
+#else
+#warning DECAL_INTEROP not defined, MetaViewWrappers.DecalControls.Control.LayoutPosition will not be available.
+                return new System.Drawing.Rectangle();
+#endif
+            }
+            set
+            {
+#if DECAL_INTEROP
+                Decal.Interop.Inject.ILayer Ly = (Decal.Interop.Inject.ILayer)(Underlying.Underlying);
+                Decal.Interop.Core.tagRECT rct = new Decal.Interop.Core.tagRECT();
+                rct.left = value.Left;
+                rct.top = value.Top;
+                rct.right = value.Right;
+                rct.bottom = value.Bottom;
+                Ly.set_Position(ref rct);
+#endif
             }
         }
 
@@ -301,7 +340,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Button_Click(object sender, Decal.Adapter.ControlEventArgs e)
         {
             if (Click != null)
-                Click(this, new MVControlEventArgs(0));
+                Click(this, new MVControlEventArgs(this.Id));
         }
 
         #region IButton Members
@@ -360,7 +399,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void CheckBox_Change(object sender, Decal.Adapter.CheckBoxChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, new MVCheckBoxChangeEventArgs(0, Checked));
+                Change(this, new MVCheckBoxChangeEventArgs(this.Id, Checked));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -421,7 +460,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void TextBox_Change(object sender, Decal.Adapter.TextBoxChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, new MVTextBoxChangeEventArgs(0, e.Text));
+                Change(this, new MVTextBoxChangeEventArgs(this.Id, e.Text));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -429,7 +468,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void TextBox_End(object sender, Decal.Adapter.TextBoxEndEventArgs e)
         {
             if (End != null)
-                End(this, new MVTextBoxEndEventArgs(0, e.Success));
+                End(this, new MVTextBoxEndEventArgs(this.Id, e.Success));
         }
 
         #region ITextBox Members
@@ -487,7 +526,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Combo_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, e.Index));
+                Change(this, new MVIndexChangeEventArgs(this.Id, e.Index));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -638,7 +677,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Slider_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, e.Index));
+                Change(this, new MVIndexChangeEventArgs(this.Id, e.Index));
             if (Change_Old != null)
                 Change_Old(this, null);
         }
@@ -687,7 +726,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             if (Click != null)
                 Click(this, e.Row, e.Column);
             if (Selected != null)
-                Selected(this, new MVListSelectEventArgs(0, e.Row, e.Column));
+                Selected(this, new MVListSelectEventArgs(this.Id, e.Row, e.Column));
         }
 
         #region IList Members
@@ -899,7 +938,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         void Notebook_Change(object sender, Decal.Adapter.IndexChangeEventArgs e)
         {
             if (Change != null)
-                Change(this, new MVIndexChangeEventArgs(0, e.Index));
+                Change(this, new MVIndexChangeEventArgs(this.Id, e.Index));
         }
 
         #region INotebook Members
@@ -964,6 +1003,77 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             set
             {
                 ((Decal.Adapter.Wrappers.ProgressWrapper)myControl).PreText = value;
+            }
+        }
+
+        public int MaxValue
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.ProgressWrapper)myControl).MaxValue;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.ProgressWrapper)myControl).MaxValue = value;
+            }
+        }
+
+        #endregion
+    }
+
+#if VVS_WRAPPERS_PUBLIC
+    public
+#else
+    internal
+#endif
+ class ImageButton : Control, IImageButton
+    {
+        public override void Initialize()
+        {
+            base.Initialize();
+            ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).Click += new EventHandler<Decal.Adapter.ControlEventArgs>(ImageButton_Click);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).Click -= new EventHandler<Decal.Adapter.ControlEventArgs>(ImageButton_Click);
+        }
+
+        void ImageButton_Click(object sender, Decal.Adapter.ControlEventArgs e)
+        {
+            if (Click != null)
+                Click(this, new MVControlEventArgs(this.Id));
+        }
+
+
+        #region IImageButton Members
+
+        public event EventHandler<MVControlEventArgs> Click;
+
+        public void SetImages(int unpressed, int pressed)
+        {
+            ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).SetImages(unpressed, pressed);
+        }
+
+        public void SetImages(int hmodule, int unpressed, int pressed)
+        {
+            ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).SetImages(hmodule, unpressed, pressed);
+        }
+
+        public int Background
+        {
+            set
+            {
+                ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).Background = value;
+            }
+        }
+
+        public System.Drawing.Color Matte
+        {
+            set
+            {
+                ((Decal.Adapter.Wrappers.ButtonWrapper)myControl).Matte = value;
             }
         }
 
