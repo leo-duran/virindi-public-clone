@@ -119,6 +119,22 @@ namespace VTClassic
         }
     }
 
+    internal enum eLootRuleType
+    {
+        SpellNameMatch = 0,
+        StringValueMatch = 1,
+        LongValKeyLE = 2,
+        LongValKeyGE = 3,
+        DoubleValKeyLE = 4,
+        DoubleValKeyGE = 5,
+        DamagePercentGE = 6,
+        ObjectClass = 7,
+        SpellCountGE = 8,
+        SpellMatch = 9,
+        MinDamageGE = 10,
+        LongValKeyFlagExists = 11,
+    }
+
     internal class c0SpellNameMatch : iLootRule
     {
         System.Text.RegularExpressions.Regex rx;
@@ -128,7 +144,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 0; }
+        public int GetRuleType() { return (int)eLootRuleType.SpellNameMatch; }
 
         public bool Match(GameItemInfo id)
         {
@@ -179,7 +195,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 1; }
+        public int GetRuleType() { return (int)eLootRuleType.StringValueMatch; }
 
         public bool Match(GameItemInfo id)
         {
@@ -224,7 +240,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 2; }
+        public int GetRuleType() { return (int)eLootRuleType.LongValKeyLE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -269,7 +285,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 3; }
+        public int GetRuleType() { return (int)eLootRuleType.LongValKeyGE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -314,7 +330,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 4; }
+        public int GetRuleType() { return (int)eLootRuleType.DoubleValKeyLE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -359,7 +375,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 5; }
+        public int GetRuleType() { return (int)eLootRuleType.DoubleValKeyGE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -403,7 +419,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 6; }
+        public int GetRuleType() { return (int)eLootRuleType.DamagePercentGE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -437,7 +453,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 7; }
+        public int GetRuleType() { return (int)eLootRuleType.ObjectClass; }
 
         public bool Match(GameItemInfo id)
         {
@@ -462,7 +478,6 @@ namespace VTClassic
 
         #endregion
     }
-
     internal class c8SpellCountGE : iLootRule
     {
         public int keyval;
@@ -472,7 +487,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 8; }
+        public int GetRuleType() { return (int)eLootRuleType.SpellCountGE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -507,7 +522,6 @@ namespace VTClassic
 
         #endregion
     }
-
     internal class c9SpellMatch : iLootRule
     {
         public Regex rxp;
@@ -519,7 +533,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 9; }
+        public int GetRuleType() { return (int)eLootRuleType.SpellMatch; }
 
         public bool Match(GameItemInfo id)
         {
@@ -569,7 +583,6 @@ namespace VTClassic
 
         #endregion
     }
-
     internal class c10MinDamageGE : iLootRule
     {
         public double keyval;
@@ -579,7 +592,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 10; }
+        public int GetRuleType() { return (int)eLootRuleType.MinDamageGE; }
 
         public bool Match(GameItemInfo id)
         {
@@ -614,7 +627,6 @@ namespace VTClassic
 
         #endregion
     }
-
     internal class c11LongValKeyFlagExists : iLootRule
     {
         public int keyval;
@@ -625,7 +637,7 @@ namespace VTClassic
 
         #region iLootRule Members
 
-        public int GetRuleType() { return 11; }
+        public int GetRuleType() { return (int)eLootRuleType.LongValKeyFlagExists; }
 
         public bool Match(GameItemInfo id)
         {
@@ -736,20 +748,20 @@ namespace VTClassic
             {
                 int ruletype = Convert.ToInt32(clines[i], System.Globalization.CultureInfo.InvariantCulture);
                 iLootRule newrule;
-                switch (ruletype)
+                switch ((eLootRuleType)ruletype)
                 {
-                    case 0: newrule = new c0SpellNameMatch(); break;
-                    case 1: newrule = new c1StringValueMatch(); break;
-                    case 2: newrule = new c2LongValKeyLE(); break;
-                    case 3: newrule = new c3LongValKeyGE(); break;
-                    case 4: newrule = new c4DoubleValKeyLE(); break;
-                    case 5: newrule = new c5DoubleValKeyGE(); break;
-                    case 6: newrule = new c6DamagePercentGE(); break;
-                    case 7: newrule = new c7ObjectClassE(); break;
-                    case 8: newrule = new c8SpellCountGE(); break;
-                    case 9: newrule = new c9SpellMatch(); break;
-                    case 10: newrule = new c10MinDamageGE(); break;
-                    case 11: newrule = new c11LongValKeyFlagExists(); break;
+                    case eLootRuleType.SpellNameMatch: newrule = new c0SpellNameMatch(); break;
+                    case eLootRuleType.StringValueMatch: newrule = new c1StringValueMatch(); break;
+                    case eLootRuleType.LongValKeyLE: newrule = new c2LongValKeyLE(); break;
+                    case eLootRuleType.LongValKeyGE: newrule = new c3LongValKeyGE(); break;
+                    case eLootRuleType.DoubleValKeyLE: newrule = new c4DoubleValKeyLE(); break;
+                    case eLootRuleType.DoubleValKeyGE: newrule = new c5DoubleValKeyGE(); break;
+                    case eLootRuleType.DamagePercentGE: newrule = new c6DamagePercentGE(); break;
+                    case eLootRuleType.ObjectClass: newrule = new c7ObjectClassE(); break;
+                    case eLootRuleType.SpellCountGE: newrule = new c8SpellCountGE(); break;
+                    case eLootRuleType.SpellMatch: newrule = new c9SpellMatch(); break;
+                    case eLootRuleType.MinDamageGE: newrule = new c10MinDamageGE(); break;
+                    case eLootRuleType.LongValKeyFlagExists: newrule = new c11LongValKeyFlagExists(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);

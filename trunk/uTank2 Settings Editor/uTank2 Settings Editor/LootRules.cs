@@ -337,6 +337,22 @@ namespace uTank2
 
         }
 
+        internal enum eLootRuleType
+        {
+            SpellNameMatch = 0,
+            StringValueMatch = 1,
+            LongValKeyLE = 2,
+            LongValKeyGE = 3,
+            DoubleValKeyLE = 4,
+            DoubleValKeyGE = 5,
+            DamagePercentGE = 6,
+            ObjectClass = 7,
+            SpellCountGE = 8,
+            SpellMatch = 9,
+            MinDamageGE = 10,
+            LongValKeyFlagExists = 11,
+        }
+
         internal class SpellNameMatch : iLootRule
         {
             public cUniqueID tn; public void SetID(cUniqueID ttnn) {tn=ttnn;} public cUniqueID GetID() {return tn;}
@@ -347,7 +363,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 0; }
+            public int GetRuleType() { return (int)eLootRuleType.SpellNameMatch; }
 
             public string DisplayString() { return "SpellNameMatch: " + rx.ToString(); }
 
@@ -388,7 +404,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 1; }
+            public int GetRuleType() { return (int)eLootRuleType.StringValueMatch; }
 
             public string DisplayString() { return string.Format("{0} matches: {1}", vk, rx); }
 
@@ -430,7 +446,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 2; }
+            public int GetRuleType() { return (int)eLootRuleType.LongValKeyLE; }
 
             public bool requiresID() { return GameInfo.IsIDProperty(vk); }
 
@@ -501,7 +517,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 3; }
+            public int GetRuleType() { return (int)eLootRuleType.LongValKeyGE; }
 
             public string DisplayString()
             {
@@ -572,7 +588,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 4; }
+            public int GetRuleType() { return (int)eLootRuleType.DoubleValKeyLE; }
 
             public string DisplayString() { return string.Format("{0} <= {1}", vk, keyval); }
 
@@ -612,7 +628,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 5; }
+            public int GetRuleType() { return (int)eLootRuleType.DoubleValKeyGE; }
 
             public string DisplayString() { return string.Format("{0} >= {1}", vk, keyval); }
 
@@ -651,7 +667,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 6; }
+            public int GetRuleType() { return (int)eLootRuleType.DamagePercentGE; }
 
             public string DisplayString() { return string.Format("DamagePercentGE >= {0}", keyval); }
 
@@ -688,7 +704,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 7; }
+            public int GetRuleType() { return (int)eLootRuleType.ObjectClass; }
 
             public string DisplayString() { return string.Format("ObjectClass = {0}", vk); }
 
@@ -725,7 +741,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 8; }
+            public int GetRuleType() { return (int)eLootRuleType.SpellCountGE; }
 
             public string DisplayString() { return string.Format("SpellCount >= {0}", keyval); }
 
@@ -764,7 +780,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 9; }
+            public int GetRuleType() { return (int)eLootRuleType.SpellMatch; }
 
             public string DisplayString()
             {
@@ -807,7 +823,6 @@ namespace uTank2
 
             #endregion
         }
-
         internal class MinDamageGE : iLootRule
         {
             public cUniqueID tn; public void SetID(cUniqueID ttnn) { tn = ttnn; } public cUniqueID GetID() { return tn; }
@@ -818,7 +833,7 @@ namespace uTank2
 
             #region iLootRule Members
 
-            public int GetRuleType() { return 10; }
+            public int GetRuleType() { return (int)eLootRuleType.MinDamageGE; }
 
             public string DisplayString()
             {
@@ -848,6 +863,7 @@ namespace uTank2
 
             #endregion
         }
+        //LongValKeyFlagExists - NOT IMPLEMENTED
     }
 
     //A set of rules with an action attached
@@ -891,19 +907,19 @@ namespace uTank2
             {
                 int ruletype = Convert.ToInt32(clines[i], System.Globalization.CultureInfo.InvariantCulture);
                 LootRules.iLootRule newrule;
-                switch (ruletype)
+                switch ((uTank2.LootRules.eLootRuleType)ruletype)
                 {
-                    case 0: newrule = new LootRules.SpellNameMatch(); break;
-                    case 1: newrule = new LootRules.StringValueMatch(); break;
-                    case 2: newrule = new LootRules.LongValKeyLE(); break;
-                    case 3: newrule = new LootRules.LongValKeyGE(); break;
-                    case 4: newrule = new LootRules.DoubleValKeyLE(); break;
-                    case 5: newrule = new LootRules.DoubleValKeyGE(); break;
-                    case 6: newrule = new LootRules.DamagePercentGE(); break;
-                    case 7: newrule = new LootRules.ObjectClass(); break;
-                    case 8: newrule = new LootRules.SpellCountGE(); break;
-                    case 9: newrule = new LootRules.SpellMatch(); break;
-                    case 10: newrule = new LootRules.MinDamageGE(); break;
+                    case uTank2.LootRules.eLootRuleType.SpellNameMatch: newrule = new LootRules.SpellNameMatch(); break;
+                    case uTank2.LootRules.eLootRuleType.StringValueMatch: newrule = new LootRules.StringValueMatch(); break;
+                    case uTank2.LootRules.eLootRuleType.LongValKeyLE: newrule = new LootRules.LongValKeyLE(); break;
+                    case uTank2.LootRules.eLootRuleType.LongValKeyGE: newrule = new LootRules.LongValKeyGE(); break;
+                    case uTank2.LootRules.eLootRuleType.DoubleValKeyLE: newrule = new LootRules.DoubleValKeyLE(); break;
+                    case uTank2.LootRules.eLootRuleType.DoubleValKeyGE: newrule = new LootRules.DoubleValKeyGE(); break;
+                    case uTank2.LootRules.eLootRuleType.DamagePercentGE: newrule = new LootRules.DamagePercentGE(); break;
+                    case uTank2.LootRules.eLootRuleType.ObjectClass: newrule = new LootRules.ObjectClass(); break;
+                    case uTank2.LootRules.eLootRuleType.SpellCountGE: newrule = new LootRules.SpellCountGE(); break;
+                    case uTank2.LootRules.eLootRuleType.SpellMatch: newrule = new LootRules.SpellMatch(); break;
+                    case uTank2.LootRules.eLootRuleType.MinDamageGE: newrule = new LootRules.MinDamageGE(); break;
                     default: newrule = null; break;
                 }
                 newrule.Read(inf);
