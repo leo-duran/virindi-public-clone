@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace uTank2_Settings_Editor
+namespace VTClassic
 {
     static class Program
     {

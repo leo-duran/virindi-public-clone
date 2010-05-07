@@ -33,10 +33,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using uTank2;
-using uTank2.LootRules;
 
-namespace uTank2_Settings_Editor
+namespace VTClassic
 {
     public partial class Form1 : Form
     {
@@ -60,14 +58,14 @@ namespace uTank2_Settings_Editor
         cLootRules LootRules = new cLootRules();
         cLootItemRule CurrentRule;
         int CurrentRuleNum;
-        uTank2.LootRules.iLootRule CurrentReq;
+        iLootRule CurrentReq;
         int CurrentReqNum;
         bool Working = false;
 
-        SortedList<int, Decal.Adapter.Wrappers.StringValueKey> SVKOptions = new SortedList<int,Decal.Adapter.Wrappers.StringValueKey>();
-        SortedList<int, Decal.Adapter.Wrappers.LongValueKey> LVKOptions = new SortedList<int,Decal.Adapter.Wrappers.LongValueKey>();
-        SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey> DVKOptions = new SortedList<int, Decal.Adapter.Wrappers.DoubleValueKey>();
-        SortedList<int, Decal.Adapter.Wrappers.ObjectClass> OCOptions = new SortedList<int, Decal.Adapter.Wrappers.ObjectClass>();
+        SortedList<int, StringValueKey> SVKOptions = new SortedList<int,StringValueKey>();
+        SortedList<int, IntValueKey> LVKOptions = new SortedList<int,IntValueKey>();
+        SortedList<int, DoubleValueKey> DVKOptions = new SortedList<int, DoubleValueKey>();
+        SortedList<int, ObjectClass> OCOptions = new SortedList<int, ObjectClass>();
 
         void InitInfoArea()
         {
@@ -96,134 +94,134 @@ namespace uTank2_Settings_Editor
         void InitKeys()
         {
             int i = 0;
-            SVKOptions.Add(i++, Decal.Adapter.Wrappers.StringValueKey.FullDescription);
-            SVKOptions.Add(i++, Decal.Adapter.Wrappers.StringValueKey.Name);
+            SVKOptions.Add(i++, StringValueKey.FullDescription);
+            SVKOptions.Add(i++, StringValueKey.Name);
 
             i = 0;
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ActivationReqSkillId);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.AffectsVitalAmt);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorLevel);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ArmorSetID);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Burden);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Category);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Coverage);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.CurrentMana);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.DamageType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ElementalDmgBonus);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipableSlots);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipSkill);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.EquipType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Heritage);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOutline);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconOverlay);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.IconUnderlay);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.LockpickSkillBonus);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.LoreRequirement);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.ManaCost);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Material);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.MaxDamage);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.MaximumMana);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.MissileType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.RankRequirement);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.RareId);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.SkillLevelReq);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.SpellCount);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.TotalValue);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Type);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Value);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.WandElemDmgType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.WeapSpeed);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.WieldReqAttribute);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.WieldReqType);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.WieldReqValue);
-            LVKOptions.Add(i++, Decal.Adapter.Wrappers.LongValueKey.Workmanship);
+            LVKOptions.Add(i++, IntValueKey.ActivationReqSkillId);
+            LVKOptions.Add(i++, IntValueKey.AffectsVitalAmt);
+            LVKOptions.Add(i++, IntValueKey.ArmorLevel);
+            LVKOptions.Add(i++, IntValueKey.ArmorSetID);
+            LVKOptions.Add(i++, IntValueKey.Burden);
+            LVKOptions.Add(i++, IntValueKey.Category);
+            LVKOptions.Add(i++, IntValueKey.Coverage);
+            LVKOptions.Add(i++, IntValueKey.CurrentMana);
+            LVKOptions.Add(i++, IntValueKey.DamageType);
+            LVKOptions.Add(i++, IntValueKey.ElementalDmgBonus);
+            LVKOptions.Add(i++, IntValueKey.EquipableSlots);
+            LVKOptions.Add(i++, IntValueKey.EquipSkill);
+            LVKOptions.Add(i++, IntValueKey.EquipType);
+            LVKOptions.Add(i++, IntValueKey.Heritage);
+            LVKOptions.Add(i++, IntValueKey.IconOutline);
+            LVKOptions.Add(i++, IntValueKey.IconOverlay);
+            LVKOptions.Add(i++, IntValueKey.IconUnderlay);
+            LVKOptions.Add(i++, IntValueKey.LockpickSkillBonus);
+            LVKOptions.Add(i++, IntValueKey.LoreRequirement);
+            LVKOptions.Add(i++, IntValueKey.ManaCost);
+            LVKOptions.Add(i++, IntValueKey.Material);
+            LVKOptions.Add(i++, IntValueKey.MaxDamage);
+            LVKOptions.Add(i++, IntValueKey.MaximumMana);
+            LVKOptions.Add(i++, IntValueKey.MissileType);
+            LVKOptions.Add(i++, IntValueKey.RankRequirement);
+            LVKOptions.Add(i++, IntValueKey.RareId);
+            LVKOptions.Add(i++, IntValueKey.SkillLevelReq);
+            LVKOptions.Add(i++, IntValueKey.SpellCount);
+            LVKOptions.Add(i++, IntValueKey.TotalValue);
+            LVKOptions.Add(i++, IntValueKey.Type);
+            LVKOptions.Add(i++, IntValueKey.Value);
+            LVKOptions.Add(i++, IntValueKey.WandElemDmgType);
+            LVKOptions.Add(i++, IntValueKey.WeapSpeed);
+            LVKOptions.Add(i++, IntValueKey.WieldReqAttribute);
+            LVKOptions.Add(i++, IntValueKey.WieldReqType);
+            LVKOptions.Add(i++, IntValueKey.WieldReqValue);
+            LVKOptions.Add(i++, IntValueKey.Workmanship);
 
             i = 0;
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.AcidProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.AttackBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.BludgeonProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ColdProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.DamageBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ElementalDamageVersusMonsters);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.FireProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.HealingKitRestoreBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.LightningProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.MagicDBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ManaCBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ManaRateOfChange);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ManaStoneChanceDestruct);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.ManaTransferEfficiency);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.MeleeDefenseBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.MissileDBonus);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.PierceProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.Range);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.SalvageWorkmanship);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.SlashProt);
-            DVKOptions.Add(i++, Decal.Adapter.Wrappers.DoubleValueKey.Variance);
+            DVKOptions.Add(i++, DoubleValueKey.AcidProt);
+            DVKOptions.Add(i++, DoubleValueKey.AttackBonus);
+            DVKOptions.Add(i++, DoubleValueKey.BludgeonProt);
+            DVKOptions.Add(i++, DoubleValueKey.ColdProt);
+            DVKOptions.Add(i++, DoubleValueKey.DamageBonus);
+            DVKOptions.Add(i++, DoubleValueKey.ElementalDamageVersusMonsters);
+            DVKOptions.Add(i++, DoubleValueKey.FireProt);
+            DVKOptions.Add(i++, DoubleValueKey.HealingKitRestoreBonus);
+            DVKOptions.Add(i++, DoubleValueKey.LightningProt);
+            DVKOptions.Add(i++, DoubleValueKey.MagicDBonus);
+            DVKOptions.Add(i++, DoubleValueKey.ManaCBonus);
+            DVKOptions.Add(i++, DoubleValueKey.ManaRateOfChange);
+            DVKOptions.Add(i++, DoubleValueKey.ManaStoneChanceDestruct);
+            DVKOptions.Add(i++, DoubleValueKey.ManaTransferEfficiency);
+            DVKOptions.Add(i++, DoubleValueKey.MeleeDefenseBonus);
+            DVKOptions.Add(i++, DoubleValueKey.MissileDBonus);
+            DVKOptions.Add(i++, DoubleValueKey.PierceProt);
+            DVKOptions.Add(i++, DoubleValueKey.Range);
+            DVKOptions.Add(i++, DoubleValueKey.SalvageWorkmanship);
+            DVKOptions.Add(i++, DoubleValueKey.SlashProt);
+            DVKOptions.Add(i++, DoubleValueKey.Variance);
 
             i = 0;
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Armor);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseAlchemy);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseCooking);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.BaseFletching);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Book);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Bundle);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Clothing);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Container);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedAlchemy);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedCooking);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.CraftedFletching);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Foci);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Food);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Gem);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.HealingKit);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Jewelry);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Journal);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Key);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Lockpick);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.ManaStone);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.MeleeWeapon);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Misc);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.MissileWeapon);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Money);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Plant);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Salvage);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Scroll);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.SpellComponent);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.TradeNote);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.Ust);
-            OCOptions.Add(i++, Decal.Adapter.Wrappers.ObjectClass.WandStaffOrb);
+            OCOptions.Add(i++, ObjectClass.Armor);
+            OCOptions.Add(i++, ObjectClass.BaseAlchemy);
+            OCOptions.Add(i++, ObjectClass.BaseCooking);
+            OCOptions.Add(i++, ObjectClass.BaseFletching);
+            OCOptions.Add(i++, ObjectClass.Book);
+            OCOptions.Add(i++, ObjectClass.Bundle);
+            OCOptions.Add(i++, ObjectClass.Clothing);
+            OCOptions.Add(i++, ObjectClass.Container);
+            OCOptions.Add(i++, ObjectClass.CraftedAlchemy);
+            OCOptions.Add(i++, ObjectClass.CraftedCooking);
+            OCOptions.Add(i++, ObjectClass.CraftedFletching);
+            OCOptions.Add(i++, ObjectClass.Foci);
+            OCOptions.Add(i++, ObjectClass.Food);
+            OCOptions.Add(i++, ObjectClass.Gem);
+            OCOptions.Add(i++, ObjectClass.HealingKit);
+            OCOptions.Add(i++, ObjectClass.Jewelry);
+            OCOptions.Add(i++, ObjectClass.Journal);
+            OCOptions.Add(i++, ObjectClass.Key);
+            OCOptions.Add(i++, ObjectClass.Lockpick);
+            OCOptions.Add(i++, ObjectClass.ManaStone);
+            OCOptions.Add(i++, ObjectClass.MeleeWeapon);
+            OCOptions.Add(i++, ObjectClass.Misc);
+            OCOptions.Add(i++, ObjectClass.MissileWeapon);
+            OCOptions.Add(i++, ObjectClass.Money);
+            OCOptions.Add(i++, ObjectClass.Plant);
+            OCOptions.Add(i++, ObjectClass.Salvage);
+            OCOptions.Add(i++, ObjectClass.Scroll);
+            OCOptions.Add(i++, ObjectClass.SpellComponent);
+            OCOptions.Add(i++, ObjectClass.TradeNote);
+            OCOptions.Add(i++, ObjectClass.Ust);
+            OCOptions.Add(i++, ObjectClass.WandStaffOrb);
         }
 
-        Decal.Adapter.Wrappers.StringValueKey SVKFromIndex(int i)
+        StringValueKey SVKFromIndex(int i)
         {
             return SVKOptions[i];
         }
-        int IndexFromSVK(Decal.Adapter.Wrappers.StringValueKey k)
+        int IndexFromSVK(StringValueKey k)
         {
             return SVKOptions.Keys[SVKOptions.IndexOfValue(k)];
         }
-        Decal.Adapter.Wrappers.LongValueKey LVKFromIndex(int i)
+        IntValueKey LVKFromIndex(int i)
         {
             return LVKOptions[i];
         }
-        int IndexFromLVK(Decal.Adapter.Wrappers.LongValueKey k)
+        int IndexFromLVK(IntValueKey k)
         {
             return LVKOptions.Keys[LVKOptions.IndexOfValue(k)];
         }
-        Decal.Adapter.Wrappers.DoubleValueKey DVKFromIndex(int i)
+        DoubleValueKey DVKFromIndex(int i)
         {
             return DVKOptions[i];
         }
-        int IndexFromDVK(Decal.Adapter.Wrappers.DoubleValueKey k)
+        int IndexFromDVK(DoubleValueKey k)
         {
             return DVKOptions.Keys[DVKOptions.IndexOfValue(k)];
         }
-        Decal.Adapter.Wrappers.ObjectClass OCFromIndex(int i)
+        ObjectClass OCFromIndex(int i)
         {
             return OCOptions[i];
         }
-        int IndexFromOC(Decal.Adapter.Wrappers.ObjectClass k)
+        int IndexFromOC(ObjectClass k)
         {
             return OCOptions.Keys[OCOptions.IndexOfValue(k)];
         }
@@ -267,7 +265,7 @@ namespace uTank2_Settings_Editor
 
                 SetCurrentReq(null, 0);
                 lstRequirements.Items.Clear();
-                foreach (uTank2.LootRules.iLootRule newlr in cr.IntRules)
+                foreach (iLootRule newlr in cr.IntRules)
                 {
                     lstRequirements.Items.Add(newlr.DisplayString());
                 }
@@ -275,7 +273,7 @@ namespace uTank2_Settings_Editor
             Working = false;
         }
 
-        void SetCurrentReq(uTank2.LootRules.iLootRule cr, int crn)
+        void SetCurrentReq(iLootRule cr, int crn)
         {
             Working = true;
 
@@ -316,7 +314,7 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         lblValue.Text = "Value";
                         txtValue.Visible = true;
-                        txtValue.Text = ((uTank2.LootRules.SpellNameMatch)cr).rx.ToString();
+                        txtValue.Text = ((SpellNameMatch)cr).rx.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -332,8 +330,8 @@ namespace uTank2_Settings_Editor
                         lblValue.Text = "Value";
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < SVKOptions.Count; ++i) cmbActsOn.Items.Add(SVKOptions[i]);
-                        cmbActsOn.SelectedIndex = IndexFromSVK(((uTank2.LootRules.StringValueMatch)cr).vk);
-                        txtValue.Text = ((uTank2.LootRules.StringValueMatch)cr).rx.ToString();
+                        cmbActsOn.SelectedIndex = IndexFromSVK(((StringValueMatch)cr).vk);
+                        txtValue.Text = ((StringValueMatch)cr).rx.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -349,8 +347,8 @@ namespace uTank2_Settings_Editor
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < LVKOptions.Count; ++i) cmbActsOn.Items.Add(LVKOptions[i]);
-                        cmbActsOn.SelectedIndex = IndexFromLVK(((uTank2.LootRules.LongValKeyLE)cr).vk);
-                        txtValue.Text = ((uTank2.LootRules.LongValKeyLE)cr).keyval.ToString();
+                        cmbActsOn.SelectedIndex = IndexFromLVK(((LongValKeyLE)cr).vk);
+                        txtValue.Text = ((LongValKeyLE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -366,8 +364,8 @@ namespace uTank2_Settings_Editor
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < LVKOptions.Count; ++i) cmbActsOn.Items.Add(LVKOptions[i]);
-                        cmbActsOn.SelectedIndex = IndexFromLVK(((uTank2.LootRules.LongValKeyGE)cr).vk);
-                        txtValue.Text = ((uTank2.LootRules.LongValKeyGE)cr).keyval.ToString();
+                        cmbActsOn.SelectedIndex = IndexFromLVK(((LongValKeyGE)cr).vk);
+                        txtValue.Text = ((LongValKeyGE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -383,8 +381,8 @@ namespace uTank2_Settings_Editor
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < DVKOptions.Count; ++i) cmbActsOn.Items.Add(DVKOptions[i]);
-                        cmbActsOn.SelectedIndex = IndexFromDVK(((uTank2.LootRules.DoubleValKeyLE)cr).vk);
-                        txtValue.Text = ((uTank2.LootRules.DoubleValKeyLE)cr).keyval.ToString();
+                        cmbActsOn.SelectedIndex = IndexFromDVK(((DoubleValKeyLE)cr).vk);
+                        txtValue.Text = ((DoubleValKeyLE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -400,8 +398,8 @@ namespace uTank2_Settings_Editor
                         txtValue.Visible = true;
                         cmbActsOn.Items.Clear();
                         for (int i = 0; i < DVKOptions.Count; ++i) cmbActsOn.Items.Add(DVKOptions[i]);
-                        cmbActsOn.SelectedIndex = IndexFromDVK(((uTank2.LootRules.DoubleValKeyGE)cr).vk);
-                        txtValue.Text = ((uTank2.LootRules.DoubleValKeyGE)cr).keyval.ToString();
+                        cmbActsOn.SelectedIndex = IndexFromDVK(((DoubleValKeyGE)cr).vk);
+                        txtValue.Text = ((DoubleValKeyGE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -415,7 +413,7 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         lblValue.Text = "Value";
                         txtValue.Visible = true;
-                        txtValue.Text = ((uTank2.LootRules.DamagePercentGE)cr).keyval.ToString();
+                        txtValue.Text = ((DamagePercentGE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -427,7 +425,7 @@ namespace uTank2_Settings_Editor
                         lblKey.Visible = true;
                         cmbKey.Visible = true;
                         for (int i = 0; i < OCOptions.Count; ++i) cmbKey.Items.Add(OCOptions[i]);
-                        cmbKey.SelectedIndex = IndexFromOC(((uTank2.LootRules.ObjectClass)cr).vk);
+                        cmbKey.SelectedIndex = IndexFromOC(((ObjectClassE)cr).vk);
                         lblValue.Visible = false;
                         txtValue.Visible = false;
                         lblValue2.Visible = false;
@@ -443,7 +441,7 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         lblValue.Text = "Value";
                         txtValue.Visible = true;
-                        txtValue.Text = ((uTank2.LootRules.SpellCountGE)cr).keyval.ToString();
+                        txtValue.Text = ((SpellCountGE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -457,15 +455,15 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         lblValue.Text = "Does match";
                         txtValue.Visible = true;
-                        txtValue.Text = ((uTank2.LootRules.SpellMatch)cr).rxp.ToString();
+                        txtValue.Text = ((SpellMatch)cr).rxp.ToString();
                         lblValue2.Visible = true;
                         lblValue2.Text = "Does NOT match";
                         txtValue2.Visible = true;
-                        txtValue2.Text = ((uTank2.LootRules.SpellMatch)cr).rxn.ToString();
+                        txtValue2.Text = ((SpellMatch)cr).rxn.ToString();
                         lblValue3.Visible = true;
                         lblValue3.Text = "Miminum spells that match";
                         txtValue3.Visible = true;
-                        txtValue3.Text = ((uTank2.LootRules.SpellMatch)cr).cnt.ToString();
+                        txtValue3.Text = ((SpellMatch)cr).cnt.ToString();
                         break;
                     case 10:
                         lblActsOn.Visible = false;
@@ -475,7 +473,7 @@ namespace uTank2_Settings_Editor
                         lblValue.Visible = true;
                         lblValue.Text = "Value";
                         txtValue.Visible = true;
-                        txtValue.Text = ((uTank2.LootRules.MinDamageGE)cr).keyval.ToString();
+                        txtValue.Text = ((MinDamageGE)cr).keyval.ToString();
                         lblValue2.Visible = false;
                         txtValue2.Visible = false;
                         lblValue3.Visible = false;
@@ -517,7 +515,7 @@ namespace uTank2_Settings_Editor
                 this.Text = AppName + " - " + FileName;
 
                 System.IO.StreamReader pf = new System.IO.StreamReader(FileName);
-                LootRules.Read(pf);
+                LootRules.Read(pf, 0);
                 pf.Close();
 
                 Working = true;
@@ -558,7 +556,7 @@ namespace uTank2_Settings_Editor
         void DoSave()
         {
             FileChanged = false;
-            System.IO.StreamWriter pf = new System.IO.StreamWriter(FileName);
+            CountedStreamWriter pf = new CountedStreamWriter(FileName);
             LootRules.Write(pf);
             pf.Close();
         }
@@ -661,7 +659,7 @@ namespace uTank2_Settings_Editor
         private void cmdNewReq_Click(object sender, EventArgs e)
         {
             FileChanged = true;
-            uTank2.LootRules.SpellNameMatch lr = new uTank2.LootRules.SpellNameMatch();
+            SpellNameMatch lr = new SpellNameMatch();
 
             CurrentRule.IntRules.Add(lr);
             lstRequirements.Items.Add(lr.DisplayString());
@@ -738,41 +736,41 @@ namespace uTank2_Settings_Editor
             FileChanged = true;
             Working = true;
 
-            uTank2.LootRules.iLootRule newlr;
+            iLootRule newlr;
             switch (cmbReqType.SelectedIndex)
             {
                 case 0:
-                    newlr = new uTank2.LootRules.SpellNameMatch();
+                    newlr = new SpellNameMatch();
                     break;
                 case 1:
-                    newlr = new uTank2.LootRules.StringValueMatch();
+                    newlr = new StringValueMatch();
                     break;
                 case 2:
-                    newlr = new uTank2.LootRules.LongValKeyLE();
+                    newlr = new LongValKeyLE();
                     break;
                 case 3:
-                    newlr = new uTank2.LootRules.LongValKeyGE();
+                    newlr = new LongValKeyGE();
                     break;
                 case 4:
-                    newlr = new uTank2.LootRules.DoubleValKeyLE();
+                    newlr = new DoubleValKeyLE();
                     break;
                 case 5:
-                    newlr = new uTank2.LootRules.DoubleValKeyGE();
+                    newlr = new DoubleValKeyGE();
                     break;
                 case 6:
-                    newlr = new uTank2.LootRules.DamagePercentGE();
+                    newlr = new DamagePercentGE();
                     break;
                 case 7:
-                    newlr = new uTank2.LootRules.ObjectClass();
+                    newlr = new ObjectClassE();
                     break;
                 case 8:
-                    newlr = new uTank2.LootRules.SpellCountGE();
+                    newlr = new SpellCountGE();
                     break;
                 case 9:
-                    newlr = new uTank2.LootRules.SpellMatch();
+                    newlr = new SpellMatch();
                     break;
                 case 10:
-                    newlr = new uTank2.LootRules.MinDamageGE();
+                    newlr = new MinDamageGE();
                     break;
                 default:
                     newlr = CurrentReq;
@@ -799,19 +797,19 @@ namespace uTank2_Settings_Editor
             switch (CurrentReq.GetRuleType())
             {
                 case 1:
-                    ((uTank2.LootRules.StringValueMatch)CurrentReq).vk = SVKFromIndex(cmbActsOn.SelectedIndex);
+                    ((StringValueMatch)CurrentReq).vk = SVKFromIndex(cmbActsOn.SelectedIndex);
                     break;
                 case 2:
-                    ((uTank2.LootRules.LongValKeyLE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
+                    ((LongValKeyLE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
                     break;
                 case 3:
-                    ((uTank2.LootRules.LongValKeyGE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
+                    ((LongValKeyGE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
                     break;
                 case 4:
-                    ((uTank2.LootRules.DoubleValKeyLE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
+                    ((DoubleValKeyLE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
                     break;
                 case 5:
-                    ((uTank2.LootRules.DoubleValKeyGE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
+                    ((DoubleValKeyGE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
                     break;
             }
 
@@ -828,7 +826,7 @@ namespace uTank2_Settings_Editor
             Working = true;
             if (CurrentReq.GetRuleType() == 7)
             {
-                ((uTank2.LootRules.ObjectClass)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
+                ((ObjectClassE)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             }
             Working = false;
@@ -844,34 +842,34 @@ namespace uTank2_Settings_Editor
                 switch (CurrentReq.GetRuleType())
                 {
                     case 0:
-                        ((uTank2.LootRules.SpellNameMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
+                        ((SpellNameMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
                         break;
                     case 1:
-                        ((uTank2.LootRules.StringValueMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
+                        ((StringValueMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
                         break;
                     case 2:
-                        ((uTank2.LootRules.LongValKeyLE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
+                        ((LongValKeyLE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
                     case 3:
-                        ((uTank2.LootRules.LongValKeyGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
+                        ((LongValKeyGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
                     case 4:
-                        ((uTank2.LootRules.DoubleValKeyLE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
+                        ((DoubleValKeyLE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
                         break;
                     case 5:
-                        ((uTank2.LootRules.DoubleValKeyGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
+                        ((DoubleValKeyGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
                         break;
                     case 6:
-                        ((uTank2.LootRules.DamagePercentGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
+                        ((DamagePercentGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
                         break;
                     case 8:
-                        ((uTank2.LootRules.SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
+                        ((SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
                         break;
                     case 9:
-                        ((uTank2.LootRules.SpellMatch)CurrentReq).rxp = new System.Text.RegularExpressions.Regex(txtValue.Text);
+                        ((SpellMatch)CurrentReq).rxp = new System.Text.RegularExpressions.Regex(txtValue.Text);
                         break;
                     case 10:
-                        ((uTank2.LootRules.MinDamageGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
+                        ((MinDamageGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
                         break;
                 }
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
@@ -889,7 +887,7 @@ namespace uTank2_Settings_Editor
                 switch (CurrentReq.GetRuleType())
                 {
                     case 9:
-                        ((uTank2.LootRules.SpellMatch)CurrentReq).rxn = new System.Text.RegularExpressions.Regex(txtValue2.Text);
+                        ((SpellMatch)CurrentReq).rxn = new System.Text.RegularExpressions.Regex(txtValue2.Text);
                         break;
                 }
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
@@ -907,7 +905,7 @@ namespace uTank2_Settings_Editor
                 switch (CurrentReq.GetRuleType())
                 {
                     case 9:
-                        ((uTank2.LootRules.SpellMatch)CurrentReq).cnt = Convert.ToInt32(txtValue3.Text);
+                        ((SpellMatch)CurrentReq).cnt = Convert.ToInt32(txtValue3.Text);
                         break;
                 }
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
@@ -976,9 +974,9 @@ namespace uTank2_Settings_Editor
                     {
                         swap = (LootRules.Rules[j].act > LootRules.Rules[j + 1].act)
                             || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
-                                && LootRules.Rules[j].requiresID() && !LootRules.Rules[j + 1].requiresID())
+                                && LootRules.Rules[j].AnyReqRequiresID() && !LootRules.Rules[j + 1].AnyReqRequiresID())
                             || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
-                                && LootRules.Rules[j].requiresID() == LootRules.Rules[j + 1].requiresID()
+                                && LootRules.Rules[j].AnyReqRequiresID() == LootRules.Rules[j + 1].AnyReqRequiresID()
                                 && LootRules.Rules[j].name.CompareTo(LootRules.Rules[j + 1].name) > 0);
                         if (swap) ruleMoveDown(j, false);
                     }

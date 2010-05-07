@@ -1,9 +1,7 @@
-﻿using uTank2;
-using uTank2.LootRules;
-using Decal.Adapter.Wrappers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
-namespace uTank2_Settings_Editor
+
+namespace VTClassic
 {
     public partial class Form1
     {
@@ -82,8 +80,8 @@ namespace uTank2_Settings_Editor
 
         private void updateMaterialRule(cLootItemRule r, int mat, int w)
         {
-            LongValKeyLE r1 = new LongValKeyLE(mat, LongValueKey.Material);
-            LongValKeyGE r2 = new LongValKeyGE(mat, LongValueKey.Material);
+            LongValKeyLE r1 = new LongValKeyLE(mat, IntValueKey.Material);
+            LongValKeyGE r2 = new LongValKeyGE(mat, IntValueKey.Material);
             DoubleValKeyGE r3 = new DoubleValKeyGE(Convert.ToDouble(w), DoubleValueKey.SalvageWorkmanship);
 
             r.IntRules = new List<iLootRule>(new iLootRule[] { r1, r2, r3 });

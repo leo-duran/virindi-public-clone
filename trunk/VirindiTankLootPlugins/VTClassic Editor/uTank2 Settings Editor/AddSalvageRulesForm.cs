@@ -5,9 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using uTank2.LootRules;
 
-namespace uTank2_Settings_Editor
+namespace VTClassic
 {
     public partial class AddSalvageRulesForm : Form
     {

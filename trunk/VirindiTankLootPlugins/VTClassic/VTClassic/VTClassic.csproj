@@ -15,7 +15,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;VTC_PLUGIN</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,13 +30,29 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="utank2-i, Version=0.3.1.19, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="utank2-i, Version=0.3.1.34, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Plugins\VirindiTank\uTank2\bin\Debug\utank2-i.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\VirindiPlugins\VirindiTank\utank2-i.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\VTClassic Shared\Constants.cs">
+      <Link>VTClassicShared\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\CountedStreamWriter.cs">
+      <Link>VTClassicShared\CountedStreamWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\FileVersioning.cs">
+      <Link>VTClassicShared\FileVersioning.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\LootRules.cs">
+      <Link>VTClassicShared\LootRules.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\UTLFileExtraBlockManager.cs">
+      <Link>VTClassicShared\UTLFileExtraBlockManager.cs</Link>
+    </Compile>
     <Compile Include="LootCore.cs" />
     <Compile Include="LootRules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

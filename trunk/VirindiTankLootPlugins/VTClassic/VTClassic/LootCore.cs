@@ -132,7 +132,7 @@ namespace VTClassic
                     LootRules = new cLootRules();
                     using (System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None))
                     {
-                        using (System.IO.StreamWriter sr = new System.IO.StreamWriter(fs))
+                        using (CountedStreamWriter sr = new CountedStreamWriter(fs))
                         {
                             LootRules.Write(sr);
                         }
@@ -149,7 +149,7 @@ namespace VTClassic
                     {
                         using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
                         {
-                            if (LootRules.Read(sr))
+                            if (LootRules.Read(sr, -1))
                                 Host.AddChatText("Load profile " + filename + " successful.");
                             else
                                 Host.AddChatText("Load profile " + filename + " returned an error. Your entire profile may not have loaded properly.");

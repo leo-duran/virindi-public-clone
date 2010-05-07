@@ -27,10 +27,9 @@
 using System.Drawing;
 using System;
 using System.Windows.Forms;
-using uTank2;
-using uTank2.LootRules;
 using System.Collections.Generic;
-namespace uTank2_Settings_Editor
+
+namespace VTClassic
 {
     partial class Form1
     {
@@ -687,14 +686,14 @@ namespace uTank2_Settings_Editor
             {
                 if (CurrentReq.GetRuleType() == 2 || CurrentReq.GetRuleType() == 3)
                 {
-                    if (uTank2.LootRules.GameInfo.IsIDProperty(LVKFromIndex(e.Index)))
+                    if (GameInfo.IsIDProperty(LVKFromIndex(e.Index)))
                     {
                         textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
                 else if (CurrentReq.GetRuleType() == 4 || CurrentReq.GetRuleType() == 5)
                 {
-                    if (uTank2.LootRules.GameInfo.IsIDProperty(DVKFromIndex(e.Index)))
+                    if (GameInfo.IsIDProperty(DVKFromIndex(e.Index)))
                     {
                         textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }

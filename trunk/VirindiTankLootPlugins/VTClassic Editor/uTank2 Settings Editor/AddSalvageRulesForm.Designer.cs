@@ -1,4 +1,4 @@
-﻿namespace uTank2_Settings_Editor
+﻿namespace VTClassic
 {
     partial class AddSalvageRulesForm
     {

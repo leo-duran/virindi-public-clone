@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;VTC_EDITOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -46,13 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\VTClassic Shared\Constants.cs">
+      <Link>VTClassicShared\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\CountedStreamWriter.cs">
+      <Link>VTClassicShared\CountedStreamWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\FileVersioning.cs">
+      <Link>VTClassicShared\FileVersioning.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\LootRules.cs">
+      <Link>VTClassicShared\LootRules.cs</Link>
+    </Compile>
+    <Compile Include="..\..\VTClassic Shared\UTLFileExtraBlockManager.cs">
+      <Link>VTClassicShared\UTLFileExtraBlockManager.cs</Link>
+    </Compile>
     <Compile Include="AddSalvageRulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddSalvageRulesForm.Designer.cs">
       <DependentUpon>AddSalvageRulesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Decal_Values.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
