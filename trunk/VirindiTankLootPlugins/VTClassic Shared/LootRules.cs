@@ -38,7 +38,7 @@ using uTank2.LootPlugins;
 
 namespace VTClassic
 {
-    //A single rule
+    #region iLootRule abstract class
     internal abstract class iLootRule : iSettingsCollection, ICloneable
     {
         //iSettingsCollection methods
@@ -71,6 +71,7 @@ namespace VTClassic
             return iUniqueID;
         }
     }
+    #endregion iLootRule abstract class
 
     internal enum eLootRuleType
     {
@@ -90,6 +91,7 @@ namespace VTClassic
         LongValKeyFlagExists = 11,
     }
 
+    #region UnsupportedRequirement special rule type
     internal class cUnsupportedRequirement : iLootRule
     {
         public char[] data;
@@ -132,6 +134,11 @@ namespace VTClassic
             return false;
         }
     }
+    #endregion UnsupportedRequirement special rule type
+
+    #region LootRule classes
+
+    #region SpellNameMatch
     internal class SpellNameMatch : iLootRule
     {
         public System.Text.RegularExpressions.Regex rx = new Regex("");
@@ -190,6 +197,9 @@ namespace VTClassic
             return true;
         }
     }
+    #endregion SpellNameMatch
+
+    #region StringValueMatch
     internal class StringValueMatch : iLootRule
     {
         public System.Text.RegularExpressions.Regex rx = new Regex("");
@@ -243,6 +253,9 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion StringValueMatch
+
+    #region LongValKeyLE
     internal class LongValKeyLE : iLootRule
     {
         public int keyval = 0;
@@ -324,6 +337,9 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion LongValKeyLE
+
+    #region LongValKeyGE
     internal class LongValKeyGE : iLootRule
     {
         public int keyval = 0;
@@ -405,6 +421,9 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion LongValKeyGE
+
+    #region DoubleValKeyLE
     internal class DoubleValKeyLE : iLootRule
     {
         public double keyval = 0d;
@@ -458,6 +477,9 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion DoubleValKeyLE
+
+    #region DoubleValKeyGE
     internal class DoubleValKeyGE : iLootRule
     {
         public double keyval = 0d;
@@ -511,6 +533,9 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion DoubleValKeyGE
+
+    #region DamagePercentGE
     internal class DamagePercentGE : iLootRule
     {
         public double keyval = 0d;
@@ -553,6 +578,9 @@ namespace VTClassic
             return false;
         }
     }
+    #endregion DamagePercentGE
+
+    #region ObjectClassE
     internal class ObjectClassE : iLootRule
     {
         public ObjectClass vk = ObjectClass.Armor;
@@ -595,6 +623,9 @@ namespace VTClassic
             return false;
         }
     }
+    #endregion ObjectClassE
+
+    #region SpellCountGE
     internal class SpellCountGE : iLootRule
     {
         public int keyval = 0;
@@ -647,6 +678,9 @@ namespace VTClassic
             return true;
         }
     }
+    #endregion SpellCountGE
+
+    #region SpellMatch
     internal class SpellMatch : iLootRule
     {
         public Regex rxp = new Regex("");
@@ -722,6 +756,9 @@ namespace VTClassic
             return true;
         }
     }
+    #endregion SpellMatch
+
+    #region MinDamageGE
     internal class MinDamageGE : iLootRule
     {
         public double keyval = 0d;
@@ -774,6 +811,9 @@ namespace VTClassic
             return true;
         }
     }
+    #endregion MinDamageGE
+
+    #region LongValKeyFlagExists
     internal class LongValKeyFlagExists : iLootRule
     {
         public int keyval = 0;
@@ -827,8 +867,11 @@ namespace VTClassic
             return GameInfo.IsIDProperty(vk);
         }
     }
+    #endregion LongValKeyFlagExists
 
+    #endregion LootRule classes
 
+    #region cLootItemRule (requirement set) and cLootRules (rule set)
     //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
     {
@@ -1152,4 +1195,5 @@ namespace VTClassic
 
         #endregion
     }
+    #endregion cLootItemRule (requirement set) and cLootRules (rule set)
 }
