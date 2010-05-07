@@ -461,7 +461,7 @@ namespace VTClassic
                         txtValue2.Visible = true;
                         txtValue2.Text = ((SpellMatch)cr).rxn.ToString();
                         lblValue3.Visible = true;
-                        lblValue3.Text = "Miminum spells that match";
+                        lblValue3.Text = "Minimum spells that match";
                         txtValue3.Visible = true;
                         txtValue3.Text = ((SpellMatch)cr).cnt.ToString();
                         break;
@@ -576,7 +576,7 @@ namespace VTClassic
             System.Windows.Forms.SaveFileDialog od = new SaveFileDialog();
             od.DefaultExt = ".utl";
             od.Filter = "uTank settings files|*.utl";
-            od.InitialDirectory = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("Path").ToString();
+            od.InitialDirectory = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
             od.ShowDialog();
             saveasres = false;
             if (od.FileName != "")
@@ -783,6 +783,9 @@ namespace VTClassic
                 CurrentRule.IntRules[CurrentReqNum] = newlr;
                 SetCurrentReq(newlr, CurrentReqNum);
                 lstRequirements.Items[CurrentReqNum] = newlr.DisplayString();
+
+                lstRules.Invalidate();
+                lstRequirements.Invalidate();
             }
 
             Working = false;
@@ -815,6 +818,9 @@ namespace VTClassic
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
 
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
             Working = false;
         }
 
@@ -829,6 +835,7 @@ namespace VTClassic
                 ((ObjectClassE)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
                 lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             }
+
             Working = false;
         }
 
@@ -936,7 +943,7 @@ namespace VTClassic
                     int[] matIds = GameInfo.getMaterialGroups()[asr.grp];
                     this.addMaterialRules(matIds, asr.wrk, r == DialogResult.Yes);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             }
             asr.Dispose();
         }
@@ -953,7 +960,7 @@ namespace VTClassic
                     SetCurrentReq(null, 0);
                     SetCurrentRule(null, -1);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             }
             f.Dispose();
         }
@@ -982,7 +989,7 @@ namespace VTClassic
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             lstRules.Visible = true;
         }
 

@@ -54,7 +54,6 @@
       <Link>VTClassicShared\UTLFileExtraBlockManager.cs</Link>
     </Compile>
     <Compile Include="LootCore.cs" />
-    <Compile Include="LootRules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

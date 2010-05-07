@@ -41,7 +41,7 @@ namespace VTClassic
                     }
                     lblAddSRInfo.Text = string.Join(", ", sArr);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             }
         }
 
@@ -52,7 +52,7 @@ namespace VTClassic
                 wrk = trbAddSRWork.Value;
                 lblAddSRWorkV.Text = wrk.ToString();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
         }
 
     }

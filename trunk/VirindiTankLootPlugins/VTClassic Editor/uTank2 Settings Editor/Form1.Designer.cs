@@ -698,12 +698,9 @@ namespace VTClassic
                         textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
-                
+
             }
-            catch (Exception ex)
-            {
-                // TODO?
-            }
+            catch { }
 
             e.DrawBackground();
             if (e.Index > -1)

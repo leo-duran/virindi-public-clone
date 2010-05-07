@@ -131,7 +131,7 @@ namespace VTClassic
     }
     internal class SpellNameMatch : iLootRule
     {
-        public System.Text.RegularExpressions.Regex rx;
+        public System.Text.RegularExpressions.Regex rx = new Regex("");
 
         public SpellNameMatch() { }
         public SpellNameMatch(System.Text.RegularExpressions.Regex k) { rx = k; }
@@ -189,8 +189,8 @@ namespace VTClassic
     }
     internal class StringValueMatch : iLootRule
     {
-        public System.Text.RegularExpressions.Regex rx;
-        public StringValueKey vk;
+        public System.Text.RegularExpressions.Regex rx = new Regex("");
+        public StringValueKey vk = StringValueKey.FullDescription;
 
         public StringValueMatch() { }
         public StringValueMatch(System.Text.RegularExpressions.Regex k, StringValueKey v) { rx = k; vk = v; }
@@ -242,8 +242,8 @@ namespace VTClassic
     }
     internal class LongValKeyLE : iLootRule
     {
-        public int keyval;
-        public IntValueKey vk;
+        public int keyval = 0;
+        public IntValueKey vk = IntValueKey.ActivationReqSkillId;
 
         public LongValKeyLE() { }
         public LongValKeyLE(int k, IntValueKey v) { keyval = k; vk = v; }
@@ -323,8 +323,8 @@ namespace VTClassic
     }
     internal class LongValKeyGE : iLootRule
     {
-        public int keyval;
-        public IntValueKey vk;
+        public int keyval = 0;
+        public IntValueKey vk = IntValueKey.ActivationReqSkillId;
 
         public LongValKeyGE() { }
         public LongValKeyGE(int k, IntValueKey v) { keyval = k; vk = v; }
@@ -404,8 +404,8 @@ namespace VTClassic
     }
     internal class DoubleValKeyLE : iLootRule
     {
-        public double keyval;
-        public DoubleValueKey vk;
+        public double keyval = 0d;
+        public DoubleValueKey vk = DoubleValueKey.AcidProt;
 
         public DoubleValKeyLE() { }
         public DoubleValKeyLE(double k, DoubleValueKey v) { keyval = k; vk = v; }
@@ -457,8 +457,8 @@ namespace VTClassic
     }
     internal class DoubleValKeyGE : iLootRule
     {
-        public double keyval;
-        public DoubleValueKey vk;
+        public double keyval = 0d;
+        public DoubleValueKey vk = DoubleValueKey.AcidProt;
 
         public DoubleValKeyGE() { }
         public DoubleValKeyGE(double k, DoubleValueKey v) { keyval = k; vk = v; }
@@ -510,7 +510,7 @@ namespace VTClassic
     }
     internal class DamagePercentGE : iLootRule
     {
-        public double keyval;
+        public double keyval = 0d;
 
         public DamagePercentGE() { }
         public DamagePercentGE(double k) { keyval = k; }
@@ -594,7 +594,7 @@ namespace VTClassic
     }
     internal class SpellCountGE : iLootRule
     {
-        public int keyval;
+        public int keyval = 0;
 
         public SpellCountGE() { }
         public SpellCountGE(int k) { keyval = k; }
@@ -646,11 +646,11 @@ namespace VTClassic
     }
     internal class SpellMatch : iLootRule
     {
-        public Regex rxp;
-        public Regex rxn;
-        public int cnt;
+        public Regex rxp = new Regex("");
+        public Regex rxn = new Regex("");
+        public int cnt = 1;
 
-        public SpellMatch() { rxp = new Regex(""); rxn = new Regex(""); cnt = 1; }
+        public SpellMatch() {  }
         public SpellMatch(Regex p, Regex n, int c) { rxp = p; rxn = n; cnt = c; }
 
         public override int GetRuleType() { return (int)eLootRuleType.SpellMatch; }
@@ -721,7 +721,7 @@ namespace VTClassic
     }
     internal class MinDamageGE : iLootRule
     {
-        public double keyval;
+        public double keyval = 0d;
 
         public MinDamageGE() { keyval = 0; }
         public MinDamageGE(double v) { keyval = v; }
@@ -773,8 +773,8 @@ namespace VTClassic
     }
     internal class LongValKeyFlagExists : iLootRule
     {
-        public int keyval;
-        public IntValueKey vk;
+        public int keyval = 0;
+        public IntValueKey vk = IntValueKey.ActivationReqSkillId;
 
         public LongValKeyFlagExists() { }
         public LongValKeyFlagExists(int k, IntValueKey v) { keyval = k; vk = v; }
