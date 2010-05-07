@@ -647,7 +647,7 @@ namespace VTClassic
                 cLootItemRule r = LootRules.Rules[e.Index];
                 foreach (iLootRule ir in r.IntRules)
                 {
-                    if (!ir.requiresID())
+                    if (!ir.MayRequireID())
                     {
                         badRule = false;
                         break;
@@ -718,7 +718,7 @@ namespace VTClassic
                 || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
                 || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
 
-            if (e.Index > -1 && CurrentRule != null && CurrentRule.IntRules[e.Index].requiresID())
+            if (e.Index > -1 && CurrentRule != null && CurrentRule.IntRules[e.Index].MayRequireID())
             {
                 textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
             }

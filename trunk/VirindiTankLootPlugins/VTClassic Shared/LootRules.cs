@@ -45,7 +45,7 @@ namespace VTClassic
         //LootRule abstract methods
         public abstract int GetRuleType();
         public abstract string DisplayString();
-        public abstract bool requiresID();
+        public abstract bool MayRequireID();
 
 #if VTC_PLUGIN
         //Members only when compiling the plugin, vtank is not referenced for editor
@@ -124,7 +124,7 @@ namespace VTClassic
             return "UNSUPPORTED REQUIREMENT";
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return false;
         }
@@ -182,7 +182,7 @@ namespace VTClassic
             return "SpellNameMatch: " + rx.ToString();
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return true;
         }
@@ -235,7 +235,7 @@ namespace VTClassic
             return string.Format("{0} matches: {1}", vk, rx);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -316,7 +316,7 @@ namespace VTClassic
             return string.Format("{0} <= {1}", vk, keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -397,7 +397,7 @@ namespace VTClassic
             return string.Format("{0} >= {1}", vk, keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -450,7 +450,7 @@ namespace VTClassic
             return string.Format("{0} <= {1}", vk, keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -503,7 +503,7 @@ namespace VTClassic
             return string.Format("{0} >= {1}", vk, keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -545,7 +545,7 @@ namespace VTClassic
             return string.Format("DamagePercentGE >= {0}", keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return false;
         }
@@ -587,7 +587,7 @@ namespace VTClassic
             return string.Format("ObjectClass = {0}", vk); 
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return false;
         }
@@ -639,7 +639,7 @@ namespace VTClassic
             return string.Format("SpellCount >= {0}", keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return true;
         }
@@ -714,7 +714,7 @@ namespace VTClassic
                 rxp, rxn, cnt);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return true;
         }
@@ -766,7 +766,7 @@ namespace VTClassic
             return string.Format("MinDamage >= {0}", keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return true;
         }
@@ -819,7 +819,7 @@ namespace VTClassic
             return string.Format("{0} has flags {1}", vk, keyval);
         }
 
-        public override bool requiresID()
+        public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
         }
@@ -848,7 +848,7 @@ namespace VTClassic
         {
             foreach (iLootRule i in IntRules)
             {
-                if (i.requiresID())
+                if (i.MayRequireID())
                 {
                     return true;
                 }
