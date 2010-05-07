@@ -2,8 +2,11 @@
 //File: LootRules.cs
 //
 //Description: The old-style Virindi Tank loot rule system.
+//  This file is shared between the VTClassic Plugin and the VTClassic Editor.
 //
-//This file is Copyright (c) 2009 VirindiPlugins
+//This file is Copyright (c) 2009-2010 VirindiPlugins
+//
+//The original copy of this code can be obtained from http://www.virindi.net/repos/virindi_public
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
