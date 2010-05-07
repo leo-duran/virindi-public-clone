@@ -833,15 +833,13 @@ namespace VTClassic
     internal class cLootItemRule : iSettingsCollection
     {
         public List<iLootRule> IntRules = new List<iLootRule>();
-        public int pri;
-        public eLootAction act;
-        public string name;
+        public int pri = 0;
+        public eLootAction act = eLootAction.Keep;
+        public string name = "";
+        public string CustomExpression = "";
 
         public cLootItemRule()
         {
-            name = "";
-            act = eLootAction.Keep;
-            pri = 0;
         }
 
         public int Priority() { return pri; }
@@ -904,14 +902,23 @@ namespace VTClassic
 
         public void Read(System.IO.StreamReader inf, int profileversion)
         {
+            //Name
             name = inf.ReadLine();
-            string[] clines = inf.ReadLine().Split(new char[] { ';' });
-            //Priority, Action
 
+            //Custom Expression
+            if (UTLVersionInfo.VersionHasFeature(eUTLFileFeature.RuleExpression, profileversion))
+                CustomExpression = inf.ReadLine();
+            else
+                CustomExpression = "";
+
+            //The 'big line'
+            string[] clines = inf.ReadLine().Split(new char[] { ';' });
+
+            //Priority, Action are encoded in the 'big line'
             pri = Convert.ToInt32(clines[0], System.Globalization.CultureInfo.InvariantCulture);
             act = (eLootAction)Convert.ToInt32(clines[1], System.Globalization.CultureInfo.InvariantCulture);
 
-            //Rules
+            //Rules...also encoded in the 'big line'
             IntRules.Clear();
             for (int i = 2; i < clines.Length; ++i)
             {
@@ -963,7 +970,13 @@ namespace VTClassic
 
         public void Write(CountedStreamWriter inf)
         {
+            //Name
             inf.WriteLine(name);
+
+            //Custom Expression
+            inf.WriteLine(CustomExpression);
+
+            //Compose the 'big line'
             StringBuilder s = new StringBuilder();
             s.Append(Convert.ToString(pri, System.Globalization.CultureInfo.InvariantCulture));
             s.Append(";");
@@ -974,6 +987,7 @@ namespace VTClassic
                 s.Append(Convert.ToString(lr.GetRuleType(), System.Globalization.CultureInfo.InvariantCulture));
             }
             inf.WriteLine(s.ToString());
+
             foreach (iLootRule lr in IntRules)
             {
                 //Write to a temp buffer so we can generate a length prefix

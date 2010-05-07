@@ -501,6 +501,12 @@ namespace VTClassic
             SetCurrentRule(null, 0);
         }
 
+        string GetVTankProfileDirectory()
+        {
+            string s = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
+            return System.IO.Path.GetFullPath(s);           
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!CheckSave()) return;
@@ -508,7 +514,7 @@ namespace VTClassic
             System.Windows.Forms.OpenFileDialog od = new OpenFileDialog();
             od.DefaultExt = ".utl";
             od.Filter = "uTank settings files|*.utl";
-            od.InitialDirectory = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
+            od.InitialDirectory = GetVTankProfileDirectory();
             od.ShowDialog();
             if (od.FileName != "")
             {
@@ -578,7 +584,7 @@ namespace VTClassic
             System.Windows.Forms.SaveFileDialog od = new SaveFileDialog();
             od.DefaultExt = ".utl";
             od.Filter = "uTank settings files|*.utl";
-            od.InitialDirectory = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
+            od.InitialDirectory = GetVTankProfileDirectory();
             od.ShowDialog();
             saveasres = false;
             if (od.FileName != "")

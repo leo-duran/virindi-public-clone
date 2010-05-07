@@ -34,7 +34,7 @@ using System.Text;
 
 namespace VTClassic
 {
-    internal interface eFileBlockHandler
+    internal interface IUTLFileBlockHandler
     {
         string BlockTypeID { get; }
         void Read(System.IO.StreamReader inf, int len);
@@ -46,15 +46,22 @@ namespace VTClassic
         static Dictionary<string, Type> BlockHandlerTypes = new Dictionary<string, Type>();
         static void AddHandlerType(Type t)
         {
-            if (!typeof(eFileBlockHandler).IsAssignableFrom(t)) throw new Exception("UTLFileExtraBlockManager: Cannot add handler type.");
+            if (!typeof(IUTLFileBlockHandler).IsAssignableFrom(t)) throw new Exception("UTLFileExtraBlockManager: Cannot add handler type.");
 
+            //Create one to determine its typeid
+            IUTLFileBlockHandler h = (IUTLFileBlockHandler)t.GetConstructor(new Type[] { }).Invoke(null);
+            string tid = h.BlockTypeID;
+
+            if (BlockHandlerTypes.ContainsKey(tid)) throw new Exception("UTLFileExtraBlockManager: duplicate handler id (" + tid + ")");
+
+            BlockHandlerTypes[tid] = t;
         }
         static UTLFileExtraBlockManager()
         {
             try
             {
                 //Add the current handler types
-
+                AddHandlerType(typeof(UTLBlockHandlers.UTLBlock_SalvageCombine));
             }
             catch (Exception exx)
             {
@@ -62,7 +69,27 @@ namespace VTClassic
             }
         }
 
-        List<eFileBlockHandler> FileBlocks = new List<eFileBlockHandler>();
+        List<IUTLFileBlockHandler> FileBlocks = new List<IUTLFileBlockHandler>();
+
+        void TryAddDefaultBlock(IUTLFileBlockHandler h)
+        {
+            if (GetFirstBlock(h.BlockTypeID) == null)
+                FileBlocks.Add(h);
+        }
+        public void CreateDefaultBlocks()
+        {
+            //Create the blocks that aren't here
+            TryAddDefaultBlock(new UTLBlockHandlers.UTLBlock_SalvageCombine());
+        }
+
+        public IUTLFileBlockHandler GetFirstBlock(string HandlerName)
+        {
+            foreach (IUTLFileBlockHandler h in FileBlocks)
+            {
+                if (h.BlockTypeID == HandlerName) return h;
+            }
+            return null;
+        }
 
         public void Read(System.IO.StreamReader inf)
         {
@@ -77,21 +104,24 @@ namespace VTClassic
                 if (BlockHandlerTypes.ContainsKey(blocktype))
                 {
                     //Known blocktype, create and add
-                    eFileBlockHandler h = (eFileBlockHandler)BlockHandlerTypes[blocktype].GetConstructor(new Type[] { }).Invoke(null);
+                    IUTLFileBlockHandler h = (IUTLFileBlockHandler)BlockHandlerTypes[blocktype].GetConstructor(new Type[] { }).Invoke(null);
                     h.Read(inf, blocklen);
                     FileBlocks.Add(h);
                 }
                 else
                 {
-                    //Unknown blocktype
-                    inf.BaseStream.Position += blocklen;
+                    //Unknown blocktype, skip ahead
+                    char[] qq = new char[blocklen];
+                    inf.Read(qq, 0, blocklen);
                 }
             }
+
+            CreateDefaultBlocks();
         }
 
         public void Write(CountedStreamWriter inf)
         {
-            foreach (eFileBlockHandler h in FileBlocks)
+            foreach (IUTLFileBlockHandler h in FileBlocks)
             {
                 System.IO.MemoryStream ms = new System.IO.MemoryStream();
                 CountedStreamWriter sw = new CountedStreamWriter(ms);

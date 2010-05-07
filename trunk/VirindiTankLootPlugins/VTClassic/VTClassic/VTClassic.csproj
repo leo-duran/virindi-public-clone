@@ -50,6 +50,9 @@
     <Compile Include="..\..\VTClassic Shared\LootRules.cs">
       <Link>VTClassicShared\LootRules.cs</Link>
     </Compile>
+    <Compile Include="..\..\VTClassic Shared\UTLBlock_SalvageCombine.cs">
+      <Link>VTClassicShared\UTLBlock_SalvageCombine.cs</Link>
+    </Compile>
     <Compile Include="..\..\VTClassic Shared\UTLFileExtraBlockManager.cs">
       <Link>VTClassicShared\UTLFileExtraBlockManager.cs</Link>
     </Compile>
