@@ -1116,7 +1116,7 @@ namespace VTClassic
 
         public override string FriendlyName()
         {
-            return "Long Key Has Flags";
+            return "Long Value Key Has Flags";
         }
 
         public override bool MayRequireID()
