@@ -74,8 +74,20 @@ namespace VTClassic
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSalvageRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.increaseSalvageWorkmanshipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lstRules = new System.Windows.Forms.ListBox();
-            this.cmdNewRule = new System.Windows.Forms.Button();
+            this.autoSortRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabLootRules = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cmdCloneRule = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSet = new System.Windows.Forms.TextBox();
+            this.cmbSet = new System.Windows.Forms.ComboBox();
+            this.txtSkill = new System.Windows.Forms.TextBox();
+            this.cmbSkill = new System.Windows.Forms.ComboBox();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.cmbMaterial = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmdDeleteRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
             this.cmdCloneReq = new System.Windows.Forms.Button();
             this.groupReqs = new System.Windows.Forms.GroupBox();
@@ -98,22 +110,15 @@ namespace VTClassic
             this.lstRequirements = new System.Windows.Forms.ListBox();
             this.cmdDeleteReq = new System.Windows.Forms.Button();
             this.cmdNewReq = new System.Windows.Forms.Button();
-            this.cmdDeleteRule = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtSet = new System.Windows.Forms.TextBox();
-            this.cmbSet = new System.Windows.Forms.ComboBox();
-            this.txtSkill = new System.Windows.Forms.TextBox();
-            this.cmbSkill = new System.Windows.Forms.ComboBox();
-            this.txtMaterial = new System.Windows.Forms.TextBox();
-            this.cmbMaterial = new System.Windows.Forms.ComboBox();
-            this.cmdCloneRule = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.autoSortRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdNewRule = new System.Windows.Forms.Button();
+            this.lstRules = new System.Windows.Forms.ListBox();
+            this.tabSalvageCombine = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabLootRules.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupRule.SuspendLayout();
             this.groupReqs.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -123,7 +128,7 @@ namespace VTClassic
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(582, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,7 +152,7 @@ namespace VTClassic
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -157,14 +162,14 @@ namespace VTClassic
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -172,26 +177,26 @@ namespace VTClassic
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -219,26 +224,140 @@ namespace VTClassic
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Text = "Update Workmanship Requirements";
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Click += new System.EventHandler(this.increaseSalvageWorkmanshipsToolStripMenuItem_Click);
             // 
-            // lstRules
+            // autoSortRulesToolStripMenuItem
             // 
-            this.lstRules.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lstRules.FormattingEnabled = true;
-            this.lstRules.Location = new System.Drawing.Point(12, 59);
-            this.lstRules.Name = "lstRules";
-            this.lstRules.Size = new System.Drawing.Size(160, 303);
-            this.lstRules.TabIndex = 1;
-            this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
-            this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
+            this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
+            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
+            this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
             // 
-            // cmdNewRule
+            // tabControl1
             // 
-            this.cmdNewRule.Location = new System.Drawing.Point(12, 368);
-            this.cmdNewRule.Name = "cmdNewRule";
-            this.cmdNewRule.Size = new System.Drawing.Size(40, 23);
-            this.cmdNewRule.TabIndex = 2;
-            this.cmdNewRule.Text = "New";
-            this.cmdNewRule.UseVisualStyleBackColor = true;
-            this.cmdNewRule.Click += new System.EventHandler(this.cmdNewRule_Click);
+            this.tabControl1.Controls.Add(this.tabLootRules);
+            this.tabControl1.Controls.Add(this.tabSalvageCombine);
+            this.tabControl1.Location = new System.Drawing.Point(0, 27);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(583, 450);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabLootRules
+            // 
+            this.tabLootRules.Controls.Add(this.button2);
+            this.tabLootRules.Controls.Add(this.cmdCloneRule);
+            this.tabLootRules.Controls.Add(this.groupBox1);
+            this.tabLootRules.Controls.Add(this.button1);
+            this.tabLootRules.Controls.Add(this.cmdDeleteRule);
+            this.tabLootRules.Controls.Add(this.groupRule);
+            this.tabLootRules.Controls.Add(this.cmdNewRule);
+            this.tabLootRules.Controls.Add(this.lstRules);
+            this.tabLootRules.Location = new System.Drawing.Point(4, 22);
+            this.tabLootRules.Name = "tabLootRules";
+            this.tabLootRules.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLootRules.Size = new System.Drawing.Size(575, 424);
+            this.tabLootRules.TabIndex = 0;
+            this.tabLootRules.Text = "Loot Rules";
+            this.tabLootRules.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(93, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 20);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Move Down";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cmdCloneRule
+            // 
+            this.cmdCloneRule.Location = new System.Drawing.Point(54, 341);
+            this.cmdCloneRule.Name = "cmdCloneRule";
+            this.cmdCloneRule.Size = new System.Drawing.Size(54, 23);
+            this.cmdCloneRule.TabIndex = 15;
+            this.cmdCloneRule.Text = "Clone";
+            this.cmdCloneRule.UseVisualStyleBackColor = true;
+            this.cmdCloneRule.Click += new System.EventHandler(this.cmdCloneRule_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtSet);
+            this.groupBox1.Controls.Add(this.cmbSet);
+            this.groupBox1.Controls.Add(this.txtSkill);
+            this.groupBox1.Controls.Add(this.cmbSkill);
+            this.groupBox1.Controls.Add(this.txtMaterial);
+            this.groupBox1.Controls.Add(this.cmbMaterial);
+            this.groupBox1.Location = new System.Drawing.Point(9, 371);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(558, 45);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Info";
+            // 
+            // txtSet
+            // 
+            this.txtSet.Location = new System.Drawing.Point(517, 15);
+            this.txtSet.Name = "txtSet";
+            this.txtSet.Size = new System.Drawing.Size(30, 20);
+            this.txtSet.TabIndex = 5;
+            // 
+            // cmbSet
+            // 
+            this.cmbSet.FormattingEnabled = true;
+            this.cmbSet.Location = new System.Drawing.Point(371, 15);
+            this.cmbSet.Name = "cmbSet";
+            this.cmbSet.Size = new System.Drawing.Size(140, 21);
+            this.cmbSet.TabIndex = 4;
+            // 
+            // txtSkill
+            // 
+            this.txtSkill.Location = new System.Drawing.Point(335, 15);
+            this.txtSkill.Name = "txtSkill";
+            this.txtSkill.Size = new System.Drawing.Size(30, 20);
+            this.txtSkill.TabIndex = 3;
+            // 
+            // cmbSkill
+            // 
+            this.cmbSkill.FormattingEnabled = true;
+            this.cmbSkill.Location = new System.Drawing.Point(189, 14);
+            this.cmbSkill.Name = "cmbSkill";
+            this.cmbSkill.Size = new System.Drawing.Size(140, 21);
+            this.cmbSkill.TabIndex = 2;
+            // 
+            // txtMaterial
+            // 
+            this.txtMaterial.Location = new System.Drawing.Point(153, 15);
+            this.txtMaterial.Name = "txtMaterial";
+            this.txtMaterial.Size = new System.Drawing.Size(30, 20);
+            this.txtMaterial.TabIndex = 1;
+            // 
+            // cmbMaterial
+            // 
+            this.cmbMaterial.FormattingEnabled = true;
+            this.cmbMaterial.Location = new System.Drawing.Point(7, 15);
+            this.cmbMaterial.Name = "cmbMaterial";
+            this.cmbMaterial.Size = new System.Drawing.Size(140, 21);
+            this.cmbMaterial.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 20);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Move Up";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmdDeleteRule
+            // 
+            this.cmdDeleteRule.Location = new System.Drawing.Point(114, 341);
+            this.cmdDeleteRule.Name = "cmdDeleteRule";
+            this.cmdDeleteRule.Size = new System.Drawing.Size(54, 23);
+            this.cmdDeleteRule.TabIndex = 12;
+            this.cmdDeleteRule.Text = "Delete";
+            this.cmdDeleteRule.UseVisualStyleBackColor = true;
+            this.cmdDeleteRule.Click += new System.EventHandler(this.cmdDeleteRule_Click);
             // 
             // groupRule
             // 
@@ -251,10 +370,10 @@ namespace VTClassic
             this.groupRule.Controls.Add(this.lstRequirements);
             this.groupRule.Controls.Add(this.cmdDeleteReq);
             this.groupRule.Controls.Add(this.cmdNewReq);
-            this.groupRule.Location = new System.Drawing.Point(178, 33);
+            this.groupRule.Location = new System.Drawing.Point(174, 6);
             this.groupRule.Name = "groupRule";
             this.groupRule.Size = new System.Drawing.Size(393, 358);
-            this.groupRule.TabIndex = 3;
+            this.groupRule.TabIndex = 11;
             this.groupRule.TabStop = false;
             this.groupRule.Text = "Rule";
             // 
@@ -436,7 +555,7 @@ namespace VTClassic
             // 
             this.lstRequirements.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRequirements.FormattingEnabled = true;
-            this.lstRequirements.Location = new System.Drawing.Point(6, 115);
+            this.lstRequirements.Location = new System.Drawing.Point(9, 111);
             this.lstRequirements.Name = "lstRequirements";
             this.lstRequirements.Size = new System.Drawing.Size(222, 199);
             this.lstRequirements.TabIndex = 0;
@@ -463,138 +582,57 @@ namespace VTClassic
             this.cmdNewReq.UseVisualStyleBackColor = true;
             this.cmdNewReq.Click += new System.EventHandler(this.cmdNewReq_Click);
             // 
-            // cmdDeleteRule
+            // cmdNewRule
             // 
-            this.cmdDeleteRule.Location = new System.Drawing.Point(118, 368);
-            this.cmdDeleteRule.Name = "cmdDeleteRule";
-            this.cmdDeleteRule.Size = new System.Drawing.Size(54, 23);
-            this.cmdDeleteRule.TabIndex = 4;
-            this.cmdDeleteRule.Text = "Delete";
-            this.cmdDeleteRule.UseVisualStyleBackColor = true;
-            this.cmdDeleteRule.Click += new System.EventHandler(this.cmdDeleteRule_Click);
+            this.cmdNewRule.Location = new System.Drawing.Point(8, 341);
+            this.cmdNewRule.Name = "cmdNewRule";
+            this.cmdNewRule.Size = new System.Drawing.Size(40, 23);
+            this.cmdNewRule.TabIndex = 10;
+            this.cmdNewRule.Text = "New";
+            this.cmdNewRule.UseVisualStyleBackColor = true;
+            this.cmdNewRule.Click += new System.EventHandler(this.cmdNewRule_Click);
             // 
-            // button1
+            // lstRules
             // 
-            this.button1.Location = new System.Drawing.Point(12, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 20);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Move Up";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lstRules.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lstRules.FormattingEnabled = true;
+            this.lstRules.Location = new System.Drawing.Point(8, 32);
+            this.lstRules.Name = "lstRules";
+            this.lstRules.Size = new System.Drawing.Size(160, 303);
+            this.lstRules.TabIndex = 9;
+            this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
+            this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
             // 
-            // groupBox1
+            // tabSalvageCombine
             // 
-            this.groupBox1.Controls.Add(this.txtSet);
-            this.groupBox1.Controls.Add(this.cmbSet);
-            this.groupBox1.Controls.Add(this.txtSkill);
-            this.groupBox1.Controls.Add(this.cmbSkill);
-            this.groupBox1.Controls.Add(this.txtMaterial);
-            this.groupBox1.Controls.Add(this.cmbMaterial);
-            this.groupBox1.Location = new System.Drawing.Point(13, 398);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(558, 45);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Info";
-            // 
-            // txtSet
-            // 
-            this.txtSet.Location = new System.Drawing.Point(517, 15);
-            this.txtSet.Name = "txtSet";
-            this.txtSet.Size = new System.Drawing.Size(30, 20);
-            this.txtSet.TabIndex = 5;
-            // 
-            // cmbSet
-            // 
-            this.cmbSet.FormattingEnabled = true;
-            this.cmbSet.Location = new System.Drawing.Point(371, 15);
-            this.cmbSet.Name = "cmbSet";
-            this.cmbSet.Size = new System.Drawing.Size(140, 21);
-            this.cmbSet.TabIndex = 4;
-            // 
-            // txtSkill
-            // 
-            this.txtSkill.Location = new System.Drawing.Point(335, 15);
-            this.txtSkill.Name = "txtSkill";
-            this.txtSkill.Size = new System.Drawing.Size(30, 20);
-            this.txtSkill.TabIndex = 3;
-            // 
-            // cmbSkill
-            // 
-            this.cmbSkill.FormattingEnabled = true;
-            this.cmbSkill.Location = new System.Drawing.Point(189, 14);
-            this.cmbSkill.Name = "cmbSkill";
-            this.cmbSkill.Size = new System.Drawing.Size(140, 21);
-            this.cmbSkill.TabIndex = 2;
-            // 
-            // txtMaterial
-            // 
-            this.txtMaterial.Location = new System.Drawing.Point(153, 15);
-            this.txtMaterial.Name = "txtMaterial";
-            this.txtMaterial.Size = new System.Drawing.Size(30, 20);
-            this.txtMaterial.TabIndex = 1;
-            // 
-            // cmbMaterial
-            // 
-            this.cmbMaterial.FormattingEnabled = true;
-            this.cmbMaterial.Location = new System.Drawing.Point(7, 15);
-            this.cmbMaterial.Name = "cmbMaterial";
-            this.cmbMaterial.Size = new System.Drawing.Size(140, 21);
-            this.cmbMaterial.TabIndex = 0;
-            // 
-            // cmdCloneRule
-            // 
-            this.cmdCloneRule.Location = new System.Drawing.Point(58, 368);
-            this.cmdCloneRule.Name = "cmdCloneRule";
-            this.cmdCloneRule.Size = new System.Drawing.Size(54, 23);
-            this.cmdCloneRule.TabIndex = 7;
-            this.cmdCloneRule.Text = "Clone";
-            this.cmdCloneRule.UseVisualStyleBackColor = true;
-            this.cmdCloneRule.Click += new System.EventHandler(this.cmdCloneRule_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(97, 33);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 20);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Move Down";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // autoSortRulesToolStripMenuItem
-            // 
-            this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
-            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
-            this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
-            this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
+            this.tabSalvageCombine.Location = new System.Drawing.Point(4, 22);
+            this.tabSalvageCombine.Name = "tabSalvageCombine";
+            this.tabSalvageCombine.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSalvageCombine.Size = new System.Drawing.Size(575, 424);
+            this.tabSalvageCombine.TabIndex = 1;
+            this.tabSalvageCombine.Text = "Salvage Combination";
+            this.tabSalvageCombine.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 446);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.cmdCloneRule);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.cmdDeleteRule);
-            this.Controls.Add(this.groupRule);
-            this.Controls.Add(this.cmdNewRule);
-            this.Controls.Add(this.lstRules);
+            this.ClientSize = new System.Drawing.Size(582, 477);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabLootRules.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupRule.ResumeLayout(false);
             this.groupRule.PerformLayout();
             this.groupReqs.ResumeLayout(false);
             this.groupReqs.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -741,27 +779,14 @@ namespace VTClassic
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ListBox lstRules;
-        private System.Windows.Forms.Button cmdNewRule;
-        private System.Windows.Forms.GroupBox groupRule;
-        private System.Windows.Forms.GroupBox groupReqs;
-        private System.Windows.Forms.ListBox lstRequirements;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbAction;
-        private System.Windows.Forms.TextBox txtRuleName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbKey;
-        private System.Windows.Forms.Label lblKey;
-        private System.Windows.Forms.ComboBox cmbActsOn;
-        private System.Windows.Forms.Label lblActsOn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbReqType;
-        private System.Windows.Forms.Button cmdDeleteReq;
-        private System.Windows.Forms.Button cmdNewReq;
-        private System.Windows.Forms.Button cmdDeleteRule;
-        private System.Windows.Forms.Label lblValue;
-        private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.Button button1;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem addSalvageRulesToolStripMenuItem;
+        private ToolStripMenuItem increaseSalvageWorkmanshipsToolStripMenuItem;
+        private ToolStripMenuItem autoSortRulesToolStripMenuItem;
+        private TabControl tabControl1;
+        private TabPage tabLootRules;
+        private Button button2;
+        private Button cmdCloneRule;
         private GroupBox groupBox1;
         private TextBox txtSet;
         private ComboBox cmbSet;
@@ -769,17 +794,33 @@ namespace VTClassic
         private ComboBox cmbSkill;
         private TextBox txtMaterial;
         private ComboBox cmbMaterial;
-        private Button cmdCloneRule;
-        private TextBox txtValue2;
-        private Label lblValue2;
+        private Button button1;
+        private Button cmdDeleteRule;
+        private GroupBox groupRule;
+        private Button cmdCloneReq;
+        private GroupBox groupReqs;
         private TextBox txtValue3;
         private Label lblValue3;
-        private Button button2;
-        private Button cmdCloneReq;
-        private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem addSalvageRulesToolStripMenuItem;
-        private ToolStripMenuItem increaseSalvageWorkmanshipsToolStripMenuItem;
-        private ToolStripMenuItem autoSortRulesToolStripMenuItem;
+        private Label lblValue2;
+        private TextBox txtValue2;
+        private TextBox txtValue;
+        private Label lblValue;
+        private ComboBox cmbKey;
+        private Label lblKey;
+        private ComboBox cmbActsOn;
+        private Label lblActsOn;
+        private Label label3;
+        private ComboBox cmbReqType;
+        private Label label2;
+        private ComboBox cmbAction;
+        private TextBox txtRuleName;
+        private Label label1;
+        private ListBox lstRequirements;
+        private Button cmdDeleteReq;
+        private Button cmdNewReq;
+        private Button cmdNewRule;
+        private ListBox lstRules;
+        private TabPage tabSalvageCombine;
 
 
     }
