@@ -76,6 +76,8 @@ namespace VTClassic
             this.increaseSalvageWorkmanshipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSortRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportRangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importRangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabLootRules = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
@@ -248,9 +250,26 @@ namespace VTClassic
             // 
             // combineToolStripMenuItem
             // 
+            this.combineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportRangesToolStripMenuItem,
+            this.importRangesToolStripMenuItem});
             this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
             this.combineToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.combineToolStripMenuItem.Text = "Combine";
+            // 
+            // exportRangesToolStripMenuItem
+            // 
+            this.exportRangesToolStripMenuItem.Name = "exportRangesToolStripMenuItem";
+            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exportRangesToolStripMenuItem.Text = "Export Ranges";
+            this.exportRangesToolStripMenuItem.Click += new System.EventHandler(this.exportRangesToolStripMenuItem_Click);
+            // 
+            // importRangesToolStripMenuItem
+            // 
+            this.importRangesToolStripMenuItem.Name = "importRangesToolStripMenuItem";
+            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.importRangesToolStripMenuItem.Text = "Import Ranges";
+            this.importRangesToolStripMenuItem.Click += new System.EventHandler(this.importRangesToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -969,6 +988,8 @@ namespace VTClassic
         private ComboBox tSC_cmbMaterial;
         private Label tSC_lblCombineRules;
         private ToolStripMenuItem combineToolStripMenuItem;
+        private ToolStripMenuItem exportRangesToolStripMenuItem;
+        private ToolStripMenuItem importRangesToolStripMenuItem;
 
 
     }

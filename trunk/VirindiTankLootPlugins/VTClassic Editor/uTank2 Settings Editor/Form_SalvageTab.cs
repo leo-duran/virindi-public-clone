@@ -170,5 +170,42 @@ namespace VTClassic
                 FileChanged = true;
             }
         }
+
+        private void exportRangesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.SaveFileDialog od = new System.Windows.Forms.SaveFileDialog();
+            od.DefaultExt = ".ucr";
+            od.Filter = "VTClassic Combine Ranges|*.ucr";
+            od.InitialDirectory = GetVTankProfileDirectory();
+            od.ShowDialog();
+
+            if (od.FileName != "")
+            {
+                using (CountedStreamWriter pf = new CountedStreamWriter(od.FileName))
+                {
+                    SalvageBlock.Write(pf);
+                }
+            }
+        }
+
+        private void importRangesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog od = new System.Windows.Forms.OpenFileDialog();
+            od.DefaultExt = ".ucr";
+            od.Filter = "VTClassic Combine Ranges|*.ucr";
+            od.InitialDirectory = GetVTankProfileDirectory();
+            od.ShowDialog();
+            if (od.FileName != "")
+            {
+                using (System.IO.StreamReader pf = new System.IO.StreamReader(od.FileName))
+                {
+                    SalvageBlock.Read(pf, 0);
+                }
+
+                Tab_Salvage_Refresh();
+
+                FileChanged = true;
+            }
+        }
     }
 }
