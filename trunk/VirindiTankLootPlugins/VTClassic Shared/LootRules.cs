@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 #if VTC_PLUGIN
 using uTank2.LootPlugins;
@@ -46,7 +47,7 @@ namespace VTClassic
         public abstract void Write(CountedStreamWriter inf);
 
         //LootRule abstract methods
-        public abstract int GetRuleType();
+        public abstract eLootRuleType GetRuleType();
         public abstract string DisplayString();
         public abstract bool MayRequireID();
 
@@ -60,6 +61,37 @@ namespace VTClassic
         {
             return this.MemberwiseClone();
         }
+
+#if VTC_EDITOR
+        public virtual bool UI_ActsOnCombo_Uses() { return false; }
+        public virtual string UI_ActsOnCombo_Label() { return "[None]"; }
+        public virtual void UI_ActsOnCombo_Set(int index) { }
+        public virtual int UI_ActsOnCombo_Get() { return 0; }
+        public virtual ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return new List<string>().AsReadOnly(); }
+        public virtual List<System.Drawing.Color> UI_ActsOnCombo_OptionColors() { return new List<System.Drawing.Color>(); }
+
+        public virtual bool UI_KeyCombo_Uses() { return false; }
+        public virtual string UI_KeyCombo_Label() { return "[None]"; }
+        public virtual void UI_KeyCombo_Set(int index) { }
+        public virtual int UI_KeyCombo_Get() { return 0; }
+        public virtual ReadOnlyCollection<string> UI_KeyCombo_Options() { return new List<string>().AsReadOnly(); }
+        public virtual List<System.Drawing.Color> UI_KeyCombo_OptionColors() { return new List<System.Drawing.Color>(); }
+
+        public virtual bool UI_TextValue_Uses() { return false; }
+        public virtual string UI_TextValue_Label() { return "[None]"; }
+        public virtual void UI_TextValue_Set(string value) { }
+        public virtual string UI_TextValue_Get() { return ""; }
+
+        public virtual bool UI_TextValue2_Uses() { return false; }
+        public virtual string UI_TextValue2_Label() { return "[None]"; }
+        public virtual void UI_TextValue2_Set(string value) { }
+        public virtual string UI_TextValue2_Get() { return ""; }
+
+        public virtual bool UI_TextValue3_Uses() { return false; }
+        public virtual string UI_TextValue3_Label() { return "[None]"; }
+        public virtual void UI_TextValue3_Set(string value) { }
+        public virtual string UI_TextValue3_Get() { return ""; }
+#endif
 
         cUniqueID iUniqueID;
         public void SetID(cUniqueID pUniqueID)
@@ -89,6 +121,38 @@ namespace VTClassic
         SpellMatch = 9,
         MinDamageGE = 10,
         LongValKeyFlagExists = 11,
+
+        //Character reqs, not based on the item
+        CharacterSkillGE = 1000,
+        CharacterMainPackEmptySlotsGE = 1001,
+    }
+
+    internal static class LootRuleCreator
+    {
+        public static iLootRule CreateLootRule(eLootRuleType t)
+        {
+            switch (t)
+            {
+                case eLootRuleType.SpellNameMatch: return new SpellNameMatch();
+                case eLootRuleType.StringValueMatch: return new StringValueMatch();
+                case eLootRuleType.LongValKeyLE: return new LongValKeyLE();
+                case eLootRuleType.LongValKeyGE: return new LongValKeyGE();
+                case eLootRuleType.DoubleValKeyLE: return new DoubleValKeyLE();
+                case eLootRuleType.DoubleValKeyGE: return new DoubleValKeyGE();
+                case eLootRuleType.DamagePercentGE: return new DamagePercentGE();
+                case eLootRuleType.ObjectClass: return new ObjectClassE();
+                case eLootRuleType.SpellCountGE: return new SpellCountGE();
+                case eLootRuleType.SpellMatch: return new SpellMatch();
+                case eLootRuleType.MinDamageGE: return new MinDamageGE();
+                case eLootRuleType.LongValKeyFlagExists: return new LongValKeyFlagExists();
+
+                //Character-based reqs
+                case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
+                case eLootRuleType.CharacterMainPackEmptySlotsGE: return new CharacterMainPackEmptySlotsGE();
+
+                default: return null;
+            }
+        }
     }
 
     #region UnsupportedRequirement special rule type
@@ -96,9 +160,9 @@ namespace VTClassic
     {
         public char[] data;
 
-        public override int GetRuleType()
+        public override eLootRuleType GetRuleType()
         {
-            return (int)eLootRuleType.UnsupportedRequirement;
+            return eLootRuleType.UnsupportedRequirement;
         }
 
 #if VTC_PLUGIN
@@ -146,7 +210,7 @@ namespace VTClassic
         public SpellNameMatch() { }
         public SpellNameMatch(System.Text.RegularExpressions.Regex k) { rx = k; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.SpellNameMatch; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SpellNameMatch; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -196,6 +260,13 @@ namespace VTClassic
         {
             return true;
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Spell Name Pattern"; }
+        public override void UI_TextValue_Set(string value) { rx = new Regex(value); }
+        public override string UI_TextValue_Get() { return rx.ToString(); }
+#endif
     }
     #endregion SpellNameMatch
 
@@ -208,7 +279,7 @@ namespace VTClassic
         public StringValueMatch() { }
         public StringValueMatch(System.Text.RegularExpressions.Regex k, StringValueKey v) { rx = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.StringValueMatch; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.StringValueMatch; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -252,6 +323,19 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "String Value Pattern"; }
+        public override void UI_TextValue_Set(string value) { rx = new Regex(value); }
+        public override string UI_TextValue_Get() { return rx.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetSVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromSVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.SVKFromIndex(index); }
+#endif
     }
     #endregion StringValueMatch
 
@@ -264,7 +348,7 @@ namespace VTClassic
         public LongValKeyLE() { }
         public LongValKeyLE(int k, IntValueKey v) { keyval = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.LongValKeyLE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.LongValKeyLE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -336,6 +420,19 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+#endif
     }
     #endregion LongValKeyLE
 
@@ -348,7 +445,7 @@ namespace VTClassic
         public LongValKeyGE() { }
         public LongValKeyGE(int k, IntValueKey v) { keyval = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.LongValKeyGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.LongValKeyGE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -420,6 +517,19 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+#endif
     }
     #endregion LongValKeyGE
 
@@ -432,7 +542,7 @@ namespace VTClassic
         public DoubleValKeyLE() { }
         public DoubleValKeyLE(double k, DoubleValueKey v) { keyval = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.DoubleValKeyLE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.DoubleValKeyLE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -476,6 +586,19 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Double Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetDVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromDVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.DVKFromIndex(index); }
+#endif
     }
     #endregion DoubleValKeyLE
 
@@ -488,7 +611,7 @@ namespace VTClassic
         public DoubleValKeyGE() { }
         public DoubleValKeyGE(double k, DoubleValueKey v) { keyval = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.DoubleValKeyGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.DoubleValKeyGE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -532,6 +655,19 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Double Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetDVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromDVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.DVKFromIndex(index); }
+#endif
     }
     #endregion DoubleValKeyGE
 
@@ -543,7 +679,7 @@ namespace VTClassic
         public DamagePercentGE() { }
         public DamagePercentGE(double k) { keyval = k; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.DamagePercentGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.DamagePercentGE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -577,6 +713,13 @@ namespace VTClassic
         {
             return false;
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Damage Percent"; }
+        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+#endif
     }
     #endregion DamagePercentGE
 
@@ -588,7 +731,7 @@ namespace VTClassic
         public ObjectClassE() { }
         public ObjectClassE(ObjectClass v) { vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.ObjectClass; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.ObjectClass; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -622,6 +765,14 @@ namespace VTClassic
         {
             return false;
         }
+
+#if VTC_EDITOR
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "ObjectClass is"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetOCEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromOC(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.OCFromIndex(index); }
+#endif
     }
     #endregion ObjectClassE
 
@@ -633,7 +784,7 @@ namespace VTClassic
         public SpellCountGE() { }
         public SpellCountGE(int k) { keyval = k; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.SpellCountGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SpellCountGE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -677,33 +828,40 @@ namespace VTClassic
         {
             return true;
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Spell Count"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+#endif
     }
     #endregion SpellCountGE
 
     #region SpellMatch
     internal class SpellMatch : iLootRule
     {
-        public Regex rxp = new Regex("");
-        public Regex rxn = new Regex("");
-        public int cnt = 1;
+        public Regex rxDoesMatch = new Regex("");
+        public Regex rxDoesNotMatch = new Regex("");
+        public int Count = 1;
 
         public SpellMatch() {  }
-        public SpellMatch(Regex p, Regex n, int c) { rxp = p; rxn = n; cnt = c; }
+        public SpellMatch(Regex p, Regex n, int c) { rxDoesMatch = p; rxDoesNotMatch = n; Count = c; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.SpellMatch; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SpellMatch; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
         {
             int c = 0;
             System.Collections.ObjectModel.ReadOnlyCollection<uTank2.MySpell> Spells = id.Spells;
-            bool rxnEmpty = string.Empty.Equals(rxn.ToString().Trim());
+            bool rxnEmpty = string.Empty.Equals(rxDoesNotMatch.ToString().Trim());
 
             foreach (uTank2.MySpell sp in Spells)
             {
-                if (rxp.Match(sp.Name).Success && (rxnEmpty || !rxn.Match(sp.Name).Success))
+                if (rxDoesMatch.Match(sp.Name).Success && (rxnEmpty || !rxDoesNotMatch.Match(sp.Name).Success))
                 {
-                    c++; if (c >= cnt) return true;
+                    c++; if (c >= Count) return true;
                 }
             }
             return false;
@@ -728,33 +886,50 @@ namespace VTClassic
 
         public override void Read(System.IO.StreamReader inf, int profileversion)
         {
-            rxp = new Regex(inf.ReadLine());
-            rxn = new Regex(inf.ReadLine());
-            cnt = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            rxDoesMatch = new Regex(inf.ReadLine());
+            rxDoesNotMatch = new Regex(inf.ReadLine());
+            Count = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public override void Write(CountedStreamWriter inf)
         {
-            inf.WriteLine(rxp.ToString());
-            inf.WriteLine(rxn.ToString());
-            inf.WriteLine(cnt.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(rxDoesMatch.ToString());
+            inf.WriteLine(rxDoesNotMatch.ToString());
+            inf.WriteLine(Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
         public override string DisplayString()
         {
-            if (string.Empty.Equals(rxn.ToString().Trim()))
+            if (string.Empty.Equals(rxDoesNotMatch.ToString().Trim()))
             {
                 return string.Format("SpellMatch: {0} [{1} times]",
-                rxp, cnt);
+                rxDoesMatch, Count);
             }
             return string.Format("SpellMatch: {0}, but not {1} [{2} times]",
-                rxp, rxn, cnt);
+                rxDoesMatch, rxDoesNotMatch, Count);
         }
 
         public override bool MayRequireID()
         {
             return true;
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Does Match"; }
+        public override void UI_TextValue_Set(string value) { rxDoesMatch = new Regex(value); }
+        public override string UI_TextValue_Get() { return rxDoesMatch.ToString(); }
+
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Does NOT Match"; }
+        public override void UI_TextValue2_Set(string value) { rxDoesNotMatch = new Regex(value); }
+        public override string UI_TextValue2_Get() { return rxDoesNotMatch.ToString(); }
+
+        public override bool UI_TextValue3_Uses() { return true; }
+        public override string UI_TextValue3_Label() { return "Minimum spells that match"; }
+        public override void UI_TextValue3_Set(string value) { Count = int.Parse(value); }
+        public override string UI_TextValue3_Get() { return Count.ToString(); }
+#endif
     }
     #endregion SpellMatch
 
@@ -766,7 +941,7 @@ namespace VTClassic
         public MinDamageGE() { keyval = 0; }
         public MinDamageGE(double v) { keyval = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.MinDamageGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.MinDamageGE; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -810,6 +985,13 @@ namespace VTClassic
         {
             return true;
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Minimum Damage"; }
+        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+#endif
     }
     #endregion MinDamageGE
 
@@ -822,7 +1004,7 @@ namespace VTClassic
         public LongValKeyFlagExists() { }
         public LongValKeyFlagExists(int k, IntValueKey v) { keyval = k; vk = v; }
 
-        public override int GetRuleType() { return (int)eLootRuleType.LongValKeyFlagExists; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.LongValKeyFlagExists; }
 
 #if VTC_PLUGIN
         public override bool Match(GameItemInfo id)
@@ -866,8 +1048,161 @@ namespace VTClassic
         {
             return GameInfo.IsIDProperty(vk);
         }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+#endif
     }
     #endregion LongValKeyFlagExists
+
+    #region CharacterSkillGE
+    internal class CharacterSkillGE : iLootRule
+    {
+        public int keyval = 0;
+        public VTCSkillID vk = VTCSkillID.Alchemy;
+
+        public CharacterSkillGE() { }
+        public CharacterSkillGE(int k, VTCSkillID v) { keyval = k; vk = v; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CharacterSkillGE; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            //Need to use interop CharStats to fetch skill effective value,
+            //otherwise Gearcraft and Two Handed won't work
+            Decal.Interop.Filters.SkillInfo skillinfo = null;
+            try
+            {
+                skillinfo = Decal.Adapter.CoreManager.Current.CharacterFilter.Underlying.get_Skill((Decal.Interop.Filters.eSkillID)(int)vk);
+                return (skillinfo.Current >= keyval);
+            }
+            finally
+            {
+                if (skillinfo != null)
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(skillinfo);
+            }
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (VTCSkillID)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Char has {0} >= {1}", vk, keyval);
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetSkillEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromSkill(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.SkillFromIndex(index); }
+#endif
+    }
+    #endregion CharacterSkillGE
+
+    #region CharacterMainPackEmptySlotsGE
+    internal class CharacterMainPackEmptySlotsGE : iLootRule
+    {
+        public int keyval = 0;
+
+        public CharacterMainPackEmptySlotsGE() { }
+        public CharacterMainPackEmptySlotsGE(int v) { keyval = v; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CharacterMainPackEmptySlotsGE; }
+
+#if VTC_PLUGIN
+        int CalculateFreeMainPackSlots()
+        {
+            int slots = 102;
+            foreach (Decal.Adapter.Wrappers.WorldObject wo in Decal.Adapter.CoreManager.Current.WorldFilter.GetByContainer(Decal.Adapter.CoreManager.Current.CharacterFilter.Id))
+            {
+                if (wo.ObjectClass == Decal.Adapter.Wrappers.ObjectClass.Container) continue;
+                if (wo.ObjectClass == Decal.Adapter.Wrappers.ObjectClass.Foci) continue;
+                if (wo.Values(Decal.Adapter.Wrappers.LongValueKey.EquippedSlots, 0) > 0) continue;
+
+                slots--;
+            }
+
+            return slots;
+        }
+        
+        public override bool Match(GameItemInfo id)
+        {
+            return (CalculateFreeMainPackSlots() >= keyval);
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Main pack slots >= {0}", keyval);
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Empty Slots"; }
+        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+#endif
+    }
+    #endregion CharacterMainPackEmptySlotsGE
 
     #endregion LootRule classes
 
@@ -967,22 +1302,7 @@ namespace VTClassic
             {
                 int ruletype = Convert.ToInt32(clines[i], System.Globalization.CultureInfo.InvariantCulture);
                 iLootRule newrule;
-                switch ((eLootRuleType)ruletype)
-                {
-                    case eLootRuleType.SpellNameMatch: newrule = new SpellNameMatch(); break;
-                    case eLootRuleType.StringValueMatch: newrule = new StringValueMatch(); break;
-                    case eLootRuleType.LongValKeyLE: newrule = new LongValKeyLE(); break;
-                    case eLootRuleType.LongValKeyGE: newrule = new LongValKeyGE(); break;
-                    case eLootRuleType.DoubleValKeyLE: newrule = new DoubleValKeyLE(); break;
-                    case eLootRuleType.DoubleValKeyGE: newrule = new DoubleValKeyGE(); break;
-                    case eLootRuleType.DamagePercentGE: newrule = new DamagePercentGE(); break;
-                    case eLootRuleType.ObjectClass: newrule = new ObjectClassE(); break;
-                    case eLootRuleType.SpellCountGE: newrule = new SpellCountGE(); break;
-                    case eLootRuleType.SpellMatch: newrule = new SpellMatch(); break;
-                    case eLootRuleType.MinDamageGE: newrule = new MinDamageGE(); break;
-                    case eLootRuleType.LongValKeyFlagExists: newrule = new LongValKeyFlagExists(); break;
-                    default: newrule = null; break;
-                }
+                newrule = LootRuleCreator.CreateLootRule((eLootRuleType)ruletype);
 
                 if (UTLVersionInfo.VersionHasFeature(eUTLFileFeature.RequirementLengthCode, profileversion))
                 {
@@ -1027,7 +1347,7 @@ namespace VTClassic
             foreach (iLootRule lr in IntRules)
             {
                 s.Append(";");
-                s.Append(Convert.ToString(lr.GetRuleType(), System.Globalization.CultureInfo.InvariantCulture));
+                s.Append(Convert.ToString((int)lr.GetRuleType(), System.Globalization.CultureInfo.InvariantCulture));
             }
             inf.WriteLine(s.ToString());
 

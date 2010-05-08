@@ -125,11 +125,11 @@ namespace VTClassic
                 {
                     foreach (iLootRule req in r.IntRules)
                     {
-                        if (req.GetRuleType() == 5)
+                        if (req.GetRuleType() == eLootRuleType.DoubleValKeyGE)
                         {
                             ((DoubleValKeyGE)req).keyval = Math.Min(10,((DoubleValKeyGE)req).keyval + by);
                         }
-                        else if (req.GetRuleType() == 4)
+                        else if (req.GetRuleType() == eLootRuleType.DoubleValKeyLE)
                         {
                             ((DoubleValKeyLE)req).keyval = Math.Max(1, ((DoubleValKeyLE)req).keyval - by);
                         }

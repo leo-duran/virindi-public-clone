@@ -28,6 +28,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Decal.Adapter, Version=2.9.6.0, Culture=neutral, PublicKeyToken=bd1c8ce002ce221e, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Decal 3.0\Decal.Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Decal.Interop.Filters, Version=2.9.6.0, Culture=neutral, PublicKeyToken=481f17d392f1fb65, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Decal 3.0\.NET 2.0 PIA\Decal.Interop.Filters.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -38,6 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\VTClassic Shared\ComboKeys.cs">
+      <Link>VTClassicShared\ComboKeys.cs</Link>
+    </Compile>
     <Compile Include="..\..\VTClassic Shared\Constants.cs">
       <Link>VTClassicShared\Constants.cs</Link>
     </Compile>

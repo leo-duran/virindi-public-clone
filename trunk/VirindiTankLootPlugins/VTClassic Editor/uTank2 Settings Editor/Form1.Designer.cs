@@ -686,21 +686,20 @@ namespace VTClassic
 
             try
             {
-                if (CurrentReq.GetRuleType() == 2 || CurrentReq.GetRuleType() == 3)
+                if (CurrentReq.GetRuleType() == eLootRuleType.LongValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.LongValKeyGE)
                 {
-                    if (GameInfo.IsIDProperty(LVKFromIndex(e.Index)))
+                    if (GameInfo.IsIDProperty(ComboKeys.LVKFromIndex(e.Index)))
                     {
                         textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
-                else if (CurrentReq.GetRuleType() == 4 || CurrentReq.GetRuleType() == 5)
+                else if (CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyGE)
                 {
-                    if (GameInfo.IsIDProperty(DVKFromIndex(e.Index)))
+                    if (GameInfo.IsIDProperty(ComboKeys.DVKFromIndex(e.Index)))
                     {
                         textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
                     }
                 }
-
             }
             catch { }
 

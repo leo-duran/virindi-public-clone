@@ -44,7 +44,6 @@ namespace VTClassic
         public Form1()
         {
             InitializeComponent();
-            InitKeys();
 
             FileChanged = false;
             FileName = "";
@@ -64,10 +63,7 @@ namespace VTClassic
         int CurrentReqNum;
         bool Working = false;
 
-        SortedList<int, StringValueKey> SVKOptions = new SortedList<int,StringValueKey>();
-        SortedList<int, IntValueKey> LVKOptions = new SortedList<int,IntValueKey>();
-        SortedList<int, DoubleValueKey> DVKOptions = new SortedList<int, DoubleValueKey>();
-        SortedList<int, ObjectClass> OCOptions = new SortedList<int, ObjectClass>();
+        List<eLootRuleType> RequirementComboEntries = new List<eLootRuleType>();
 
         void InitInfoArea()
         {
@@ -91,141 +87,6 @@ namespace VTClassic
             foreach (KeyValuePair<string, int> kv in GameInfo.getMaterialInfo())
                 this.cmbMaterial.Items.Add(kv.Key);
             this.cmbMaterial.SelectedIndexChanged += new EventHandler(cmbMaterial_SelectedIndexChanged);
-        }
-
-        void InitKeys()
-        {
-            int i = 0;
-            SVKOptions.Add(i++, StringValueKey.FullDescription);
-            SVKOptions.Add(i++, StringValueKey.Name);
-
-            i = 0;
-            LVKOptions.Add(i++, IntValueKey.ActivationReqSkillId);
-            LVKOptions.Add(i++, IntValueKey.AffectsVitalAmt);
-            LVKOptions.Add(i++, IntValueKey.ArmorLevel);
-            LVKOptions.Add(i++, IntValueKey.ArmorSetID);
-            LVKOptions.Add(i++, IntValueKey.Burden);
-            LVKOptions.Add(i++, IntValueKey.Category);
-            LVKOptions.Add(i++, IntValueKey.Coverage);
-            LVKOptions.Add(i++, IntValueKey.CurrentMana);
-            LVKOptions.Add(i++, IntValueKey.DamageType);
-            LVKOptions.Add(i++, IntValueKey.ElementalDmgBonus);
-            LVKOptions.Add(i++, IntValueKey.EquipableSlots);
-            LVKOptions.Add(i++, IntValueKey.EquipSkill);
-            LVKOptions.Add(i++, IntValueKey.EquipType);
-            LVKOptions.Add(i++, IntValueKey.Heritage);
-            LVKOptions.Add(i++, IntValueKey.IconOutline);
-            LVKOptions.Add(i++, IntValueKey.IconOverlay);
-            LVKOptions.Add(i++, IntValueKey.IconUnderlay);
-            LVKOptions.Add(i++, IntValueKey.LockpickSkillBonus);
-            LVKOptions.Add(i++, IntValueKey.LoreRequirement);
-            LVKOptions.Add(i++, IntValueKey.ManaCost);
-            LVKOptions.Add(i++, IntValueKey.Material);
-            LVKOptions.Add(i++, IntValueKey.MaxDamage);
-            LVKOptions.Add(i++, IntValueKey.MaximumMana);
-            LVKOptions.Add(i++, IntValueKey.MissileType);
-            LVKOptions.Add(i++, IntValueKey.RankRequirement);
-            LVKOptions.Add(i++, IntValueKey.RareId);
-            LVKOptions.Add(i++, IntValueKey.SkillLevelReq);
-            LVKOptions.Add(i++, IntValueKey.SpellCount);
-            LVKOptions.Add(i++, IntValueKey.TotalValue);
-            LVKOptions.Add(i++, IntValueKey.Type);
-            LVKOptions.Add(i++, IntValueKey.Value);
-            LVKOptions.Add(i++, IntValueKey.WandElemDmgType);
-            LVKOptions.Add(i++, IntValueKey.WeapSpeed);
-            LVKOptions.Add(i++, IntValueKey.WieldReqAttribute);
-            LVKOptions.Add(i++, IntValueKey.WieldReqType);
-            LVKOptions.Add(i++, IntValueKey.WieldReqValue);
-            LVKOptions.Add(i++, IntValueKey.Workmanship);
-
-            i = 0;
-            DVKOptions.Add(i++, DoubleValueKey.AcidProt);
-            DVKOptions.Add(i++, DoubleValueKey.AttackBonus);
-            DVKOptions.Add(i++, DoubleValueKey.BludgeonProt);
-            DVKOptions.Add(i++, DoubleValueKey.ColdProt);
-            DVKOptions.Add(i++, DoubleValueKey.DamageBonus);
-            DVKOptions.Add(i++, DoubleValueKey.ElementalDamageVersusMonsters);
-            DVKOptions.Add(i++, DoubleValueKey.FireProt);
-            DVKOptions.Add(i++, DoubleValueKey.HealingKitRestoreBonus);
-            DVKOptions.Add(i++, DoubleValueKey.LightningProt);
-            DVKOptions.Add(i++, DoubleValueKey.MagicDBonus);
-            DVKOptions.Add(i++, DoubleValueKey.ManaCBonus);
-            DVKOptions.Add(i++, DoubleValueKey.ManaRateOfChange);
-            DVKOptions.Add(i++, DoubleValueKey.ManaStoneChanceDestruct);
-            DVKOptions.Add(i++, DoubleValueKey.ManaTransferEfficiency);
-            DVKOptions.Add(i++, DoubleValueKey.MeleeDefenseBonus);
-            DVKOptions.Add(i++, DoubleValueKey.MissileDBonus);
-            DVKOptions.Add(i++, DoubleValueKey.PierceProt);
-            DVKOptions.Add(i++, DoubleValueKey.Range);
-            DVKOptions.Add(i++, DoubleValueKey.SalvageWorkmanship);
-            DVKOptions.Add(i++, DoubleValueKey.SlashProt);
-            DVKOptions.Add(i++, DoubleValueKey.Variance);
-
-            i = 0;
-            OCOptions.Add(i++, ObjectClass.Armor);
-            OCOptions.Add(i++, ObjectClass.BaseAlchemy);
-            OCOptions.Add(i++, ObjectClass.BaseCooking);
-            OCOptions.Add(i++, ObjectClass.BaseFletching);
-            OCOptions.Add(i++, ObjectClass.Book);
-            OCOptions.Add(i++, ObjectClass.Bundle);
-            OCOptions.Add(i++, ObjectClass.Clothing);
-            OCOptions.Add(i++, ObjectClass.Container);
-            OCOptions.Add(i++, ObjectClass.CraftedAlchemy);
-            OCOptions.Add(i++, ObjectClass.CraftedCooking);
-            OCOptions.Add(i++, ObjectClass.CraftedFletching);
-            OCOptions.Add(i++, ObjectClass.Foci);
-            OCOptions.Add(i++, ObjectClass.Food);
-            OCOptions.Add(i++, ObjectClass.Gem);
-            OCOptions.Add(i++, ObjectClass.HealingKit);
-            OCOptions.Add(i++, ObjectClass.Jewelry);
-            OCOptions.Add(i++, ObjectClass.Journal);
-            OCOptions.Add(i++, ObjectClass.Key);
-            OCOptions.Add(i++, ObjectClass.Lockpick);
-            OCOptions.Add(i++, ObjectClass.ManaStone);
-            OCOptions.Add(i++, ObjectClass.MeleeWeapon);
-            OCOptions.Add(i++, ObjectClass.Misc);
-            OCOptions.Add(i++, ObjectClass.MissileWeapon);
-            OCOptions.Add(i++, ObjectClass.Money);
-            OCOptions.Add(i++, ObjectClass.Plant);
-            OCOptions.Add(i++, ObjectClass.Salvage);
-            OCOptions.Add(i++, ObjectClass.Scroll);
-            OCOptions.Add(i++, ObjectClass.SpellComponent);
-            OCOptions.Add(i++, ObjectClass.TradeNote);
-            OCOptions.Add(i++, ObjectClass.Ust);
-            OCOptions.Add(i++, ObjectClass.WandStaffOrb);
-        }
-
-        StringValueKey SVKFromIndex(int i)
-        {
-            return SVKOptions[i];
-        }
-        int IndexFromSVK(StringValueKey k)
-        {
-            return SVKOptions.Keys[SVKOptions.IndexOfValue(k)];
-        }
-        IntValueKey LVKFromIndex(int i)
-        {
-            return LVKOptions[i];
-        }
-        int IndexFromLVK(IntValueKey k)
-        {
-            return LVKOptions.Keys[LVKOptions.IndexOfValue(k)];
-        }
-        DoubleValueKey DVKFromIndex(int i)
-        {
-            return DVKOptions[i];
-        }
-        int IndexFromDVK(DoubleValueKey k)
-        {
-            return DVKOptions.Keys[DVKOptions.IndexOfValue(k)];
-        }
-        ObjectClass OCFromIndex(int i)
-        {
-            return OCOptions[i];
-        }
-        int IndexFromOC(ObjectClass k)
-        {
-            return OCOptions.Keys[OCOptions.IndexOfValue(k)];
         }
 
         void SetCurrentRule(cLootItemRule cr, int crn)
@@ -275,6 +136,20 @@ namespace VTClassic
             Working = false;
         }
 
+        int GetRequirementComboIndexForRuleType(eLootRuleType ruletype)
+        {
+            for (int i = 0; i < RequirementComboEntries.Count; ++i)
+                if (RequirementComboEntries[i] == ruletype)
+                    return i;
+            return -1;
+        }
+
+        void AddRequirementComboEntry(string text, eLootRuleType ruletype)
+        {
+            cmbReqType.Items.Add(text);
+            RequirementComboEntries.Add(ruletype);
+        }
+
         void SetCurrentReq(iLootRule cr, int crn)
         {
             Working = true;
@@ -290,25 +165,79 @@ namespace VTClassic
                 lstRequirements.SelectedIndex = crn;
                 groupReqs.Visible = true;
                 cmbReqType.Items.Clear();
-                cmbReqType.Items.Add("Spell Name Match");
-                cmbReqType.Items.Add("String Value Match");
-                cmbReqType.Items.Add("Long Value Key <=");
-                cmbReqType.Items.Add("Long Value Key >=");
-                cmbReqType.Items.Add("Double Value Key <=");
-                cmbReqType.Items.Add("Double Value Key >=");
-                cmbReqType.Items.Add("Damage Percentage >=");
-                cmbReqType.Items.Add("ObjectClass");
-                cmbReqType.Items.Add("Spell Count >=");
-                cmbReqType.Items.Add("Spell Match and Count");
-                cmbReqType.Items.Add("MinDamage >=");
-                cmbReqType.SelectedIndex = cr.GetRuleType();
+                RequirementComboEntries.Clear();
 
-                cmbActsOn.Items.Clear();
-                cmbKey.Items.Clear();
+                AddRequirementComboEntry("Spell Name Match", eLootRuleType.SpellNameMatch);
+                AddRequirementComboEntry("String Value Match", eLootRuleType.StringValueMatch);
+                AddRequirementComboEntry("Long Value Key <=", eLootRuleType.LongValKeyLE);
+                AddRequirementComboEntry("Long Value Key >=", eLootRuleType.LongValKeyGE);
+                AddRequirementComboEntry("Double Value Key <=", eLootRuleType.DoubleValKeyLE);
+                AddRequirementComboEntry("Double Value Key >=", eLootRuleType.DoubleValKeyGE);
+                AddRequirementComboEntry("Damage Percentage >=", eLootRuleType.DamagePercentGE);
+                AddRequirementComboEntry("ObjectClass", eLootRuleType.ObjectClass);
+                AddRequirementComboEntry("Spell Count >=", eLootRuleType.SpellCountGE);
+                AddRequirementComboEntry("Spell Match and Count", eLootRuleType.SpellMatch);
+                AddRequirementComboEntry("MinDamage >=", eLootRuleType.MinDamageGE);
+
+                //Keep these at the end
+                AddRequirementComboEntry("Character Skill >=", eLootRuleType.CharacterSkillGE);
+                AddRequirementComboEntry("Free Main Pack Slots >=", eLootRuleType.CharacterMainPackEmptySlotsGE);
+
+                cmbReqType.SelectedIndex = GetRequirementComboIndexForRuleType((eLootRuleType)cr.GetRuleType());
+
+                //Fill control values
+
+                lblActsOn.Visible = cr.UI_ActsOnCombo_Uses();
+                cmbActsOn.Visible = lblActsOn.Visible;
+                if (lblActsOn.Visible)
+                {
+                    lblActsOn.Text = cr.UI_ActsOnCombo_Label();
+                    cmbActsOn.Items.Clear();
+                    foreach (string s in cr.UI_ActsOnCombo_Options())
+                        cmbActsOn.Items.Add(s);
+                    cmbActsOn.SelectedIndex = cr.UI_ActsOnCombo_Get();
+                }
+
+                lblKey.Visible = cr.UI_KeyCombo_Uses();
+                cmbKey.Visible = lblKey.Visible;
+                if (lblKey.Visible)
+                {
+                    lblKey.Text = cr.UI_KeyCombo_Label();
+                    cmbKey.Items.Clear();
+                    foreach (string s in cr.UI_KeyCombo_Options())
+                        cmbKey.Items.Add(s);
+                    cmbActsOn.SelectedIndex = cr.UI_KeyCombo_Get();
+                }
+
+                lblValue.Visible = cr.UI_TextValue_Uses();
+                txtValue.Visible = lblValue.Visible;
+                if (lblValue.Visible)
+                {
+                    lblValue.Text = cr.UI_TextValue_Label();
+                    txtValue.Text = cr.UI_TextValue_Get();
+                }
+
+                lblValue2.Visible = cr.UI_TextValue2_Uses();
+                txtValue2.Visible = lblValue2.Visible;
+                if (lblValue2.Visible)
+                {
+                    lblValue2.Text = cr.UI_TextValue2_Label();
+                    txtValue2.Text = cr.UI_TextValue2_Get();
+                }
+
+                lblValue3.Visible = cr.UI_TextValue3_Uses();
+                txtValue3.Visible = lblValue3.Visible;
+                if (lblValue3.Visible)
+                {
+                    lblValue3.Text = cr.UI_TextValue3_Label();
+                    txtValue3.Text = cr.UI_TextValue3_Get();
+                }
+
+                /*
                 txtValue.Text = "";
                 switch (cr.GetRuleType())
                 {
-                    case 0:
+                    case eLootRuleType.SpellNameMatch:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
@@ -322,7 +251,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 1:
+                    case eLootRuleType.StringValueMatch:
                         lblActsOn.Visible = true;
                         cmbActsOn.Visible = true;
                         lblKey.Visible = false;
@@ -339,7 +268,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 2:
+                    case eLootRuleType.LongValKeyLE:
                         lblActsOn.Visible = true;
                         cmbActsOn.Visible = true;
                         lblKey.Visible = false;
@@ -356,7 +285,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 3:
+                    case eLootRuleType.LongValKeyGE:
                         lblActsOn.Visible = true;
                         cmbActsOn.Visible = true;
                         lblKey.Visible = false;
@@ -373,7 +302,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 4:
+                    case eLootRuleType.DoubleValKeyLE:
                         lblActsOn.Visible = true;
                         cmbActsOn.Visible = true;
                         lblKey.Visible = false;
@@ -390,7 +319,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 5:
+                    case eLootRuleType.DoubleValKeyGE:
                         lblActsOn.Visible = true;
                         cmbActsOn.Visible = true;
                         lblKey.Visible = false;
@@ -407,7 +336,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 6:
+                    case eLootRuleType.DamagePercentGE:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
@@ -421,7 +350,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 7:
+                    case eLootRuleType.ObjectClass:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = true;
@@ -435,7 +364,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 8:
+                    case eLootRuleType.SpellCountGE:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
@@ -449,7 +378,7 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
-                    case 9:
+                    case eLootRuleType.SpellMatch:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
@@ -467,7 +396,7 @@ namespace VTClassic
                         txtValue3.Visible = true;
                         txtValue3.Text = ((SpellMatch)cr).cnt.ToString();
                         break;
-                    case 10:
+                    case eLootRuleType.MinDamageGE:
                         lblActsOn.Visible = false;
                         cmbActsOn.Visible = false;
                         lblKey.Visible = false;
@@ -481,7 +410,21 @@ namespace VTClassic
                         lblValue3.Visible = false;
                         txtValue3.Visible = false;
                         break;
+                    default:
+                        lblActsOn.Visible = false;
+                        cmbActsOn.Visible = false;
+                        lblKey.Visible = false;
+                        cmbKey.Visible = false;
+                        lblValue.Visible = false;
+                        txtValue.Visible = false;
+                        lblValue2.Visible = false;
+                        txtValue2.Visible = false;
+                        lblValue3.Visible = false;
+                        txtValue3.Visible = false;
+                        break;
                 }
+                */
+
             }
 
             Working = false;
@@ -745,49 +688,14 @@ namespace VTClassic
             Working = true;
 
             iLootRule newlr;
-            switch (cmbReqType.SelectedIndex)
-            {
-                case 0:
-                    newlr = new SpellNameMatch();
-                    break;
-                case 1:
-                    newlr = new StringValueMatch();
-                    break;
-                case 2:
-                    newlr = new LongValKeyLE();
-                    break;
-                case 3:
-                    newlr = new LongValKeyGE();
-                    break;
-                case 4:
-                    newlr = new DoubleValKeyLE();
-                    break;
-                case 5:
-                    newlr = new DoubleValKeyGE();
-                    break;
-                case 6:
-                    newlr = new DamagePercentGE();
-                    break;
-                case 7:
-                    newlr = new ObjectClassE();
-                    break;
-                case 8:
-                    newlr = new SpellCountGE();
-                    break;
-                case 9:
-                    newlr = new SpellMatch();
-                    break;
-                case 10:
-                    newlr = new MinDamageGE();
-                    break;
-                default:
-                    newlr = CurrentReq;
-                    break;
-            }
+            eLootRuleType ruletype = RequirementComboEntries[cmbReqType.SelectedIndex];
+            newlr = LootRuleCreator.CreateLootRule(ruletype);
+            if (newlr == null)
+                newlr = CurrentReq;
+
             if (newlr.GetType() != CurrentReq.GetType())
             {
                 //Change type
-                //lstRequirements.Items[CurrentReqNum] = newlr.GetType().ToString().Split(new char[] { '.' })[2];
                 CurrentRule.IntRules[CurrentReqNum] = newlr;
                 SetCurrentReq(newlr, CurrentReqNum);
                 lstRequirements.Items[CurrentReqNum] = newlr.DisplayString();
@@ -805,29 +713,13 @@ namespace VTClassic
             FileChanged = true;
             Working = true;
 
-            switch (CurrentReq.GetRuleType())
-            {
-                case 1:
-                    ((StringValueMatch)CurrentReq).vk = SVKFromIndex(cmbActsOn.SelectedIndex);
-                    break;
-                case 2:
-                    ((LongValKeyLE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    break;
-                case 3:
-                    ((LongValKeyGE)CurrentReq).vk = LVKFromIndex(cmbActsOn.SelectedIndex);
-                    break;
-                case 4:
-                    ((DoubleValKeyLE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    break;
-                case 5:
-                    ((DoubleValKeyGE)CurrentReq).vk = DVKFromIndex(cmbActsOn.SelectedIndex);
-                    break;
-            }
+
+            CurrentReq.UI_ActsOnCombo_Set(cmbActsOn.SelectedIndex);
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
-
             lstRules.Invalidate();
             lstRequirements.Invalidate();
+
 
             Working = false;
         }
@@ -838,11 +730,14 @@ namespace VTClassic
             FileChanged = true;
 
             Working = true;
-            if (CurrentReq.GetRuleType() == 7)
-            {
-                ((ObjectClassE)CurrentReq).vk = OCFromIndex(cmbKey.SelectedIndex);
-                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
-            }
+
+
+            CurrentReq.UI_KeyCombo_Set(cmbKey.SelectedIndex);
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
 
             Working = false;
         }
@@ -852,43 +747,15 @@ namespace VTClassic
             if (Working) return;
             FileChanged = true;
             Working = true;
-            try
-            {
-                switch (CurrentReq.GetRuleType())
-                {
-                    case 0:
-                        ((SpellNameMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
-                        break;
-                    case 1:
-                        ((StringValueMatch)CurrentReq).rx = new System.Text.RegularExpressions.Regex(txtValue.Text);
-                        break;
-                    case 2:
-                        ((LongValKeyLE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
-                        break;
-                    case 3:
-                        ((LongValKeyGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
-                        break;
-                    case 4:
-                        ((DoubleValKeyLE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
-                        break;
-                    case 5:
-                        ((DoubleValKeyGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
-                        break;
-                    case 6:
-                        ((DamagePercentGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
-                        break;
-                    case 8:
-                        ((SpellCountGE)CurrentReq).keyval = System.Convert.ToInt32(txtValue.Text);
-                        break;
-                    case 9:
-                        ((SpellMatch)CurrentReq).rxp = new System.Text.RegularExpressions.Regex(txtValue.Text);
-                        break;
-                    case 10:
-                        ((MinDamageGE)CurrentReq).keyval = System.Convert.ToDouble(txtValue.Text);
-                        break;
-                }
-                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
-            } catch (Exception) { }
+
+
+            CurrentReq.UI_TextValue_Set(txtValue.Text);
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
+            
             Working = false;
         }
 
@@ -897,16 +764,15 @@ namespace VTClassic
             if (Working) return;
             FileChanged = true;
             Working = true;
-            try
-            {
-                switch (CurrentReq.GetRuleType())
-                {
-                    case 9:
-                        ((SpellMatch)CurrentReq).rxn = new System.Text.RegularExpressions.Regex(txtValue2.Text);
-                        break;
-                }
-                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
-            } catch (Exception) { }
+
+
+            CurrentReq.UI_TextValue2_Set(txtValue2.Text);
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
+
             Working = false;
         }
 
@@ -915,17 +781,15 @@ namespace VTClassic
             if (Working) return;
             FileChanged = true;
             Working = true;
-            try
-            {
-                switch (CurrentReq.GetRuleType())
-                {
-                    case 9:
-                        ((SpellMatch)CurrentReq).cnt = Convert.ToInt32(txtValue3.Text);
-                        break;
-                }
-                lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
-            }
-            catch (Exception) { }
+
+
+            CurrentReq.UI_TextValue3_Set(txtValue3.Text);
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
+
             Working = false;
         }
 
