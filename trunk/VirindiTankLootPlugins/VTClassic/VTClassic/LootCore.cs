@@ -95,7 +95,8 @@ namespace VTClassic
                 if (LootRules == null) return uTank2.LootPlugins.LootAction.NoLoot;
 
                 string matchedrulename;
-                eLootAction act = LootRules.Classify(item, out matchedrulename);
+                int data1;
+                eLootAction act = LootRules.Classify(item, out matchedrulename, out data1);
                 LootAction vtaction = LootAction.NoLoot;
                 switch (act)
                 {
@@ -107,6 +108,9 @@ namespace VTClassic
                         break;
                     case eLootAction.Salvage:
                         vtaction = LootAction.Salvage;
+                        break;
+                    case eLootAction.KeepUpTo:
+                        vtaction = LootAction.GetKeepUpTo(data1);
                         break;
                 }
                 vtaction.RuleName = matchedrulename;

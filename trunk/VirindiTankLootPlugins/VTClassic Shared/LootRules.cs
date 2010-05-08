@@ -1289,6 +1289,7 @@ namespace VTClassic
         public List<iLootRule> IntRules = new List<iLootRule>();
         public int pri = 0;
         public eLootAction act = eLootAction.Keep;
+        public int LootActionData = 0;
         public string name = "";
         public string CustomExpression = "";
 
@@ -1372,6 +1373,12 @@ namespace VTClassic
             pri = Convert.ToInt32(clines[0], System.Globalization.CultureInfo.InvariantCulture);
             act = (eLootAction)Convert.ToInt32(clines[1], System.Globalization.CultureInfo.InvariantCulture);
 
+            //Read extra info on the lootaction
+            if (act == eLootAction.KeepUpTo)
+            {
+                LootActionData = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            }
+
             //Rules...also encoded in the 'big line'
             IntRules.Clear();
             for (int i = 2; i < clines.Length; ++i)
@@ -1427,6 +1434,11 @@ namespace VTClassic
             }
             inf.WriteLine(s.ToString());
 
+            if (act == eLootAction.KeepUpTo)
+            {
+                inf.WriteLine(LootActionData.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            }
+
             foreach (iLootRule lr in IntRules)
             {
                 //Write to a temp buffer so we can generate a length prefix
@@ -1458,16 +1470,18 @@ namespace VTClassic
         }
 
 #if VTC_PLUGIN
-        public eLootAction Classify(GameItemInfo id, out string matchedrulename)
+        public eLootAction Classify(GameItemInfo id, out string matchedrulename, out int data1)
         {
             foreach (cLootItemRule R in Rules)
                 if (R.Match(id))
                 {
                     matchedrulename = R.name;
+                    data1 = R.LootActionData;
                     return R.Action();
                 }
 
             matchedrulename = "";
+            data1 = 0;
             return eLootAction.NoLoot;
         }
 

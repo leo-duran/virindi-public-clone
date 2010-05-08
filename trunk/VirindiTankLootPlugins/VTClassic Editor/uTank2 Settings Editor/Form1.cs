@@ -116,6 +116,8 @@ namespace VTClassic
                 cmbAction.Items.Add("Salvage");
                 cmbAction.Items.Add("Sell");
                 cmbAction.Items.Add("Read");
+                cmbAction.Items.Add("Keep #");
+                txtKeepCount.Visible = false;
                 switch (cr.act)
                 {
                     case eLootAction.Keep:
@@ -129,6 +131,11 @@ namespace VTClassic
                         break;
                     case eLootAction.Read:
                         cmbAction.SelectedIndex = 3;
+                        break;
+                    case eLootAction.KeepUpTo:
+                        cmbAction.SelectedIndex = 4;
+                        txtKeepCount.Visible = true;
+                        txtKeepCount.Text = cr.LootActionData.ToString();
                         break;
                 }
 
@@ -480,6 +487,7 @@ namespace VTClassic
             FileChanged = true;
             Working = true;
 
+            txtKeepCount.Visible = false;
             switch (cmbAction.SelectedIndex)
             {
                 case 0:
@@ -494,7 +502,22 @@ namespace VTClassic
                 case 3:
                     CurrentRule.act = eLootAction.Read;
                     break;
+                case 4:
+                    CurrentRule.act = eLootAction.KeepUpTo;
+                    txtKeepCount.Visible = true;
+                    break;
             }
+
+            Working = false;
+        }
+
+        private void txtKeepCount_TextChanged(object sender, EventArgs e)
+        {
+            if (Working) return;
+            FileChanged = true;
+            Working = true;
+
+            int.TryParse(txtKeepCount.Text, out CurrentRule.LootActionData);
 
             Working = false;
         }

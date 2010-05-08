@@ -127,6 +127,7 @@ namespace VTClassic
             this.tSC_listCombine = new System.Windows.Forms.ListBox();
             this.tSC_lblDefaultCombine = new System.Windows.Forms.Label();
             this.tSC_txtDefaultCombine = new System.Windows.Forms.TextBox();
+            this.txtKeepCount = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabLootRules.SuspendLayout();
@@ -401,6 +402,7 @@ namespace VTClassic
             // 
             // groupRule
             // 
+            this.groupRule.Controls.Add(this.txtKeepCount);
             this.groupRule.Controls.Add(this.cmdCloneReq);
             this.groupRule.Controls.Add(this.groupReqs);
             this.groupRule.Controls.Add(this.label2);
@@ -764,6 +766,14 @@ namespace VTClassic
             this.tSC_txtDefaultCombine.TabIndex = 0;
             this.tSC_txtDefaultCombine.TextChanged += new System.EventHandler(this.tSC_txtDefaultCombine_TextChanged);
             // 
+            // txtKeepCount
+            // 
+            this.txtKeepCount.Location = new System.Drawing.Point(286, 39);
+            this.txtKeepCount.Name = "txtKeepCount";
+            this.txtKeepCount.Size = new System.Drawing.Size(93, 20);
+            this.txtKeepCount.TabIndex = 6;
+            this.txtKeepCount.TextChanged += new System.EventHandler(this.txtKeepCount_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -990,6 +1000,7 @@ namespace VTClassic
         private ToolStripMenuItem combineToolStripMenuItem;
         private ToolStripMenuItem exportRangesToolStripMenuItem;
         private ToolStripMenuItem importRangesToolStripMenuItem;
+        private TextBox txtKeepCount;
 
 
     }

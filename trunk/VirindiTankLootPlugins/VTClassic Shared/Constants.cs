@@ -290,7 +290,8 @@ namespace VTClassic
         User2 = 6,
         User3 = 7,
         User4 = 8,
-        User5 = 9
+        User5 = 9,
+        KeepUpTo = 10,
     }
 
     internal interface iSettingsCollection
