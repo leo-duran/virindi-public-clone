@@ -1207,7 +1207,7 @@ namespace VTClassic
 
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
-        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override string UI_TextValue_Label() { return "Skill Value"; }
         public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
@@ -1548,7 +1548,7 @@ namespace VTClassic
 
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
-        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override string UI_TextValue_Label() { return "Character Level"; }
         public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
