@@ -102,6 +102,7 @@ namespace VTClassic
             {
                 int mat = Tab_Salvage_lstKeys[tSC_listCombine.SelectedIndex];
 
+                if (SalvageBlock.MaterialCombineStrings[mat] == tSC_txtCombineRange.Text) return;
                 SalvageBlock.MaterialCombineStrings[mat] = tSC_txtCombineRange.Text;
 
                 //Update list
@@ -115,6 +116,8 @@ namespace VTClassic
 
         private void tSC_txtDefaultCombine_TextChanged(object sender, EventArgs e)
         {
+            if (SalvageBlock.DefaultCombineString == tSC_txtDefaultCombine.Text) return;
+
             SalvageBlock.DefaultCombineString = tSC_txtDefaultCombine.Text;
 
             FileChanged = true;
