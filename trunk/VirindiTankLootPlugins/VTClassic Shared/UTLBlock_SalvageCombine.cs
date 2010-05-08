@@ -35,6 +35,8 @@ namespace VTClassic.UTLBlockHandlers
 {
     internal class UTLBlock_SalvageCombine : IUTLFileBlockHandler
     {
+        const int SALVAGEBLOCK_FILE_FORMAT_VERSION = 1;
+
         public string DefaultCombineString = "";
         public Dictionary<int, string> MaterialCombineStrings = new Dictionary<int, string>();
 
@@ -157,6 +159,8 @@ namespace VTClassic.UTLBlockHandlers
 
         public void Read(System.IO.StreamReader inf, int len)
         {
+            string formatversion = inf.ReadLine();
+
             DefaultCombineString = inf.ReadLine();
 
             MaterialCombineStrings.Clear();
@@ -171,6 +175,8 @@ namespace VTClassic.UTLBlockHandlers
 
         public void Write(CountedStreamWriter inf)
         {
+            inf.WriteLine(SALVAGEBLOCK_FILE_FORMAT_VERSION);
+
             inf.WriteLine(DefaultCombineString);
 
             inf.WriteLine(MaterialCombineStrings.Count);
