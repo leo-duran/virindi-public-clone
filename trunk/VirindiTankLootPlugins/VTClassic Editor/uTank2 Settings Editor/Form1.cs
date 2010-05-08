@@ -51,7 +51,14 @@ namespace VTClassic
             SetCurrentReq(null, 0);
             SetCurrentRule(null, 0);
 
+            RefreshTabData();
+
             InitInfoArea();
+        }
+
+        void RefreshTabData()
+        {
+            Tab_Salvage_Refresh();
         }
 
         string FileName = "";
@@ -244,11 +251,13 @@ namespace VTClassic
             FileChanged = false;
             FileName = "";
             this.Text = AppName + " - New File";
-            LootRules.Rules.Clear();
+            LootRules = new cLootRules();
             lstRules.Items.Clear();
 
             SetCurrentReq(null, 0);
             SetCurrentRule(null, 0);
+
+            RefreshTabData();
         }
 
         string GetVTankProfileDirectory()
@@ -286,6 +295,8 @@ namespace VTClassic
 
                 SetCurrentReq(null, 0);
                 SetCurrentRule(null, 0);
+
+                RefreshTabData();
             }
         }
 

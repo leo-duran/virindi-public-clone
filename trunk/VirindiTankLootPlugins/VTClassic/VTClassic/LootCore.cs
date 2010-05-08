@@ -34,7 +34,7 @@ using uTank2.LootPlugins;
 
 namespace VTClassic
 {
-    public class LootCore: uTank2.LootPlugins.LootPluginBase
+    public class LootCore: uTank2.LootPlugins.LootPluginBase, uTank2.LootPlugins.ILootPluginCapability_SalvageCombineDecision
     {
         internal static LootCore Instance;
 
@@ -230,5 +230,16 @@ namespace VTClassic
                 ExceptionHandler(ex);
             }
         }
+
+        #region ILootPluginCapability_SalvageCombineDecision Members
+
+        public bool CanCombineBags(double bag1workmanship, double bag2workmanship, int material)
+        {
+            UTLBlockHandlers.UTLBlock_SalvageCombine CombineBlock = LootRules.ExtraBlockManager.GetFirstBlock("SalvageCombine") as UTLBlockHandlers.UTLBlock_SalvageCombine;
+
+            return CombineBlock.CanCombineBags(bag1workmanship, bag2workmanship, material);
+        }
+
+        #endregion
     }
 }

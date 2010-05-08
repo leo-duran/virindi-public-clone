@@ -462,7 +462,8 @@ namespace VTClassic
         }
 
         private static SortedDictionary<string, int> matIds;
-        public static SortedDictionary<string, int> getMaterialInfo()
+        private static SortedDictionary<int, string> matNames;
+        static void GenerateMaterialInfo()
         {
             if (matIds == null)
             {
@@ -539,25 +540,42 @@ namespace VTClassic
                 matIds.Add("Yellow Garnet", 48);
                 matIds.Add("Yellow Topaz", 49);
                 matIds.Add("Zircon", 50);
+
+                matNames = new SortedDictionary<int, string>();
+                foreach (KeyValuePair<string, int> kp in matIds)
+                {
+                    matNames[kp.Value] = kp.Key;
+                }
             }
+        }
+        public static SortedDictionary<string, int> getMaterialInfo()
+        {
+            GenerateMaterialInfo();
             return matIds;
+        }
+
+        public static SortedDictionary<int, string> getMaterialNamesByID()
+        {
+            GenerateMaterialInfo();
+            return matNames;
         }
 
         public static string getMaterialName(int materialId)
         {
-            if (matIds == null) getMaterialInfo();
-            if (matIds.ContainsValue(materialId))
-            {
-                foreach (KeyValuePair<string, int> kv in matIds)
-                {
-                    if (kv.Value == materialId)
-                    {
-                        return kv.Key;
-                    }
-                }
-            }
+            GenerateMaterialInfo();
+            if (matNames.ContainsKey(materialId))
+                return matNames[materialId];
+            else
+                return String.Empty;
+        }
 
-            return string.Empty;
+        public static int GetMaterialID(string matname)
+        {
+            GenerateMaterialInfo();
+            if (matIds.ContainsKey(matname))
+                return matIds[matname];
+            else
+                return 0;
         }
 
         public static SortedDictionary<string, int[]> getMaterialGroups()

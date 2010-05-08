@@ -75,6 +75,7 @@ namespace VTClassic
             this.addSalvageRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.increaseSalvageWorkmanshipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSortRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabLootRules = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
@@ -113,19 +114,33 @@ namespace VTClassic
             this.cmdNewRule = new System.Windows.Forms.Button();
             this.lstRules = new System.Windows.Forms.ListBox();
             this.tabSalvageCombine = new System.Windows.Forms.TabPage();
+            this.tSC_lblCombineRules = new System.Windows.Forms.Label();
+            this.tSC_groupCRS = new System.Windows.Forms.GroupBox();
+            this.tSC_txtCombineRange = new System.Windows.Forms.TextBox();
+            this.tSC_lblCombineRange = new System.Windows.Forms.Label();
+            this.tSC_cmbMaterial = new System.Windows.Forms.ComboBox();
+            this.tSC_lblMaterial = new System.Windows.Forms.Label();
+            this.tSC_btnDelete = new System.Windows.Forms.Button();
+            this.tSC_btnNew = new System.Windows.Forms.Button();
+            this.tSC_listCombine = new System.Windows.Forms.ListBox();
+            this.tSC_lblDefaultCombine = new System.Windows.Forms.Label();
+            this.tSC_txtDefaultCombine = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabLootRules.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupRule.SuspendLayout();
             this.groupReqs.SuspendLayout();
+            this.tabSalvageCombine.SuspendLayout();
+            this.tSC_groupCRS.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.combineToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(582, 24);
@@ -207,8 +222,8 @@ namespace VTClassic
             this.increaseSalvageWorkmanshipsToolStripMenuItem,
             this.autoSortRulesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.editToolStripMenuItem.Text = "Rule";
             // 
             // addSalvageRulesToolStripMenuItem
             // 
@@ -230,6 +245,12 @@ namespace VTClassic
             this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
             this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
+            // 
+            // combineToolStripMenuItem
+            // 
+            this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
+            this.combineToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.combineToolStripMenuItem.Text = "Combine";
             // 
             // tabControl1
             // 
@@ -605,6 +626,13 @@ namespace VTClassic
             // 
             // tabSalvageCombine
             // 
+            this.tabSalvageCombine.Controls.Add(this.tSC_lblCombineRules);
+            this.tabSalvageCombine.Controls.Add(this.tSC_groupCRS);
+            this.tabSalvageCombine.Controls.Add(this.tSC_btnDelete);
+            this.tabSalvageCombine.Controls.Add(this.tSC_btnNew);
+            this.tabSalvageCombine.Controls.Add(this.tSC_listCombine);
+            this.tabSalvageCombine.Controls.Add(this.tSC_lblDefaultCombine);
+            this.tabSalvageCombine.Controls.Add(this.tSC_txtDefaultCombine);
             this.tabSalvageCombine.Location = new System.Drawing.Point(4, 22);
             this.tabSalvageCombine.Name = "tabSalvageCombine";
             this.tabSalvageCombine.Padding = new System.Windows.Forms.Padding(3);
@@ -612,6 +640,110 @@ namespace VTClassic
             this.tabSalvageCombine.TabIndex = 1;
             this.tabSalvageCombine.Text = "Salvage Combination";
             this.tabSalvageCombine.UseVisualStyleBackColor = true;
+            // 
+            // tSC_lblCombineRules
+            // 
+            this.tSC_lblCombineRules.AutoSize = true;
+            this.tSC_lblCombineRules.Location = new System.Drawing.Point(8, 16);
+            this.tSC_lblCombineRules.Name = "tSC_lblCombineRules";
+            this.tSC_lblCombineRules.Size = new System.Drawing.Size(81, 13);
+            this.tSC_lblCombineRules.TabIndex = 6;
+            this.tSC_lblCombineRules.Text = "Combine Rules:";
+            // 
+            // tSC_groupCRS
+            // 
+            this.tSC_groupCRS.Controls.Add(this.tSC_txtCombineRange);
+            this.tSC_groupCRS.Controls.Add(this.tSC_lblCombineRange);
+            this.tSC_groupCRS.Controls.Add(this.tSC_cmbMaterial);
+            this.tSC_groupCRS.Controls.Add(this.tSC_lblMaterial);
+            this.tSC_groupCRS.Location = new System.Drawing.Point(306, 129);
+            this.tSC_groupCRS.Name = "tSC_groupCRS";
+            this.tSC_groupCRS.Size = new System.Drawing.Size(229, 154);
+            this.tSC_groupCRS.TabIndex = 5;
+            this.tSC_groupCRS.TabStop = false;
+            this.tSC_groupCRS.Text = "Combine Range Setting";
+            // 
+            // tSC_txtCombineRange
+            // 
+            this.tSC_txtCombineRange.Location = new System.Drawing.Point(6, 72);
+            this.tSC_txtCombineRange.Name = "tSC_txtCombineRange";
+            this.tSC_txtCombineRange.Size = new System.Drawing.Size(201, 20);
+            this.tSC_txtCombineRange.TabIndex = 3;
+            this.tSC_txtCombineRange.TextChanged += new System.EventHandler(this.tSC_txtCombineRange_TextChanged);
+            // 
+            // tSC_lblCombineRange
+            // 
+            this.tSC_lblCombineRange.AutoSize = true;
+            this.tSC_lblCombineRange.Location = new System.Drawing.Point(7, 56);
+            this.tSC_lblCombineRange.Name = "tSC_lblCombineRange";
+            this.tSC_lblCombineRange.Size = new System.Drawing.Size(83, 13);
+            this.tSC_lblCombineRange.TabIndex = 2;
+            this.tSC_lblCombineRange.Text = "Combine Range";
+            // 
+            // tSC_cmbMaterial
+            // 
+            this.tSC_cmbMaterial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tSC_cmbMaterial.FormattingEnabled = true;
+            this.tSC_cmbMaterial.Location = new System.Drawing.Point(6, 32);
+            this.tSC_cmbMaterial.Name = "tSC_cmbMaterial";
+            this.tSC_cmbMaterial.Size = new System.Drawing.Size(201, 21);
+            this.tSC_cmbMaterial.TabIndex = 1;
+            this.tSC_cmbMaterial.SelectedIndexChanged += new System.EventHandler(this.tSC_cmbMaterial_SelectedIndexChanged);
+            // 
+            // tSC_lblMaterial
+            // 
+            this.tSC_lblMaterial.AutoSize = true;
+            this.tSC_lblMaterial.Location = new System.Drawing.Point(7, 16);
+            this.tSC_lblMaterial.Name = "tSC_lblMaterial";
+            this.tSC_lblMaterial.Size = new System.Drawing.Size(44, 13);
+            this.tSC_lblMaterial.TabIndex = 0;
+            this.tSC_lblMaterial.Text = "Material";
+            // 
+            // tSC_btnDelete
+            // 
+            this.tSC_btnDelete.Location = new System.Drawing.Point(92, 393);
+            this.tSC_btnDelete.Name = "tSC_btnDelete";
+            this.tSC_btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.tSC_btnDelete.TabIndex = 4;
+            this.tSC_btnDelete.Text = "Delete";
+            this.tSC_btnDelete.UseVisualStyleBackColor = true;
+            this.tSC_btnDelete.Click += new System.EventHandler(this.tSC_btnDelete_Click);
+            // 
+            // tSC_btnNew
+            // 
+            this.tSC_btnNew.Location = new System.Drawing.Point(11, 393);
+            this.tSC_btnNew.Name = "tSC_btnNew";
+            this.tSC_btnNew.Size = new System.Drawing.Size(75, 25);
+            this.tSC_btnNew.TabIndex = 3;
+            this.tSC_btnNew.Text = "New";
+            this.tSC_btnNew.UseVisualStyleBackColor = true;
+            this.tSC_btnNew.Click += new System.EventHandler(this.tSC_btnNew_Click);
+            // 
+            // tSC_listCombine
+            // 
+            this.tSC_listCombine.FormattingEnabled = true;
+            this.tSC_listCombine.Location = new System.Drawing.Point(11, 32);
+            this.tSC_listCombine.Name = "tSC_listCombine";
+            this.tSC_listCombine.Size = new System.Drawing.Size(245, 355);
+            this.tSC_listCombine.TabIndex = 2;
+            this.tSC_listCombine.SelectedIndexChanged += new System.EventHandler(this.tSC_listCombine_SelectedIndexChanged);
+            // 
+            // tSC_lblDefaultCombine
+            // 
+            this.tSC_lblDefaultCombine.AutoSize = true;
+            this.tSC_lblDefaultCombine.Location = new System.Drawing.Point(273, 16);
+            this.tSC_lblDefaultCombine.Name = "tSC_lblDefaultCombine";
+            this.tSC_lblDefaultCombine.Size = new System.Drawing.Size(123, 13);
+            this.tSC_lblDefaultCombine.TabIndex = 1;
+            this.tSC_lblDefaultCombine.Text = "Default Combine Range:";
+            // 
+            // tSC_txtDefaultCombine
+            // 
+            this.tSC_txtDefaultCombine.Location = new System.Drawing.Point(272, 32);
+            this.tSC_txtDefaultCombine.Name = "tSC_txtDefaultCombine";
+            this.tSC_txtDefaultCombine.Size = new System.Drawing.Size(294, 20);
+            this.tSC_txtDefaultCombine.TabIndex = 0;
+            this.tSC_txtDefaultCombine.TextChanged += new System.EventHandler(this.tSC_txtDefaultCombine_TextChanged);
             // 
             // Form1
             // 
@@ -633,6 +765,10 @@ namespace VTClassic
             this.groupRule.PerformLayout();
             this.groupReqs.ResumeLayout(false);
             this.groupReqs.PerformLayout();
+            this.tabSalvageCombine.ResumeLayout(false);
+            this.tabSalvageCombine.PerformLayout();
+            this.tSC_groupCRS.ResumeLayout(false);
+            this.tSC_groupCRS.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -821,6 +957,18 @@ namespace VTClassic
         private Button cmdNewRule;
         private ListBox lstRules;
         private TabPage tabSalvageCombine;
+        private GroupBox tSC_groupCRS;
+        private Label tSC_lblMaterial;
+        private Button tSC_btnDelete;
+        private Button tSC_btnNew;
+        private ListBox tSC_listCombine;
+        private Label tSC_lblDefaultCombine;
+        private TextBox tSC_txtDefaultCombine;
+        private TextBox tSC_txtCombineRange;
+        private Label tSC_lblCombineRange;
+        private ComboBox tSC_cmbMaterial;
+        private Label tSC_lblCombineRules;
+        private ToolStripMenuItem combineToolStripMenuItem;
 
 
     }

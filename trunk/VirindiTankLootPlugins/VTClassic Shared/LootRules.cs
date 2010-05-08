@@ -445,7 +445,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Long Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -547,7 +547,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Long Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -621,7 +621,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Double Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -695,7 +695,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Double Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -758,7 +758,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Damage Percent"; }
-        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
     }
@@ -883,7 +883,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Spell Count"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
     }
@@ -983,7 +983,7 @@ namespace VTClassic
 
         public override bool UI_TextValue3_Uses() { return true; }
         public override string UI_TextValue3_Label() { return "Minimum spells that match"; }
-        public override void UI_TextValue3_Set(string value) { Count = int.Parse(value); }
+        public override void UI_TextValue3_Set(string value) { int.TryParse(value, out Count); }
         public override string UI_TextValue3_Get() { return Count.ToString(); }
 #endif
     }
@@ -1050,7 +1050,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Minimum Damage"; }
-        public override void UI_TextValue_Set(string value) { keyval = double.Parse(value); }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
     }
@@ -1118,7 +1118,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Long Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -1196,7 +1196,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Long Value"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -1274,7 +1274,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Empty Slots"; }
-        public override void UI_TextValue_Set(string value) { keyval = int.Parse(value); }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
     }
@@ -1450,6 +1450,11 @@ namespace VTClassic
     {
         public List<cLootItemRule> Rules = new List<cLootItemRule>();
         public UTLFileExtraBlockManager ExtraBlockManager = new UTLFileExtraBlockManager();
+
+        public cLootRules()
+        {
+            ExtraBlockManager.CreateDefaultBlocks();
+        }
 
 #if VTC_PLUGIN
         public eLootAction Classify(GameItemInfo id, out string matchedrulename)
