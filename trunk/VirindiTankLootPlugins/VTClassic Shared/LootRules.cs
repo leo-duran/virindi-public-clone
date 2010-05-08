@@ -1102,7 +1102,7 @@ namespace VTClassic
 
         public override string DisplayString()
         {
-            return string.Format("{0} has flags {1}", vk, keyval);
+            return string.Format("{0} has flags {1} (0x{1:X})", vk, keyval);
         }
 
         public override string FriendlyName()
