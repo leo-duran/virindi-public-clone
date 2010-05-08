@@ -1450,6 +1450,7 @@ namespace VTClassic
     {
         public List<cLootItemRule> Rules = new List<cLootItemRule>();
         public UTLFileExtraBlockManager ExtraBlockManager = new UTLFileExtraBlockManager();
+        public int UTLFileVersion = UTLVersionInfo.MAX_PROFILE_VERSION;
 
         public cLootRules()
         {
@@ -1537,20 +1538,19 @@ namespace VTClassic
                 //file version
                 //rulecount
                 string firstline = inf.ReadLine();
-                int utlversion;
                 int count;
                 if (firstline == "UTL")
                 {
-                    utlversion = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+                    UTLFileVersion = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
 
-                    if (utlversion > UTLVersionInfo.MAX_PROFILE_VERSION)
-                        throw new Exception("Profile file is version " + utlversion.ToString() + ", only version " + UTLVersionInfo.MAX_PROFILE_VERSION.ToString() + " is supported by this version of VTClassic.");
+                    if (UTLFileVersion > UTLVersionInfo.MAX_PROFILE_VERSION)
+                        throw new Exception("Profile file is version " + UTLFileVersion.ToString() + ", only version " + UTLVersionInfo.MAX_PROFILE_VERSION.ToString() + " is supported by this version of VTClassic.");
 
                     count = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    utlversion = 0;
+                    UTLFileVersion = 0;
                     count = Convert.ToInt32(firstline, System.Globalization.CultureInfo.InvariantCulture);
                 }
 
@@ -1558,7 +1558,7 @@ namespace VTClassic
                 for (int i = 0; i < count; ++i)
                 {
                     cLootItemRule R = new cLootItemRule();
-                    R.Read(inf, utlversion);
+                    R.Read(inf, UTLFileVersion);
                     Rules.Add(R);
                 }
 

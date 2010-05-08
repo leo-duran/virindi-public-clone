@@ -152,7 +152,7 @@ namespace VTClassic
                         using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
                         {
                             if (LootRules.Read(sr, -1))
-                                Host.AddChatText("Load profile " + filename + " successful.");
+                                Host.AddChatText("Load profile " + filename + " successful (file version " + LootRules.UTLFileVersion.ToString() + ").");
                             else
                                 Host.AddChatText("Load profile " + filename + " returned an error. Your entire profile may not have loaded properly.");
                         }
