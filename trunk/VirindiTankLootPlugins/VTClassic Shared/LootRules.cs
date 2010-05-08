@@ -128,6 +128,7 @@ namespace VTClassic
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
         CharacterMainPackEmptySlotsGE = 1001,
+        CharacterLevelGE = 1002,
     }
 
     internal static class LootRuleCreator
@@ -154,6 +155,7 @@ namespace VTClassic
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
                 case eLootRuleType.CharacterMainPackEmptySlotsGE: return new CharacterMainPackEmptySlotsGE();
+                case eLootRuleType.CharacterLevelGE: return new CharacterLevelGE();
 
                 default: return null;
             }
@@ -1495,6 +1497,63 @@ namespace VTClassic
 #endif
     }
     #endregion LongValKeyNE
+
+    #region CharacterLevelGE
+    internal class CharacterLevelGE : iLootRule
+    {
+        public int keyval = 0;
+
+        public CharacterLevelGE() { }
+        public CharacterLevelGE(int k) { keyval = k; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CharacterLevelGE; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            return Decal.Adapter.CoreManager.Current.CharacterFilter.Level >= keyval;
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Char Level >= {0}", keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Character Level >=";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+#endif
+    }
+    #endregion CharacterLevelGE
 
     #endregion LootRule classes
 
