@@ -122,6 +122,8 @@ namespace VTClassic
         SpellMatch = 9,
         MinDamageGE = 10,
         LongValKeyFlagExists = 11,
+        LongValKeyE = 12,
+        LongValKeyNE = 13,
 
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
@@ -146,6 +148,8 @@ namespace VTClassic
                 case eLootRuleType.SpellMatch: return new SpellMatch();
                 case eLootRuleType.MinDamageGE: return new MinDamageGE();
                 case eLootRuleType.LongValKeyFlagExists: return new LongValKeyFlagExists();
+                case eLootRuleType.LongValKeyE: return new LongValKeyE();
+                case eLootRuleType.LongValKeyNE: return new LongValKeyNE();
 
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
@@ -1285,6 +1289,212 @@ namespace VTClassic
 #endif
     }
     #endregion CharacterMainPackEmptySlotsGE
+
+    #region LongValKeyE
+    internal class LongValKeyE : iLootRule
+    {
+        public int keyval = 0;
+        public IntValueKey vk = IntValueKey.ActivationReqSkillId;
+
+        public LongValKeyE() { }
+        public LongValKeyE(int k, IntValueKey v) { keyval = k; vk = v; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.LongValKeyE; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            return (id.GetValueInt(vk, 0) == keyval);
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            if (vk == IntValueKey.Material)
+            {
+                SortedDictionary<string, int> matIds = GameInfo.getMaterialInfo();
+                if (matIds.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in matIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} == {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            else if (vk == IntValueKey.WieldReqAttribute)
+            {
+                SortedDictionary<string, int> skillIds = GameInfo.getSkillInfo();
+                if (skillIds.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in skillIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} == {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            return string.Format("{0} == {1}", vk, keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Long Value Key ==";
+        }
+
+        public override bool MayRequireID()
+        {
+            return GameInfo.IsIDProperty(vk);
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetLVKColor(index); }
+#endif
+    }
+    #endregion LongValKeyE
+
+    #region LongValKeyNE
+    internal class LongValKeyNE : iLootRule
+    {
+        public int keyval = 0;
+        public IntValueKey vk = IntValueKey.ActivationReqSkillId;
+
+        public LongValKeyNE() { }
+        public LongValKeyNE(int k, IntValueKey v) { keyval = k; vk = v; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.LongValKeyNE; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            return (id.GetValueInt(vk, 0) != keyval);
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (GameInfo.IsIDProperty(vk))
+            {
+                hasdecision = false;
+                ismatch = false;
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = Match(id);
+            }
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            if (vk == IntValueKey.Material)
+            {
+                SortedDictionary<string, int> matIds = GameInfo.getMaterialInfo();
+                if (matIds.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in matIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} != {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            else if (vk == IntValueKey.WieldReqAttribute)
+            {
+                SortedDictionary<string, int> skillIds = GameInfo.getSkillInfo();
+                if (skillIds.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in skillIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} != {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            return string.Format("{0} != {1}", vk, keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Long Value Key !=";
+        }
+
+        public override bool MayRequireID()
+        {
+            return GameInfo.IsIDProperty(vk);
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Long Value"; }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetLVKColor(index); }
+#endif
+    }
+    #endregion LongValKeyNE
 
     #endregion LootRule classes
 
