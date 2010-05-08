@@ -137,6 +137,39 @@ namespace VTClassic
             return SkillNames.AsReadOnly();
         }
 
+
+#if VTC_EDITOR
+        public static System.Drawing.Color GetSVKColor(int ind)
+        {
+            if (GameInfo.IsIDProperty(SVKOptions[ind]))
+                return (System.Drawing.Color.DarkRed);
+            else
+                return (System.Drawing.Color.White);
+        }
+        public static System.Drawing.Color GetLVKColor(int ind)
+        {
+            if (GameInfo.IsIDProperty(LVKOptions[ind]))
+                return (System.Drawing.Color.DarkRed);
+            else
+                return (System.Drawing.Color.White);
+        }
+        public static System.Drawing.Color GetDVKColor(int ind)
+        {
+            if (GameInfo.IsIDProperty(DVKOptions[ind]))
+                return (System.Drawing.Color.DarkRed);
+            else
+                return (System.Drawing.Color.White);
+        }
+        public static System.Drawing.Color GetOCColor(int ind)
+        {
+            return (System.Drawing.Color.White);
+        }
+        public static System.Drawing.Color GetSkillColor(int ind)
+        {
+            return (System.Drawing.Color.White);
+        }
+#endif
+
     }
 //#endif
 }

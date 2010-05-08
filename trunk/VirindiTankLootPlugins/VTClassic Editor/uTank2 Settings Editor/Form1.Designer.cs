@@ -837,13 +837,25 @@ namespace VTClassic
                     txtMaterial.Text = matIds[cmbMaterial.Items[cmbMaterial.SelectedIndex].ToString()].ToString();
                 }
             }
-        }        
+        }
+
+        Color HighlightBGColor(Color bgc)
+        {
+            int r = bgc.R - 50;
+            int g = bgc.G - 50;
+            int b = bgc.B + 75;
+            if (r < 0) r = 0;
+            if (g < 0) g = 0;
+            if (b > 255) b = 255;
+            return Color.FromArgb(r, g, b);
+        }
 
         void lstRules_DrawItem(object sender, DrawItemEventArgs e)
         {
             System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
 
-            Brush bgBrush = Brushes.White;
+            Color bgColor = Color.White;
+            Brush fgBrush = Brushes.Black;
 
             bool badRule = true;
 
@@ -859,21 +871,33 @@ namespace VTClassic
                     }
                 }
 
+                bool hilight = e.State == DrawItemState.Selected
+    || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
+    || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
+
                 if (badRule)
                 {
-                    bool hilight = e.State == DrawItemState.Selected
-                        || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
-                        || e.State == (DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.ComboBoxEdit);
+                    bgColor = Color.DarkRed;
+                    if (hilight) bgColor = HighlightBGColor(bgColor);
 
-                    bgBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                    fgBrush = Brushes.White;
+                }
+                else
+                {
+                    bgColor = Color.White;
+                    if (hilight) bgColor = HighlightBGColor(bgColor);
                 }
             }
 
-            e.DrawBackground();
-            if (badRule)
+            //e.DrawBackground();
+            using (Brush bgBrush = new SolidBrush(bgColor))
+            {
                 e.Graphics.FillRectangle(bgBrush, e.Bounds);
+            }
             if (e.Index > -1)
-                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+            {
+                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, fgBrush, e.Bounds, StringFormat.GenericDefault);
+            }
             e.DrawFocusRectangle();
         }
 
@@ -881,7 +905,7 @@ namespace VTClassic
         {
             System.Windows.Forms.ComboBox s = (System.Windows.Forms.ComboBox)sender;
 
-            Brush textBrush = Brushes.Black;
+            bool needsouterdraw = true;
 
             bool hilight = e.State == DrawItemState.Selected
                 || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
@@ -889,34 +913,70 @@ namespace VTClassic
 
             try
             {
-                if (CurrentReq.GetRuleType() == eLootRuleType.LongValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.LongValKeyGE)
+                if (CurrentReq.UI_ActsOnCombo_Uses())
                 {
-                    if (GameInfo.IsIDProperty(ComboKeys.LVKFromIndex(e.Index)))
+                    if (e.Index >= 0)
                     {
-                        textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                        Color MyColor = CurrentReq.UI_ActsOnCombo_OptionColors(e.Index);
+
+                        Color bgc = MyColor;
+                        if (hilight)
+                        {
+                            bgc = HighlightBGColor(bgc);
+                        }
+                        Brush fcg = Brushes.White;
+                        if (MyColor.ToArgb() == Color.White.ToArgb())
+                            fcg = Brushes.Black;
+                        using (Brush bg = new SolidBrush(bgc))
+                        {
+                            e.Graphics.FillRectangle(bg, e.Bounds);
+                            e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, fcg, e.Bounds, StringFormat.GenericDefault);
+                            e.DrawFocusRectangle();
+                        }
+                        needsouterdraw = false;
                     }
-                }
-                else if (CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyGE)
-                {
-                    if (GameInfo.IsIDProperty(ComboKeys.DVKFromIndex(e.Index)))
+
+                    /*
+                    if (CurrentReq.GetRuleType() == eLootRuleType.LongValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.LongValKeyGE)
                     {
-                        textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                        if (GameInfo.IsIDProperty(ComboKeys.LVKFromIndex(e.Index)))
+                        {
+                            textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                        }
                     }
+                    else if (CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyLE || CurrentReq.GetRuleType() == eLootRuleType.DoubleValKeyGE)
+                    {
+                        if (GameInfo.IsIDProperty(ComboKeys.DVKFromIndex(e.Index)))
+                        {
+                            textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                        }
+                    }
+                    */
                 }
             }
             catch { }
 
-            e.DrawBackground();
-            if (e.Index > -1)
-                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, textBrush, e.Bounds, StringFormat.GenericDefault);
-            e.DrawFocusRectangle();
+            if (needsouterdraw)
+            {
+                Color ibgColor = Color.White;
+                if (hilight) ibgColor = HighlightBGColor(ibgColor);
+                using (Brush bgBrush = new SolidBrush(ibgColor))
+                {
+                    e.Graphics.FillRectangle(bgBrush, e.Bounds);
+                }
+                if (e.Index > -1)
+                    e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+                e.DrawFocusRectangle();
+            }
         }
 
         void lstRequirements_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
             System.Windows.Forms.ListBox s = (System.Windows.Forms.ListBox)sender;
 
-            Brush textBrush = Brushes.Black;
+            //Brush bgBrush = Brushes.White;
+            Color bgColor = Color.White;
+            Brush fgBrush = Brushes.Black;
 
             bool hilight = e.State == DrawItemState.Selected
                 || e.State == (DrawItemState.Selected | DrawItemState.NoAccelerator | DrawItemState.NoFocusRect | DrawItemState.Focus)
@@ -924,12 +984,23 @@ namespace VTClassic
 
             if (e.Index > -1 && CurrentRule != null && CurrentRule.IntRules[e.Index].MayRequireID())
             {
-                textBrush = hilight ? Brushes.Red : Brushes.DarkRed;
+                bgColor = Color.DarkRed;
+                if (hilight) bgColor = HighlightBGColor(bgColor);
+
+                fgBrush = Brushes.White;
+            }
+            else
+            {
+                bgColor = Color.White;
+                if (hilight) bgColor = HighlightBGColor(bgColor);
             }
 
-            e.DrawBackground();
+            using (Brush bgBrush = new SolidBrush(bgColor))
+            {
+                e.Graphics.FillRectangle(bgBrush, e.Bounds);
+            }
             if (e.Index > -1)
-                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, textBrush, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString(s.Items[e.Index].ToString(), e.Font, fgBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
         }
 

@@ -69,14 +69,14 @@ namespace VTClassic
         public virtual void UI_ActsOnCombo_Set(int index) { }
         public virtual int UI_ActsOnCombo_Get() { return 0; }
         public virtual ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return new List<string>().AsReadOnly(); }
-        public virtual List<System.Drawing.Color> UI_ActsOnCombo_OptionColors() { return new List<System.Drawing.Color>(); }
+        public virtual System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.White; }
 
         public virtual bool UI_KeyCombo_Uses() { return false; }
         public virtual string UI_KeyCombo_Label() { return "[None]"; }
         public virtual void UI_KeyCombo_Set(int index) { }
         public virtual int UI_KeyCombo_Get() { return 0; }
         public virtual ReadOnlyCollection<string> UI_KeyCombo_Options() { return new List<string>().AsReadOnly(); }
-        public virtual List<System.Drawing.Color> UI_KeyCombo_OptionColors() { return new List<System.Drawing.Color>(); }
+        public virtual System.Drawing.Color UI_KeyCombo_OptionColors(int index) { return System.Drawing.Color.White; }
 
         public virtual bool UI_TextValue_Uses() { return false; }
         public virtual string UI_TextValue_Label() { return "[None]"; }
@@ -351,6 +351,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetSVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromSVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.SVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetSVKColor(index); }
 #endif
     }
     #endregion StringValueMatch
@@ -453,6 +454,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetLVKColor(index); }
 #endif
     }
     #endregion LongValKeyLE
@@ -555,6 +557,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetLVKColor(index); }
 #endif
     }
     #endregion LongValKeyGE
@@ -629,6 +632,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetDVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromDVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.DVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetDVKColor(index); }
 #endif
     }
     #endregion DoubleValKeyLE
@@ -703,6 +707,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetDVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromDVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.DVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetDVKColor(index); }
 #endif
     }
     #endregion DoubleValKeyGE
@@ -1126,6 +1131,7 @@ namespace VTClassic
         public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetLVKEntries(); }
         public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromLVK(vk); }
         public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.LVKFromIndex(index); }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return ComboKeys.GetLVKColor(index); }
 #endif
     }
     #endregion LongValKeyFlagExists
