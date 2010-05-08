@@ -167,21 +167,16 @@ namespace VTClassic
                 cmbReqType.Items.Clear();
                 RequirementComboEntries.Clear();
 
-                AddRequirementComboEntry("Spell Name Match", eLootRuleType.SpellNameMatch);
-                AddRequirementComboEntry("String Value Match", eLootRuleType.StringValueMatch);
-                AddRequirementComboEntry("Long Value Key <=", eLootRuleType.LongValKeyLE);
-                AddRequirementComboEntry("Long Value Key >=", eLootRuleType.LongValKeyGE);
-                AddRequirementComboEntry("Double Value Key <=", eLootRuleType.DoubleValKeyLE);
-                AddRequirementComboEntry("Double Value Key >=", eLootRuleType.DoubleValKeyGE);
-                AddRequirementComboEntry("Damage Percentage >=", eLootRuleType.DamagePercentGE);
-                AddRequirementComboEntry("ObjectClass", eLootRuleType.ObjectClass);
-                AddRequirementComboEntry("Spell Count >=", eLootRuleType.SpellCountGE);
-                AddRequirementComboEntry("Spell Match and Count", eLootRuleType.SpellMatch);
-                AddRequirementComboEntry("MinDamage >=", eLootRuleType.MinDamageGE);
+                Array arr = Enum.GetValues(typeof(eLootRuleType));
+                foreach (int it in arr)
+                {
+                    eLootRuleType lrt = ((eLootRuleType)it);
+                    iLootRule lr = LootRuleCreator.CreateLootRule(lrt);
+                    if (lr == null) continue;
 
-                //Keep these at the end
-                AddRequirementComboEntry("Character Skill >=", eLootRuleType.CharacterSkillGE);
-                AddRequirementComboEntry("Free Main Pack Slots >=", eLootRuleType.CharacterMainPackEmptySlotsGE);
+                    AddRequirementComboEntry(lr.FriendlyName(), lrt);
+                }
+
 
                 cmbReqType.SelectedIndex = GetRequirementComboIndexForRuleType((eLootRuleType)cr.GetRuleType());
 

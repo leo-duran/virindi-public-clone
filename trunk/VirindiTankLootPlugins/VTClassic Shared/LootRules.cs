@@ -50,6 +50,7 @@ namespace VTClassic
         public abstract eLootRuleType GetRuleType();
         public abstract string DisplayString();
         public abstract bool MayRequireID();
+        public abstract string FriendlyName();
 
 #if VTC_PLUGIN
         //Members only when compiling the plugin, vtank is not referenced for editor
@@ -193,6 +194,11 @@ namespace VTClassic
             return "UNSUPPORTED REQUIREMENT";
         }
 
+        public override string FriendlyName()
+        {
+            return "Unsupported Requirement";
+        }
+
         public override bool MayRequireID()
         {
             return false;
@@ -256,6 +262,11 @@ namespace VTClassic
             return "SpellNameMatch: " + rx.ToString();
         }
 
+        public override string FriendlyName()
+        {
+            return "Spell Name Match";
+        }
+
         public override bool MayRequireID()
         {
             return true;
@@ -317,6 +328,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return string.Format("{0} matches: {1}", vk, rx);
+        }
+
+        public override string FriendlyName()
+        {
+            return "String Value Match";
         }
 
         public override bool MayRequireID()
@@ -416,6 +432,11 @@ namespace VTClassic
             return string.Format("{0} <= {1}", vk, keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Long Value Key <=";
+        }
+
         public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
@@ -513,6 +534,11 @@ namespace VTClassic
             return string.Format("{0} >= {1}", vk, keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Long Value Key >=";
+        }
+
         public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
@@ -580,6 +606,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return string.Format("{0} <= {1}", vk, keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Double Value Key <=";
         }
 
         public override bool MayRequireID()
@@ -651,6 +682,11 @@ namespace VTClassic
             return string.Format("{0} >= {1}", vk, keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Double Value Key >=";
+        }
+
         public override bool MayRequireID()
         {
             return GameInfo.IsIDProperty(vk);
@@ -709,6 +745,11 @@ namespace VTClassic
             return string.Format("DamagePercentGE >= {0}", keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Damage Percentage >=";
+        }
+
         public override bool MayRequireID()
         {
             return false;
@@ -759,6 +800,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return string.Format("ObjectClass = {0}", vk); 
+        }
+
+        public override string FriendlyName()
+        {
+            return "ObjectClass";
         }
 
         public override bool MayRequireID()
@@ -822,6 +868,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return string.Format("SpellCount >= {0}", keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Spell Count >=";
         }
 
         public override bool MayRequireID()
@@ -909,6 +960,11 @@ namespace VTClassic
                 rxDoesMatch, rxDoesNotMatch, Count);
         }
 
+        public override string FriendlyName()
+        {
+            return "Spell Match and Count";
+        }
+
         public override bool MayRequireID()
         {
             return true;
@@ -981,6 +1037,11 @@ namespace VTClassic
             return string.Format("MinDamage >= {0}", keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Minimum Damage >=";
+        }
+
         public override bool MayRequireID()
         {
             return true;
@@ -1042,6 +1103,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return string.Format("{0} has flags {1}", vk, keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Long Key Has Flags";
         }
 
         public override bool MayRequireID()
@@ -1117,6 +1183,11 @@ namespace VTClassic
             return String.Format("Char has {0} >= {1}", vk, keyval);
         }
 
+        public override string FriendlyName()
+        {
+            return "Character Skill >=";
+        }
+
         public override bool MayRequireID()
         {
             return false;
@@ -1188,6 +1259,11 @@ namespace VTClassic
         public override string DisplayString()
         {
             return String.Format("Main pack slots >= {0}", keyval);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Free Main Pack Slots >=";
         }
 
         public override bool MayRequireID()

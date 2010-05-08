@@ -26,159 +26,50 @@ namespace VTClassic
         static ComboKeys()
         {
             {
-                Array arr = Enum.GetValues(typeof(StringValueKey));
-                foreach (int v in arr)
+                Array arr = Enum.GetNames(typeof(StringValueKey));
+                Array.Sort(arr);
+                foreach (string v in arr)
                 {
-                    StringValueKey kv = (StringValueKey)v;
-                    SVKOptions.Add(kv);
-                    SVKNames.Add(kv.ToString());
+                    SVKOptions.Add((StringValueKey)Enum.Parse(typeof(StringValueKey), v));
+                    SVKNames.Add(v);
                 }
             }
             {
-                Array arr = Enum.GetValues(typeof(IntValueKey));
-                foreach (int v in arr)
+                Array arr = Enum.GetNames(typeof(IntValueKey));
+                Array.Sort(arr);
+                foreach (string v in arr)
                 {
-                    IntValueKey kv = (IntValueKey)v;
-                    LVKOptions.Add(kv);
-                    LVKNames.Add(kv.ToString());
+                    LVKOptions.Add((IntValueKey)Enum.Parse(typeof(IntValueKey), v));
+                    LVKNames.Add(v);
                 }
             }
             {
-                Array arr = Enum.GetValues(typeof(DoubleValueKey));
-                foreach (int v in arr)
+                Array arr = Enum.GetNames(typeof(DoubleValueKey));
+                Array.Sort(arr);
+                foreach (string v in arr)
                 {
-                    DoubleValueKey kv = (DoubleValueKey)v;
-                    DVKOptions.Add(kv);
-                    DVKNames.Add(kv.ToString());
+                    DVKOptions.Add((DoubleValueKey)Enum.Parse(typeof(DoubleValueKey), v));
+                    DVKNames.Add(v);
                 }
             }
             {
-                Array arr = Enum.GetValues(typeof(ObjectClass));
-                foreach (int v in arr)
+                Array arr = Enum.GetNames(typeof(ObjectClass));
+                Array.Sort(arr);
+                foreach (string v in arr)
                 {
-                    ObjectClass kv = (ObjectClass)v;
-                    OCOptions.Add(kv);
-                    OCNames.Add(kv.ToString());
+                    OCOptions.Add((ObjectClass)Enum.Parse(typeof(ObjectClass), v));
+                    OCNames.Add(v);
                 }
             }
             {
-                Array arr = Enum.GetValues(typeof(VTCSkillID));
-                foreach (int v in arr)
+                Array arr = Enum.GetNames(typeof(VTCSkillID));
+                Array.Sort(arr);
+                foreach (string v in arr)
                 {
-                    VTCSkillID kv = (VTCSkillID)v;
-                    SkillOptions.Add(kv);
-                    SkillNames.Add(kv.ToString());
+                    SkillOptions.Add((VTCSkillID)Enum.Parse(typeof(VTCSkillID), v));
+                    SkillNames.Add(v);
                 }
             }
-
-            /*
-            SVKOptions.Add(StringValueKey.FullDescription);
-            SVKOptions.Add(StringValueKey.Name);
-
-            LVKOptions.Add(IntValueKey.ActivationReqSkillId);
-            LVKOptions.Add(IntValueKey.AffectsVitalAmt);
-            LVKOptions.Add(IntValueKey.ArmorLevel);
-            LVKOptions.Add(IntValueKey.ArmorSetID);
-            LVKOptions.Add(IntValueKey.Burden);
-            LVKOptions.Add(IntValueKey.Category);
-            LVKOptions.Add(IntValueKey.Coverage);
-            LVKOptions.Add(IntValueKey.CurrentMana);
-            LVKOptions.Add(IntValueKey.DamageType);
-            LVKOptions.Add(IntValueKey.ElementalDmgBonus);
-            LVKOptions.Add(IntValueKey.EquipableSlots);
-            LVKOptions.Add(IntValueKey.EquipSkill);
-            LVKOptions.Add(IntValueKey.EquipType);
-            LVKOptions.Add(IntValueKey.Heritage);
-            LVKOptions.Add(IntValueKey.IconOutline);
-            LVKOptions.Add(IntValueKey.IconOverlay);
-            LVKOptions.Add(IntValueKey.IconUnderlay);
-            LVKOptions.Add(IntValueKey.LockpickSkillBonus);
-            LVKOptions.Add(IntValueKey.LoreRequirement);
-            LVKOptions.Add(IntValueKey.ManaCost);
-            LVKOptions.Add(IntValueKey.Material);
-            LVKOptions.Add(IntValueKey.MaxDamage);
-            LVKOptions.Add(IntValueKey.MaximumMana);
-            LVKOptions.Add(IntValueKey.MissileType);
-            LVKOptions.Add(IntValueKey.RankRequirement);
-            LVKOptions.Add(IntValueKey.RareId);
-            LVKOptions.Add(IntValueKey.SkillLevelReq);
-            LVKOptions.Add(IntValueKey.SpellCount);
-            LVKOptions.Add(IntValueKey.TotalValue);
-            LVKOptions.Add(IntValueKey.Type);
-            LVKOptions.Add(IntValueKey.Value);
-            LVKOptions.Add(IntValueKey.WandElemDmgType);
-            LVKOptions.Add(IntValueKey.WeapSpeed);
-            LVKOptions.Add(IntValueKey.WieldReqAttribute);
-            LVKOptions.Add(IntValueKey.WieldReqType);
-            LVKOptions.Add(IntValueKey.WieldReqValue);
-            LVKOptions.Add(IntValueKey.Workmanship);
-
-            DVKOptions.Add(DoubleValueKey.AcidProt);
-            DVKOptions.Add(DoubleValueKey.AttackBonus);
-            DVKOptions.Add(DoubleValueKey.BludgeonProt);
-            DVKOptions.Add(DoubleValueKey.ColdProt);
-            DVKOptions.Add(DoubleValueKey.DamageBonus);
-            DVKOptions.Add(DoubleValueKey.ElementalDamageVersusMonsters);
-            DVKOptions.Add(DoubleValueKey.FireProt);
-            DVKOptions.Add(DoubleValueKey.HealingKitRestoreBonus);
-            DVKOptions.Add(DoubleValueKey.LightningProt);
-            DVKOptions.Add(DoubleValueKey.MagicDBonus);
-            DVKOptions.Add(DoubleValueKey.ManaCBonus);
-            DVKOptions.Add(DoubleValueKey.ManaRateOfChange);
-            DVKOptions.Add(DoubleValueKey.ManaStoneChanceDestruct);
-            DVKOptions.Add(DoubleValueKey.ManaTransferEfficiency);
-            DVKOptions.Add(DoubleValueKey.MeleeDefenseBonus);
-            DVKOptions.Add(DoubleValueKey.MissileDBonus);
-            DVKOptions.Add(DoubleValueKey.PierceProt);
-            DVKOptions.Add(DoubleValueKey.Range);
-            DVKOptions.Add(DoubleValueKey.SalvageWorkmanship);
-            DVKOptions.Add(DoubleValueKey.SlashProt);
-            DVKOptions.Add(DoubleValueKey.Variance);
-
-            OCOptions.Add(ObjectClass.Armor);
-            OCOptions.Add(ObjectClass.BaseAlchemy);
-            OCOptions.Add(ObjectClass.BaseCooking);
-            OCOptions.Add(ObjectClass.BaseFletching);
-            OCOptions.Add(ObjectClass.Book);
-            OCOptions.Add(ObjectClass.Bundle);
-            OCOptions.Add(ObjectClass.Clothing);
-            OCOptions.Add(ObjectClass.Container);
-            OCOptions.Add(ObjectClass.CraftedAlchemy);
-            OCOptions.Add(ObjectClass.CraftedCooking);
-            OCOptions.Add(ObjectClass.CraftedFletching);
-            OCOptions.Add(ObjectClass.Foci);
-            OCOptions.Add(ObjectClass.Food);
-            OCOptions.Add(ObjectClass.Gem);
-            OCOptions.Add(ObjectClass.HealingKit);
-            OCOptions.Add(ObjectClass.Jewelry);
-            OCOptions.Add(ObjectClass.Journal);
-            OCOptions.Add(ObjectClass.Key);
-            OCOptions.Add(ObjectClass.Lockpick);
-            OCOptions.Add(ObjectClass.ManaStone);
-            OCOptions.Add(ObjectClass.MeleeWeapon);
-            OCOptions.Add(ObjectClass.Misc);
-            OCOptions.Add(ObjectClass.MissileWeapon);
-            OCOptions.Add(ObjectClass.Money);
-            OCOptions.Add(ObjectClass.Plant);
-            OCOptions.Add(ObjectClass.Salvage);
-            OCOptions.Add(ObjectClass.Scroll);
-            OCOptions.Add(ObjectClass.SpellComponent);
-            OCOptions.Add(ObjectClass.TradeNote);
-            OCOptions.Add(ObjectClass.Ust);
-            OCOptions.Add(ObjectClass.WandStaffOrb);
-
-            //Fill the names
-            foreach (StringValueKey k in SVKOptions)
-                SVKNames.Add(k.ToString());
-            foreach (IntValueKey k in LVKOptions)
-                LVKNames.Add(k.ToString());
-            foreach (DoubleValueKey k in DVKOptions)
-                DVKNames.Add(k.ToString());
-            foreach (ObjectClass k in OCOptions)
-                OCNames.Add(k.ToString());
-            foreach (VTCSkillID k in OCOptions)
-                SkillNames.Add(k.ToString());
-            */
         }
 
         public static StringValueKey SVKFromIndex(int i)
