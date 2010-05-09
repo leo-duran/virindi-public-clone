@@ -781,6 +781,8 @@ namespace VTClassic
                     CurrentRule.IntRules.Add(new DisabledRule(true));
                 }
                 SetCurrentRule(CurrentRule, CurrentRuleNum);
+
+                FileChanged = true;
             }
 
         }      
