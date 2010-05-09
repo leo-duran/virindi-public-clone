@@ -70,6 +70,8 @@ namespace VTClassic
         int CurrentReqNum;
         bool Working = false;
 
+        bool CtrlPressed;
+
         List<eLootRuleType> RequirementComboEntries = new List<eLootRuleType>();
 
         void InitInfoArea()
@@ -108,15 +110,12 @@ namespace VTClassic
             }
             else
             {
+                lstRules.SelectedIndex = -1;
                 lstRules.SelectedIndex = crn;
                 groupRule.Visible = true;
                 txtRuleName.Text = cr.name;
                 cmbAction.Items.Clear();
-                cmbAction.Items.Add("Keep");
-                cmbAction.Items.Add("Salvage");
-                cmbAction.Items.Add("Sell");
-                cmbAction.Items.Add("Read");
-                cmbAction.Items.Add("Keep #");
+                cmbAction.Items.AddRange(eLootActionTool.FriendlyNames().ToArray());
                 txtKeepCount.Visible = false;
                 switch (cr.act)
                 {
@@ -138,7 +137,6 @@ namespace VTClassic
                         txtKeepCount.Text = cr.LootActionData.ToString();
                         break;
                 }
-
 
                 SetCurrentReq(null, 0);
                 lstRequirements.Items.Clear();
@@ -554,13 +552,11 @@ namespace VTClassic
             FileChanged = true;
             Working = true;
 
-
             CurrentReq.UI_ActsOnCombo_Set(cmbActsOn.SelectedIndex);
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();
             lstRequirements.Invalidate();
-
 
             Working = false;
         }
@@ -589,14 +585,12 @@ namespace VTClassic
             FileChanged = true;
             Working = true;
 
-
             CurrentReq.UI_TextValue_Set(txtValue.Text);
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();
             lstRequirements.Invalidate();
 
-            
             Working = false;
         }
 
@@ -605,7 +599,6 @@ namespace VTClassic
             if (Working) return;
             FileChanged = true;
             Working = true;
-
 
             CurrentReq.UI_TextValue2_Set(txtValue2.Text);
 
@@ -623,13 +616,11 @@ namespace VTClassic
             FileChanged = true;
             Working = true;
 
-
             CurrentReq.UI_TextValue3_Set(txtValue3.Text);
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();
             lstRequirements.Invalidate();
-
 
             Working = false;
         }
@@ -637,11 +628,21 @@ namespace VTClassic
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (CtrlPressed)
+            {
+                ruleMoveUp(lstRules.SelectedIndex, true);
+                ruleMoveUp(lstRules.SelectedIndex, true);
+            }
             ruleMoveUp(lstRules.SelectedIndex, true);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (CtrlPressed)
+            {
+                ruleMoveDown(lstRules.SelectedIndex, true);
+                ruleMoveDown(lstRules.SelectedIndex, true);
+            }
             ruleMoveDown(lstRules.SelectedIndex, true);
         }
 
@@ -670,11 +671,11 @@ namespace VTClassic
                 try
                 {
                     this.alterWorkmanshipReqs(f.act, f.wrk);
-                    SetCurrentReq(null, 0);
-                    SetCurrentRule(null, -1);
+                    SetCurrentRule(CurrentRule, CurrentRuleNum);
                 }
-                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }   
             }
+
             f.Dispose();
         }
 
@@ -705,6 +706,84 @@ namespace VTClassic
             catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             lstRules.Visible = true;
         }
+
+        private void addPackslotRulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectMinPackSlotsForm f = new SelectMinPackSlotsForm();
+            DialogResult r = f.ShowDialog(this);
+            if (r == DialogResult.OK)
+            {
+                lstRules.Visible = false;
+                try
+                {
+                    SetCurrentReq(null, 0);
+                    foreach (cLootItemRule rule in LootRules.Rules)
+                    {
+                        bool needsReq = true;
+                        if (rule.Action() == f.act)
+                        {
+                            foreach (iLootRule req in rule.IntRules)
+                            {
+                                if (req.GetRuleType() == eLootRuleType.CharacterMainPackEmptySlotsGE)
+                                {
+                                    needsReq = false;
+                                    break;
+                                }
+                            }
+                            if (needsReq)
+                            {
+
+                                rule.IntRules.Add(new CharacterMainPackEmptySlotsGE(f.slots));
+                                FileChanged = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
+
+                SetCurrentRule(CurrentRule, CurrentRuleNum);
+                lstRules.Visible = true;
+            }
+            f.Dispose();
+        }
+
+        private void tabControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = e.Control;
+        }
+
+        private void tabControl1_KeyUp(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (CurrentRule != null)
+            {
+                bool disabled = false;
+                List<iLootRule> remove = new List<iLootRule>();
+                foreach (iLootRule req in CurrentRule.IntRules)
+                {
+                    if (req.GetRuleType() == eLootRuleType.DisabledRule)
+                    {
+                        disabled = disabled || ((DisabledRule)req).b;
+                        remove.Add(req);
+                    }
+                }
+                foreach (iLootRule req in remove)
+                {
+                    CurrentRule.IntRules.Remove(req);
+                }
+
+                if (!disabled)
+                {
+                    CurrentRule.IntRules.Add(new DisabledRule(true));
+                }
+                SetCurrentRule(CurrentRule, CurrentRuleNum);
+            }
+
+        }      
 
     }
 }

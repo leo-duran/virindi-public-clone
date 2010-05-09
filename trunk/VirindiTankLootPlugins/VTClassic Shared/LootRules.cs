@@ -124,12 +124,14 @@ namespace VTClassic
         LongValKeyFlagExists = 11,
         LongValKeyE = 12,
         LongValKeyNE = 13,
-
+        
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
         CharacterMainPackEmptySlotsGE = 1001,
         CharacterLevelGE = 1002,
         CharacterLevelLE = 1003,
+
+        DisabledRule = 9999,
     }
 
     internal static class LootRuleCreator
@@ -152,6 +154,8 @@ namespace VTClassic
                 case eLootRuleType.LongValKeyFlagExists: return new LongValKeyFlagExists();
                 case eLootRuleType.LongValKeyE: return new LongValKeyE();
                 case eLootRuleType.LongValKeyNE: return new LongValKeyNE();
+
+                case eLootRuleType.DisabledRule: return new DisabledRule(true);
 
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
@@ -1164,7 +1168,7 @@ namespace VTClassic
             try
             {
                 skillinfo = Decal.Adapter.CoreManager.Current.CharacterFilter.Underlying.get_Skill((Decal.Interop.Filters.eSkillID)(int)vk);
-                return (skillinfo.Current >= keyval);
+                return (skillinfo.Buffed >= keyval);
             }
             finally
             {
@@ -1613,6 +1617,70 @@ namespace VTClassic
 #endif
     }
     #endregion CharacterLevelLE
+
+    #region DisabledRule
+    internal class DisabledRule : iLootRule
+    {
+        public Boolean b = true;
+
+        public DisabledRule() { }
+        public DisabledRule(Boolean b) { this.b = b; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.DisabledRule; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            return !b;
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = false;
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            b = "true".Equals(inf.ReadLine());
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(b ? "true" : "false");
+        }
+
+        public override string DisplayString()
+        {
+            return b ? "This rule is currently disabled" : "This rule is active";
+        }
+
+        public override string FriendlyName()
+        {
+            return "Enable/Disable";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return false; }
+        public override string UI_TextValue_Label() { return String.Empty; }
+        public override void UI_TextValue_Set(string value) { }
+        public override string UI_TextValue_Get() { return String.Empty; }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Status"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return new ReadOnlyCollection<string>(new String[] {"Disabled", "Enabled"}); }
+        public override int UI_ActsOnCombo_Get() { return b ? 0 : 1; }
+        public override void UI_ActsOnCombo_Set(int index) { b = index < 1; }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.White; }
+#endif
+    }
+    #endregion DisabledRule
 
     #endregion LootRule classes
 

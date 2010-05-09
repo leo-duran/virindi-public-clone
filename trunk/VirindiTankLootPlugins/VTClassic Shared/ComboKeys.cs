@@ -8,7 +8,8 @@ using uTank2.LootPlugins;
 
 namespace VTClassic
 {
-//#if VTC_EDITOR
+#if VTC_EDITOR
+
     internal static class ComboKeys
     {
         static List<StringValueKey> SVKOptions = new List<StringValueKey>();
@@ -137,8 +138,6 @@ namespace VTClassic
             return SkillNames.AsReadOnly();
         }
 
-
-#if VTC_EDITOR
         public static System.Drawing.Color GetSVKColor(int ind)
         {
             if (GameInfo.IsIDProperty(SVKOptions[ind]))
@@ -168,8 +167,6 @@ namespace VTClassic
         {
             return (System.Drawing.Color.White);
         }
-#endif
-
     }
-//#endif
+#endif
 }

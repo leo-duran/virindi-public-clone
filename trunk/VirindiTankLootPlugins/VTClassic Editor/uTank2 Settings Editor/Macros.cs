@@ -52,6 +52,7 @@ namespace VTClassic
                 SetCurrentRule(LootRules.Rules[index + 1], index + 1);
                 lstRules.SelectedIndex = index + 1;
             }
+            lstRules.TopIndex = Math.Max(0, lstRules.SelectedIndex - ((lstRules.Height / lstRules.ItemHeight) / 2));
             FileChanged = true;
         }
 

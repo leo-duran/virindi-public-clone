@@ -294,6 +294,56 @@ namespace VTClassic
         KeepUpTo = 10,
     }
 
+    // maybe some key-value collection will actually be better...
+    internal class eLootActionTool
+    {
+        public static string FriendlyName(eLootAction e)
+        {
+            switch (e)
+            {
+                case eLootAction.Keep:
+                    return "Keep";
+                case eLootAction.Salvage:
+                    return "Salvage";
+                case eLootAction.Sell:
+                    return "Sell";
+                case eLootAction.Read:
+                    return "Read";
+                case eLootAction.KeepUpTo:
+                    return "Keep #";
+            }
+            return string.Empty;
+        }
+
+        public static List<string> FriendlyNames() {
+            List<String> r = new List<String>();
+
+            foreach (eLootAction e in Enum.GetValues(typeof(eLootAction)))
+            {
+                String s = eLootActionTool.FriendlyName(e);
+                if (!String.Empty.Equals(s))
+                {
+                    r.Add(s);
+                }
+            }
+
+            return r;
+        }
+
+        public static eLootAction enumValue(string s)
+        {
+            foreach (eLootAction e in Enum.GetValues(typeof(eLootAction)))
+            {
+                String n = eLootActionTool.FriendlyName(e);
+                if (s.Equals(n))
+                {
+                    return e;
+                }
+            }
+            return eLootAction.NoLoot;
+        }
+    }
+
     internal interface iSettingsCollection
     {
         void Read(System.IO.StreamReader inf, int fileversion);

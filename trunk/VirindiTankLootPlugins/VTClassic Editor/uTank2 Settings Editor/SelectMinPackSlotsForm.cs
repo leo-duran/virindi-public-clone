@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace VTClassic
 {
-    public partial class UpdateWorkReqsForm : Form
+    public partial class SelectMinPackSlotsForm : Form
     {
-        public int wrk = 0;
+
+        public int slots = 1;
         public eLootAction act = eLootAction.Keep;
 
-        public UpdateWorkReqsForm()
+        public SelectMinPackSlotsForm()
         {
             InitializeComponent();
 
@@ -22,10 +24,9 @@ namespace VTClassic
             comboBox1.SelectedIndex = 0;
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            wrk = trackBar1.Value;
-            lblUpdWRWorkV.Text = trackBar1.Value.ToString();
+            slots = Decimal.ToInt32(numericUpDown1.Value);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
