@@ -164,23 +164,18 @@ namespace VTClassic
 
         void RefreshColorSample()
         {
-            label4.Visible = false;
+            if ((CurrentReq != null) && (CurrentReq.UI_ColorSample_Uses()))
+            {
+                Color c = CurrentReq.UI_ColorSample_Get();
 
-            
-            if (CurrentReq != null) {
-                Color c = System.Drawing.Color.White;
-
-                if (CurrentReq.GetRuleType() == eLootRuleType.AnySimilarColor) { c = ((AnySimilarColor)CurrentReq).EColor; }
-                if (CurrentReq.GetRuleType() == eLootRuleType.SpecificSimilarColor) { c = ((SpecificSimilarColor)CurrentReq).EColor; }
-
-                if (c != System.Drawing.Color.White)
-                {
-                    label4.ForeColor = c;
-                    label4.BackColor = c;
-                    label4.Visible = true;
-                }
+                label4.ForeColor = c;
+                label4.BackColor = c;
+                label4.Visible = true;
             }
-
+            else
+            {
+                label4.Visible = false;
+            }
         }
 
         void SetCurrentReq(iLootRule cr, int crn)
@@ -581,6 +576,8 @@ namespace VTClassic
             lstRules.Invalidate();
             lstRequirements.Invalidate();
 
+            RefreshColorSample();
+
             Working = false;
         }
 
@@ -598,7 +595,7 @@ namespace VTClassic
             lstRules.Invalidate();
             lstRequirements.Invalidate();
 
-
+            RefreshColorSample();
 
             Working = false;
         }

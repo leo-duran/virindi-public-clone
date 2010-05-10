@@ -92,6 +92,9 @@ namespace VTClassic
         public virtual string UI_TextValue3_Label() { return "[None]"; }
         public virtual void UI_TextValue3_Set(string value) { }
         public virtual string UI_TextValue3_Get() { return ""; }
+
+        public virtual bool UI_ColorSample_Uses() { return false; }
+        public virtual System.Drawing.Color UI_ColorSample_Get() { return System.Drawing.Color.White; }
 #endif
 
         cUniqueID iUniqueID;
@@ -1778,7 +1781,7 @@ namespace VTClassic
     internal class AnySimilarColor : iLootRule
     {
         public System.Drawing.Color EColor = System.Drawing.Color.White;
-        public double MaxDifferenceSV = 50d;
+        public double MaxDifferenceSV = 0.1d;
         public double MaxDifferenceH = 10d;
 
         public AnySimilarColor() { }
@@ -1894,6 +1897,9 @@ namespace VTClassic
         public override string UI_TextValue3_Label() { return "Max diff (S/V 0-1)"; }
         public override void UI_TextValue3_Set(string value) { double.TryParse(value, out MaxDifferenceSV); }
         public override string UI_TextValue3_Get() { return MaxDifferenceSV.ToString(); }
+
+        public override bool UI_ColorSample_Uses() { return true; }
+        public override System.Drawing.Color UI_ColorSample_Get() { return EColor; }
 #endif
     }
     #endregion AnySimilarColor
@@ -1903,7 +1909,7 @@ namespace VTClassic
     {
         public System.Drawing.Color EColor = System.Drawing.Color.White;
         public String ArmorGroup;
-        public double MaxDifferenceSV = 50d;
+        public double MaxDifferenceSV = 0.1d;
         public double MaxDifferenceH = 10d;
 
         private static SortedDictionary<String, int[]> armorGroupDefinitions = null;
@@ -2100,6 +2106,9 @@ namespace VTClassic
         public override string UI_TextValue3_Label() { return "Max diff (S/V 0-1)"; }
         public override void UI_TextValue3_Set(string value) { double.TryParse(value, out MaxDifferenceSV); }
         public override string UI_TextValue3_Get() { return MaxDifferenceSV.ToString(); }
+
+        public override bool UI_ColorSample_Uses() { return true; }
+        public override System.Drawing.Color UI_ColorSample_Get() { return EColor; }
 #endif
     }
     #endregion SpecificSimilarColor
