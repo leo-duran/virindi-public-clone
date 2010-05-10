@@ -131,6 +131,7 @@ namespace VTClassic
         CharacterMainPackEmptySlotsGE = 1001,
         CharacterLevelGE = 1002,
         CharacterLevelLE = 1003,
+        CharacterBaseSkill = 1004,
 
         DisabledRule = 9999,
     }
@@ -162,6 +163,7 @@ namespace VTClassic
                 case eLootRuleType.CharacterMainPackEmptySlotsGE: return new CharacterMainPackEmptySlotsGE();
                 case eLootRuleType.CharacterLevelGE: return new CharacterLevelGE();
                 case eLootRuleType.CharacterLevelLE: return new CharacterLevelLE();
+                case eLootRuleType.CharacterBaseSkill: return new CharacterBaseSkill();
 
                 case eLootRuleType.DisabledRule: return new DisabledRule(true);
 
@@ -1200,12 +1202,12 @@ namespace VTClassic
 
         public override string DisplayString()
         {
-            return String.Format("Char has {0} >= {1}", vk, keyval);
+            return String.Format("Buffed {0} >= {1}", vk, keyval);
         }
 
         public override string FriendlyName()
         {
-            return "Character Skill >=";
+            return "Character Buffed Skill >=";
         }
 
         public override bool MayRequireID()
@@ -1215,7 +1217,7 @@ namespace VTClassic
 
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
-        public override string UI_TextValue_Label() { return "Skill Value"; }
+        public override string UI_TextValue_Label() { return "Buffed Skill Value"; }
         public override void UI_TextValue_Set(string value) { int.TryParse(value, out keyval); }
         public override string UI_TextValue_Get() { return keyval.ToString(); }
 
@@ -1620,6 +1622,92 @@ namespace VTClassic
     }
     #endregion CharacterLevelLE
 
+    #region CharacterBaseSkill
+    internal class CharacterBaseSkill : iLootRule
+    {
+        public VTCSkillID vk = VTCSkillID.Alchemy;
+        public int minskill = 0;
+        public int maxskill = 999;
+
+        public CharacterBaseSkill() { }
+        public CharacterBaseSkill(VTCSkillID v, int min, int max) {vk = v; minskill = min; maxskill = max; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CharacterBaseSkill; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            //Need to use interop CharStats to fetch skill effective value,
+            //otherwise Gearcraft and Two Handed won't work
+            Decal.Interop.Filters.SkillInfo skillinfo = null;
+            try
+            {
+                skillinfo = Decal.Adapter.CoreManager.Current.CharacterFilter.Underlying.get_Skill((Decal.Interop.Filters.eSkillID)(int)vk);
+                return (skillinfo.Base >= minskill && skillinfo.Base <= maxskill);
+            }
+            finally
+            {
+                if (skillinfo != null)
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(skillinfo);
+            }
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            vk = (VTCSkillID)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            minskill = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            maxskill = Convert.ToInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString(minskill, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString(maxskill, System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Base {0} [{1}-{2}]", vk, minskill, maxskill);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Base Skill Range";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Minimum Base Skill"; }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out minskill); }
+        public override string UI_TextValue_Get() { return minskill.ToString(); }
+
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Maximum Base Skill"; }
+        public override void UI_TextValue2_Set(string value) { int.TryParse(value, out maxskill); }
+        public override string UI_TextValue2_Get() { return maxskill.ToString(); }
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ComboKeys.GetSkillEntries(); }
+        public override int UI_ActsOnCombo_Get() { return ComboKeys.IndexFromSkill(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = ComboKeys.SkillFromIndex(index); }
+#endif
+    }
+    #endregion CharacterBaseSkill
+
     #region DisabledRule
     internal class DisabledRule : iLootRule
     {
@@ -1807,6 +1895,7 @@ namespace VTClassic
 #endif
     }
     #endregion AnySimilarColor
+
 
     #endregion LootRule classes
 

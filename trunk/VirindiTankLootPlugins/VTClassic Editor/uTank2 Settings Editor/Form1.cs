@@ -711,7 +711,7 @@ namespace VTClassic
         {
             SelectMinPackSlotsForm f = new SelectMinPackSlotsForm();
             DialogResult r = f.ShowDialog(this);
-            if (r == DialogResult.OK)
+            if (r == DialogResult.OK || r == DialogResult.Yes)
             {
                 lstRules.Visible = false;
                 try
@@ -727,12 +727,16 @@ namespace VTClassic
                                 if (req.GetRuleType() == eLootRuleType.CharacterMainPackEmptySlotsGE)
                                 {
                                     needsReq = false;
+                                    if (r == DialogResult.Yes)
+                                    {
+                                        ((CharacterMainPackEmptySlotsGE)req).keyval = f.slots;
+                                        FileChanged = true;
+                                    }
                                     break;
                                 }
                             }
                             if (needsReq)
                             {
-
                                 rule.IntRules.Add(new CharacterMainPackEmptySlotsGE(f.slots));
                                 FileChanged = true;
                             }
@@ -781,7 +785,6 @@ namespace VTClassic
                     CurrentRule.IntRules.Add(new DisabledRule(true));
                 }
                 SetCurrentRule(CurrentRule, CurrentRuleNum);
-
                 FileChanged = true;
             }
 
