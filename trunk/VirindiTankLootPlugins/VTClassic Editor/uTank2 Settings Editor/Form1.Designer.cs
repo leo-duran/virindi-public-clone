@@ -93,6 +93,7 @@ namespace VTClassic
             this.button1 = new System.Windows.Forms.Button();
             this.cmdDeleteRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.txtKeepCount = new System.Windows.Forms.TextBox();
             this.cmdCloneReq = new System.Windows.Forms.Button();
             this.groupReqs = new System.Windows.Forms.GroupBox();
@@ -129,7 +130,7 @@ namespace VTClassic
             this.tSC_listCombine = new System.Windows.Forms.ListBox();
             this.tSC_lblDefaultCombine = new System.Windows.Forms.Label();
             this.tSC_txtDefaultCombine = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabLootRules.SuspendLayout();
@@ -415,6 +416,7 @@ namespace VTClassic
             // 
             // groupRule
             // 
+            this.groupRule.Controls.Add(this.label4);
             this.groupRule.Controls.Add(this.button3);
             this.groupRule.Controls.Add(this.txtKeepCount);
             this.groupRule.Controls.Add(this.cmdCloneReq);
@@ -432,6 +434,16 @@ namespace VTClassic
             this.groupRule.TabIndex = 11;
             this.groupRule.TabStop = false;
             this.groupRule.Text = "Rule";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 76);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(104, 29);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Toggle this rule";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtKeepCount
             // 
@@ -789,15 +801,14 @@ namespace VTClassic
             this.tSC_txtDefaultCombine.TabIndex = 0;
             this.tSC_txtDefaultCombine.TextChanged += new System.EventHandler(this.tSC_txtDefaultCombine_TextChanged);
             // 
-            // button3
+            // label4
             // 
-            this.button3.Location = new System.Drawing.Point(9, 76);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 29);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Toggle this rule";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.label4.Location = new System.Drawing.Point(131, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 29);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "              ";
+            this.label4.Visible = false;
             // 
             // Form1
             // 
@@ -1130,6 +1141,7 @@ namespace VTClassic
         private TextBox txtKeepCount;
         private ToolStripMenuItem addPackslotRulesToolStripMenuItem;
         private Button button3;
+        private Label label4;
 
 
     }

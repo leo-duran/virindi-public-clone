@@ -125,6 +125,7 @@ namespace VTClassic
         LongValKeyE = 12,
         LongValKeyNE = 13,
         AnySimilarColor = 14,
+        SpecificSimilarColor = 15,
         
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
@@ -157,6 +158,7 @@ namespace VTClassic
                 case eLootRuleType.LongValKeyE: return new LongValKeyE();
                 case eLootRuleType.LongValKeyNE: return new LongValKeyNE();
                 case eLootRuleType.AnySimilarColor: return new AnySimilarColor();
+                case eLootRuleType.SpecificSimilarColor: return new SpecificSimilarColor();
 
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
@@ -1896,6 +1898,211 @@ namespace VTClassic
     }
     #endregion AnySimilarColor
 
+    #region SpecificSimilarColor
+    internal class SpecificSimilarColor : iLootRule
+    {
+        public System.Drawing.Color EColor = System.Drawing.Color.White;
+        public String ArmorGroup;
+        public double MaxDifferenceSV = 50d;
+        public double MaxDifferenceH = 10d;
+
+        private static SortedDictionary<String, int[]> armorGroupDefinitions = null;
+        private static ReadOnlyCollection<String> armorGroups = null;
+
+        public SpecificSimilarColor()
+        {
+            ArmorGroup = ArmorGroups()[0];
+        }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SpecificSimilarColor; }
+
+        public static SortedDictionary<String, int[]> ArmorGroupDefinitions()
+        {
+            if (armorGroupDefinitions == null)
+            {
+                armorGroupDefinitions = new SortedDictionary<string, int[]>();
+
+                armorGroupDefinitions.Add("Amuli Coat (Chest)", new int[] { 0 });
+                armorGroupDefinitions.Add("Amuli Coat (Collar/Shoulder)", new int[] { 1, 2 });
+                armorGroupDefinitions.Add("Amuli Coat (Arms/Trim)", new int[] { 3, 4, 5, 6, 7 });
+
+                armorGroupDefinitions.Add("Amuli Legs (Base)", new int[] { 0, 1 });
+                armorGroupDefinitions.Add("Amuli Legs (Trim)", new int[] { 2, 3 });                
+
+                armorGroupDefinitions.Add("Celdon (Base)", new int[] { 0 });
+                armorGroupDefinitions.Add("Celdon (Veins)", new int[] { 1, 2 });
+
+                armorGroupDefinitions.Add("Lorica BP (Veins)", new int[] { 0, 1, 2 });
+                armorGroupDefinitions.Add("Lorica BP (Base)", new int[] { 3, 4 });
+
+                armorGroupDefinitions.Add("Olthoi Amuli Legs (Trim)", new int[] { 6, 7, 8 });
+
+                armorGroupDefinitions.Add("Scalemail Cuirass (Base)", new int[] { 0 });
+                armorGroupDefinitions.Add("Scalemail Cuirass (Bumps)", new int[] { 1 });
+                armorGroupDefinitions.Add("Scalemail Cuirass (??? Belt ???)", new int[] { 2 });
+
+                armorGroupDefinitions.Add("Tenassa Legs (Line at Side)", new int[] { 0 });
+                armorGroupDefinitions.Add("Tenassa Legs (Base)", new int[] { 1 });
+                armorGroupDefinitions.Add("Tenassa Legs (Hilight)", new int[] { 2 });
+
+                armorGroupDefinitions.Add("Yoroi Cuirass (Base)", new int[] { 0, 1 });
+                armorGroupDefinitions.Add("Yoroi Cuirass (Belt)", new int[] { 2 });
+                armorGroupDefinitions.Add("Yoroi Girth (Base)", new int[] { 0 });
+                armorGroupDefinitions.Add("Yoroi Girth (Belt)", new int[] { 1 });
+                
+            }
+            return armorGroupDefinitions;
+        }
+
+        public static ReadOnlyCollection<String> ArmorGroups()
+        {
+            if (armorGroups == null)
+            {
+                string[] tmp = new string[ArmorGroupDefinitions().Count];
+                ArmorGroupDefinitions().Keys.CopyTo(tmp, 0);
+                armorGroups = new ReadOnlyCollection<String>(tmp);
+            }
+            return armorGroups;
+        }
+
+        public static int[] PaletteIndices(String armorGroup)
+        {
+            if (ArmorGroupDefinitions().ContainsKey(armorGroup))
+            {
+                return ArmorGroupDefinitions()[armorGroup];
+            }
+            return new int[] { };
+        }
+
+#if VTC_PLUGIN
+        public static void ColorToHSV(System.Drawing.Color color, out double hue, out double saturation, out double value)
+        {
+            int max = Math.Max(color.R, Math.Max(color.G, color.B));
+            int min = Math.Min(color.R, Math.Min(color.G, color.B));
+
+            hue = color.GetHue();
+            saturation = (max == 0) ? 0 : 1d - (1d * min / max);
+            value = max / 255d;
+        }
+
+        public override bool Match(GameItemInfo id)
+        {
+            double ht, st, vt;
+            ColorToHSV(EColor, out ht, out st, out vt);
+
+            List<int> indices = new List<int>(PaletteIndices(ArmorGroup));
+
+            for (int i = 0; i < id.Palettes.Count; i++)
+            {
+                if (indices.Contains(i))
+                {
+
+                    uTank2.LootPlugins.GameItemInfo.PaletteData pal = id.Palettes[i];
+
+                    System.Drawing.Color exc = pal.ExampleColor;
+
+                    double h, s, v;
+                    ColorToHSV(exc, out h, out s, out v);
+
+                    //Distance between h
+                    if (Math.Abs(h - ht) > MaxDifferenceH) continue;
+
+                    //Distance between sv
+                    double ss = s - st;
+                    double vv = v - vt;
+                    double svdist = Math.Sqrt(ss * ss + vv * vv);
+                    if (svdist > MaxDifferenceSV) continue;
+
+                    //Success
+                    return true;
+
+                    /*
+                    //Euclidean distance for colors
+                    int r = exc.R - EColor.R;
+                    int g = exc.G - EColor.G;
+                    int b = exc.B - EColor.B;
+                    int dist = (int)Math.Floor(Math.Sqrt(r * r + g * g + b * b));
+
+                    if (dist > MaxDifference) continue;
+
+                    //Match!
+                    return true;
+                    */
+                }
+            }
+
+            return false;
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            int r = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            int g = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            int b = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            MaxDifferenceH = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            MaxDifferenceSV = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+
+            EColor = System.Drawing.Color.FromArgb(r, g, b);
+
+            ArmorGroup = inf.ReadLine();
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(EColor.R);
+            inf.WriteLine(EColor.G);
+            inf.WriteLine(EColor.B);
+            inf.WriteLine(MaxDifferenceH);
+            inf.WriteLine(MaxDifferenceSV);
+            inf.WriteLine(ArmorGroup);
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("{0}: {1}, {2}, {3}", ArmorGroup, EColor, MaxDifferenceH, MaxDifferenceSV);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Specific Similar Color";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Armor Type/Color Region"; }
+        public override void UI_ActsOnCombo_Set(int index) { ArmorGroup = ArmorGroups()[index]; }
+        public override int UI_ActsOnCombo_Get() { return ArmorGroups().IndexOf(ArmorGroup); }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return ArmorGroups(); }
+
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "RGB color value (hex)"; }
+        public override void UI_TextValue_Set(string value) { int p; int.TryParse(value, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentCulture, out p); EColor = System.Drawing.Color.FromArgb(unchecked(p | (int)0xFF000000)); }
+        public override string UI_TextValue_Get() { return (EColor.ToArgb() & 0xFFFFFF).ToString("X"); }
+
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Max diff (Hue 0-255)"; }
+        public override void UI_TextValue2_Set(string value) { double.TryParse(value, out MaxDifferenceH); }
+        public override string UI_TextValue2_Get() { return MaxDifferenceH.ToString(); }
+
+        public override bool UI_TextValue3_Uses() { return true; }
+        public override string UI_TextValue3_Label() { return "Max diff (S/V 0-1)"; }
+        public override void UI_TextValue3_Set(string value) { double.TryParse(value, out MaxDifferenceSV); }
+        public override string UI_TextValue3_Get() { return MaxDifferenceSV.ToString(); }
+#endif
+    }
+    #endregion SpecificSimilarColor
 
     #endregion LootRule classes
 

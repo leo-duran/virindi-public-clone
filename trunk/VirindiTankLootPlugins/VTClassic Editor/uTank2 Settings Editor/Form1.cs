@@ -162,6 +162,27 @@ namespace VTClassic
             RequirementComboEntries.Add(ruletype);
         }
 
+        void RefreshColorSample()
+        {
+            label4.Visible = false;
+
+            
+            if (CurrentReq != null) {
+                Color c = System.Drawing.Color.White;
+
+                if (CurrentReq.GetRuleType() == eLootRuleType.AnySimilarColor) { c = ((AnySimilarColor)CurrentReq).EColor; }
+                if (CurrentReq.GetRuleType() == eLootRuleType.SpecificSimilarColor) { c = ((SpecificSimilarColor)CurrentReq).EColor; }
+
+                if (c != System.Drawing.Color.White)
+                {
+                    label4.ForeColor = c;
+                    label4.BackColor = c;
+                    label4.Visible = true;
+                }
+            }
+
+        }
+
         void SetCurrentReq(iLootRule cr, int crn)
         {
             Working = true;
@@ -245,6 +266,8 @@ namespace VTClassic
                 //*******************
                 //*******************
             }
+
+            RefreshColorSample();
 
             Working = false;
         }
@@ -532,7 +555,7 @@ namespace VTClassic
             if (newlr == null)
                 newlr = CurrentReq;
 
-            if (newlr.GetType() != CurrentReq.GetType())
+            if (newlr.GetRuleType() != CurrentReq.GetRuleType())
             {
                 //Change type
                 CurrentRule.IntRules[CurrentReqNum] = newlr;
@@ -576,6 +599,7 @@ namespace VTClassic
             lstRequirements.Invalidate();
 
 
+
             Working = false;
         }
 
@@ -590,6 +614,8 @@ namespace VTClassic
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();
             lstRequirements.Invalidate();
+
+            RefreshColorSample();
 
             Working = false;
         }
@@ -606,6 +632,7 @@ namespace VTClassic
             lstRules.Invalidate();
             lstRequirements.Invalidate();
 
+            RefreshColorSample();
 
             Working = false;
         }
@@ -621,6 +648,8 @@ namespace VTClassic
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();
             lstRequirements.Invalidate();
+
+            RefreshColorSample();
 
             Working = false;
         }
