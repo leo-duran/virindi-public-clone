@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VTClassicColorInfo>
+
+  <!-- Amuli Coat -->
+  <slotdef name="Amuli Coat (Chest)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Amuli Coat (Collar/Shoulder)">
+    <entry value="1"/>
+    <entry value="2"/>
+  </slotdef>
+  <slotdef name="Amuli Coat (Arms/Trim)">
+    <entry value="3"/>
+    <entry value="4"/>
+    <entry value="5"/>
+    <entry value="6"/>
+    <entry value="7"/>
+  </slotdef>
+
+  <!-- Amuli Leggings -->
+  <slotdef name="Amuli Legs (Base)">
+    <entry value="0"/>
+    <entry value="1"/>
+  </slotdef>
+  <slotdef name="Amuli Legs (Trim)">
+    <entry value="2"/>
+    <entry value="3"/>
+  </slotdef>
+
+  <!-- Celdon -->
+  <slotdef name="Celdon (Base)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Celdon (Veins)">
+    <entry value="1"/>
+    <entry value="2"/>
+  </slotdef>
+
+  <!-- Lorica -->
+  <slotdef name="Lorica BP (Veins)">
+    <entry value="0"/>
+    <entry value="1"/>
+    <entry value="2"/>
+  </slotdef>
+  <slotdef name="Lorica BP (Base)">
+    <entry value="3"/>
+    <entry value="4"/>
+  </slotdef>
+
+  <slotdef name="Olthoi Amuli Legs (Trim)">
+    <entry value="6"/>
+    <entry value="7"/>
+    <entry value="8"/>
+  </slotdef>
+
+  <slotdef name="Scalemail Cuirass (Base)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Scalemail Cuirass (Bumps)">
+    <entry value="1"/>
+  </slotdef>
+  <slotdef name="Scalemail Cuirass (Belt)">
+    <entry value="2"/>
+  </slotdef>
+
+  <slotdef name="Tenassa Legs (Line at Side)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Tenassa Legs (Base)">
+    <entry value="1"/>
+  </slotdef>
+  <slotdef name="Tenassa Legs (Hilight)">
+    <entry value="2"/>
+  </slotdef>
+
+  <slotdef name="Yoroi Cuirass (Base)">
+    <entry value="0"/>
+    <entry value="1"/>
+  </slotdef>
+  <slotdef name="Yoroi Cuirass (Belt)">
+    <entry value="2"/>
+  </slotdef>
+  
+  <slotdef name="Yoroi Girth (Base)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Yoroi Girth (Belt)">
+    <entry value="1"/>
+  </slotdef>
+
+</VTClassicColorInfo>

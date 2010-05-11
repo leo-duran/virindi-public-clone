@@ -93,6 +93,11 @@ namespace VTClassic
         public virtual void UI_TextValue3_Set(string value) { }
         public virtual string UI_TextValue3_Get() { return ""; }
 
+        public virtual bool UI_TextValue4_Uses() { return false; }
+        public virtual string UI_TextValue4_Label() { return "[None]"; }
+        public virtual void UI_TextValue4_Set(string value) { }
+        public virtual string UI_TextValue4_Get() { return ""; }
+
         public virtual bool UI_ColorSample_Uses() { return false; }
         public virtual System.Drawing.Color UI_ColorSample_Get() { return System.Drawing.Color.White; }
 #endif
@@ -128,7 +133,8 @@ namespace VTClassic
         LongValKeyE = 12,
         LongValKeyNE = 13,
         AnySimilarColor = 14,
-        SpecificSimilarColor = 15,
+        SimilarColorArmorType = 15,
+        SlotSimilarColor = 16,
         
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
@@ -161,7 +167,8 @@ namespace VTClassic
                 case eLootRuleType.LongValKeyE: return new LongValKeyE();
                 case eLootRuleType.LongValKeyNE: return new LongValKeyNE();
                 case eLootRuleType.AnySimilarColor: return new AnySimilarColor();
-                case eLootRuleType.SpecificSimilarColor: return new SpecificSimilarColor();
+                case eLootRuleType.SimilarColorArmorType: return new SimilarColorArmorType();
+                case eLootRuleType.SlotSimilarColor: return new SlotSimilarColor();
 
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
@@ -1904,8 +1911,8 @@ namespace VTClassic
     }
     #endregion AnySimilarColor
 
-    #region SpecificSimilarColor
-    internal class SpecificSimilarColor : iLootRule
+    #region SimilarColorArmorType
+    internal class SimilarColorArmorType : iLootRule
     {
         public System.Drawing.Color EColor = System.Drawing.Color.White;
         public String ArmorGroup;
@@ -1915,67 +1922,30 @@ namespace VTClassic
         private static SortedDictionary<String, int[]> armorGroupDefinitions = null;
         private static ReadOnlyCollection<String> armorGroups = null;
 
-        public SpecificSimilarColor()
+        public SimilarColorArmorType()
         {
             ArmorGroup = ArmorGroups()[0];
         }
 
-        public override eLootRuleType GetRuleType() { return eLootRuleType.SpecificSimilarColor; }
-
-        public static SortedDictionary<String, int[]> ArmorGroupDefinitions()
-        {
-            if (armorGroupDefinitions == null)
-            {
-                armorGroupDefinitions = new SortedDictionary<string, int[]>();
-
-                armorGroupDefinitions.Add("Amuli Coat (Chest)", new int[] { 0 });
-                armorGroupDefinitions.Add("Amuli Coat (Collar/Shoulder)", new int[] { 1, 2 });
-                armorGroupDefinitions.Add("Amuli Coat (Arms/Trim)", new int[] { 3, 4, 5, 6, 7 });
-
-                armorGroupDefinitions.Add("Amuli Legs (Base)", new int[] { 0, 1 });
-                armorGroupDefinitions.Add("Amuli Legs (Trim)", new int[] { 2, 3 });                
-
-                armorGroupDefinitions.Add("Celdon (Base)", new int[] { 0 });
-                armorGroupDefinitions.Add("Celdon (Veins)", new int[] { 1, 2 });
-
-                armorGroupDefinitions.Add("Lorica BP (Veins)", new int[] { 0, 1, 2 });
-                armorGroupDefinitions.Add("Lorica BP (Base)", new int[] { 3, 4 });
-
-                armorGroupDefinitions.Add("Olthoi Amuli Legs (Trim)", new int[] { 6, 7, 8 });
-
-                armorGroupDefinitions.Add("Scalemail Cuirass (Base)", new int[] { 0 });
-                armorGroupDefinitions.Add("Scalemail Cuirass (Bumps)", new int[] { 1 });
-                armorGroupDefinitions.Add("Scalemail Cuirass (??? Belt ???)", new int[] { 2 });
-
-                armorGroupDefinitions.Add("Tenassa Legs (Line at Side)", new int[] { 0 });
-                armorGroupDefinitions.Add("Tenassa Legs (Base)", new int[] { 1 });
-                armorGroupDefinitions.Add("Tenassa Legs (Hilight)", new int[] { 2 });
-
-                armorGroupDefinitions.Add("Yoroi Cuirass (Base)", new int[] { 0, 1 });
-                armorGroupDefinitions.Add("Yoroi Cuirass (Belt)", new int[] { 2 });
-                armorGroupDefinitions.Add("Yoroi Girth (Base)", new int[] { 0 });
-                armorGroupDefinitions.Add("Yoroi Girth (Belt)", new int[] { 1 });
-                
-            }
-            return armorGroupDefinitions;
-        }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SimilarColorArmorType; }
 
         public static ReadOnlyCollection<String> ArmorGroups()
         {
             if (armorGroups == null)
             {
-                string[] tmp = new string[ArmorGroupDefinitions().Count];
-                ArmorGroupDefinitions().Keys.CopyTo(tmp, 0);
-                armorGroups = new ReadOnlyCollection<String>(tmp);
+                List<string> keys = new List<string>();
+                foreach (string k in ColorXML.SlotDefinitions.Keys)
+                    keys.Add(k);
+                armorGroups = keys.AsReadOnly();
             }
             return armorGroups;
         }
 
         public static int[] PaletteIndices(String armorGroup)
         {
-            if (ArmorGroupDefinitions().ContainsKey(armorGroup))
+            if (ColorXML.SlotDefinitions.ContainsKey(armorGroup))
             {
-                return ArmorGroupDefinitions()[armorGroup];
+                return ColorXML.SlotDefinitions[armorGroup];
             }
             return new int[] { };
         }
@@ -2076,7 +2046,7 @@ namespace VTClassic
 
         public override string FriendlyName()
         {
-            return "Specific Similar Color";
+            return "Armor Type Similar Color";
         }
 
         public override bool MayRequireID()
@@ -2111,7 +2081,128 @@ namespace VTClassic
         public override System.Drawing.Color UI_ColorSample_Get() { return EColor; }
 #endif
     }
-    #endregion SpecificSimilarColor
+    #endregion SimilarColorArmorType
+
+    #region SlotSimilarColor
+    internal class SlotSimilarColor : iLootRule
+    {
+        public System.Drawing.Color EColor = System.Drawing.Color.White;
+        public double MaxDifferenceSV = 0.1d;
+        public double MaxDifferenceH = 10d;
+        public int Slot;
+
+        public SlotSimilarColor() { }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SlotSimilarColor; }
+
+#if VTC_PLUGIN
+        public static void ColorToHSV(System.Drawing.Color color, out double hue, out double saturation, out double value)
+        {
+            int max = Math.Max(color.R, Math.Max(color.G, color.B));
+            int min = Math.Min(color.R, Math.Min(color.G, color.B));
+
+            hue = color.GetHue();
+            saturation = (max == 0) ? 0 : 1d - (1d * min / max);
+            value = max / 255d;
+        }
+
+        public override bool Match(GameItemInfo id)
+        {
+            double ht, st, vt;
+            ColorToHSV(EColor, out ht, out st, out vt);
+
+            if (id.Palettes.Count <= Slot) return false;
+            uTank2.LootPlugins.GameItemInfo.PaletteData pal = id.Palettes[Slot];
+
+            System.Drawing.Color exc = pal.ExampleColor;
+
+            double h, s, v;
+            ColorToHSV(exc, out h, out s, out v);
+
+            //Distance between h
+            if (Math.Abs(h - ht) > MaxDifferenceH) return false;
+
+            //Distance between sv
+            double ss = s - st;
+            double vv = v - vt;
+            double svdist = Math.Sqrt(ss * ss + vv * vv);
+            if (svdist > MaxDifferenceSV) return false;
+
+            //Success
+            return true;
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            int r = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            int g = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            int b = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            MaxDifferenceH = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            MaxDifferenceSV = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            Slot = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+
+            EColor = System.Drawing.Color.FromArgb(r, g, b);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(EColor.R);
+            inf.WriteLine(EColor.G);
+            inf.WriteLine(EColor.B);
+            inf.WriteLine(MaxDifferenceH);
+            inf.WriteLine(MaxDifferenceSV);
+            inf.WriteLine(Slot);
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Slot {0} Color {1}: {2}, {3}", Slot, EColor, MaxDifferenceH, MaxDifferenceSV);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Slot Similar Color";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "RGB color value (hex)"; }
+        public override void UI_TextValue_Set(string value) { int p; int.TryParse(value, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentCulture, out p); EColor = System.Drawing.Color.FromArgb(unchecked(p | (int)0xFF000000)); }
+        public override string UI_TextValue_Get() { return (EColor.ToArgb() & 0xFFFFFF).ToString("X"); }
+
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Max diff (Hue 0-255)"; }
+        public override void UI_TextValue2_Set(string value) { double.TryParse(value, out MaxDifferenceH); }
+        public override string UI_TextValue2_Get() { return MaxDifferenceH.ToString(); }
+
+        public override bool UI_TextValue3_Uses() { return true; }
+        public override string UI_TextValue3_Label() { return "Max diff (S/V 0-1)"; }
+        public override void UI_TextValue3_Set(string value) { double.TryParse(value, out MaxDifferenceSV); }
+        public override string UI_TextValue3_Get() { return MaxDifferenceSV.ToString(); }
+
+        public override bool UI_TextValue4_Uses() { return true; }
+        public override string UI_TextValue4_Label() { return "Palette Entry #"; }
+        public override void UI_TextValue4_Set(string value) { int.TryParse(value, out Slot); }
+        public override string UI_TextValue4_Get() { return Slot.ToString(); }
+
+        public override bool UI_ColorSample_Uses() { return true; }
+        public override System.Drawing.Color UI_ColorSample_Get() { return EColor; }
+#endif
+    }
+    #endregion SlotSimilarColor
+
 
     #endregion LootRule classes
 

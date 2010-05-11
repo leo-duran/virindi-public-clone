@@ -93,6 +93,7 @@ namespace VTClassic
             this.button1 = new System.Windows.Forms.Button();
             this.cmdDeleteRule = new System.Windows.Forms.Button();
             this.groupRule = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.txtKeepCount = new System.Windows.Forms.TextBox();
             this.cmdCloneReq = new System.Windows.Forms.Button();
@@ -130,7 +131,8 @@ namespace VTClassic
             this.tSC_listCombine = new System.Windows.Forms.ListBox();
             this.tSC_lblDefaultCombine = new System.Windows.Forms.Label();
             this.tSC_txtDefaultCombine = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtValue4 = new System.Windows.Forms.TextBox();
+            this.lblValue4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabLootRules.SuspendLayout();
@@ -164,7 +166,7 @@ namespace VTClassic
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -173,7 +175,7 @@ namespace VTClassic
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -183,14 +185,14 @@ namespace VTClassic
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -198,26 +200,26 @@ namespace VTClassic
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -229,34 +231,34 @@ namespace VTClassic
             this.autoSortRulesToolStripMenuItem,
             this.addPackslotRulesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.editToolStripMenuItem.Text = "Rule";
             // 
             // addSalvageRulesToolStripMenuItem
             // 
             this.addSalvageRulesToolStripMenuItem.Name = "addSalvageRulesToolStripMenuItem";
-            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.addSalvageRulesToolStripMenuItem.Text = "Add/Update Salvage Rules";
             this.addSalvageRulesToolStripMenuItem.Click += new System.EventHandler(this.addSalvageRulesToolStripMenuItem_Click);
             // 
             // increaseSalvageWorkmanshipsToolStripMenuItem
             // 
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Name = "increaseSalvageWorkmanshipsToolStripMenuItem";
-            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Text = "Update Workmanship Requirements";
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Click += new System.EventHandler(this.increaseSalvageWorkmanshipsToolStripMenuItem_Click);
             // 
             // autoSortRulesToolStripMenuItem
             // 
             this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
-            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
             this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
             // 
             // addPackslotRulesToolStripMenuItem
             // 
             this.addPackslotRulesToolStripMenuItem.Name = "addPackslotRulesToolStripMenuItem";
-            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.addPackslotRulesToolStripMenuItem.Text = "Add Packslot Requirements";
             this.addPackslotRulesToolStripMenuItem.Click += new System.EventHandler(this.addPackslotRulesToolStripMenuItem_Click);
             // 
@@ -266,20 +268,20 @@ namespace VTClassic
             this.exportRangesToolStripMenuItem,
             this.importRangesToolStripMenuItem});
             this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
-            this.combineToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.combineToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.combineToolStripMenuItem.Text = "Combine";
             // 
             // exportRangesToolStripMenuItem
             // 
             this.exportRangesToolStripMenuItem.Name = "exportRangesToolStripMenuItem";
-            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exportRangesToolStripMenuItem.Text = "Export Ranges";
             this.exportRangesToolStripMenuItem.Click += new System.EventHandler(this.exportRangesToolStripMenuItem_Click);
             // 
             // importRangesToolStripMenuItem
             // 
             this.importRangesToolStripMenuItem.Name = "importRangesToolStripMenuItem";
-            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.importRangesToolStripMenuItem.Text = "Import Ranges";
             this.importRangesToolStripMenuItem.Click += new System.EventHandler(this.importRangesToolStripMenuItem_Click);
             // 
@@ -292,8 +294,8 @@ namespace VTClassic
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(583, 450);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             this.tabControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
+            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
             // tabLootRules
             // 
@@ -435,6 +437,15 @@ namespace VTClassic
             this.groupRule.TabStop = false;
             this.groupRule.Text = "Rule";
             // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(131, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 29);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "              ";
+            this.label4.Visible = false;
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(9, 76);
@@ -465,6 +476,8 @@ namespace VTClassic
             // 
             // groupReqs
             // 
+            this.groupReqs.Controls.Add(this.lblValue4);
+            this.groupReqs.Controls.Add(this.txtValue4);
             this.groupReqs.Controls.Add(this.txtValue3);
             this.groupReqs.Controls.Add(this.lblValue3);
             this.groupReqs.Controls.Add(this.lblValue2);
@@ -676,9 +689,9 @@ namespace VTClassic
             this.lstRules.Name = "lstRules";
             this.lstRules.Size = new System.Drawing.Size(160, 303);
             this.lstRules.TabIndex = 9;
+            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
             this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
-            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             // 
             // tabSalvageCombine
             // 
@@ -801,14 +814,22 @@ namespace VTClassic
             this.tSC_txtDefaultCombine.TabIndex = 0;
             this.tSC_txtDefaultCombine.TextChanged += new System.EventHandler(this.tSC_txtDefaultCombine_TextChanged);
             // 
-            // label4
+            // txtValue4
             // 
-            this.label4.Location = new System.Drawing.Point(131, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 29);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "              ";
-            this.label4.Visible = false;
+            this.txtValue4.Location = new System.Drawing.Point(6, 112);
+            this.txtValue4.Name = "txtValue4";
+            this.txtValue4.Size = new System.Drawing.Size(142, 20);
+            this.txtValue4.TabIndex = 15;
+            this.txtValue4.TextChanged += new System.EventHandler(this.txtValue4_TextChanged);
+            // 
+            // lblValue4
+            // 
+            this.lblValue4.AutoSize = true;
+            this.lblValue4.Location = new System.Drawing.Point(7, 96);
+            this.lblValue4.Name = "lblValue4";
+            this.lblValue4.Size = new System.Drawing.Size(43, 13);
+            this.lblValue4.TabIndex = 16;
+            this.lblValue4.Text = "Value 4";
             // 
             // Form1
             // 
@@ -1142,6 +1163,8 @@ namespace VTClassic
         private ToolStripMenuItem addPackslotRulesToolStripMenuItem;
         private Button button3;
         private Label label4;
+        private Label lblValue4;
+        private TextBox txtValue4;
 
 
     }

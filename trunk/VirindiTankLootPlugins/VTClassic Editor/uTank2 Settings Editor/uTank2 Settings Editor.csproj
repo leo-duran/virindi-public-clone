@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\VTClassic Shared\ColorXML.cs">
+      <Link>VTClassicShared\ColorXML.cs</Link>
+    </Compile>
     <Compile Include="..\..\VTClassic Shared\ComboKeys.cs">
       <Link>VTClassicShared\ComboKeys.cs</Link>
     </Compile>
@@ -101,6 +104,7 @@
     </Compile>
     <EmbeddedResource Include="AddSalvageRulesForm.resx">
       <DependentUpon>AddSalvageRulesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <SubType>Designer</SubType>
@@ -113,6 +117,12 @@
     <EmbeddedResource Include="UpdateWorkReqsForm.resx">
       <DependentUpon>UpdateWorkReqsForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\VTClassic Shared\ColorSlots.Default.xml">
+      <Link>ColorSlots.Default.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

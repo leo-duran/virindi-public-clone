@@ -47,6 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\VTClassic Shared\ColorXML.cs">
+      <Link>VTClassicShared\ColorXML.cs</Link>
+    </Compile>
     <Compile Include="..\..\VTClassic Shared\ComboKeys.cs">
       <Link>VTClassicShared\ComboKeys.cs</Link>
     </Compile>
@@ -70,6 +73,12 @@
     </Compile>
     <Compile Include="LootCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\VTClassic Shared\ColorSlots.Default.xml">
+      <Link>ColorSlots.Default.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

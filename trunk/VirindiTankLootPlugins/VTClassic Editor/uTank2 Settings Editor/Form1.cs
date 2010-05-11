@@ -258,6 +258,14 @@ namespace VTClassic
                     txtValue3.Text = cr.UI_TextValue3_Get();
                 }
 
+                lblValue4.Visible = cr.UI_TextValue4_Uses();
+                txtValue4.Visible = lblValue4.Visible;
+                if (lblValue4.Visible)
+                {
+                    lblValue4.Text = cr.UI_TextValue4_Label();
+                    txtValue4.Text = cr.UI_TextValue4_Get();
+                }
+
                 //*******************
                 //*******************
             }
@@ -651,7 +659,23 @@ namespace VTClassic
             Working = false;
         }
 
+        private void txtValue4_TextChanged(object sender, EventArgs e)
+        {
+            if (Working) return;
+            FileChanged = true;
+            Working = true;
 
+            CurrentReq.UI_TextValue4_Set(txtValue4.Text);
+
+            lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
+            lstRules.Invalidate();
+            lstRequirements.Invalidate();
+
+            RefreshColorSample();
+
+            Working = false;
+        }      
+        
         private void button1_Click(object sender, EventArgs e)
         {
             if (CtrlPressed)
@@ -814,7 +838,8 @@ namespace VTClassic
                 FileChanged = true;
             }
 
-        }      
+        }
+
 
     }
 }
