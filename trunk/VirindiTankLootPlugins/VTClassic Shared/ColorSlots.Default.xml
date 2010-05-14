@@ -35,6 +35,13 @@
     <entry value="1"/>
     <entry value="2"/>
   </slotdef>
+  
+  <slotdef name="Chiran Helm (Horns)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Chiran Helm (Base)">
+    <entry value="1"/>
+  </slotdef>
 
   <!-- Lorica -->
   <slotdef name="Lorica BP (Veins)">
@@ -46,11 +53,40 @@
     <entry value="3"/>
     <entry value="4"/>
   </slotdef>
+  
+  <slotdef name="Nariyid BP (Circle/Lines)">
+    <entry value="0"/>
+	<entry value="1"/>
+  </slotdef>
+  <slotdef name="Nariyid BP (Base)">
+    <entry value="2"/>
+  </slotdef>
+  <slotdef name="Nariyid BP (Shoulders)">
+    <entry value="3"/>
+  </slotdef>
+  
+  <slotdef name="Nariyid Sleeves (Shoulders)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Nariyid Sleeves (Upper Arm)">
+    <entry value="1"/>
+	<entry value="2"/>
+  </slotdef>
+  <slotdef name="Nariyid Sleeves (Lower Arm)">
+    <entry value="3"/>
+  </slotdef>
 
   <slotdef name="Olthoi Amuli Legs (Trim)">
     <entry value="6"/>
     <entry value="7"/>
     <entry value="8"/>
+  </slotdef>
+  
+  <slotdef name="Olthoi Koujia Kabuton (Base)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Olthoi Koujia Kabuton (Horns)">
+    <entry value="1"/>
   </slotdef>
 
   <slotdef name="Scalemail Cuirass (Base)">
@@ -71,6 +107,13 @@
   </slotdef>
   <slotdef name="Tenassa Legs (Hilight)">
     <entry value="2"/>
+  </slotdef>
+  
+  <slotdef name="Tenassa BP (Shoulders)">
+    <entry value="0"/>
+  </slotdef>
+  <slotdef name="Tenassa BP (Base)">
+    <entry value="1"/>
   </slotdef>
 
   <slotdef name="Yoroi Cuirass (Base)">
