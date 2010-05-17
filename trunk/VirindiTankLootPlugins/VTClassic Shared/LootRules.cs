@@ -135,6 +135,7 @@ namespace VTClassic
         AnySimilarColor = 14,
         SimilarColorArmorType = 15,
         SlotSimilarColor = 16,
+        SlotExactPalette = 17,
         
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
@@ -169,6 +170,7 @@ namespace VTClassic
                 case eLootRuleType.AnySimilarColor: return new AnySimilarColor();
                 case eLootRuleType.SimilarColorArmorType: return new SimilarColorArmorType();
                 case eLootRuleType.SlotSimilarColor: return new SlotSimilarColor();
+                case eLootRuleType.SlotExactPalette: return new SlotExactPalette();
 
                 //Character-based reqs
                 case eLootRuleType.CharacterSkillGE: return new CharacterSkillGE();
@@ -2203,6 +2205,75 @@ namespace VTClassic
     }
     #endregion SlotSimilarColor
 
+    #region SlotExactPalette
+    internal class SlotExactPalette : iLootRule
+    {
+        public int Palette;
+        public int Slot;
+
+        public SlotExactPalette() { }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.SlotExactPalette; }
+
+#if VTC_PLUGIN
+        public override bool Match(GameItemInfo id)
+        {
+            if (id.Palettes.Count <= Slot) return false;
+            uTank2.LootPlugins.GameItemInfo.PaletteData pal = id.Palettes[Slot];
+
+            int ppal = pal.Palette & 0xFFFFFF;
+            int mpal = Palette & 0xFFFFFF;
+
+            return (ppal == mpal);
+        }
+
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = true;
+            ismatch = Match(id);
+        }
+#endif
+
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            Slot = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            Palette = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Slot);
+            inf.WriteLine(Palette);
+        }
+
+        public override string DisplayString()
+        {
+            return String.Format("Slot {0} Palette 0x{1:X}", Slot, Palette);
+        }
+
+        public override string FriendlyName()
+        {
+            return "Slot Exact Palette";
+        }
+
+        public override bool MayRequireID()
+        {
+            return false;
+        }
+
+#if VTC_EDITOR
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Palette ID"; }
+        public override void UI_TextValue2_Set(string value) { int p; int.TryParse(value, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentCulture, out Palette); }
+        public override string UI_TextValue2_Get() { return (Palette & 0xFFFFFF).ToString("X"); }
+
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Palette Entry #"; }
+        public override void UI_TextValue_Set(string value) { int.TryParse(value, out Slot); }
+        public override string UI_TextValue_Get() { return Slot.ToString(); }
+#endif
+    }
+    #endregion SlotExactPalette
 
     #endregion LootRule classes
 
