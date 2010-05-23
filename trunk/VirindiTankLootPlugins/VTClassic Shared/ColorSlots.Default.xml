@@ -45,35 +45,30 @@
 	<entry value="3"/>
 	<entry value="4"/>
   </slotdef>
-  
   <slotdef name="Chiran Legs (Girth)">
 	<entry value="1"/>
   </slotdef>
-  
   <slotdef name="Chiran Legs (Legs)">
 	<entry value="2"/>
 	<entry value="3"/>
   </slotdef>
-  
   <slotdef name="Chiran Legs (Trim)">
 	<entry value="0"/>
   </slotdef>
-  
   <slotdef name="Chiran Helm (Horns)">
     <entry value="0"/>
   </slotdef>
   <slotdef name="Chiran Helm (Base)">
     <entry value="1"/>
   </slotdef>
-  
+
   <!--slotdef name="Diforsa Greaves">
     <entry value="0"/>
   </slotdef-->
-  
   <!--slotdef name="Diforsa Pauldrons">
     <entry value="0"/>
   </slotdef-->
-  
+
   <slotdef name="Haebrean BP (Chest) *">
     <entry value="0"/>
   </slotdef>
@@ -83,7 +78,6 @@
   <slotdef name="Haebrean BP (Trim)">
     <entry value="2"/>
   </slotdef>  
-
   <slotdef name="Haebrean Girth (Base) *">
     <entry value="0"/>
   </slotdef>  
@@ -91,7 +85,6 @@
     <entry value="1"/>
 	<entry value="2"/>
   </slotdef>
-  
   <slotdef name="Haebrean Helm (Base)">
     <entry value="0"/>
   </slotdef>
@@ -105,20 +98,19 @@
   <slotdef name="Haebrean Pauldrons (Ornaments)">
     <entry value="1"/>
   </slotdef>
- 
+
   <!-- Lorica -->
   <slotdef name="Lorica BP (Veins)">
     <entry value="0"/>
     <entry value="1"/>
   </slotdef>
-  <slotdef name="Lorica BP (Base) *">
-	<entry value="2"/>
-    <entry value="3"/>    
+  <slotdef name="Lorica BP (Base)">
+    <entry value="2"/>
+    <entry value="3"/>
   </slotdef>
   <slotdef name="Lorica BP (Neck/Trim) *">
 	<entry value="4"/>
   </slotdef>
-  
   <slotdef name="Lorica Legs (Base)">
     <entry value="0"/>
   </slotdef>
@@ -140,7 +132,6 @@
   <slotdef name="Nariyid BP (Shoulders)">
     <entry value="3"/>
   </slotdef>
-  
   <slotdef name="Nariyid Girth (Base) *">
     <entry value="0"/>
   </slotdef>
@@ -150,7 +141,6 @@
   <slotdef name="Nariyid Girth (Ornaments)">
     <entry value="3"/>
   </slotdef>
-  
   <slotdef name="Nariyid Sleeves (Shoulders)">
     <entry value="0"/>
   </slotdef>
@@ -161,7 +151,7 @@
   <slotdef name="Nariyid Sleeves (Lower Arm)">
     <entry value="3"/>
   </slotdef>
-  
+
   <slotdef name="Olthoi BP (Base)">
     <entry value="0"/>
   </slotdef>
@@ -192,7 +182,6 @@
   <slotdef name="Olthoi Amuli Coat (Shoulders)">
     <entry value="3"/>
   </slotdef>
-  
   <slotdef name="Olthoi Amuli Legs (Trim)">
     <entry value="6"/>
     <entry value="7"/>
@@ -205,7 +194,7 @@
   <slotdef name="Olthoi Koujia Kabuton (Horns)">
     <entry value="1"/>
   </slotdef>
-  
+
   <slotdef name="Olthoi Koujia Legs (Base)">
     <entry value="0"/>
 	<entry value="1"/>
@@ -230,17 +219,17 @@
   <slotdef name="Tenassa Legs (Line at Side)">
     <entry value="0"/>
   </slotdef>
-  <slotdef name="Tenassa Legs (Base) *">
+  <slotdef name="Tenassa Legs (Base)">
     <entry value="1"/>
   </slotdef>
-  <slotdef name="Tenassa Legs (Hilight) *">
+  <slotdef name="Tenassa Legs (Hilight)">
     <entry value="2"/>
   </slotdef>
   
-  <slotdef name="Tenassa BP (Shoulders) *">
+  <slotdef name="Tenassa BP (Shoulders)">
     <entry value="0"/>
   </slotdef>
-  <slotdef name="Tenassa BP (Base) *">
+  <slotdef name="Tenassa BP (Base)">
     <entry value="1"/>
   </slotdef>
 
