@@ -112,6 +112,9 @@ namespace VTClassic
                     case eLootAction.KeepUpTo:
                         vtaction = LootAction.GetKeepUpTo(data1);
                         break;
+                    case eLootAction.Sell:
+                        vtaction = LootAction.Sell;
+                        break;
                 }
                 vtaction.RuleName = matchedrulename;
                 return vtaction;

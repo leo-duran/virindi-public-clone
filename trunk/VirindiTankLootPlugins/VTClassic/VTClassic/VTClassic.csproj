@@ -41,7 +41,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="utank2-i, Version=0.3.1.36, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="utank2-i, Version=0.3.1.40, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files\VirindiPlugins\Virindi Tank\utank2-i.dll</HintPath>
     </Reference>
