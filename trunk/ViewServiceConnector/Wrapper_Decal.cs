@@ -61,6 +61,16 @@ namespace MyClasses.MetaViewWrappers.DecalControls
             myView = p.LoadView(pXML);
         }
 
+        public void Initialize(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey)
+        {
+            myView = p.LoadViewResource(pXML);
+        }
+
+        public void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey)
+        {
+            myView = p.LoadView(pXML);
+        }
+
         public void SetIcon(int icon, int iconlibrary)
         {
             myView.SetIcon(icon, iconlibrary);

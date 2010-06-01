@@ -193,6 +193,8 @@ namespace MyClasses.MetaViewWrappers
     {
         void Initialize(Decal.Adapter.Wrappers.PluginHost p, string pXML);
         void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML);
+        void Initialize(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey);
+        void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey);
 
         void SetIcon(int icon, int iconlibrary);
         void SetIcon(int portalicon);

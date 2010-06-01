@@ -72,6 +72,24 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
             myView = new VirindiViewService.HudView(iprop, igroup);
         }
 
+        public void Initialize(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey)
+        {
+            VirindiViewService.XMLParsers.Decal3XMLParser ps = new VirindiViewService.XMLParsers.Decal3XMLParser();
+            ViewProperties iprop;
+            ControlGroup igroup;
+            ps.ParseFromResource(pXML, out iprop, out igroup);
+            myView = new VirindiViewService.HudView(iprop, igroup, pWindowKey);
+        }
+
+        public void InitializeRawXML(Decal.Adapter.Wrappers.PluginHost p, string pXML, string pWindowKey)
+        {
+            VirindiViewService.XMLParsers.Decal3XMLParser ps = new VirindiViewService.XMLParsers.Decal3XMLParser();
+            ViewProperties iprop;
+            ControlGroup igroup;
+            ps.Parse(pXML, out iprop, out igroup);
+            myView = new VirindiViewService.HudView(iprop, igroup, pWindowKey);
+        }
+
         public void SetIcon(int icon, int iconlibrary)
         {
             myView.Icon = ACImage.FromIconLibrary(icon, iconlibrary);
