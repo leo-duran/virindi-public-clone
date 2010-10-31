@@ -53,7 +53,7 @@ namespace MyClasses
 
 
         IButton[] ResultButtons;
-        ITextBox Text;
+        //ITextBox Text;
         IStaticText Label;
         ISlider slA;
         ISlider slR;
@@ -108,10 +108,7 @@ namespace MyClasses
             if (VVSColorBox)
             {
                 //Create the VVS colorbox
-                vColorBox = new VirindiViewService.Controls.HudPictureBox();
-                VirindiViewService.Controls.HudFixedLayout vlayout = (VirindiViewService.Controls.HudFixedLayout)((MyClasses.MetaViewWrappers.VirindiViewServiceHudControls.View)View).Underlying.Controls["mainlayout"];
-                vlayout.AddControl(vColorBox, ColorBoxRect);
-                vColorBox.Image = new VirindiViewService.ACImage(iDefaultInput);
+                Curtain_CreateVVSColorBox();
             }
 #endif
             if (!VVSColorBox)
@@ -119,6 +116,14 @@ namespace MyClasses
                 dColorBox = (Decal.Adapter.Wrappers.PushButtonWrapper)(((MyClasses.MetaViewWrappers.DecalControls.View)View).Underlying.Controls["ColorBox"]);
                 dColorBox.FaceColor = iDefaultInput;
             }
+        }
+
+        void Curtain_CreateVVSColorBox()
+        {
+            vColorBox = new VirindiViewService.Controls.HudPictureBox();
+            VirindiViewService.Controls.HudFixedLayout vlayout = (VirindiViewService.Controls.HudFixedLayout)((MyClasses.MetaViewWrappers.VirindiViewServiceHudControls.View)View).Underlying.Controls["mainlayout"];
+            vlayout.AddControl(vColorBox, ColorBoxRect);
+            vColorBox.Image = new VirindiViewService.ACImage(iDefaultInput);
         }
 
         void ChangedSlider(object sender, MVIndexChangeEventArgs e)
@@ -132,13 +137,18 @@ namespace MyClasses
 #if VVS_REFERENCED
             if (VVSColorBox)
             {
-                vColorBox.Image = new VirindiViewService.ACImage(c);
+                Curtain_SetColorBox(c);
             }
 #endif
             if (!VVSColorBox)
             {
                 dColorBox.FaceColor = c;
             }
+        }
+
+        void Curtain_SetColorBox(Color c)
+        {
+            vColorBox.Image = new VirindiViewService.ACImage(c);
         }
 
         Color CurrentInputColor
