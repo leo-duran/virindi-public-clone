@@ -167,11 +167,14 @@ namespace MyClasses.MetaViewWrappers.DecalControls
         public
 #endif
         ViewSystemSelector.eViewSystem ViewType { get { return ViewSystemSelector.eViewSystem.DecalInject; } }
+        Dictionary<string, Control> CreatedControlsByName = new Dictionary<string, Control>();
 
         public IControl this[string id]
         {
             get
             {
+                if (CreatedControlsByName.ContainsKey(id)) return CreatedControlsByName[id];
+
                 Control ret = null;
                 Decal.Adapter.Wrappers.IControlWrapper iret = myView.Controls[id];
                 if (iret.GetType() == typeof(Decal.Adapter.Wrappers.PushButtonWrapper))
@@ -201,6 +204,7 @@ namespace MyClasses.MetaViewWrappers.DecalControls
                 ret.myName = id;
                 ret.Initialize();
                 allocatedcontrols.Add(ret);
+                CreatedControlsByName[id] = ret;
                 return ret;
             }
         }
@@ -708,6 +712,29 @@ namespace MyClasses.MetaViewWrappers.DecalControls
 
         public event EventHandler<MVIndexChangeEventArgs> Change;
         public event EventHandler Change_Old;
+
+        public int Maximum
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.SliderWrapper)myControl).Maximum;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.SliderWrapper)myControl).Maximum = value;
+            }
+        }
+        public int Minimum
+        {
+            get
+            {
+                return ((Decal.Adapter.Wrappers.SliderWrapper)myControl).Minimum;
+            }
+            set
+            {
+                ((Decal.Adapter.Wrappers.SliderWrapper)myControl).Minimum = value;
+            }
+        }
 
         #endregion
     }

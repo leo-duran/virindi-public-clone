@@ -170,7 +170,14 @@ namespace MyClasses
 
         public virtual void Clear()
         {
+            bool changed = (iselectedrow != -1);
+            iselectedrow = -1;
+
             Underlying.Clear();
+
+            if (changed)
+                if (SelectionChanged != null)
+                    SelectionChanged(iselectedrow);
         }
 
         public IListRow this[int row]
@@ -293,6 +300,14 @@ namespace MyClasses
             set
             {
                 Underlying.LayoutPosition = value;
+            }
+        }
+
+        public MetaViewWrappers.IList UnderlyingList
+        {
+            get
+            {
+                return Underlying;
             }
         }
 

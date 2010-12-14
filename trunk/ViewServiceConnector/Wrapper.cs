@@ -325,6 +325,8 @@ namespace MyClasses.MetaViewWrappers
         int Position { get; set; }
         event EventHandler<MVIndexChangeEventArgs> Change;
         event EventHandler Change_Old;
+        int Maximum { get; set; }
+        int Minimum { get; set; }
     }
 
 #if VVS_WRAPPERS_PUBLIC
