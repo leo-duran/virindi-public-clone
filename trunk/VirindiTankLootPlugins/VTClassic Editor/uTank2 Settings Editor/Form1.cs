@@ -35,6 +35,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace VTClassic
 {
@@ -415,9 +416,7 @@ namespace VTClassic
                 {
                     lr.IntRules.Add((iLootRule)r.Clone());
                 }
-                LootRules.Rules.Add(lr);
-                lstRules.Items.Add(lr.name);
-                SetCurrentRule(lr, LootRules.Rules.Count - 1);
+                addRuleToList(lr);
             }
         }
 
@@ -427,9 +426,7 @@ namespace VTClassic
             cLootItemRule lr = new cLootItemRule();
             lr.name = "New Rule";
             lr.act = eLootAction.Keep;
-            LootRules.Rules.Add(lr);
-            lstRules.Items.Add(lr.name);
-            SetCurrentRule(lr, LootRules.Rules.Count - 1);
+            addRuleToList(lr);
         }
 
         private void cmdDeleteRule_Click(object sender, EventArgs e)
@@ -743,13 +740,18 @@ namespace VTClassic
                 {
                     for (j = 0; j < i; j++)
                     {
-                        swap = (LootRules.Rules[j].act > LootRules.Rules[j + 1].act)
-                            || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
-                                && LootRules.Rules[j].AnyReqRequiresID() && !LootRules.Rules[j + 1].AnyReqRequiresID())
-                            || (LootRules.Rules[j].act == LootRules.Rules[j + 1].act
+                        eLootAction jAct = LootRules.Rules[j].act == eLootAction.KeepUpTo ? eLootAction.Keep : LootRules.Rules[j].act;
+                        eLootAction kAct = LootRules.Rules[j + 1].act == eLootAction.KeepUpTo ? eLootAction.Keep : LootRules.Rules[j + 1].act;
+                        swap = (jAct > kAct)
+                            || (jAct == kAct && LootRules.Rules[j].AnyReqRequiresID() && !LootRules.Rules[j + 1].AnyReqRequiresID())
+                            || (jAct == kAct
                                 && LootRules.Rules[j].AnyReqRequiresID() == LootRules.Rules[j + 1].AnyReqRequiresID()
                                 && LootRules.Rules[j].name.CompareTo(LootRules.Rules[j + 1].name) > 0);
-                        if (swap) ruleMoveDown(j, false);
+                        if (swap)
+                        {
+                            ruleMoveDown(j, false);
+                            FileChanged = true;
+                        }
                     }
                 }
             }
@@ -840,6 +842,118 @@ namespace VTClassic
 
         }
 
+        private void tabLootRules_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (CurrentRule != null)
+            {
+                MemoryStream ms = new System.IO.MemoryStream();
+                CountedStreamWriter sw = new CountedStreamWriter(ms);
+                CurrentRule.Write(sw);
+                sw.Flush();
+                ms.Position = 0;
+                using (StreamReader reader = new StreamReader(ms, Encoding.ASCII))
+                {
+                    string contents = reader.ReadToEnd();
+                    if (!String.IsNullOrEmpty(contents))
+                    {
+                        Clipboard.SetText(contents);
+                    }
+                }
+            }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string t = Clipboard.GetText();
+                if (!String.IsNullOrEmpty(t))
+                {
+                    MemoryStream m = new MemoryStream(Encoding.ASCII.GetBytes(t));
+                    cLootItemRule lr = new cLootItemRule();
+                    bool ruleIsNew = true;
+                    if (CtrlPressed && CurrentRule != null)
+                    {
+                        //MessageBox.Show("replacing current rule");
+                        lr = CurrentRule;
+                        ruleIsNew = false;
+                    }
+                    lr.Read(new StreamReader(m), LootRules.UTLFileVersion);
+
+                    if (ruleIsNew)
+                    {
+                        addRuleToList(lr);
+                    }
+                    else
+                    {
+                        lstRules.Items[CurrentRuleNum] = lr.name;
+                    }
+                    lstRules.Invalidate();
+                    lstRequirements.Invalidate();
+
+                    FileChanged = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            gotoNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum);            
+        }
+
+        private void gotoNextMatchingRule(string s, int start)
+        {
+            if (!String.IsNullOrEmpty(s))
+            {
+                int ruleNum = findNextMatchingRule(s, start);
+                if (ruleNum != -1)
+                {
+                    lstRules.TopIndex = ruleNum;
+                    lstRules.SelectedIndex = ruleNum;
+                }
+            }
+        }
+
+        private int findNextMatchingRule(string s, int start)
+        {
+            int r = -1;
+            int f = -1;
+            for (int i = 0; i < lstRules.Items.Count; i++)
+            {
+                if (lstRules.Items[i].ToString().ToLower().Contains(s.ToLower()))
+                {
+                    if (i >= start)
+                    {
+                        return i;
+                    }
+                    else if (f == -1)
+                    {
+                        f = i;
+                    }
+                }
+            }
+            return r == -1 ? f : r;
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            gotoNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum + 1); 
+        }
+
+        private void addRuleToList(cLootItemRule lr)
+        {
+            LootRules.Rules.Add(lr);
+            lstRules.Items.Add(lr.name);
+            SetCurrentRule(lr, LootRules.Rules.Count - 1);
+        }
     }
 }
