@@ -1,0 +1,102 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FABA6E3C-718D-4868-9A95-FF5CC661FBA0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SpellbarSaver</RootNamespace>
+    <AssemblyName>SpellbarSaver</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;VVS_REFERENCED</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug D3D|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USING_D3D_CONTAINER</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Decal.Adapter, Version=2.9.6.0, Culture=neutral, PublicKeyToken=bd1c8ce002ce221e, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\2960\Decal.Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Decal.FileService, Version=2.9.6.0, Culture=neutral, PublicKeyToken=bd1c8ce002ce221e, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\2960\Decal.FileService.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VirindiViewService, Version=1.0.0.41, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Games\VirindiPlugins\VirindiViewService\VirindiViewService.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\SharedCode\HudViews\ViewSystemSelector.cs">
+      <Link>VVSWrappers\ViewSystemSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper.cs">
+      <Link>VVSWrappers\Wrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_Decal.cs">
+      <Link>VVSWrappers\Wrapper_Decal.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_MyHuds.cs">
+      <Link>VVSWrappers\Wrapper_MyHuds.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_WireupHelper.cs">
+      <Link>VVSWrappers\Wrapper_WireupHelper.cs</Link>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="PluginCore.cs" />
+    <Compile Include="PluginCore.MainView.cs" />
+    <Compile Include="PluginCore.Settings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainView.xml" />
+    <Content Include="SpellGroups.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

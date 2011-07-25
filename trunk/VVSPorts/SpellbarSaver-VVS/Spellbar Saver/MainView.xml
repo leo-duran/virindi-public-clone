@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<view icon="8888" title="Spellbar Saver" width="416" height="320">
+		<control progid="DecalControls.FixedLayout" clipped="">
+			<control progid="DecalControls.StaticText" name="Label7" left="8" top="216" width="136" height="16" text="Load above spells onto tab"/>
+			<control progid="DecalControls.PushButton" name="btnSave" left="368" top="40" width="40" height="16" textcolor="16777215" text="Save"/>
+			<control progid="DecalControls.Choice" name="choLoad" left="216" top="16" width="144" height="20" selected="0">
+				<option text="&lt;Current>" data=""/>
+			</control>
+			<control progid="DecalControls.Notebook" name="nbkTabs" left="8" top="0" width="200" height="200">
+			<page label="  I  ">
+				<control progid="DecalControls.List" name="lst1">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label=" II ">
+				<control progid="DecalControls.List" name="lst2">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label="III ">
+				<control progid="DecalControls.List" name="lst3">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label="IV ">
+				<control progid="DecalControls.List" name="lst4">
+					<column progid="DecalControls.IconColumn" name="colIcon"/>
+					<column progid="DecalControls.TextColumn" name="colName" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn" name="colID"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label=" V ">
+				<control progid="DecalControls.List" name="lst5">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label="VI ">
+				<control progid="DecalControls.List" name="lst6">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			<page label="VII">
+				<control progid="DecalControls.List" name="lst7">
+					<column progid="DecalControls.IconColumn"/>
+					<column progid="DecalControls.TextColumn" fixedwidth="240"/>
+					<column progid="DecalControls.TextColumn"/>
+					<column progid="DecalControls.TextColumn"/>
+				</control>
+			</page>
+			</control>
+
+			<control progid="DecalControls.PushButton" name="btnLoadCurTab" left="168" top="216" width="32" height="16" textcolor="16777215" text="Go"/>
+			<control progid="DecalControls.PushButton" name="btnLoadAll" left="168" top="236" width="32" height="16" textcolor="16777215" text="Go"/>
+			<control progid="DecalControls.Edit" name="edtSaveAs" left="256" top="40" width="104" height="16" imageportalsrc="4410" textcolor="16777215" text=""/>
+			<control progid="DecalControls.StaticText" name="Label2" left="216" top="40" width="40" height="16" text="Save as"/>
+			<control progid="DecalControls.StaticText" name="Label3" left="8" top="200" width="208" height="16" textcolor="128" text="Loading a tab will first clear the spells on it."/>
+			<control progid="DecalControls.PushButton" name="btnDelete" left="368" top="16" width="40" height="16" textcolor="16777215" text="Delete"/>
+			<control progid="DecalControls.Edit" name="edtToTab" left="136" top="216" width="24" height="16" imageportalsrc="4410" textcolor="16777215" text="I"/>
+			<control progid="DecalControls.StaticText" name="Label1" left="216" top="60" width="192" height="32" justify="Center" text="When placing spells on the spellbar, replace with the highest level you know:"/>
+			<control progid="DecalControls.StaticText" name="Label6" left="280" top="88" width="128" height="16" justify="Center" text="Level Range"/>
+			<control progid="DecalControls.Checkbox" name="chkReplCrit" left="216" top="104" width="64" height="16" text="Creature"/>
+			<control progid="DecalControls.Checkbox" name="chkReplLife" left="216" top="128" width="64" height="16" text="Life"/>
+			<control progid="DecalControls.Checkbox" name="chkReplItem" left="216" top="152" width="64" height="16" text="Item"/>
+			<control progid="DecalControls.Checkbox" name="chkReplWar" left="216" top="176" width="64" height="16" text="War"/>
+			<control progid="DecalControls.Choice" name="choLowCrit" left="280" top="104" width="56" height="19" selected="0">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choHighCrit" left="352" top="104" width="56" height="19" selected="6">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choLowLife" left="280" top="128" width="56" height="19" selected="0">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choHighLife" left="352" top="128" width="56" height="19" selected="6">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choLowItem" left="280" top="152" width="56" height="19" selected="0">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choHighItem" left="352" top="152" width="56" height="19" selected="6">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choLowWar" left="280" top="176" width="56" height="19" selected="0">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.Choice" name="choHighWar" left="352" top="176" width="56" height="19" selected="6">
+				<option text="I" data="1"/>
+				<option text="II" data="2"/>
+				<option text="III" data="3"/>
+				<option text="IV" data="4"/>
+				<option text="V" data="5"/>
+				<option text="VI" data="6"/>
+				<option text="VII" data="7"/>
+			</control>
+			<control progid="DecalControls.StaticText" name="Label50" left="336" top="104" width="16" height="16" justify="Center" text="-"/>
+			<control progid="DecalControls.StaticText" name="Label52" left="336" top="128" width="16" height="16" justify="Center" text="-"/>
+			<control progid="DecalControls.StaticText" name="Label51" left="336" top="152" width="16" height="16" justify="Center" text="-"/>
+			<control progid="DecalControls.StaticText" name="Label53" left="336" top="176" width="16" height="16" justify="Center" text="-"/>
+			<control progid="DecalControls.StaticText" name="txtTitle" left="0" top="272" width="416" height="16" justify="Center" fontface="Times New Roman" fontsize="14" fontstyle=" bold" text="Spellbar Saver by Digero of Leafcull"/>
+			<control progid="DecalControls.Checkbox" name="chkShowAsSaved" left="232" top="240" width="72" height="16" text="were saved"/>
+			<control progid="DecalControls.Checkbox" name="chkShowAsLoaded" left="320" top="240" width="88" height="16" checked="true" text="will be loaded"/>
+			<control progid="DecalControls.StaticText" name="Label4" left="216" top="0" width="144" height="16" text="Select a profile:"/>
+			<control progid="DecalControls.Checkbox" name="chkOnlyReplUnknown" left="232" top="200" width="176" height="16" text="Don't upgrade spells you know"/>
+			<control progid="DecalControls.StaticText" name="Label5" left="224" top="224" width="136" height="16" text="Show spellbars as they..."/>
+			<control progid="DecalControls.Checkbox" name="chkAutoBackup" left="8" top="256" width="160" height="16" text="Save backup before loading"/>
+			<control progid="DecalControls.StaticText" name="Label8" left="8" top="236" width="160" height="16" text="Load entire profile at once..."/>
+		</control>
+
+</view>

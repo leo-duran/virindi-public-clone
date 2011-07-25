@@ -1,0 +1,2345 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Last complete revision 4/30/2004 -->
+<!-- Salvaging spells added 6/2/2007 -->
+<spellgroups>
+	<group>
+		<spell id="2711" name="Acid Arc I" level="1"/>
+		<spell id="2712" name="Acid Arc II" level="2"/>
+		<spell id="2713" name="Acid Arc III" level="3"/>
+		<spell id="2714" name="Acid Arc IV" level="4"/>
+		<spell id="2715" name="Acid Arc V" level="5"/>
+		<spell id="2716" name="Acid Arc VI" level="6"/>
+		<spell id="2717" name="Acid Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1493" name="Acid Bane I" level="1"/>
+		<spell id="1494" name="Acid Bane II" level="2"/>
+		<spell id="1495" name="Acid Bane III" level="3"/>
+		<spell id="1496" name="Acid Bane IV" level="4"/>
+		<spell id="1497" name="Acid Bane V" level="5"/>
+		<spell id="1498" name="Acid Bane VI" level="6"/>
+		<spell id="2092" name="Olthoi's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="99" name="Acid Blast III" level="3"/>
+		<spell id="100" name="Acid Blast IV" level="4"/>
+		<spell id="101" name="Acid Blast V" level="5"/>
+		<spell id="102" name="Acid Blast VI" level="6"/>
+		<spell id="2120" name="Dissolving Vortex" level="7"/>
+	</group>
+	<group>
+		<spell id="1499" name="Acid Lure I" level="1"/>
+		<spell id="1500" name="Acid Lure II" level="2"/>
+		<spell id="1501" name="Acid Lure III" level="3"/>
+		<spell id="1502" name="Acid Lure IV" level="4"/>
+		<spell id="1503" name="Acid Lure V" level="5"/>
+		<spell id="1504" name="Acid Lure VI" level="6"/>
+		<spell id="2093" name="Olthoi Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="509" name="Acid Protection Other I" level="1"/>
+		<spell id="510" name="Acid Protection Other II" level="2"/>
+		<spell id="511" name="Acid Protection Other III" level="3"/>
+		<spell id="512" name="Acid Protection Other IV" level="4"/>
+		<spell id="513" name="Acid Protection Other V" level="5"/>
+		<spell id="514" name="Acid Protection Other VI" level="6"/>
+		<spell id="2148" name="Caustic Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="515" name="Acid Protection Self I" level="1"/>
+		<spell id="516" name="Acid Protection Self II" level="2"/>
+		<spell id="517" name="Acid Protection Self III" level="3"/>
+		<spell id="518" name="Acid Protection Self IV" level="4"/>
+		<spell id="519" name="Acid Protection Self V" level="5"/>
+		<spell id="520" name="Acid Protection Self VI" level="6"/>
+		<spell id="2149" name="Caustic Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1790" name="Acid Streak I" level="1"/>
+		<spell id="1791" name="Acid Streak II" level="2"/>
+		<spell id="1792" name="Acid Streak III" level="3"/>
+		<spell id="1793" name="Acid Streak IV" level="4"/>
+		<spell id="1794" name="Acid Streak V" level="5"/>
+		<spell id="1795" name="Acid Streak VI" level="6"/>
+		<spell id="2121" name="Corrosive Flash" level="7"/>
+	</group>
+	<group>
+		<spell id="58" name="Acid Stream I" level="1"/>
+		<spell id="59" name="Acid Stream II" level="2"/>
+		<spell id="60" name="Acid Stream III" level="3"/>
+		<spell id="61" name="Acid Stream IV" level="4"/>
+		<spell id="62" name="Acid Stream V" level="5"/>
+		<spell id="63" name="Acid Stream VI" level="6"/>
+		<spell id="2122" name="Disintegration" level="7"/>
+	</group>
+	<group>
+		<spell id="127" name="Acid Volley III" level="3"/>
+		<spell id="128" name="Acid Volley IV" level="4"/>
+		<spell id="129" name="Acid Volley V" level="5"/>
+		<spell id="130" name="Acid Volley VI" level="6"/>
+		<spell id="2123" name="Celdiseth's Searing" level="7"/>
+	</group>
+	<group>
+		<spell id="521" name="Acid Vulnerability Other I" level="1"/>
+		<spell id="522" name="Acid Vulnerability Other II" level="2"/>
+		<spell id="523" name="Acid Vulnerability Other III" level="3"/>
+		<spell id="524" name="Acid Vulnerability Other IV" level="4"/>
+		<spell id="525" name="Acid Vulnerability Other V" level="5"/>
+		<spell id="526" name="Acid Vulnerability Other VI" level="6"/>
+		<spell id="2162" name="Olthoi's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="1769" name="Alchemy Ineptitude Other I" level="1"/>
+		<spell id="1770" name="Alchemy Ineptitude Other II" level="2"/>
+		<spell id="1771" name="Alchemy Ineptitude Other III" level="3"/>
+		<spell id="1772" name="Alchemy Ineptitude Other IV" level="4"/>
+		<spell id="1773" name="Alchemy Ineptitude Other V" level="5"/>
+		<spell id="1774" name="Alchemy Ineptitude Other VI" level="6"/>
+		<spell id="2188" name="Bottle Breaker" level="7"/>
+	</group>
+	<group>
+		<spell id="1757" name="Alchemy Mastery Other I" level="1"/>
+		<spell id="1758" name="Alchemy Mastery Other II" level="2"/>
+		<spell id="1759" name="Alchemy Mastery Other III" level="3"/>
+		<spell id="1760" name="Alchemy Mastery Other IV" level="4"/>
+		<spell id="1761" name="Alchemy Mastery Other V" level="5"/>
+		<spell id="1762" name="Alchemy Mastery Other VI" level="6"/>
+		<spell id="2190" name="Silencia's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="1763" name="Alchemy Mastery Self I" level="1"/>
+		<spell id="1764" name="Alchemy Mastery Self II" level="2"/>
+		<spell id="1765" name="Alchemy Mastery Self III" level="3"/>
+		<spell id="1766" name="Alchemy Mastery Self IV" level="4"/>
+		<spell id="1767" name="Alchemy Mastery Self V" level="5"/>
+		<spell id="1768" name="Alchemy Mastery Self VI" level="6"/>
+		<spell id="2191" name="Silencia's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="696" name="Arcane Benightedness Other I" level="1"/>
+		<spell id="697" name="Arcane Benightedness Other II" level="2"/>
+		<spell id="698" name="Arcane Benightedness Other III" level="3"/>
+		<spell id="699" name="Arcane Benightedness Other IV" level="4"/>
+		<spell id="700" name="Arcane Benightedness Other V" level="5"/>
+		<spell id="701" name="Arcane Benightedness Other VI" level="6"/>
+		<spell id="2192" name="Hands of Chorizite" level="7"/>
+	</group>
+	<group>
+		<spell id="684" name="Arcane Enlightenment Other I" level="1"/>
+		<spell id="685" name="Arcane Enlightenment Other II" level="2"/>
+		<spell id="686" name="Arcane Enlightenment Other III" level="3"/>
+		<spell id="687" name="Arcane Enlightenment Other IV" level="4"/>
+		<spell id="688" name="Arcane Enlightenment Other V" level="5"/>
+		<spell id="689" name="Arcane Enlightenment Other VI" level="6"/>
+		<spell id="2194" name="Aliester's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="678" name="Arcane Enlightenment Self I" level="1"/>
+		<spell id="679" name="Arcane Enlightenment Self II" level="2"/>
+		<spell id="680" name="Arcane Enlightenment Self III" level="3"/>
+		<spell id="681" name="Arcane Enlightenment Self IV" level="4"/>
+		<spell id="682" name="Arcane Enlightenment Self V" level="5"/>
+		<spell id="683" name="Arcane Enlightenment Self VI" level="6"/>
+		<spell id="2195" name="Aliester's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="23" name="Armor Other I" level="1"/>
+		<spell id="1313" name="Armor Other II" level="2"/>
+		<spell id="1314" name="Armor Other III" level="3"/>
+		<spell id="1315" name="Armor Other IV" level="4"/>
+		<spell id="1316" name="Armor Other V" level="5"/>
+		<spell id="1317" name="Armor Other VI" level="6"/>
+		<spell id="2052" name="Executor's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="24" name="Armor Self I" level="1"/>
+		<spell id="1308" name="Armor Self II" level="2"/>
+		<spell id="1309" name="Armor Self III" level="3"/>
+		<spell id="1310" name="Armor Self IV" level="4"/>
+		<spell id="1311" name="Armor Self V" level="5"/>
+		<spell id="1312" name="Armor Self VI" level="6"/>
+		<spell id="2053" name="Executor's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="708" name="Armor Tinkering Expertise Other I" level="1"/>
+		<spell id="709" name="Armor Tinkering Expertise Other II" level="2"/>
+		<spell id="710" name="Armor Tinkering Expertise Other III" level="3"/>
+		<spell id="711" name="Armor Tinkering Expertise Other IV" level="4"/>
+		<spell id="712" name="Armor Tinkering Expertise Other V" level="5"/>
+		<spell id="713" name="Armor Tinkering Expertise Other VI" level="6"/>
+		<spell id="2196" name="Jibril's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="702" name="Armor Tinkering Expertise Self I" level="1"/>
+		<spell id="703" name="Armor Tinkering Expertise Self II" level="2"/>
+		<spell id="704" name="Armor Tinkering Expertise Self III" level="3"/>
+		<spell id="705" name="Armor Tinkering Expertise Self IV" level="4"/>
+		<spell id="706" name="Armor Tinkering Expertise Self V" level="5"/>
+		<spell id="707" name="Armor Tinkering Expertise Self VI" level="6"/>
+		<spell id="2197" name="Jibril's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="720" name="Armor Tinkering Ignorance Other I" level="1"/>
+		<spell id="721" name="Armor Tinkering Ignorance Other II" level="2"/>
+		<spell id="722" name="Armor Tinkering Ignorance Other III" level="3"/>
+		<spell id="723" name="Armor Tinkering Ignorance Other IV" level="4"/>
+		<spell id="724" name="Armor Tinkering Ignorance Other V" level="5"/>
+		<spell id="725" name="Armor Tinkering Ignorance Other VI" level="6"/>
+		<spell id="2198" name="Jibril's Vitae" level="7"/>
+	</group>
+	<group>
+		<spell id="304" name="Axe Ineptitude Other I" level="1"/>
+		<spell id="305" name="Axe Ineptitude Other II" level="2"/>
+		<spell id="306" name="Axe Ineptitude Other III" level="3"/>
+		<spell id="307" name="Axe Ineptitude Other IV" level="4"/>
+		<spell id="308" name="Axe Ineptitude Other V" level="5"/>
+		<spell id="309" name="Axe Ineptitude Other VI" level="6"/>
+		<spell id="2200" name="S'retpirk's Delight" level="7"/>
+	</group>
+	<group>
+		<spell id="292" name="Axe Mastery Other I" level="1"/>
+		<spell id="293" name="Axe Mastery Other II" level="2"/>
+		<spell id="294" name="Axe Mastery Other III" level="3"/>
+		<spell id="295" name="Axe Mastery Other IV" level="4"/>
+		<spell id="296" name="Axe Mastery Other V" level="5"/>
+		<spell id="297" name="Axe Mastery Other VI" level="6"/>
+		<spell id="2202" name="Reenigne's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="298" name="Axe Mastery Self I" level="1"/>
+		<spell id="299" name="Axe Mastery Self II" level="2"/>
+		<spell id="300" name="Axe Mastery Self III" level="3"/>
+		<spell id="301" name="Axe Mastery Self IV" level="4"/>
+		<spell id="302" name="Axe Mastery Self V" level="5"/>
+		<spell id="303" name="Axe Mastery Self VI" level="6"/>
+		<spell id="2203" name="Reenigne's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1439" name="Bafflement Other I" level="1"/>
+		<spell id="1440" name="Bafflement Other II" level="2"/>
+		<spell id="1441" name="Bafflement Other III" level="3"/>
+		<spell id="1442" name="Bafflement Other IV" level="4"/>
+		<spell id="1443" name="Bafflement Other V" level="5"/>
+		<spell id="1444" name="Bafflement Other VI" level="6"/>
+		<spell id="2054" name="Synaptic Misfire" level="7"/>
+	</group>
+	<group>
+		<spell id="2753" name="Blade Arc I" level="1"/>
+		<spell id="2754" name="Blade Arc II" level="2"/>
+		<spell id="2755" name="Blade Arc III" level="3"/>
+		<spell id="2756" name="Blade Arc IV" level="4"/>
+		<spell id="2757" name="Blade Arc V" level="5"/>
+		<spell id="2758" name="Blade Arc VI" level="6"/>
+		<spell id="2759" name="Blade Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="37" name="Blade Bane I" level="1"/>
+		<spell id="1558" name="Blade Bane II" level="2"/>
+		<spell id="1559" name="Blade Bane III" level="3"/>
+		<spell id="1560" name="Blade Bane IV" level="4"/>
+		<spell id="1561" name="Blade Bane V" level="5"/>
+		<spell id="1562" name="Blade Bane VI" level="6"/>
+		<spell id="2094" name="Swordsman's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="123" name="Blade Blast III" level="3"/>
+		<spell id="124" name="Blade Blast IV" level="4"/>
+		<spell id="125" name="Blade Blast V" level="5"/>
+		<spell id="126" name="Blade Blast VI" level="6"/>
+		<spell id="2124" name="Sau Kolin's Sword" level="7"/>
+	</group>
+	<group>
+		<spell id="38" name="Blade Lure I" level="1"/>
+		<spell id="1553" name="Blade Lure II" level="2"/>
+		<spell id="1554" name="Blade Lure III" level="3"/>
+		<spell id="1555" name="Blade Lure IV" level="4"/>
+		<spell id="1556" name="Blade Lure V" level="5"/>
+		<spell id="1557" name="Blade Lure VI" level="6"/>
+		<spell id="2095" name="Swordsman Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1115" name="Blade Protection Other I" level="1"/>
+		<spell id="1116" name="Blade Protection Other II" level="2"/>
+		<spell id="1117" name="Blade Protection Other III" level="3"/>
+		<spell id="1118" name="Blade Protection Other IV" level="4"/>
+		<spell id="1119" name="Blade Protection Other V" level="5"/>
+		<spell id="1120" name="Blade Protection Other VI" level="6"/>
+		<spell id="2150" name="Boon of the Blade Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="1109" name="Blade Protection Self I" level="1"/>
+		<spell id="1110" name="Blade Protection Self II" level="2"/>
+		<spell id="1111" name="Blade Protection Self III" level="3"/>
+		<spell id="1112" name="Blade Protection Self IV" level="4"/>
+		<spell id="1113" name="Blade Protection Self V" level="5"/>
+		<spell id="1114" name="Blade Protection Self VI" level="6"/>
+		<spell id="2151" name="Blessing of the Blade Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="151" name="Blade Volley III" level="3"/>
+		<spell id="152" name="Blade Volley IV" level="4"/>
+		<spell id="153" name="Blade Volley V" level="5"/>
+		<spell id="154" name="Blade Volley VI" level="6"/>
+		<spell id="2125" name="Flensing Wings" level="7"/>
+	</group>
+	<group>
+		<spell id="1127" name="Blade Vulnerability Other I" level="1"/>
+		<spell id="1128" name="Blade Vulnerability Other II" level="2"/>
+		<spell id="1129" name="Blade Vulnerability Other III" level="3"/>
+		<spell id="1130" name="Blade Vulnerability Other IV" level="4"/>
+		<spell id="1131" name="Blade Vulnerability Other V" level="5"/>
+		<spell id="1132" name="Blade Vulnerability Other VI" level="6"/>
+		<spell id="2164" name="Swordsman's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="35" name="Blood Drinker I" level="1"/>
+		<spell id="1612" name="Blood Drinker II" level="2"/>
+		<spell id="1613" name="Blood Drinker III" level="3"/>
+		<spell id="1614" name="Blood Drinker IV" level="4"/>
+		<spell id="1615" name="Blood Drinker V" level="5"/>
+		<spell id="1616" name="Blood Drinker VI" level="6"/>
+		<spell id="2096" name="Infected Caress" level="7"/>
+	</group>
+	<group>
+		<spell id="36" name="Blood Loather I" level="1"/>
+		<spell id="1617" name="Blood Loather II" level="2"/>
+		<spell id="1618" name="Blood Loather III" level="3"/>
+		<spell id="1619" name="Blood Loather IV" level="4"/>
+		<spell id="1620" name="Blood Loather V" level="5"/>
+		<spell id="1621" name="Blood Loather VI" level="6"/>
+		<spell id="2097" name="Pacification" level="7"/>
+	</group>
+	<group>
+		<spell id="1511" name="Bludgeon Bane I" level="1"/>
+		<spell id="1512" name="Bludgeon Bane II" level="2"/>
+		<spell id="1513" name="Bludgeon Bane III" level="3"/>
+		<spell id="1514" name="Bludgeon Bane IV" level="4"/>
+		<spell id="1515" name="Bludgeon Bane V" level="5"/>
+		<spell id="1516" name="Bludgeon Bane VI" level="6"/>
+		<spell id="2098" name="Tusker's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="1505" name="Bludgeon Lure I" level="1"/>
+		<spell id="1506" name="Bludgeon Lure II" level="2"/>
+		<spell id="1507" name="Bludgeon Lure III" level="3"/>
+		<spell id="1508" name="Bludgeon Lure IV" level="4"/>
+		<spell id="1509" name="Bludgeon Lure V" level="5"/>
+		<spell id="1510" name="Bludgeon Lure VI" level="6"/>
+		<spell id="2099" name="Tusker Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1024" name="Bludgeoning Protection Other I" level="1"/>
+		<spell id="1025" name="Bludgeoning Protection Other II" level="2"/>
+		<spell id="1026" name="Bludgeoning Protection Other III" level="3"/>
+		<spell id="1027" name="Bludgeoning Protection Other IV" level="4"/>
+		<spell id="1028" name="Bludgeoning Protection Other V" level="5"/>
+		<spell id="1029" name="Bludgeoning Protection Other VI" level="6"/>
+		<spell id="2152" name="Boon of the Mace Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="1018" name="Bludgeoning Protection Self I" level="1"/>
+		<spell id="1019" name="Bludgeoning Protection Self II" level="2"/>
+		<spell id="1020" name="Bludgeoning Protection Self III" level="3"/>
+		<spell id="1021" name="Bludgeoning Protection Self IV" level="4"/>
+		<spell id="1022" name="Bludgeoning Protection Self V" level="5"/>
+		<spell id="1023" name="Bludgeoning Protection Self VI" level="6"/>
+		<spell id="2153" name="Blessing of the Mace Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="131" name="Bludgeoning Volley III" level="3"/>
+		<spell id="132" name="Bludgeoning Volley IV" level="4"/>
+		<spell id="133" name="Bludgeoning Volley V" level="5"/>
+		<spell id="134" name="Bludgeoning Volley VI" level="6"/>
+		<spell id="2126" name="Thousand Fists" level="7"/>
+	</group>
+	<group>
+		<spell id="1048" name="Bludgeoning Vulnerability Other I" level="1"/>
+		<spell id="1049" name="Bludgeoning Vulnerability Other II" level="2"/>
+		<spell id="1050" name="Bludgeoning Vulnerability Other III" level="3"/>
+		<spell id="1051" name="Bludgeoning Vulnerability Other IV" level="4"/>
+		<spell id="1052" name="Bludgeoning Vulnerability Other V" level="5"/>
+		<spell id="1053" name="Bludgeoning Vulnerability Other VI" level="6"/>
+		<spell id="2166" name="Tusker's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="473" name="Bow Ineptitude Other I" level="1"/>
+		<spell id="474" name="Bow Ineptitude Other II" level="2"/>
+		<spell id="475" name="Bow Ineptitude Other III" level="3"/>
+		<spell id="476" name="Bow Ineptitude Other IV" level="4"/>
+		<spell id="477" name="Bow Ineptitude Other V" level="5"/>
+		<spell id="478" name="Bow Ineptitude Other VI" level="6"/>
+		<spell id="2204" name="Chronic Twitch" level="7"/>
+	</group>
+	<group>
+		<spell id="461" name="Bow Mastery Other I" level="1"/>
+		<spell id="462" name="Bow Mastery Other II" level="2"/>
+		<spell id="463" name="Bow Mastery Other III" level="3"/>
+		<spell id="464" name="Bow Mastery Other IV" level="4"/>
+		<spell id="465" name="Bow Mastery Other V" level="5"/>
+		<spell id="466" name="Bow Mastery Other VI" level="6"/>
+		<spell id="2206" name="Strathelar's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="467" name="Bow Mastery Self I" level="1"/>
+		<spell id="468" name="Bow Mastery Self II" level="2"/>
+		<spell id="469" name="Bow Mastery Self III" level="3"/>
+		<spell id="470" name="Bow Mastery Self IV" level="4"/>
+		<spell id="471" name="Bow Mastery Self V" level="5"/>
+		<spell id="472" name="Bow Mastery Self VI" level="6"/>
+		<spell id="2207" name="Strathelar's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1487" name="Brittlemail I" level="1"/>
+		<spell id="1488" name="Brittlemail II" level="2"/>
+		<spell id="1489" name="Brittlemail III" level="3"/>
+		<spell id="1490" name="Brittlemail IV" level="4"/>
+		<spell id="1491" name="Brittlemail V" level="5"/>
+		<spell id="1492" name="Brittlemail VI" level="6"/>
+		<spell id="2100" name="Tattercoat" level="7"/>
+	</group>
+	<group>
+		<spell id="1391" name="Clumsiness Other I" level="1"/>
+		<spell id="1392" name="Clumsiness Other II" level="2"/>
+		<spell id="1393" name="Clumsiness Other III" level="3"/>
+		<spell id="1394" name="Clumsiness Other IV" level="4"/>
+		<spell id="1395" name="Clumsiness Other V" level="5"/>
+		<spell id="1396" name="Clumsiness Other VI" level="6"/>
+		<spell id="2056" name="Ataxia" level="7"/>
+	</group>
+	<group>
+		<spell id="1036" name="Cold Protection Other I" level="1"/>
+		<spell id="1037" name="Cold Protection Other II" level="2"/>
+		<spell id="1038" name="Cold Protection Other III" level="3"/>
+		<spell id="1039" name="Cold Protection Other IV" level="4"/>
+		<spell id="1040" name="Cold Protection Other V" level="5"/>
+		<spell id="1041" name="Cold Protection Other VI" level="6"/>
+		<spell id="2154" name="Icy Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="1030" name="Cold Protection Self I" level="1"/>
+		<spell id="1031" name="Cold Protection Self II" level="2"/>
+		<spell id="1032" name="Cold Protection Self III" level="3"/>
+		<spell id="1033" name="Cold Protection Self IV" level="4"/>
+		<spell id="1034" name="Cold Protection Self V" level="5"/>
+		<spell id="1035" name="Cold Protection Self VI" level="6"/>
+		<spell id="2155" name="Icy Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1060" name="Cold Vulnerability Other I" level="1"/>
+		<spell id="1061" name="Cold Vulnerability Other II" level="2"/>
+		<spell id="1062" name="Cold Vulnerability Other III" level="3"/>
+		<spell id="1063" name="Cold Vulnerability Other IV" level="4"/>
+		<spell id="1064" name="Cold Vulnerability Other V" level="5"/>
+		<spell id="1065" name="Cold Vulnerability Other VI" level="6"/>
+		<spell id="2168" name="Gelidite's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="1721" name="Cooking Ineptitude Other I" level="1"/>
+		<spell id="1722" name="Cooking Ineptitude Other II" level="2"/>
+		<spell id="1723" name="Cooking Ineptitude Other III" level="3"/>
+		<spell id="1724" name="Cooking Ineptitude Other IV" level="4"/>
+		<spell id="1725" name="Cooking Ineptitude Other V" level="5"/>
+		<spell id="1726" name="Cooking Ineptitude Other VI" level="6"/>
+		<spell id="2208" name="Challenger's Legacy" level="7"/>
+	</group>
+	<group>
+		<spell id="1709" name="Cooking Mastery Other I" level="1"/>
+		<spell id="1710" name="Cooking Mastery Other II" level="2"/>
+		<spell id="1711" name="Cooking Mastery Other III" level="3"/>
+		<spell id="1712" name="Cooking Mastery Other IV" level="4"/>
+		<spell id="1713" name="Cooking Mastery Other V" level="5"/>
+		<spell id="1714" name="Cooking Mastery Other VI" level="6"/>
+		<spell id="2210" name="Morimoto's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="1715" name="Cooking Mastery Self I" level="1"/>
+		<spell id="1716" name="Cooking Mastery Self II" level="2"/>
+		<spell id="1717" name="Cooking Mastery Self III" level="3"/>
+		<spell id="1718" name="Cooking Mastery Self IV" level="4"/>
+		<spell id="1719" name="Cooking Mastery Self V" level="5"/>
+		<spell id="1720" name="Cooking Mastery Self VI" level="6"/>
+		<spell id="2211" name="Morimoto's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1379" name="Coordination Other I" level="1"/>
+		<spell id="1380" name="Coordination Other II" level="2"/>
+		<spell id="1381" name="Coordination Other III" level="3"/>
+		<spell id="1382" name="Coordination Other IV" level="4"/>
+		<spell id="1383" name="Coordination Other V" level="5"/>
+		<spell id="1384" name="Coordination Other VI" level="6"/>
+		<spell id="2058" name="Boon of Refinement" level="7"/>
+	</group>
+	<group>
+		<spell id="1373" name="Coordination Self I" level="1"/>
+		<spell id="1374" name="Coordination Self II" level="2"/>
+		<spell id="1375" name="Coordination Self III" level="3"/>
+		<spell id="1376" name="Coordination Self IV" level="4"/>
+		<spell id="1377" name="Coordination Self V" level="5"/>
+		<spell id="1378" name="Coordination Self VI" level="6"/>
+		<spell id="2059" name="Honed Control" level="7"/>
+	</group>
+	<group>
+		<spell id="569" name="Creature Enchantment Ineptitude Other I" level="1"/>
+		<spell id="570" name="Creature Enchantment Ineptitude Other II" level="2"/>
+		<spell id="571" name="Creature Enchantment Ineptitude Other III" level="3"/>
+		<spell id="572" name="Creature Enchantment Ineptitude Other IV" level="4"/>
+		<spell id="573" name="Creature Enchantment Ineptitude Other V" level="5"/>
+		<spell id="574" name="Creature Enchantment Ineptitude Other VI" level="6"/>
+		<spell id="2212" name="Wrath of Adja" level="7"/>
+	</group>
+	<group>
+		<spell id="563" name="Creature Enchantment Mastery Other I" level="1"/>
+		<spell id="564" name="Creature Enchantment Mastery Other II" level="2"/>
+		<spell id="565" name="Creature Enchantment Mastery Other III" level="3"/>
+		<spell id="566" name="Creature Enchantment Mastery Other IV" level="4"/>
+		<spell id="567" name="Creature Enchantment Mastery Other V" level="5"/>
+		<spell id="568" name="Creature Enchantment Mastery Other VI" level="6"/>
+		<spell id="2214" name="Adja's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="557" name="Creature Enchantment Mastery Self I" level="1"/>
+		<spell id="558" name="Creature Enchantment Mastery Self II" level="2"/>
+		<spell id="559" name="Creature Enchantment Mastery Self III" level="3"/>
+		<spell id="560" name="Creature Enchantment Mastery Self IV" level="4"/>
+		<spell id="561" name="Creature Enchantment Mastery Self V" level="5"/>
+		<spell id="562" name="Creature Enchantment Mastery Self VI" level="6"/>
+		<spell id="2215" name="Adja's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="497" name="Crossbow Ineptitude Other I" level="1"/>
+		<spell id="498" name="Crossbow Ineptitude Other II" level="2"/>
+		<spell id="499" name="Crossbow Ineptitude Other III" level="3"/>
+		<spell id="500" name="Crossbow Ineptitude Other IV" level="4"/>
+		<spell id="501" name="Crossbow Ineptitude Other V" level="5"/>
+		<spell id="502" name="Crossbow Ineptitude Other VI" level="6"/>
+		<spell id="2216" name="Itchy Finger" level="7"/>
+	</group>
+	<group>
+		<spell id="485" name="Crossbow Mastery Other I" level="1"/>
+		<spell id="486" name="Crossbow Mastery Other II" level="2"/>
+		<spell id="487" name="Crossbow Mastery Other III" level="3"/>
+		<spell id="488" name="Crossbow Mastery Other IV" level="4"/>
+		<spell id="489" name="Crossbow Mastery Other V" level="5"/>
+		<spell id="490" name="Crossbow Mastery Other VI" level="6"/>
+		<spell id="2218" name="Barnar's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="491" name="Crossbow Mastery Self I" level="1"/>
+		<spell id="492" name="Crossbow Mastery Self II" level="2"/>
+		<spell id="493" name="Crossbow Mastery Self III" level="3"/>
+		<spell id="494" name="Crossbow Mastery Self IV" level="4"/>
+		<spell id="495" name="Crossbow Mastery Self V" level="5"/>
+		<spell id="496" name="Crossbow Mastery Self VI" level="6"/>
+		<spell id="2219" name="Barnar's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="328" name="Dagger Ineptitude Other I" level="1"/>
+		<spell id="329" name="Dagger Ineptitude Other II" level="2"/>
+		<spell id="330" name="Dagger Ineptitude Other III" level="3"/>
+		<spell id="331" name="Dagger Ineptitude Other IV" level="4"/>
+		<spell id="332" name="Dagger Ineptitude Other V" level="5"/>
+		<spell id="333" name="Dagger Ineptitude Other VI" level="6"/>
+		<spell id="2220" name="Picking of the Teeth" level="7"/>
+	</group>
+	<group>
+		<spell id="316" name="Dagger Mastery Other I" level="1"/>
+		<spell id="317" name="Dagger Mastery Other II" level="2"/>
+		<spell id="318" name="Dagger Mastery Other III" level="3"/>
+		<spell id="319" name="Dagger Mastery Other IV" level="4"/>
+		<spell id="320" name="Dagger Mastery Other V" level="5"/>
+		<spell id="321" name="Dagger Mastery Other VI" level="6"/>
+		<spell id="2222" name="Gertarh's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="322" name="Dagger Mastery Self I" level="1"/>
+		<spell id="323" name="Dagger Mastery Self II" level="2"/>
+		<spell id="324" name="Dagger Mastery Self III" level="3"/>
+		<spell id="325" name="Dagger Mastery Self IV" level="4"/>
+		<spell id="326" name="Dagger Mastery Self V" level="5"/>
+		<spell id="327" name="Dagger Mastery Self VI" level="6"/>
+		<spell id="2223" name="Gertarh's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="868" name="Deception Ineptitude Other I" level="1"/>
+		<spell id="869" name="Deception Ineptitude Other II" level="2"/>
+		<spell id="870" name="Deception Ineptitude Other III" level="3"/>
+		<spell id="871" name="Deception Ineptitude Other IV" level="4"/>
+		<spell id="872" name="Deception Ineptitude Other V" level="5"/>
+		<spell id="873" name="Deception Ineptitude Other VI" level="6"/>
+		<spell id="2224" name="Hearts on Sleeves" level="7"/>
+	</group>
+	<group>
+		<spell id="856" name="Deception Mastery Other I" level="1"/>
+		<spell id="857" name="Deception Mastery Other II" level="2"/>
+		<spell id="858" name="Deception Mastery Other III" level="3"/>
+		<spell id="859" name="Deception Mastery Other IV" level="4"/>
+		<spell id="860" name="Deception Mastery Other V" level="5"/>
+		<spell id="861" name="Deception Mastery Other VI" level="6"/>
+		<spell id="2226" name="Ketnan's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="850" name="Deception Mastery Self I" level="1"/>
+		<spell id="851" name="Deception Mastery Self II" level="2"/>
+		<spell id="852" name="Deception Mastery Self III" level="3"/>
+		<spell id="853" name="Deception Mastery Self IV" level="4"/>
+		<spell id="854" name="Deception Mastery Self V" level="5"/>
+		<spell id="855" name="Deception Mastery Self VI" level="6"/>
+		<spell id="2227" name="Ketnan's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1599" name="Defender I" level="1"/>
+		<spell id="1601" name="Defender II" level="2"/>
+		<spell id="1602" name="Defender III" level="3"/>
+		<spell id="1603" name="Defender IV" level="4"/>
+		<spell id="1604" name="Defender V" level="5"/>
+		<spell id="1605" name="Defender VI" level="6"/>
+		<spell id="2101" name="Cragstone's Will" level="7"/>
+	</group>
+	<group>
+		<spell id="262" name="Defenselessness Other I" level="1"/>
+		<spell id="263" name="Defenselessness Other II" level="2"/>
+		<spell id="264" name="Defenselessness Other III" level="3"/>
+		<spell id="265" name="Defenselessness Other IV" level="4"/>
+		<spell id="266" name="Defenselessness Other V" level="5"/>
+		<spell id="267" name="Defenselessness Other VI" level="6"/>
+		<spell id="2228" name="Broadside of a Barn" level="7"/>
+	</group>
+	<group>
+		<spell id="1237" name="Drain Health Other I" level="1"/>
+		<spell id="1238" name="Drain Health Other II" level="2"/>
+		<spell id="1239" name="Drain Health Other III" level="3"/>
+		<spell id="1240" name="Drain Health Other IV" level="4"/>
+		<spell id="1241" name="Drain Health Other V" level="5"/>
+		<spell id="1242" name="Drain Health Other VI" level="6"/>
+		<spell id="2328" name="Vitality Siphon" level="7"/>
+	</group>
+	<group>
+		<spell id="1260" name="Drain Mana Other I" level="1"/>
+		<spell id="1261" name="Drain Mana Other II" level="2"/>
+		<spell id="1262" name="Drain Mana Other III" level="3"/>
+		<spell id="1263" name="Drain Mana Other IV" level="4"/>
+		<spell id="1264" name="Drain Mana Other V" level="5"/>
+		<spell id="1265" name="Drain Mana Other VI" level="6"/>
+		<spell id="2329" name="Essence Void" level="7"/>
+	</group>
+	<group>
+		<spell id="1249" name="Drain Stamina Other I" level="1"/>
+		<spell id="1250" name="Drain Stamina Other II" level="2"/>
+		<spell id="1251" name="Drain Stamina Other III" level="3"/>
+		<spell id="1252" name="Drain Stamina Other IV" level="4"/>
+		<spell id="1253" name="Drain Stamina Other V" level="5"/>
+		<spell id="1254" name="Drain Stamina Other VI" level="6"/>
+		<spell id="2330" name="Vigor Siphon" level="7"/>
+	</group>
+	<group>
+		<spell id="1355" name="Endurance Other I" level="1"/>
+		<spell id="1356" name="Endurance Other II" level="2"/>
+		<spell id="1357" name="Endurance Other III" level="3"/>
+		<spell id="1358" name="Endurance Other IV" level="4"/>
+		<spell id="1359" name="Endurance Other V" level="5"/>
+		<spell id="1360" name="Endurance Other VI" level="6"/>
+		<spell id="2060" name="Temeritous Touch" level="7"/>
+	</group>
+	<group>
+		<spell id="1349" name="Endurance Self I" level="1"/>
+		<spell id="1350" name="Endurance Self II" level="2"/>
+		<spell id="1351" name="Endurance Self III" level="3"/>
+		<spell id="1352" name="Endurance Self IV" level="4"/>
+		<spell id="1353" name="Endurance Self V" level="5"/>
+		<spell id="1354" name="Endurance Self VI" level="6"/>
+		<spell id="2061" name="Perseverance" level="7"/>
+	</group>
+	<group>
+		<spell id="1195" name="Enfeeble Other I" level="1"/>
+		<spell id="1196" name="Enfeeble Other II" level="2"/>
+		<spell id="1197" name="Enfeeble Other III" level="3"/>
+		<spell id="1198" name="Enfeeble Other IV" level="4"/>
+		<spell id="1199" name="Enfeeble Other V" level="5"/>
+		<spell id="1200" name="Enfeeble Other VI" level="6"/>
+		<spell id="2062" name="Anemia" level="7"/>
+	</group>
+	<group>
+		<spell id="194" name="Exhaustion Other I" level="1"/>
+		<spell id="195" name="Exhaustion Other II" level="2"/>
+		<spell id="196" name="Exhaustion Other III" level="3"/>
+		<spell id="197" name="Exhaustion Other IV" level="4"/>
+		<spell id="198" name="Exhaustion Other V" level="5"/>
+		<spell id="199" name="Exhaustion Other VI" level="6"/>
+		<spell id="2176" name="Enervation" level="7"/>
+	</group>
+	<group>
+		<spell id="964" name="Faithlessness Other I" level="1"/>
+		<spell id="965" name="Faithlessness Other II" level="2"/>
+		<spell id="966" name="Faithlessness Other III" level="3"/>
+		<spell id="967" name="Faithlessness Other IV" level="4"/>
+		<spell id="968" name="Faithlessness Other V" level="5"/>
+		<spell id="969" name="Faithlessness Other VI" level="6"/>
+		<spell id="2230" name="Sashi Mu's Kiss" level="7"/>
+	</group>
+	<group>
+		<spell id="952" name="Fealty Other I" level="1"/>
+		<spell id="953" name="Fealty Other II" level="2"/>
+		<spell id="954" name="Fealty Other III" level="3"/>
+		<spell id="955" name="Fealty Other IV" level="4"/>
+		<spell id="956" name="Fealty Other V" level="5"/>
+		<spell id="957" name="Fealty Other VI" level="6"/>
+		<spell id="2232" name="Odif's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="946" name="Fealty Self I" level="1"/>
+		<spell id="947" name="Fealty Self II" level="2"/>
+		<spell id="948" name="Fealty Self III" level="3"/>
+		<spell id="949" name="Fealty Self IV" level="4"/>
+		<spell id="950" name="Fealty Self V" level="5"/>
+		<spell id="951" name="Fealty Self VI" level="6"/>
+		<spell id="2233" name="Odif's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1463" name="Feeblemind Other I" level="1"/>
+		<spell id="1464" name="Feeblemind Other II" level="2"/>
+		<spell id="1465" name="Feeblemind Other III" level="3"/>
+		<spell id="1466" name="Feeblemind Other IV" level="4"/>
+		<spell id="1467" name="Feeblemind Other V" level="5"/>
+		<spell id="1468" name="Feeblemind Other VI" level="6"/>
+		<spell id="2064" name="Self Loathing" level="7"/>
+	</group>
+	<group>
+		<spell id="171" name="Fester Other I" level="1"/>
+		<spell id="172" name="Fester Other II" level="2"/>
+		<spell id="173" name="Fester Other III" level="3"/>
+		<spell id="174" name="Fester Other IV" level="4"/>
+		<spell id="175" name="Fester Other V" level="5"/>
+		<spell id="176" name="Fester Other VI" level="6"/>
+		<spell id="2178" name="Decrepitude's Grasp" level="7"/>
+	</group>
+	<group>
+		<spell id="19" name="Fire Protection Other I" level="1"/>
+		<spell id="810" name="Fire Protection Other II" level="2"/>
+		<spell id="836" name="Fire Protection Other III" level="3"/>
+		<spell id="849" name="Fire Protection Other IV" level="4"/>
+		<spell id="1095" name="Fire Protection Other V" level="5"/>
+		<spell id="1096" name="Fire Protection Other VI" level="6"/>
+		<spell id="2156" name="Fiery Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="20" name="Fire Protection Self I" level="1"/>
+		<spell id="1090" name="Fire Protection Self II" level="2"/>
+		<spell id="1091" name="Fire Protection Self III" level="3"/>
+		<spell id="1092" name="Fire Protection Self IV" level="4"/>
+		<spell id="1093" name="Fire Protection Self V" level="5"/>
+		<spell id="1094" name="Fire Protection Self VI" level="6"/>
+		<spell id="2157" name="Fiery Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="21" name="Fire Vulnerability Other I" level="1"/>
+		<spell id="1104" name="Fire Vulnerability Other II" level="2"/>
+		<spell id="1105" name="Fire Vulnerability Other III" level="3"/>
+		<spell id="1106" name="Fire Vulnerability Other IV" level="4"/>
+		<spell id="1107" name="Fire Vulnerability Other V" level="5"/>
+		<spell id="1108" name="Fire Vulnerability Other VI" level="6"/>
+		<spell id="2170" name="Inferno's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="2739" name="Flame Arc I" level="1"/>
+		<spell id="2740" name="Flame Arc II" level="2"/>
+		<spell id="2741" name="Flame Arc III" level="3"/>
+		<spell id="2742" name="Flame Arc IV" level="4"/>
+		<spell id="2743" name="Flame Arc V" level="5"/>
+		<spell id="2744" name="Flame Arc VI" level="6"/>
+		<spell id="2745" name="Flame Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1547" name="Flame Bane I" level="1"/>
+		<spell id="1548" name="Flame Bane II" level="2"/>
+		<spell id="1549" name="Flame Bane III" level="3"/>
+		<spell id="1550" name="Flame Bane IV" level="4"/>
+		<spell id="1551" name="Flame Bane V" level="5"/>
+		<spell id="1552" name="Flame Bane VI" level="6"/>
+		<spell id="2102" name="Inferno's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="115" name="Flame Blast III" level="3"/>
+		<spell id="116" name="Flame Blast IV" level="4"/>
+		<spell id="117" name="Flame Blast V" level="5"/>
+		<spell id="118" name="Flame Blast VI" level="6"/>
+		<spell id="2127" name="Silencia's Scorn" level="7"/>
+	</group>
+	<group>
+		<spell id="27" name="Flame Bolt I" level="1"/>
+		<spell id="81" name="Flame Bolt II" level="2"/>
+		<spell id="82" name="Flame Bolt III" level="3"/>
+		<spell id="83" name="Flame Bolt IV" level="4"/>
+		<spell id="84" name="Flame Bolt V" level="5"/>
+		<spell id="2383" name="Dark Flame" level="5"/>
+		<spell id="85" name="Flame Bolt VI" level="6"/>
+		<spell id="2128" name="Ilservian's Flame" level="7"/>
+	</group>
+	<group>
+		<spell id="1541" name="Flame Lure I" level="1"/>
+		<spell id="1542" name="Flame Lure II" level="2"/>
+		<spell id="1543" name="Flame Lure III" level="3"/>
+		<spell id="1544" name="Flame Lure IV" level="4"/>
+		<spell id="1545" name="Flame Lure V" level="5"/>
+		<spell id="1546" name="Flame Lure VI" level="6"/>
+		<spell id="2103" name="Inferno Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1796" name="Flame Streak I" level="1"/>
+		<spell id="1797" name="Flame Streak II" level="2"/>
+		<spell id="1798" name="Flame Streak III" level="3"/>
+		<spell id="1799" name="Flame Streak IV" level="4"/>
+		<spell id="1800" name="Flame Streak V" level="5"/>
+		<spell id="1801" name="Flame Streak VI" level="6"/>
+		<spell id="2129" name="Sizzling Fury" level="7"/>
+	</group>
+	<group>
+		<spell id="143" name="Flame Volley III" level="3"/>
+		<spell id="144" name="Flame Volley IV" level="4"/>
+		<spell id="145" name="Flame Volley V" level="5"/>
+		<spell id="146" name="Flame Volley VI" level="6"/>
+		<spell id="2130" name="Infernae" level="7"/>
+	</group>
+	<group>
+		<spell id="1745" name="Fletching Ineptitude Other I" level="1"/>
+		<spell id="1746" name="Fletching Ineptitude Other II" level="2"/>
+		<spell id="1747" name="Fletching Ineptitude Other III" level="3"/>
+		<spell id="1748" name="Fletching Ineptitude Other IV" level="4"/>
+		<spell id="1749" name="Fletching Ineptitude Other V" level="5"/>
+		<spell id="1750" name="Fletching Ineptitude Other VI" level="6"/>
+		<spell id="2234" name="Twisted Digits" level="7"/>
+	</group>
+	<group>
+		<spell id="1733" name="Fletching Mastery Other I" level="1"/>
+		<spell id="1734" name="Fletching Mastery Other II" level="2"/>
+		<spell id="1735" name="Fletching Mastery Other III" level="3"/>
+		<spell id="1736" name="Fletching Mastery Other IV" level="4"/>
+		<spell id="1737" name="Fletching Mastery Other V" level="5"/>
+		<spell id="1738" name="Fletching Mastery Other VI" level="6"/>
+		<spell id="2236" name="Lilitha's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="1739" name="Fletching Mastery Self I" level="1"/>
+		<spell id="1740" name="Fletching Mastery Self II" level="2"/>
+		<spell id="1741" name="Fletching Mastery Self III" level="3"/>
+		<spell id="1742" name="Fletching Mastery Self IV" level="4"/>
+		<spell id="1743" name="Fletching Mastery Self V" level="5"/>
+		<spell id="1744" name="Fletching Mastery Self VI" level="6"/>
+		<spell id="2237" name="Lilitha's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1427" name="Focus Other I" level="1"/>
+		<spell id="1428" name="Focus Other II" level="2"/>
+		<spell id="1429" name="Focus Other III" level="3"/>
+		<spell id="1430" name="Focus Other IV" level="4"/>
+		<spell id="1431" name="Focus Other V" level="5"/>
+		<spell id="1432" name="Focus Other VI" level="6"/>
+		<spell id="2066" name="Calming Gaze" level="7"/>
+	</group>
+	<group>
+		<spell id="1421" name="Focus Self I" level="1"/>
+		<spell id="1422" name="Focus Self II" level="2"/>
+		<spell id="1423" name="Focus Self III" level="3"/>
+		<spell id="1424" name="Focus Self IV" level="4"/>
+		<spell id="1425" name="Focus Self V" level="5"/>
+		<spell id="1426" name="Focus Self VI" level="6"/>
+		<spell id="2067" name="Inner Calm" level="7"/>
+	</group>
+	<group>
+		<spell id="2718" name="Force Arc I" level="1"/>
+		<spell id="2719" name="Force Arc II" level="2"/>
+		<spell id="2720" name="Force Arc III" level="3"/>
+		<spell id="2721" name="Force Arc IV" level="4"/>
+		<spell id="2722" name="Force Arc V" level="5"/>
+		<spell id="2723" name="Force Arc VI" level="6"/>
+		<spell id="2724" name="Force Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="119" name="Force Blast III" level="3"/>
+		<spell id="120" name="Force Blast IV" level="4"/>
+		<spell id="121" name="Force Blast V" level="5"/>
+		<spell id="122" name="Force Blast VI" level="6"/>
+		<spell id="2131" name="Stinging Needles" level="7"/>
+	</group>
+	<group>
+		<spell id="86" name="Force Bolt I" level="1"/>
+		<spell id="87" name="Force Bolt II" level="2"/>
+		<spell id="88" name="Force Bolt III" level="3"/>
+		<spell id="89" name="Force Bolt IV" level="4"/>
+		<spell id="90" name="Force Bolt V" level="5"/>
+		<spell id="91" name="Force Bolt VI" level="6"/>
+		<spell id="2132" name="The Spike" level="7"/>
+	</group>
+	<group>
+		<spell id="1802" name="Force Streak I" level="1"/>
+		<spell id="1803" name="Force Streak II" level="2"/>
+		<spell id="1804" name="Force Streak III" level="3"/>
+		<spell id="1805" name="Force Streak IV" level="4"/>
+		<spell id="1806" name="Force Streak V" level="5"/>
+		<spell id="1807" name="Force Streak VI" level="6"/>
+		<spell id="2133" name="Outlander's Insolence" level="7"/>
+	</group>
+	<group>
+		<spell id="147" name="Force Volley III" level="3"/>
+		<spell id="148" name="Force Volley IV" level="4"/>
+		<spell id="149" name="Force Volley V" level="5"/>
+		<spell id="150" name="Force Volley VI" level="6"/>
+		<spell id="2134" name="Fusillade" level="7"/>
+	</group>
+	<group>
+		<spell id="1367" name="Frailty Other I" level="1"/>
+		<spell id="1368" name="Frailty Other II" level="2"/>
+		<spell id="1369" name="Frailty Other III" level="3"/>
+		<spell id="1370" name="Frailty Other IV" level="4"/>
+		<spell id="1371" name="Frailty Other V" level="5"/>
+		<spell id="1372" name="Frailty Other VI" level="6"/>
+		<spell id="2068" name="Brittle Bones" level="7"/>
+	</group>
+	<group>
+		<spell id="2725" name="Frost Arc I" level="1"/>
+		<spell id="2726" name="Frost Arc II" level="2"/>
+		<spell id="2727" name="Frost Arc III" level="3"/>
+		<spell id="2728" name="Frost Arc IV" level="4"/>
+		<spell id="2729" name="Frost Arc V" level="5"/>
+		<spell id="2730" name="Frost Arc VI" level="6"/>
+		<spell id="2731" name="Frost Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1523" name="Frost Bane I" level="1"/>
+		<spell id="1524" name="Frost Bane II" level="2"/>
+		<spell id="1525" name="Frost Bane III" level="3"/>
+		<spell id="1526" name="Frost Bane IV" level="4"/>
+		<spell id="1527" name="Frost Bane V" level="5"/>
+		<spell id="1528" name="Frost Bane VI" level="6"/>
+		<spell id="2104" name="Gelidite's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="107" name="Frost Blast III" level="3"/>
+		<spell id="108" name="Frost Blast IV" level="4"/>
+		<spell id="109" name="Frost Blast V" level="5"/>
+		<spell id="110" name="Frost Blast VI" level="6"/>
+		<spell id="2135" name="Winter's Embrace" level="7"/>
+	</group>
+	<group>
+		<spell id="28" name="Frost Bolt I" level="1"/>
+		<spell id="70" name="Frost Bolt II" level="2"/>
+		<spell id="71" name="Frost Bolt III" level="3"/>
+		<spell id="72" name="Frost Bolt IV" level="4"/>
+		<spell id="73" name="Frost Bolt V" level="5"/>
+		<spell id="74" name="Frost Bolt VI" level="6"/>
+		<spell id="2136" name="Icy Torment" level="7"/>
+	</group>
+	<group>
+		<spell id="1517" name="Frost Lure I" level="1"/>
+		<spell id="1518" name="Frost Lure II" level="2"/>
+		<spell id="1519" name="Frost Lure III" level="3"/>
+		<spell id="1520" name="Frost Lure IV" level="4"/>
+		<spell id="1521" name="Frost Lure V" level="5"/>
+		<spell id="1522" name="Frost Lure VI" level="6"/>
+		<spell id="2105" name="Geledite Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1808" name="Frost Streak I" level="1"/>
+		<spell id="1809" name="Frost Streak II" level="2"/>
+		<spell id="1810" name="Frost Streak III" level="3"/>
+		<spell id="1811" name="Frost Streak IV" level="4"/>
+		<spell id="1812" name="Frost Streak V" level="5"/>
+		<spell id="1813" name="Frost Streak VI" level="6"/>
+		<spell id="2137" name="Sudden Frost" level="7"/>
+	</group>
+	<group>
+		<spell id="135" name="Frost Volley III" level="3"/>
+		<spell id="136" name="Frost Volley IV" level="4"/>
+		<spell id="137" name="Frost Volley V" level="5"/>
+		<spell id="138" name="Frost Volley VI" level="6"/>
+		<spell id="2138" name="Blizzard" level="7"/>
+	</group>
+	<group>
+		<spell id="7" name="Harm Other I" level="1"/>
+		<spell id="1172" name="Harm Other II" level="2"/>
+		<spell id="1173" name="Harm Other III" level="3"/>
+		<spell id="1174" name="Harm Other IV" level="4"/>
+		<spell id="1175" name="Harm Other V" level="5"/>
+		<spell id="1176" name="Harm Other VI" level="6"/>
+		<spell id="2070" name="Heart Rend" level="7"/>
+	</group>
+	<group>
+		<spell id="5" name="Heal Other I" level="1"/>
+		<spell id="1162" name="Heal Other II" level="2"/>
+		<spell id="1163" name="Heal Other III" level="3"/>
+		<spell id="1164" name="Heal Other IV" level="4"/>
+		<spell id="1165" name="Heal Other V" level="5"/>
+		<spell id="1166" name="Heal Other VI" level="6"/>
+		<spell id="2072" name="Adja's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="6" name="Heal Self I" level="1"/>
+		<spell id="1157" name="Heal Self II" level="2"/>
+		<spell id="1158" name="Heal Self III" level="3"/>
+		<spell id="1159" name="Heal Self IV" level="4"/>
+		<spell id="1160" name="Heal Self V" level="5"/>
+		<spell id="1161" name="Heal Self VI" level="6"/>
+		<spell id="2073" name="Adja's Intervention" level="7"/>
+	</group>
+	<group>
+		<spell id="892" name="Healing Ineptitude Other I" level="1"/>
+		<spell id="893" name="Healing Ineptitude Other II" level="2"/>
+		<spell id="894" name="Healing Ineptitude Other III" level="3"/>
+		<spell id="895" name="Healing Ineptitude Other IV" level="4"/>
+		<spell id="896" name="Healing Ineptitude Other V" level="5"/>
+		<spell id="897" name="Healing Ineptitude Other VI" level="6"/>
+		<spell id="2238" name="Unsteady Hands" level="7"/>
+	</group>
+	<group>
+		<spell id="880" name="Healing Mastery Other I" level="1"/>
+		<spell id="881" name="Healing Mastery Other II" level="2"/>
+		<spell id="882" name="Healing Mastery Other III" level="3"/>
+		<spell id="883" name="Healing Mastery Other IV" level="4"/>
+		<spell id="884" name="Healing Mastery Other V" level="5"/>
+		<spell id="885" name="Healing Mastery Other VI" level="6"/>
+		<spell id="2240" name="Avalenne's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="874" name="Healing Mastery Self I" level="1"/>
+		<spell id="875" name="Healing Mastery Self II" level="2"/>
+		<spell id="876" name="Healing Mastery Self III" level="3"/>
+		<spell id="877" name="Healing Mastery Self IV" level="4"/>
+		<spell id="878" name="Healing Mastery Self V" level="5"/>
+		<spell id="879" name="Healing Mastery Self VI" level="6"/>
+		<spell id="2241" name="Avalenne's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1705" name="Health to Mana Other I" level="1"/>
+		<spell id="1706" name="Health to Mana Other II" level="2"/>
+		<spell id="1707" name="Health to Mana Other III" level="3"/>
+		<spell id="1281" name="Health to Mana Other IV" level="4"/>
+		<spell id="1282" name="Health to Mana Other V" level="5"/>
+		<spell id="1283" name="Health to Mana Other VI" level="6"/>
+		<spell id="2331" name="Health to Mana Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1278" name="Health to Mana Self I" level="1"/>
+		<spell id="1279" name="Health to Mana Self II" level="2"/>
+		<spell id="1280" name="Health to Mana Self III" level="3"/>
+		<spell id="1702" name="Health to Mana Self IV" level="4"/>
+		<spell id="1703" name="Health to Mana Self V" level="5"/>
+		<spell id="1704" name="Health to Mana Self VI" level="6"/>
+		<spell id="2332" name="Cannibalize" level="7"/>
+	</group>
+	<group>
+		<spell id="1266" name="Health to Stamina Other I" level="1"/>
+		<spell id="1267" name="Health to Stamina Other II" level="2"/>
+		<spell id="1268" name="Health to Stamina Other III" level="3"/>
+		<spell id="1269" name="Health to Stamina Other IV" level="4"/>
+		<spell id="1270" name="Health to Stamina Other V" level="5"/>
+		<spell id="1271" name="Health to Stamina Other VI" level="6"/>
+		<spell id="2333" name="Health to Stamina Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1272" name="Health to Stamina Self I" level="1"/>
+		<spell id="1273" name="Health to Stamina Self II" level="2"/>
+		<spell id="1274" name="Health to Stamina Self III" level="3"/>
+		<spell id="1275" name="Health to Stamina Self IV" level="4"/>
+		<spell id="1276" name="Health to Stamina Self V" level="5"/>
+		<spell id="1277" name="Health to Stamina Self VI" level="6"/>
+		<spell id="2334" name="Self Sacrifice" level="7"/>
+	</group>
+	<group>
+		<spell id="1587" name="Heart Seeker I" level="1"/>
+		<spell id="1588" name="Heart Seeker II" level="2"/>
+		<spell id="1589" name="Heart Seeker III" level="3"/>
+		<spell id="1590" name="Heart Seeker IV" level="4"/>
+		<spell id="1591" name="Heart Seeker V" level="5"/>
+		<spell id="1592" name="Heart Seeker VI" level="6"/>
+		<spell id="2106" name="Elysa's Sight" level="7"/>
+	</group>
+	<group>
+		<spell id="1475" name="Hermetic Link I" level="1"/>
+		<spell id="1476" name="Hermetic Link II" level="2"/>
+		<spell id="1477" name="Hermetic Link III" level="3"/>
+		<spell id="1478" name="Hermetic Link IV" level="4"/>
+		<spell id="1479" name="Hermetic Link V" level="5"/>
+		<spell id="1480" name="Hermetic Link VI" level="6"/>
+		<spell id="2117" name="Mystic's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1469" name="Hermetic Void I" level="1"/>
+		<spell id="1470" name="Hermetic Void II" level="2"/>
+		<spell id="1471" name="Hermetic Void III" level="3"/>
+		<spell id="1472" name="Hermetic Void IV" level="4"/>
+		<spell id="1473" name="Hermetic Void V" level="5"/>
+		<spell id="1474" name="Hermetic Void VI" level="6"/>
+		<spell id="2107" name="Cabalistic Ostracism" level="7"/>
+	</group>
+	<group>
+		<spell id="51" name="Impenetrability I" level="1"/>
+		<spell id="1482" name="Impenetrability II" level="2"/>
+		<spell id="1483" name="Impenetrability III" level="3"/>
+		<spell id="1484" name="Impenetrability IV" level="4"/>
+		<spell id="1485" name="Impenetrability V" level="5"/>
+		<spell id="1486" name="Impenetrability VI" level="6"/>
+		<spell id="2108" name="Brogard's Defiance" level="7"/>
+	</group>
+	<group>
+		<spell id="25" name="Imperil Other I" level="1"/>
+		<spell id="1323" name="Imperil Other II" level="2"/>
+		<spell id="1324" name="Imperil Other III" level="3"/>
+		<spell id="1325" name="Imperil Other IV" level="4"/>
+		<spell id="1326" name="Imperil Other V" level="5"/>
+		<spell id="1327" name="Imperil Other VI" level="6"/>
+		<spell id="2074" name="Gossamer Flesh" level="7"/>
+	</group>
+	<group>
+		<spell id="250" name="Impregnability Other I" level="1"/>
+		<spell id="251" name="Impregnability Other II" level="2"/>
+		<spell id="252" name="Impregnability Other III" level="3"/>
+		<spell id="253" name="Impregnability Other IV" level="4"/>
+		<spell id="254" name="Impregnability Other V" level="5"/>
+		<spell id="255" name="Impregnability Other VI" level="6"/>
+		<spell id="2242" name="Web of Deflection" level="7"/>
+	</group>
+	<group>
+		<spell id="256" name="Impregnability Self I" level="1"/>
+		<spell id="257" name="Impregnability Self II" level="2"/>
+		<spell id="258" name="Impregnability Self III" level="3"/>
+		<spell id="259" name="Impregnability Self IV" level="4"/>
+		<spell id="260" name="Impregnability Self V" level="5"/>
+		<spell id="261" name="Impregnability Self VI" level="6"/>
+		<spell id="2243" name="Aura of Deflection" level="7"/>
+	</group>
+	<group>
+		<spell id="1225" name="Infuse Health Other I" level="1"/>
+		<spell id="1226" name="Infuse Health Other II" level="2"/>
+		<spell id="1227" name="Infuse Health Other III" level="3"/>
+		<spell id="1228" name="Infuse Health Other IV" level="4"/>
+		<spell id="1229" name="Infuse Health Other V" level="5"/>
+		<spell id="1230" name="Infuse Health Other VI" level="6"/>
+		<spell id="2335" name="Gift of Vitality" level="7"/>
+	</group>
+	<group>
+		<spell id="9" name="Infuse Mana Other I" level="1"/>
+		<spell id="1255" name="Infuse Mana Other II" level="2"/>
+		<spell id="1256" name="Infuse Mana Other III" level="3"/>
+		<spell id="1257" name="Infuse Mana Other IV" level="4"/>
+		<spell id="1258" name="Infuse Mana Other V" level="5"/>
+		<spell id="1259" name="Infuse Mana Other VI" level="6"/>
+		<spell id="2336" name="Gift of Essence" level="7"/>
+	</group>
+	<group>
+		<spell id="1243" name="Infuse Stamina Other I" level="1"/>
+		<spell id="1244" name="Infuse Stamina Other II" level="2"/>
+		<spell id="1245" name="Infuse Stamina Other III" level="3"/>
+		<spell id="1246" name="Infuse Stamina Other IV" level="4"/>
+		<spell id="1247" name="Infuse Stamina Other V" level="5"/>
+		<spell id="1248" name="Infuse Stamina Other VI" level="6"/>
+		<spell id="2337" name="Gift of Vigor" level="7"/>
+	</group>
+	<group>
+		<spell id="17" name="Invulnerability Other I" level="1"/>
+		<spell id="240" name="Invulnerability Other II" level="2"/>
+		<spell id="241" name="Invulnerability Other III" level="3"/>
+		<spell id="242" name="Invulnerability Other IV" level="4"/>
+		<spell id="243" name="Invulnerability Other V" level="5"/>
+		<spell id="244" name="Invulnerability Other VI" level="6"/>
+		<spell id="2244" name="Web of Defense" level="7"/>
+	</group>
+	<group>
+		<spell id="18" name="Invulnerability Self I" level="1"/>
+		<spell id="245" name="Invulnerability Self II" level="2"/>
+		<spell id="246" name="Invulnerability Self III" level="3"/>
+		<spell id="247" name="Invulnerability Self IV" level="4"/>
+		<spell id="248" name="Invulnerability Self V" level="5"/>
+		<spell id="249" name="Invulnerability Self VI" level="6"/>
+		<spell id="2245" name="Aura of Defense" level="7"/>
+	</group>
+	<group>
+		<spell id="593" name="Item Enchantment Ineptitude Other I" level="1"/>
+		<spell id="594" name="Item Enchantment Ineptitude Other II" level="2"/>
+		<spell id="595" name="Item Enchantment Ineptitude Other III" level="3"/>
+		<spell id="596" name="Item Enchantment Ineptitude Other IV" level="4"/>
+		<spell id="597" name="Item Enchantment Ineptitude Other V" level="5"/>
+		<spell id="598" name="Item Enchantment Ineptitude Other VI" level="6"/>
+		<spell id="2246" name="Wrath of Celcynd" level="7"/>
+	</group>
+	<group>
+		<spell id="587" name="Item Enchantment Mastery Other I" level="1"/>
+		<spell id="588" name="Item Enchantment Mastery Other II" level="2"/>
+		<spell id="589" name="Item Enchantment Mastery Other III" level="3"/>
+		<spell id="590" name="Item Enchantment Mastery Other IV" level="4"/>
+		<spell id="591" name="Item Enchantment Mastery Other V" level="5"/>
+		<spell id="592" name="Item Enchantment Mastery Other VI" level="6"/>
+		<spell id="2248" name="Celcynd's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="581" name="Item Enchantment Mastery Self I" level="1"/>
+		<spell id="582" name="Item Enchantment Mastery Self II" level="2"/>
+		<spell id="583" name="Item Enchantment Mastery Self III" level="3"/>
+		<spell id="584" name="Item Enchantment Mastery Self IV" level="4"/>
+		<spell id="585" name="Item Enchantment Mastery Self V" level="5"/>
+		<spell id="586" name="Item Enchantment Mastery Self VI" level="6"/>
+		<spell id="2249" name="Celcynd's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="732" name="Item Tinkering Expertise Other I" level="1"/>
+		<spell id="733" name="Item Tinkering Expertise Other II" level="2"/>
+		<spell id="734" name="Item Tinkering Expertise Other III" level="3"/>
+		<spell id="735" name="Item Tinkering Expertise Other IV" level="4"/>
+		<spell id="736" name="Item Tinkering Expertise Other V" level="5"/>
+		<spell id="737" name="Item Tinkering Expertise Other VI" level="6"/>
+		<spell id="2250" name="Yoshi's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="726" name="Item Tinkering Expertise Self I" level="1"/>
+		<spell id="727" name="Item Tinkering Expertise Self II" level="2"/>
+		<spell id="728" name="Item Tinkering Expertise Self III" level="3"/>
+		<spell id="729" name="Item Tinkering Expertise Self IV" level="4"/>
+		<spell id="730" name="Item Tinkering Expertise Self V" level="5"/>
+		<spell id="731" name="Item Tinkering Expertise Self VI" level="6"/>
+		<spell id="2251" name="Yoshi's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="744" name="Item Tinkering Ignorance Other I" level="1"/>
+		<spell id="745" name="Item Tinkering Ignorance Other II" level="2"/>
+		<spell id="746" name="Item Tinkering Ignorance Other III" level="3"/>
+		<spell id="747" name="Item Tinkering Ignorance Other IV" level="4"/>
+		<spell id="748" name="Item Tinkering Ignorance Other V" level="5"/>
+		<spell id="749" name="Item Tinkering Ignorance Other VI" level="6"/>
+		<spell id="2252" name="Unfortunate Appraisal" level="7"/>
+	</group>
+	<group>
+		<spell id="1012" name="Jumping Ineptitude Other I" level="1"/>
+		<spell id="1013" name="Jumping Ineptitude Other II" level="2"/>
+		<spell id="1014" name="Jumping Ineptitude Other III" level="3"/>
+		<spell id="1015" name="Jumping Ineptitude Other IV" level="4"/>
+		<spell id="1016" name="Jumping Ineptitude Other V" level="5"/>
+		<spell id="1017" name="Jumping Ineptitude Other VI" level="6"/>
+		<spell id="2254" name="Feat of Radaz" level="7"/>
+	</group>
+	<group>
+		<spell id="976" name="Jumping Mastery Other I" level="1"/>
+		<spell id="977" name="Jumping Mastery Other II" level="2"/>
+		<spell id="978" name="Jumping Mastery Other III" level="3"/>
+		<spell id="979" name="Jumping Mastery Other IV" level="4"/>
+		<spell id="980" name="Jumping Mastery Other V" level="5"/>
+		<spell id="981" name="Jumping Mastery Other VI" level="6"/>
+		<spell id="2256" name="Jahannan's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="970" name="Jumping Mastery Self I" level="1"/>
+		<spell id="971" name="Jumping Mastery Self II" level="2"/>
+		<spell id="972" name="Jumping Mastery Self III" level="3"/>
+		<spell id="973" name="Jumping Mastery Self IV" level="4"/>
+		<spell id="974" name="Jumping Mastery Self V" level="5"/>
+		<spell id="975" name="Jumping Mastery Self VI" level="6"/>
+		<spell id="2257" name="Jahannan's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1000" name="Leaden Feet Other I" level="1"/>
+		<spell id="1001" name="Leaden Feet Other II" level="2"/>
+		<spell id="1002" name="Leaden Feet Other III" level="3"/>
+		<spell id="1003" name="Leaden Feet Other IV" level="4"/>
+		<spell id="1004" name="Leaden Feet Other V" level="5"/>
+		<spell id="1005" name="Leaden Feet Other VI" level="6"/>
+		<spell id="2258" name="Gears Unwound" level="7"/>
+	</group>
+	<group>
+		<spell id="50" name="Leaden Weapon I" level="1"/>
+		<spell id="1629" name="Leaden Weapon II" level="2"/>
+		<spell id="1630" name="Leaden Weapon III" level="3"/>
+		<spell id="1631" name="Leaden Weapon IV" level="4"/>
+		<spell id="1632" name="Leaden Weapon V" level="5"/>
+		<spell id="1633" name="Leaden Weapon VI" level="6"/>
+		<spell id="2109" name="Lugian's Speed" level="7"/>
+	</group>
+	<group>
+		<spell id="916" name="Leadership Ineptitude Other I" level="1"/>
+		<spell id="917" name="Leadership Ineptitude Other II" level="2"/>
+		<spell id="918" name="Leadership Ineptitude Other III" level="3"/>
+		<spell id="919" name="Leadership Ineptitude Other IV" level="4"/>
+		<spell id="920" name="Leadership Ineptitude Other V" level="5"/>
+		<spell id="921" name="Leadership Ineptitude Other VI" level="6"/>
+		<spell id="2260" name="Kwipetian Vision" level="7"/>
+	</group>
+	<group>
+		<spell id="904" name="Leadership Mastery Other I" level="1"/>
+		<spell id="905" name="Leadership Mastery Other II" level="2"/>
+		<spell id="906" name="Leadership Mastery Other III" level="3"/>
+		<spell id="907" name="Leadership Mastery Other IV" level="4"/>
+		<spell id="908" name="Leadership Mastery Other V" level="5"/>
+		<spell id="909" name="Leadership Mastery Other VI" level="6"/>
+		<spell id="2262" name="Ar-Pei's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="898" name="Leadership Mastery Self I" level="1"/>
+		<spell id="899" name="Leadership Mastery Self II" level="2"/>
+		<spell id="900" name="Leadership Mastery Self III" level="3"/>
+		<spell id="901" name="Leadership Mastery Self IV" level="4"/>
+		<spell id="902" name="Leadership Mastery Self V" level="5"/>
+		<spell id="903" name="Leadership Mastery Self VI" level="6"/>
+		<spell id="2263" name="Ar-Pei's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="623" name="Life Magic Ineptitude Other I" level="1"/>
+		<spell id="624" name="Life Magic Ineptitude Other II" level="2"/>
+		<spell id="625" name="Life Magic Ineptitude Other III" level="3"/>
+		<spell id="626" name="Life Magic Ineptitude Other IV" level="4"/>
+		<spell id="627" name="Life Magic Ineptitude Other V" level="5"/>
+		<spell id="628" name="Life Magic Ineptitude Other VI" level="6"/>
+		<spell id="2264" name="Wrath of Harlune" level="7"/>
+	</group>
+	<group>
+		<spell id="611" name="Life Magic Mastery Other I" level="1"/>
+		<spell id="612" name="Life Magic Mastery Other II" level="2"/>
+		<spell id="613" name="Life Magic Mastery Other III" level="3"/>
+		<spell id="614" name="Life Magic Mastery Other IV" level="4"/>
+		<spell id="615" name="Life Magic Mastery Other V" level="5"/>
+		<spell id="616" name="Life Magic Mastery Other VI" level="6"/>
+		<spell id="2266" name="Harlune's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="605" name="Life Magic Mastery Self I" level="1"/>
+		<spell id="606" name="Life Magic Mastery Self II" level="2"/>
+		<spell id="607" name="Life Magic Mastery Self III" level="3"/>
+		<spell id="608" name="Life Magic Mastery Self IV" level="4"/>
+		<spell id="609" name="Life Magic Mastery Self V" level="5"/>
+		<spell id="610" name="Life Magic Mastery Self VI" level="6"/>
+		<spell id="2267" name="Harlune's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="2732" name="Lightning Arc I" level="1"/>
+		<spell id="2733" name="Lightning Arc II" level="2"/>
+		<spell id="2734" name="Lightning Arc III" level="3"/>
+		<spell id="2735" name="Lightning Arc IV" level="4"/>
+		<spell id="2736" name="Lightning Arc V" level="5"/>
+		<spell id="2737" name="Lightning Arc VI" level="6"/>
+		<spell id="2738" name="Lightning Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1535" name="Lightning Bane I" level="1"/>
+		<spell id="1536" name="Lightning Bane II" level="2"/>
+		<spell id="1537" name="Lightning Bane III" level="3"/>
+		<spell id="1538" name="Lightning Bane IV" level="4"/>
+		<spell id="1539" name="Lightning Bane V" level="5"/>
+		<spell id="1540" name="Lightning Bane VI" level="6"/>
+		<spell id="2110" name="Astyrrian's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="111" name="Lightning Blast III" level="3"/>
+		<spell id="112" name="Lightning Blast IV" level="4"/>
+		<spell id="113" name="Lightning Blast V" level="5"/>
+		<spell id="114" name="Lightning Blast VI" level="6"/>
+		<spell id="2139" name="Luminous Wrath" level="7"/>
+	</group>
+	<group>
+		<spell id="75" name="Lightning Bolt I" level="1"/>
+		<spell id="76" name="Lightning Bolt II" level="2"/>
+		<spell id="77" name="Lightning Bolt III" level="3"/>
+		<spell id="78" name="Lightning Bolt IV" level="4"/>
+		<spell id="79" name="Lightning Bolt V" level="5"/>
+		<spell id="80" name="Lightning Bolt VI" level="6"/>
+		<spell id="2140" name="Alset's Coil" level="7"/>
+	</group>
+	<group>
+		<spell id="1529" name="Lightning Lure I" level="1"/>
+		<spell id="1530" name="Lightning Lure II" level="2"/>
+		<spell id="1531" name="Lightning Lure III" level="3"/>
+		<spell id="1532" name="Lightning Lure IV" level="4"/>
+		<spell id="1533" name="Lightning Lure V" level="5"/>
+		<spell id="1534" name="Lightning Lure VI" level="6"/>
+		<spell id="2111" name="Astyrrian Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1072" name="Lightning Protection Other I" level="1"/>
+		<spell id="1073" name="Lightning Protection Other II" level="2"/>
+		<spell id="1074" name="Lightning Protection Other III" level="3"/>
+		<spell id="1075" name="Lightning Protection Other IV" level="4"/>
+		<spell id="1076" name="Lightning Protection Other V" level="5"/>
+		<spell id="1077" name="Lightning Protection Other VI" level="6"/>
+		<spell id="2158" name="Storm's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="1066" name="Lightning Protection Self I" level="1"/>
+		<spell id="1067" name="Lightning Protection Self II" level="2"/>
+		<spell id="1068" name="Lightning Protection Self III" level="3"/>
+		<spell id="1069" name="Lightning Protection Self IV" level="4"/>
+		<spell id="1070" name="Lightning Protection Self V" level="5"/>
+		<spell id="1071" name="Lightning Protection Self VI" level="6"/>
+		<spell id="2159" name="Storm's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1814" name="Lightning Streak I" level="1"/>
+		<spell id="1815" name="Lightning Streak II" level="2"/>
+		<spell id="1816" name="Lightning Streak III" level="3"/>
+		<spell id="1817" name="Lightning Streak IV" level="4"/>
+		<spell id="1818" name="Lightning Streak V" level="5"/>
+		<spell id="1819" name="Lightning Streak VI" level="6"/>
+		<spell id="2141" name="Lhen's Flare" level="7"/>
+	</group>
+	<group>
+		<spell id="139" name="Lightning Volley III" level="3"/>
+		<spell id="140" name="Lightning Volley IV" level="4"/>
+		<spell id="141" name="Lightning Volley V" level="5"/>
+		<spell id="142" name="Lightning Volley VI" level="6"/>
+		<spell id="2142" name="Tempest" level="7"/>
+	</group>
+	<group>
+		<spell id="1084" name="Lightning Vulnerability Other I" level="1"/>
+		<spell id="1085" name="Lightning Vulnerability Other II" level="2"/>
+		<spell id="1086" name="Lightning Vulnerability Other III" level="3"/>
+		<spell id="1087" name="Lightning Vulnerability Other IV" level="4"/>
+		<spell id="1088" name="Lightning Vulnerability Other V" level="5"/>
+		<spell id="1089" name="Lightning Vulnerability Other VI" level="6"/>
+		<spell id="2172" name="Astyrrian's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="940" name="Lockpick Ineptitude Other I" level="1"/>
+		<spell id="941" name="Lockpick Ineptitude Other II" level="2"/>
+		<spell id="942" name="Lockpick Ineptitude Other III" level="3"/>
+		<spell id="943" name="Lockpick Ineptitude Other IV" level="4"/>
+		<spell id="944" name="Lockpick Ineptitude Other V" level="5"/>
+		<spell id="945" name="Lockpick Ineptitude Other VI" level="6"/>
+		<spell id="2268" name="Fat Fingers" level="7"/>
+	</group>
+	<group>
+		<spell id="928" name="Lockpick Mastery Other I" level="1"/>
+		<spell id="929" name="Lockpick Mastery Other II" level="2"/>
+		<spell id="930" name="Lockpick Mastery Other III" level="3"/>
+		<spell id="931" name="Lockpick Mastery Other IV" level="4"/>
+		<spell id="932" name="Lockpick Mastery Other V" level="5"/>
+		<spell id="933" name="Lockpick Mastery Other VI" level="6"/>
+		<spell id="2270" name="Oswald's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="922" name="Lockpick Mastery Self I" level="1"/>
+		<spell id="923" name="Lockpick Mastery Self II" level="2"/>
+		<spell id="924" name="Lockpick Mastery Self III" level="3"/>
+		<spell id="925" name="Lockpick Mastery Self IV" level="4"/>
+		<spell id="926" name="Lockpick Mastery Self V" level="5"/>
+		<spell id="927" name="Lockpick Mastery Self VI" level="6"/>
+		<spell id="2271" name="Oswald's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1606" name="Lure Blade I" level="1"/>
+		<spell id="1607" name="Lure Blade II" level="2"/>
+		<spell id="1608" name="Lure Blade III" level="3"/>
+		<spell id="1609" name="Lure Blade IV" level="4"/>
+		<spell id="1610" name="Lure Blade V" level="5"/>
+		<spell id="1611" name="Lure Blade VI" level="6"/>
+		<spell id="2112" name="Wi's Folly" level="7"/>
+	</group>
+	<group>
+		<spell id="352" name="Mace Ineptitude Other I" level="1"/>
+		<spell id="353" name="Mace Ineptitude Other II" level="2"/>
+		<spell id="354" name="Mace Ineptitude Other III" level="3"/>
+		<spell id="355" name="Mace Ineptitude Other IV" level="4"/>
+		<spell id="356" name="Mace Ineptitude Other V" level="5"/>
+		<spell id="357" name="Mace Ineptitude Other VI" level="6"/>
+		<spell id="2272" name="Top Heavy Swing" level="7"/>
+	</group>
+	<group>
+		<spell id="340" name="Mace Mastery Other I" level="1"/>
+		<spell id="341" name="Mace Mastery Other II" level="2"/>
+		<spell id="342" name="Mace Mastery Other III" level="3"/>
+		<spell id="343" name="Mace Mastery Other IV" level="4"/>
+		<spell id="344" name="Mace Mastery Other V" level="5"/>
+		<spell id="345" name="Mace Mastery Other VI" level="6"/>
+		<spell id="2274" name="Mi-Krauli's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="346" name="Mace Mastery Self I" level="1"/>
+		<spell id="347" name="Mace Mastery Self II" level="2"/>
+		<spell id="348" name="Mace Mastery Self III" level="3"/>
+		<spell id="349" name="Mace Mastery Self IV" level="4"/>
+		<spell id="350" name="Mace Mastery Self V" level="5"/>
+		<spell id="351" name="Mace Mastery Self VI" level="6"/>
+		<spell id="2275" name="Mi-Krauli's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="756" name="Magic Item Tinkering Expertise Other I" level="1"/>
+		<spell id="757" name="Magic Item Tinkering Expertise Other II" level="2"/>
+		<spell id="758" name="Magic Item Tinkering Expertise Other III" level="3"/>
+		<spell id="759" name="Magic Item Tinkering Expertise Other IV" level="4"/>
+		<spell id="760" name="Magic Item Tinkering Expertise Other V" level="5"/>
+		<spell id="761" name="Magic Item Tinkering Expertise Other VI" level="6"/>
+		<spell id="2276" name="Celdiseth's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="750" name="Magic Item Tinkering Expertise Self I" level="1"/>
+		<spell id="751" name="Magic Item Tinkering Expertise Self II" level="2"/>
+		<spell id="752" name="Magic Item Tinkering Expertise Self III" level="3"/>
+		<spell id="753" name="Magic Item Tinkering Expertise Self IV" level="4"/>
+		<spell id="754" name="Magic Item Tinkering Expertise Self V" level="5"/>
+		<spell id="755" name="Magic Item Tinkering Expertise Self VI" level="6"/>
+		<spell id="2277" name="Celdiseth's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="768" name="Magic Item Tinkering Ignorance Other I" level="1"/>
+		<spell id="769" name="Magic Item Tinkering Ignorance Other II" level="2"/>
+		<spell id="770" name="Magic Item Tinkering Ignorance Other III" level="3"/>
+		<spell id="771" name="Magic Item Tinkering Ignorance Other IV" level="4"/>
+		<spell id="772" name="Magic Item Tinkering Ignorance Other V" level="5"/>
+		<spell id="773" name="Magic Item Tinkering Ignorance Other VI" level="6"/>
+		<spell id="2278" name="Eyes Clouded" level="7"/>
+	</group>
+	<group>
+		<spell id="268" name="Magic Resistance Other I" level="1"/>
+		<spell id="269" name="Magic Resistance Other II" level="2"/>
+		<spell id="270" name="Magic Resistance Other III" level="3"/>
+		<spell id="271" name="Magic Resistance Other IV" level="4"/>
+		<spell id="272" name="Magic Resistance Other V" level="5"/>
+		<spell id="273" name="Magic Resistance Other VI" level="6"/>
+		<spell id="2280" name="Web of Resistance" level="7"/>
+	</group>
+	<group>
+		<spell id="274" name="Magic Resistance Self I" level="1"/>
+		<spell id="275" name="Magic Resistance Self II" level="2"/>
+		<spell id="276" name="Magic Resistance Self III" level="3"/>
+		<spell id="277" name="Magic Resistance Self IV" level="4"/>
+		<spell id="278" name="Magic Resistance Self V" level="5"/>
+		<spell id="279" name="Magic Resistance Self VI" level="6"/>
+		<spell id="2281" name="Aura of Resistance" level="7"/>
+	</group>
+	<group>
+		<spell id="280" name="Magic Yield Other I" level="1"/>
+		<spell id="281" name="Magic Yield Other II" level="2"/>
+		<spell id="282" name="Magic Yield Other III" level="3"/>
+		<spell id="283" name="Magic Yield Other IV" level="4"/>
+		<spell id="284" name="Magic Yield Other V" level="5"/>
+		<spell id="285" name="Magic Yield Other VI" level="6"/>
+		<spell id="2282" name="Futility" level="7"/>
+	</group>
+	<group>
+		<spell id="1207" name="Mana Boost Other I" level="1"/>
+		<spell id="1208" name="Mana Boost Other II" level="2"/>
+		<spell id="1209" name="Mana Boost Other III" level="3"/>
+		<spell id="1210" name="Mana Boost Other IV" level="4"/>
+		<spell id="1211" name="Mana Boost Other V" level="5"/>
+		<spell id="1212" name="Mana Boost Other VI" level="6"/>
+		<spell id="2076" name="Mana Boost Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1201" name="Mana Boost Self I" level="1"/>
+		<spell id="1202" name="Mana Boost Self II" level="2"/>
+		<spell id="1203" name="Mana Boost Self III" level="3"/>
+		<spell id="1204" name="Mana Boost Self IV" level="4"/>
+		<spell id="1205" name="Mana Boost Self V" level="5"/>
+		<spell id="1206" name="Mana Boost Self VI" level="6"/>
+		<spell id="2077" name="Mana Boost Self VII" level="7"/>
+	</group>
+	<group>
+		<spell id="672" name="Mana Conversion Ineptitude Other I" level="1"/>
+		<spell id="673" name="Mana Conversion Ineptitude Other II" level="2"/>
+		<spell id="674" name="Mana Conversion Ineptitude Other III" level="3"/>
+		<spell id="675" name="Mana Conversion Ineptitude Other IV" level="4"/>
+		<spell id="676" name="Mana Conversion Ineptitude Other V" level="5"/>
+		<spell id="677" name="Mana Conversion Ineptitude Other VI" level="6"/>
+		<spell id="2284" name="Inefficient Investment" level="7"/>
+	</group>
+	<group>
+		<spell id="659" name="Mana Conversion Mastery Other I" level="1"/>
+		<spell id="660" name="Mana Conversion Mastery Other II" level="2"/>
+		<spell id="661" name="Mana Conversion Mastery Other III" level="3"/>
+		<spell id="662" name="Mana Conversion Mastery Other IV" level="4"/>
+		<spell id="663" name="Mana Conversion Mastery Other V" level="5"/>
+		<spell id="664" name="Mana Conversion Mastery Other VI" level="6"/>
+		<spell id="2286" name="Nuhmudira's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="653" name="Mana Conversion Mastery Self I" level="1"/>
+		<spell id="654" name="Mana Conversion Mastery Self II" level="2"/>
+		<spell id="655" name="Mana Conversion Mastery Self III" level="3"/>
+		<spell id="656" name="Mana Conversion Mastery Self IV" level="4"/>
+		<spell id="657" name="Mana Conversion Mastery Self V" level="5"/>
+		<spell id="658" name="Mana Conversion Mastery Self VI" level="6"/>
+		<spell id="2287" name="Nuhmudira's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="218" name="Mana Depletion Other I" level="1"/>
+		<spell id="219" name="Mana Depletion Other II" level="2"/>
+		<spell id="220" name="Mana Depletion Other III" level="3"/>
+		<spell id="221" name="Mana Depletion Other IV" level="4"/>
+		<spell id="222" name="Mana Depletion Other V" level="5"/>
+		<spell id="223" name="Mana Depletion Other VI" level="6"/>
+		<spell id="2180" name="Energy Flux" level="7"/>
+	</group>
+	<group>
+		<spell id="1219" name="Mana Drain Other I" level="1"/>
+		<spell id="1220" name="Mana Drain Other II" level="2"/>
+		<spell id="1221" name="Mana Drain Other III" level="3"/>
+		<spell id="1222" name="Mana Drain Other IV" level="4"/>
+		<spell id="1223" name="Mana Drain Other V" level="5"/>
+		<spell id="1224" name="Mana Drain Other VI" level="6"/>
+		<spell id="2078" name="Void's Call" level="7"/>
+	</group>
+	<group>
+		<spell id="206" name="Mana Renewal Other I" level="1"/>
+		<spell id="207" name="Mana Renewal Other II" level="2"/>
+		<spell id="208" name="Mana Renewal Other III" level="3"/>
+		<spell id="209" name="Mana Renewal Other IV" level="4"/>
+		<spell id="210" name="Mana Renewal Other V" level="5"/>
+		<spell id="211" name="Mana Renewal Other VI" level="6"/>
+		<spell id="2182" name="Battlemage's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="212" name="Mana Renewal Self I" level="1"/>
+		<spell id="213" name="Mana Renewal Self II" level="2"/>
+		<spell id="214" name="Mana Renewal Self III" level="3"/>
+		<spell id="215" name="Mana Renewal Self IV" level="4"/>
+		<spell id="216" name="Mana Renewal Self V" level="5"/>
+		<spell id="217" name="Mana Renewal Self VI" level="6"/>
+		<spell id="2384" name="Arcane Restoration" level="6"/>
+		<spell id="2183" name="Battlemage's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1284" name="Mana to Health Other I" level="1"/>
+		<spell id="1285" name="Mana to Health Other II" level="2"/>
+		<spell id="1286" name="Mana to Health Other III" level="3"/>
+		<spell id="1287" name="Mana to Health Other IV" level="4"/>
+		<spell id="1288" name="Mana to Health Other V" level="5"/>
+		<spell id="1289" name="Mana to Health Other VI" level="6"/>
+		<spell id="2338" name="Mana to Health Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1290" name="Mana to Health Self I" level="1"/>
+		<spell id="1291" name="Mana to Health Self II" level="2"/>
+		<spell id="1292" name="Mana to Health Self III" level="3"/>
+		<spell id="1293" name="Mana to Health Self IV" level="4"/>
+		<spell id="1294" name="Mana to Health Self V" level="5"/>
+		<spell id="1295" name="Mana to Health Self VI" level="6"/>
+		<spell id="2339" name="Energize Vitality" level="7"/>
+	</group>
+	<group>
+		<spell id="1302" name="Mana to Stamina Other I" level="1"/>
+		<spell id="1303" name="Mana to Stamina Other II" level="2"/>
+		<spell id="1304" name="Mana to Stamina Other III" level="3"/>
+		<spell id="1305" name="Mana to Stamina Other IV" level="4"/>
+		<spell id="1306" name="Mana to Stamina Other V" level="5"/>
+		<spell id="1307" name="Mana to Stamina Other VI" level="6"/>
+		<spell id="2340" name="Mana to Stamina Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1296" name="Mana to Stamina Self I" level="1"/>
+		<spell id="1297" name="Mana to Stamina Self II" level="2"/>
+		<spell id="1298" name="Mana to Stamina Self III" level="3"/>
+		<spell id="1299" name="Mana to Stamina Self IV" level="4"/>
+		<spell id="1300" name="Mana to Stamina Self V" level="5"/>
+		<spell id="1301" name="Mana to Stamina Self VI" level="6"/>
+		<spell id="2341" name="Energize Vigor" level="7"/>
+	</group>
+	<group>
+		<spell id="2774" name="Martyr's Blight I" level="1"/>
+		<spell id="2775" name="Martyr's Blight II" level="2"/>
+		<spell id="2776" name="Martyr's Blight III" level="3"/>
+		<spell id="2777" name="Martyr's Blight IV" level="4"/>
+		<spell id="2778" name="Martyr's Blight V" level="5"/>
+		<spell id="2779" name="Martyr's Blight VI" level="6"/>
+		<spell id="2780" name="Martyr's Blight VII" level="7"/>
+	</group>
+	<group>
+		<spell id="2760" name="Martyr's Hecatomb I" level="1"/>
+		<spell id="2761" name="Martyr's Hecatomb II" level="2"/>
+		<spell id="2762" name="Martyr's Hecatomb III" level="3"/>
+		<spell id="2763" name="Martyr's Hecatomb IV" level="4"/>
+		<spell id="2764" name="Martyr's Hecatomb V" level="5"/>
+		<spell id="2765" name="Martyr's Hecatomb VI" level="6"/>
+		<spell id="2766" name="Martyr's Hecatomb VII" level="7"/>
+	</group>
+	<group>
+		<spell id="2767" name="Martyr's Tenacity I" level="1"/>
+		<spell id="2768" name="Martyr's Tenacity II" level="2"/>
+		<spell id="2769" name="Martyr's Tenacity III" level="3"/>
+		<spell id="2770" name="Martyr's Tenacity IV" level="4"/>
+		<spell id="2771" name="Martyr's Tenacity V" level="5"/>
+		<spell id="2772" name="Martyr's Tenacity VI" level="6"/>
+		<spell id="2773" name="Martyr's Tenacity VII" level="7"/>
+	</group>
+	<group>
+		<spell id="804" name="Monster Attunement Other I" level="1"/>
+		<spell id="805" name="Monster Attunement Other II" level="2"/>
+		<spell id="806" name="Monster Attunement Other III" level="3"/>
+		<spell id="807" name="Monster Attunement Other IV" level="4"/>
+		<spell id="808" name="Monster Attunement Other V" level="5"/>
+		<spell id="809" name="Monster Attunement Other VI" level="6"/>
+		<spell id="2288" name="Topheron's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="798" name="Monster Attunement Self I" level="1"/>
+		<spell id="799" name="Monster Attunement Self II" level="2"/>
+		<spell id="800" name="Monster Attunement Self III" level="3"/>
+		<spell id="801" name="Monster Attunement Self IV" level="4"/>
+		<spell id="802" name="Monster Attunement Self V" level="5"/>
+		<spell id="803" name="Monster Attunement Self VI" level="6"/>
+		<spell id="2289" name="Topheron's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="817" name="Monster Unfamiliarity Other I" level="1"/>
+		<spell id="818" name="Monster Unfamiliarity Other II" level="2"/>
+		<spell id="819" name="Monster Unfamiliarity Other III" level="3"/>
+		<spell id="820" name="Monster Unfamiliarity Other IV" level="4"/>
+		<spell id="821" name="Monster Unfamiliarity Other V" level="5"/>
+		<spell id="822" name="Monster Unfamiliarity Other VI" level="6"/>
+		<spell id="2290" name="Ignorance's Bliss" level="7"/>
+	</group>
+	<group>
+		<spell id="830" name="Person Attunement Other I" level="1"/>
+		<spell id="831" name="Person Attunement Other II" level="2"/>
+		<spell id="832" name="Person Attunement Other III" level="3"/>
+		<spell id="833" name="Person Attunement Other IV" level="4"/>
+		<spell id="834" name="Person Attunement Other V" level="5"/>
+		<spell id="835" name="Person Attunement Other VI" level="6"/>
+		<spell id="2292" name="Kaluhc's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="824" name="Person Attunement Self I" level="1"/>
+		<spell id="825" name="Person Attunement Self II" level="2"/>
+		<spell id="826" name="Person Attunement Self III" level="3"/>
+		<spell id="827" name="Person Attunement Self IV" level="4"/>
+		<spell id="828" name="Person Attunement Self V" level="5"/>
+		<spell id="829" name="Person Attunement Self VI" level="6"/>
+		<spell id="2293" name="Kaluhc's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="843" name="Person Unfamiliarity Other I" level="1"/>
+		<spell id="844" name="Person Unfamiliarity Other II" level="2"/>
+		<spell id="845" name="Person Unfamiliarity Other III" level="3"/>
+		<spell id="846" name="Person Unfamiliarity Other IV" level="4"/>
+		<spell id="847" name="Person Unfamiliarity Other V" level="5"/>
+		<spell id="848" name="Person Unfamiliarity Other VI" level="6"/>
+		<spell id="2294" name="Introversion" level="7"/>
+	</group>
+	<group>
+		<spell id="1569" name="Piercing Bane I" level="1"/>
+		<spell id="1570" name="Piercing Bane II" level="2"/>
+		<spell id="1571" name="Piercing Bane III" level="3"/>
+		<spell id="1572" name="Piercing Bane IV" level="4"/>
+		<spell id="1573" name="Piercing Bane V" level="5"/>
+		<spell id="1574" name="Piercing Bane VI" level="6"/>
+		<spell id="2113" name="Archer's Bane" level="7"/>
+	</group>
+	<group>
+		<spell id="1563" name="Piercing Lure I" level="1"/>
+		<spell id="1564" name="Piercing Lure II" level="2"/>
+		<spell id="1565" name="Piercing Lure III" level="3"/>
+		<spell id="1566" name="Piercing Lure IV" level="4"/>
+		<spell id="1567" name="Piercing Lure V" level="5"/>
+		<spell id="1568" name="Piercing Lure VI" level="6"/>
+		<spell id="2114" name="Archer Bait" level="7"/>
+	</group>
+	<group>
+		<spell id="1139" name="Piercing Protection Other I" level="1"/>
+		<spell id="1140" name="Piercing Protection Other II" level="2"/>
+		<spell id="1141" name="Piercing Protection Other III" level="3"/>
+		<spell id="1142" name="Piercing Protection Other IV" level="4"/>
+		<spell id="1143" name="Piercing Protection Other V" level="5"/>
+		<spell id="1144" name="Piercing Protection Other VI" level="6"/>
+		<spell id="2160" name="Boon of the Arrow Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="1133" name="Piercing Protection Self I" level="1"/>
+		<spell id="1134" name="Piercing Protection Self II" level="2"/>
+		<spell id="1135" name="Piercing Protection Self III" level="3"/>
+		<spell id="1136" name="Piercing Protection Self IV" level="4"/>
+		<spell id="1137" name="Piercing Protection Self V" level="5"/>
+		<spell id="1138" name="Piercing Protection Self VI" level="6"/>
+		<spell id="2161" name="Blessing of the Arrow Turner" level="7"/>
+	</group>
+	<group>
+		<spell id="1151" name="Piercing Vulnerability Other I" level="1"/>
+		<spell id="1152" name="Piercing Vulnerability Other II" level="2"/>
+		<spell id="1153" name="Piercing Vulnerability Other III" level="3"/>
+		<spell id="1154" name="Piercing Vulnerability Other IV" level="4"/>
+		<spell id="1155" name="Piercing Vulnerability Other V" level="5"/>
+		<spell id="1156" name="Piercing Vulnerability Other VI" level="6"/>
+		<spell id="2174" name="Archer's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="1403" name="Quickness Other I" level="1"/>
+		<spell id="1404" name="Quickness Other II" level="2"/>
+		<spell id="1405" name="Quickness Other III" level="3"/>
+		<spell id="1406" name="Quickness Other IV" level="4"/>
+		<spell id="1407" name="Quickness Other V" level="5"/>
+		<spell id="1408" name="Quickness Other VI" level="6"/>
+		<spell id="2080" name="Ogfoot" level="7"/>
+	</group>
+	<group>
+		<spell id="1397" name="Quickness Self I" level="1"/>
+		<spell id="1398" name="Quickness Self II" level="2"/>
+		<spell id="1399" name="Quickness Self III" level="3"/>
+		<spell id="1400" name="Quickness Self IV" level="4"/>
+		<spell id="1401" name="Quickness Self V" level="5"/>
+		<spell id="1402" name="Quickness Self VI" level="6"/>
+		<spell id="2081" name="Hastening" level="7"/>
+	</group>
+	<group>
+		<spell id="159" name="Regeneration Other I" level="1"/>
+		<spell id="160" name="Regeneration Other II" level="2"/>
+		<spell id="161" name="Regeneration Other III" level="3"/>
+		<spell id="162" name="Regeneration Other IV" level="4"/>
+		<spell id="163" name="Regeneration Other V" level="5"/>
+		<spell id="164" name="Regeneration Other VI" level="6"/>
+		<spell id="2184" name="Hydra's Head" level="7"/>
+	</group>
+	<group>
+		<spell id="165" name="Regeneration Self I" level="1"/>
+		<spell id="166" name="Regeneration Self II" level="2"/>
+		<spell id="167" name="Regeneration Self III" level="3"/>
+		<spell id="168" name="Regeneration Self IV" level="4"/>
+		<spell id="169" name="Regeneration Self V" level="5"/>
+		<spell id="170" name="Regeneration Self VI" level="6"/>
+		<spell id="2382" name="Unnatural Persistence" level="6"/>
+		<spell id="2185" name="Robustify" level="7"/>
+	</group>
+	<group>
+		<spell id="53" name="Rejuvenation Other I" level="1"/>
+		<spell id="184" name="Rejuvenation Other II" level="2"/>
+		<spell id="185" name="Rejuvenation Other III" level="3"/>
+		<spell id="186" name="Rejuvenation Other IV" level="4"/>
+		<spell id="187" name="Rejuvenation Other V" level="5"/>
+		<spell id="188" name="Rejuvenation Other VI" level="6"/>
+		<spell id="2186" name="Tenaciousness" level="7"/>
+	</group>
+	<group>
+		<spell id="54" name="Rejuvenation Self I" level="1"/>
+		<spell id="189" name="Rejuvenation Self II" level="2"/>
+		<spell id="190" name="Rejuvenation Self III" level="3"/>
+		<spell id="191" name="Rejuvenation Self IV" level="4"/>
+		<spell id="192" name="Rejuvenation Self V" level="5"/>
+		<spell id="193" name="Rejuvenation Self VI" level="6"/>
+		<spell id="2187" name="Unflinching Persistence" level="7"/>
+	</group>
+	<group>
+		<spell id="1183" name="Revitalize Other I" level="1"/>
+		<spell id="1184" name="Revitalize Other II" level="2"/>
+		<spell id="1185" name="Revitalize Other III" level="3"/>
+		<spell id="1186" name="Revitalize Other IV" level="4"/>
+		<spell id="1187" name="Revitalize Other V" level="5"/>
+		<spell id="1188" name="Revitalize Other VI" level="6"/>
+		<spell id="2082" name="Replenish" level="7"/>
+	</group>
+	<group>
+		<spell id="1177" name="Revitalize Self I" level="1"/>
+		<spell id="1178" name="Revitalize Self II" level="2"/>
+		<spell id="1179" name="Revitalize Self III" level="3"/>
+		<spell id="1180" name="Revitalize Self IV" level="4"/>
+		<spell id="1181" name="Revitalize Self V" level="5"/>
+		<spell id="1182" name="Revitalize Self VI" level="6"/>
+		<spell id="2083" name="Robustification" level="7"/>
+	</group>
+	<group>
+		<spell id="2746" name="Shock Arc I" level="1"/>
+		<spell id="2747" name="Shock Arc II" level="2"/>
+		<spell id="2748" name="Shock Arc III" level="3"/>
+		<spell id="2749" name="Shock Arc IV" level="4"/>
+		<spell id="2750" name="Shock Arc V" level="5"/>
+		<spell id="2751" name="Shock Arc VI" level="6"/>
+		<spell id="2752" name="Shock Arc VII" level="7"/>
+	</group>
+	<group>
+		<spell id="103" name="Shock Blast III" level="3"/>
+		<spell id="104" name="Shock Blast IV" level="4"/>
+		<spell id="105" name="Shock Blast V" level="5"/>
+		<spell id="106" name="Shock Blast VI" level="6"/>
+		<spell id="2143" name="Pummeling Storm" level="7"/>
+	</group>
+	<group>
+		<spell id="64" name="Shock Wave I" level="1"/>
+		<spell id="65" name="Shock Wave II" level="2"/>
+		<spell id="66" name="Shock Wave III" level="3"/>
+		<spell id="67" name="Shock Wave IV" level="4"/>
+		<spell id="68" name="Shock Wave V" level="5"/>
+		<spell id="69" name="Shock Wave VI" level="6"/>
+		<spell id="2144" name="Crushing Shame" level="7"/>
+	</group>
+	<group>
+		<spell id="1820" name="Shock Wave Streak I" level="1"/>
+		<spell id="1821" name="Shock Wave Streak II" level="2"/>
+		<spell id="1822" name="Shock Wave Streak III" level="3"/>
+		<spell id="1823" name="Shock Wave Streak IV" level="4"/>
+		<spell id="1824" name="Shock Wave Streak V" level="5"/>
+		<spell id="1825" name="Shock Wave Streak VI" level="6"/>
+		<spell id="2145" name="Cameron's Curse" level="7"/>
+	</group>
+	<group>
+		<spell id="1415" name="Slowness Other I" level="1"/>
+		<spell id="1416" name="Slowness Other II" level="2"/>
+		<spell id="1417" name="Slowness Other III" level="3"/>
+		<spell id="1418" name="Slowness Other IV" level="4"/>
+		<spell id="1419" name="Slowness Other V" level="5"/>
+		<spell id="1420" name="Slowness Other VI" level="6"/>
+		<spell id="2084" name="Belly of Lead" level="7"/>
+	</group>
+	<group>
+		<spell id="376" name="Spear Ineptitude Other I" level="1"/>
+		<spell id="377" name="Spear Ineptitude Other II" level="2"/>
+		<spell id="378" name="Spear Ineptitude Other III" level="3"/>
+		<spell id="379" name="Spear Ineptitude Other IV" level="4"/>
+		<spell id="380" name="Spear Ineptitude Other V" level="5"/>
+		<spell id="381" name="Spear Ineptitude Other VI" level="6"/>
+		<spell id="2296" name="Headbreaker" level="7"/>
+	</group>
+	<group>
+		<spell id="364" name="Spear Mastery Other I" level="1"/>
+		<spell id="365" name="Spear Mastery Other II" level="2"/>
+		<spell id="366" name="Spear Mastery Other III" level="3"/>
+		<spell id="367" name="Spear Mastery Other IV" level="4"/>
+		<spell id="368" name="Spear Mastery Other V" level="5"/>
+		<spell id="369" name="Spear Mastery Other VI" level="6"/>
+		<spell id="2298" name="Tibri's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="370" name="Spear Mastery Self I" level="1"/>
+		<spell id="371" name="Spear Mastery Self II" level="2"/>
+		<spell id="372" name="Spear Mastery Self III" level="3"/>
+		<spell id="373" name="Spear Mastery Self IV" level="4"/>
+		<spell id="374" name="Spear Mastery Self V" level="5"/>
+		<spell id="375" name="Spear Mastery Self VI" level="6"/>
+		<spell id="2299" name="Tibri's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="988" name="Sprint Other I" level="1"/>
+		<spell id="989" name="Sprint Other II" level="2"/>
+		<spell id="990" name="Sprint Other III" level="3"/>
+		<spell id="991" name="Sprint Other IV" level="4"/>
+		<spell id="992" name="Sprint Other V" level="5"/>
+		<spell id="993" name="Sprint Other VI" level="6"/>
+		<spell id="2300" name="Saladur's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="982" name="Sprint Self I" level="1"/>
+		<spell id="983" name="Sprint Self II" level="2"/>
+		<spell id="984" name="Sprint Self III" level="3"/>
+		<spell id="985" name="Sprint Self IV" level="4"/>
+		<spell id="986" name="Sprint Self V" level="5"/>
+		<spell id="987" name="Sprint Self VI" level="6"/>
+		<spell id="2301" name="Saladur's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="400" name="Staff Ineptitude Other I" level="1"/>
+		<spell id="401" name="Staff Ineptitude Other II" level="2"/>
+		<spell id="402" name="Staff Ineptitude Other III" level="3"/>
+		<spell id="403" name="Staff Ineptitude Other IV" level="4"/>
+		<spell id="404" name="Staff Ineptitude Other V" level="5"/>
+		<spell id="405" name="Staff Ineptitude Other VI" level="6"/>
+		<spell id="2302" name="The Shaft" level="7"/>
+	</group>
+	<group>
+		<spell id="388" name="Staff Mastery Other I" level="1"/>
+		<spell id="389" name="Staff Mastery Other II" level="2"/>
+		<spell id="390" name="Staff Mastery Other III" level="3"/>
+		<spell id="391" name="Staff Mastery Other IV" level="4"/>
+		<spell id="392" name="Staff Mastery Other V" level="5"/>
+		<spell id="393" name="Staff Mastery Other VI" level="6"/>
+		<spell id="2304" name="Anadil's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="394" name="Staff Mastery Self I" level="1"/>
+		<spell id="395" name="Staff Mastery Self II" level="2"/>
+		<spell id="396" name="Staff Mastery Self III" level="3"/>
+		<spell id="397" name="Staff Mastery Self IV" level="4"/>
+		<spell id="398" name="Staff Mastery Self V" level="5"/>
+		<spell id="399" name="Staff Mastery Self VI" level="6"/>
+		<spell id="2305" name="Anadil's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1658" name="Stamina to Health Other I" level="1"/>
+		<spell id="1659" name="Stamina to Health Other II" level="2"/>
+		<spell id="1660" name="Stamina to Health Other III" level="3"/>
+		<spell id="1661" name="Stamina to Health Other IV" level="4"/>
+		<spell id="1662" name="Stamina to Health Other V" level="5"/>
+		<spell id="1663" name="Stamina to Health Other VI" level="6"/>
+		<spell id="2342" name="Stamina to Health Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1664" name="Stamina to Health Self I" level="1"/>
+		<spell id="1665" name="Stamina to Health Self II" level="2"/>
+		<spell id="1666" name="Stamina to Health Self III" level="3"/>
+		<spell id="1667" name="Stamina to Health Self IV" level="4"/>
+		<spell id="1668" name="Stamina to Health Self V" level="5"/>
+		<spell id="1669" name="Stamina to Health Self VI" level="6"/>
+		<spell id="2343" name="Rushed Recovery" level="7"/>
+	</group>
+	<group>
+		<spell id="1670" name="Stamina to Mana Other I" level="1"/>
+		<spell id="1671" name="Stamina to Mana Other II" level="2"/>
+		<spell id="1672" name="Stamina to Mana Other III" level="3"/>
+		<spell id="1673" name="Stamina to Mana Other IV" level="4"/>
+		<spell id="1674" name="Stamina to Mana Other V" level="5"/>
+		<spell id="1675" name="Stamina to Mana Other VI" level="6"/>
+		<spell id="2344" name="Stamina to Mana Other VII" level="7"/>
+	</group>
+	<group>
+		<spell id="1676" name="Stamina to Mana Self I" level="1"/>
+		<spell id="1677" name="Stamina to Mana Self II" level="2"/>
+		<spell id="1678" name="Stamina to Mana Self III" level="3"/>
+		<spell id="1679" name="Stamina to Mana Self IV" level="4"/>
+		<spell id="1680" name="Stamina to Mana Self V" level="5"/>
+		<spell id="1681" name="Stamina to Mana Self VI" level="6"/>
+		<spell id="2345" name="Meditative Trance" level="7"/>
+	</group>
+	<group>
+		<spell id="1" name="Strength Other I" level="1"/>
+		<spell id="1333" name="Strength Other II" level="2"/>
+		<spell id="1334" name="Strength Other III" level="3"/>
+		<spell id="1335" name="Strength Other IV" level="4"/>
+		<spell id="1336" name="Strength Other V" level="5"/>
+		<spell id="1337" name="Strength Other VI" level="6"/>
+		<spell id="2086" name="Might of the 5 Mules" level="7"/>
+	</group>
+	<group>
+		<spell id="2" name="Strength Self I" level="1"/>
+		<spell id="1328" name="Strength Self II" level="2"/>
+		<spell id="1329" name="Strength Self III" level="3"/>
+		<spell id="1330" name="Strength Self IV" level="4"/>
+		<spell id="1331" name="Strength Self V" level="5"/>
+		<spell id="1332" name="Strength Self VI" level="6"/>
+		<spell id="2087" name="Might of the Lugians" level="7"/>
+	</group>
+	<group>
+		<spell id="1575" name="Strengthen Lock I" level="1"/>
+		<spell id="1576" name="Strengthen Lock II" level="2"/>
+		<spell id="1577" name="Strengthen Lock III" level="3"/>
+		<spell id="1578" name="Strengthen Lock IV" level="4"/>
+		<spell id="1579" name="Strengthen Lock V" level="5"/>
+		<spell id="1580" name="Strengthen Lock VI" level="6"/>
+		<spell id="2115" name="Fortified Lock" level="7"/>
+	</group>
+	<group>
+		<spell id="157" name="Summon Primary Portal I" level="4"/>
+		<spell id="2709" name="Summon Primary Portal I" level="4"/>
+		<spell id="158" name="Summon Primary Portal II" level="5"/>
+		<spell id="1637" name="Summon Primary Portal III" level="6"/>
+	</group>
+	<group>
+		<spell id="2648" name="Summon Secondary Portal I" level="4"/>
+		<spell id="2649" name="Summon Secondary Portal II" level="5"/>
+		<spell id="2650" name="Summon Secondary Portal III" level="6"/>
+	</group>
+	<group>
+		<spell id="49" name="Swift Killer I" level="1"/>
+		<spell id="1623" name="Swift Killer II" level="2"/>
+		<spell id="1624" name="Swift Killer III" level="3"/>
+		<spell id="1625" name="Swift Killer IV" level="4"/>
+		<spell id="1626" name="Swift Killer V" level="5"/>
+		<spell id="1627" name="Swift Killer VI" level="6"/>
+		<spell id="2116" name="Atlan's Alacrity" level="7"/>
+	</group>
+	<group>
+		<spell id="424" name="Sword Ineptitude Other I" level="1"/>
+		<spell id="425" name="Sword Ineptitude Other II" level="2"/>
+		<spell id="426" name="Sword Ineptitude Other III" level="3"/>
+		<spell id="427" name="Sword Ineptitude Other IV" level="4"/>
+		<spell id="428" name="Sword Ineptitude Other V" level="5"/>
+		<spell id="429" name="Sword Ineptitude Other VI" level="6"/>
+		<spell id="2306" name="Metallophobia" level="7"/>
+	</group>
+	<group>
+		<spell id="412" name="Sword Mastery Other I" level="1"/>
+		<spell id="413" name="Sword Mastery Other II" level="2"/>
+		<spell id="414" name="Sword Mastery Other III" level="3"/>
+		<spell id="415" name="Sword Mastery Other IV" level="4"/>
+		<spell id="416" name="Sword Mastery Other V" level="5"/>
+		<spell id="417" name="Sword Mastery Other VI" level="6"/>
+		<spell id="2308" name="MacNiall's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="418" name="Sword Mastery Self I" level="1"/>
+		<spell id="419" name="Sword Mastery Self II" level="2"/>
+		<spell id="420" name="Sword Mastery Self III" level="3"/>
+		<spell id="421" name="Sword Mastery Self IV" level="4"/>
+		<spell id="422" name="Sword Mastery Self V" level="5"/>
+		<spell id="423" name="Sword Mastery Self VI" level="6"/>
+		<spell id="2309" name="MacNiall's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="545" name="Thrown Weapons Ineptitude Other I" level="1"/>
+		<spell id="546" name="Thrown Weapons Ineptitude Other II" level="2"/>
+		<spell id="547" name="Thrown Weapons Ineptitude Other III" level="3"/>
+		<spell id="548" name="Thrown Weapons Ineptitude Other IV" level="4"/>
+		<spell id="549" name="Thrown Weapons Ineptitude Other V" level="5"/>
+		<spell id="550" name="Thrown Weapons Ineptitude Other VI" level="6"/>
+		<spell id="2310" name="The Wrong Spell" level="7"/>
+	</group>
+	<group>
+		<spell id="533" name="Thrown Weapons Mastery Other I" level="1"/>
+		<spell id="534" name="Thrown Weapons Mastery Other II" level="2"/>
+		<spell id="535" name="Thrown Weapons Mastery Other III" level="3"/>
+		<spell id="536" name="Thrown Weapons Mastery Other IV" level="4"/>
+		<spell id="537" name="Thrown Weapons Mastery Other V" level="5"/>
+		<spell id="538" name="Thrown Weapons Mastery Other VI" level="6"/>
+		<spell id="2312" name="Asmolum's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="539" name="Thrown Weapons Mastery Self I" level="1"/>
+		<spell id="540" name="Thrown Weapons Mastery Self II" level="2"/>
+		<spell id="541" name="Thrown Weapons Mastery Self III" level="3"/>
+		<spell id="542" name="Thrown Weapons Mastery Self IV" level="4"/>
+		<spell id="543" name="Thrown Weapons Mastery Self V" level="5"/>
+		<spell id="544" name="Thrown Weapons Mastery Self VI" level="6"/>
+		<spell id="2313" name="Asmolum's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1593" name="Turn Blade I" level="1"/>
+		<spell id="1594" name="Turn Blade II" level="2"/>
+		<spell id="1595" name="Turn Blade III" level="3"/>
+		<spell id="1596" name="Turn Blade IV" level="4"/>
+		<spell id="1597" name="Turn Blade V" level="5"/>
+		<spell id="1598" name="Turn Blade VI" level="6"/>
+		<spell id="2118" name="Clouded Motives" level="7"/>
+	</group>
+	<group>
+		<spell id="449" name="Unarmed Combat Ineptitude Other I" level="1"/>
+		<spell id="450" name="Unarmed Combat Ineptitude Other II" level="2"/>
+		<spell id="451" name="Unarmed Combat Ineptitude Other III" level="3"/>
+		<spell id="452" name="Unarmed Combat Ineptitude Other IV" level="4"/>
+		<spell id="453" name="Unarmed Combat Ineptitude Other V" level="5"/>
+		<spell id="454" name="Unarmed Combat Ineptitude Other VI" level="6"/>
+		<spell id="2314" name="Hamfistedness" level="7"/>
+	</group>
+	<group>
+		<spell id="437" name="Unarmed Combat Mastery Other I" level="1"/>
+		<spell id="438" name="Unarmed Combat Mastery Other II" level="2"/>
+		<spell id="439" name="Unarmed Combat Mastery Other III" level="3"/>
+		<spell id="440" name="Unarmed Combat Mastery Other IV" level="4"/>
+		<spell id="441" name="Unarmed Combat Mastery Other V" level="5"/>
+		<spell id="442" name="Unarmed Combat Mastery Other VI" level="6"/>
+		<spell id="2315" name="Hamud's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="443" name="Unarmed Combat Mastery Self I" level="1"/>
+		<spell id="444" name="Unarmed Combat Mastery Self II" level="2"/>
+		<spell id="445" name="Unarmed Combat Mastery Self III" level="3"/>
+		<spell id="446" name="Unarmed Combat Mastery Self IV" level="4"/>
+		<spell id="447" name="Unarmed Combat Mastery Self V" level="5"/>
+		<spell id="448" name="Unarmed Combat Mastery Self VI" level="6"/>
+		<spell id="2316" name="Hamud's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="15" name="Vulnerability Other I" level="1"/>
+		<spell id="230" name="Vulnerability Other II" level="2"/>
+		<spell id="231" name="Vulnerability Other III" level="3"/>
+		<spell id="232" name="Vulnerability Other IV" level="4"/>
+		<spell id="233" name="Vulnerability Other V" level="5"/>
+		<spell id="234" name="Vulnerability Other VI" level="6"/>
+		<spell id="2318" name="Gravity Well" level="7"/>
+	</group>
+	<group>
+		<spell id="647" name="War Magic Ineptitude Other I" level="1"/>
+		<spell id="648" name="War Magic Ineptitude Other II" level="2"/>
+		<spell id="649" name="War Magic Ineptitude Other III" level="3"/>
+		<spell id="650" name="War Magic Ineptitude Other IV" level="4"/>
+		<spell id="651" name="War Magic Ineptitude Other V" level="5"/>
+		<spell id="652" name="War Magic Ineptitude Other VI" level="6"/>
+		<spell id="2320" name="Wrath of the Hieromancer" level="7"/>
+	</group>
+	<group>
+		<spell id="635" name="War Magic Mastery Other I" level="1"/>
+		<spell id="636" name="War Magic Mastery Other II" level="2"/>
+		<spell id="637" name="War Magic Mastery Other III" level="3"/>
+		<spell id="638" name="War Magic Mastery Other IV" level="4"/>
+		<spell id="639" name="War Magic Mastery Other V" level="5"/>
+		<spell id="640" name="War Magic Mastery Other VI" level="6"/>
+		<spell id="2322" name="Hieromancer's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="629" name="War Magic Mastery Self I" level="1"/>
+		<spell id="630" name="War Magic Mastery Self II" level="2"/>
+		<spell id="631" name="War Magic Mastery Self III" level="3"/>
+		<spell id="632" name="War Magic Mastery Self IV" level="4"/>
+		<spell id="633" name="War Magic Mastery Self V" level="5"/>
+		<spell id="634" name="War Magic Mastery Self VI" level="6"/>
+		<spell id="2323" name="Hieromancer's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="1581" name="Weaken Lock I" level="1"/>
+		<spell id="1582" name="Weaken Lock II" level="2"/>
+		<spell id="1583" name="Weaken Lock III" level="3"/>
+		<spell id="1584" name="Weaken Lock IV" level="4"/>
+		<spell id="1585" name="Weaken Lock V" level="5"/>
+		<spell id="1586" name="Weaken Lock VI" level="6"/>
+		<spell id="2119" name="Vagabond's Gift" level="7"/>
+	</group>
+	<group>
+		<spell id="3" name="Weakness Other I" level="1"/>
+		<spell id="1339" name="Weakness Other II" level="2"/>
+		<spell id="1340" name="Weakness Other III" level="3"/>
+		<spell id="1341" name="Weakness Other IV" level="4"/>
+		<spell id="1342" name="Weakness Other V" level="5"/>
+		<spell id="1343" name="Weakness Other VI" level="6"/>
+		<spell id="2088" name="Senescence" level="7"/>
+	</group>
+	<group>
+		<spell id="780" name="Weapon Tinkering Expertise Other I" level="1"/>
+		<spell id="781" name="Weapon Tinkering Expertise Other II" level="2"/>
+		<spell id="782" name="Weapon Tinkering Expertise Other III" level="3"/>
+		<spell id="783" name="Weapon Tinkering Expertise Other IV" level="4"/>
+		<spell id="784" name="Weapon Tinkering Expertise Other V" level="5"/>
+		<spell id="785" name="Weapon Tinkering Expertise Other VI" level="6"/>
+		<spell id="2324" name="Koga's Boon" level="7"/>
+	</group>
+	<group>
+		<spell id="774" name="Weapon Tinkering Expertise Self I" level="1"/>
+		<spell id="775" name="Weapon Tinkering Expertise Self II" level="2"/>
+		<spell id="776" name="Weapon Tinkering Expertise Self III" level="3"/>
+		<spell id="777" name="Weapon Tinkering Expertise Self IV" level="4"/>
+		<spell id="778" name="Weapon Tinkering Expertise Self V" level="5"/>
+		<spell id="779" name="Weapon Tinkering Expertise Self VI" level="6"/>
+		<spell id="2325" name="Koga's Blessing" level="7"/>
+	</group>
+	<group>
+		<spell id="792" name="Weapon Tinkering Ignorance Other I" level="1"/>
+		<spell id="793" name="Weapon Tinkering Ignorance Other II" level="2"/>
+		<spell id="794" name="Weapon Tinkering Ignorance Other III" level="3"/>
+		<spell id="795" name="Weapon Tinkering Ignorance Other IV" level="4"/>
+		<spell id="796" name="Weapon Tinkering Ignorance Other V" level="5"/>
+		<spell id="797" name="Weapon Tinkering Ignorance Other VI" level="6"/>
+		<spell id="2326" name="Eye of the Grunt" level="7"/>
+	</group>
+	<group>
+		<spell id="92" name="Whirling Blade I" level="1"/>
+		<spell id="93" name="Whirling Blade II" level="2"/>
+		<spell id="94" name="Whirling Blade III" level="3"/>
+		<spell id="95" name="Whirling Blade IV" level="4"/>
+		<spell id="96" name="Whirling Blade V" level="5"/>
+		<spell id="97" name="Whirling Blade VI" level="6"/>
+		<spell id="2146" name="Evisceration" level="7"/>
+	</group>
+	<group>
+		<spell id="1826" name="Whirling Blade Streak I" level="1"/>
+		<spell id="1827" name="Whirling Blade Streak II" level="2"/>
+		<spell id="1828" name="Whirling Blade Streak III" level="3"/>
+		<spell id="1829" name="Whirling Blade Streak IV" level="4"/>
+		<spell id="1830" name="Whirling Blade Streak V" level="5"/>
+		<spell id="1831" name="Whirling Blade Streak VI" level="6"/>
+		<spell id="2147" name="Rending Wind" level="7"/>
+	</group>
+	<group>
+		<spell id="1451" name="Willpower Other I" level="1"/>
+		<spell id="1452" name="Willpower Other II" level="2"/>
+		<spell id="1453" name="Willpower Other III" level="3"/>
+		<spell id="1454" name="Willpower Other IV" level="4"/>
+		<spell id="1455" name="Willpower Other V" level="5"/>
+		<spell id="1456" name="Willpower Other VI" level="6"/>
+		<spell id="2090" name="Bolstered Will" level="7"/>
+	</group>
+	<group>
+		<spell id="1445" name="Willpower Self I" level="1"/>
+		<spell id="1446" name="Willpower Self II" level="2"/>
+		<spell id="1447" name="Willpower Self III" level="3"/>
+		<spell id="1448" name="Willpower Self IV" level="4"/>
+		<spell id="1449" name="Willpower Self V" level="5"/>
+		<spell id="1450" name="Willpower Self VI" level="6"/>
+		<spell id="2091" name="Mind Blossom" level="7"/>
+	</group>
+	<group>
+		<spell id="1885" name="Evaporate Creature Magic Other" level="1"/>
+		<spell id="1891" name="Extinguish Creature Magic Other" level="2"/>
+		<spell id="1897" name="Cleanse Creature Magic Other" level="3"/>
+		<spell id="1903" name="Devour Creature Magic Other" level="4"/>
+		<spell id="1909" name="Purge Creature Magic Other" level="5"/>
+		<spell id="1915" name="Nullify Creature Magic Other" level="6"/>
+		<spell id="3184" name="Eradicate Creature Magic Other" level="7"/>
+	</group>
+	<group>
+		<spell id="1888" name="Evaporate Creature Magic Self" level="1"/>
+		<spell id="1894" name="Extinguish Creature Magic Self" level="2"/>
+		<spell id="1900" name="Cleanse Creature Magic Self" level="3"/>
+		<spell id="1906" name="Devour Creature Magic Self" level="4"/>
+		<spell id="1912" name="Purge Creature Magic Self" level="5"/>
+		<spell id="1918" name="Nullify Creature Magic Self" level="6"/>
+		<spell id="3185" name="Eradicate Creature Magic Self" level="7"/>
+	</group>
+	<group>
+		<spell id="1921" name="Evaporate Item Magic" level="1"/>
+		<spell id="1927" name="Extinguish Item Magic" level="2"/>
+		<spell id="1933" name="Cleanse Item Magic" level="3"/>
+		<spell id="1939" name="Devour Item Magic" level="4"/>
+		<spell id="1945" name="Purge Item Magic" level="5"/>
+		<spell id="1951" name="Nullify Item Magic" level="6"/>
+		<spell id="3190" name="Eradicate Item Magic" level="7"/>
+	</group>
+	<group>
+		<spell id="1957" name="Evaporate Life Magic Other" level="1"/>
+		<spell id="1963" name="Extinguish Life Magic Other" level="2"/>
+		<spell id="1969" name="Cleanse Life Magic Other" level="3"/>
+		<spell id="1975" name="Devour Life Magic Other" level="4"/>
+		<spell id="1981" name="Purge Life Magic Other" level="5"/>
+		<spell id="1987" name="Nullify Life Magic Other" level="6"/>
+		<spell id="3193" name="Eradicate Life Magic Other" level="7"/>
+	</group>
+	<group>
+		<spell id="1960" name="Evaporate Life Magic Self" level="1"/>
+		<spell id="1966" name="Extinguish Life Magic Self" level="2"/>
+		<spell id="1972" name="Cleanse Life Magic Self" level="3"/>
+		<spell id="1978" name="Devour Life Magic Self" level="4"/>
+		<spell id="1984" name="Purge Life Magic Self" level="5"/>
+		<spell id="1990" name="Nullify Life Magic Self" level="6"/>
+		<spell id="3194" name="Eradicate Life Magic Self" level="7"/>
+	</group>
+	<group>
+		<spell id="3155" name="Lesser Alacrity of the Conclave" level="4"/>
+		<spell id="3156" name="Alacrity of the Conclave" level="5"/>
+		<spell id="3157" name="Greater Alacrity of the Conclave" level="6"/>
+		<spell id="3158" name="Superior Alacrity of the Conclave" level="7"/>
+	</group>
+	<group>
+		<spell id="3159" name="Lesser Vivify the Conclave" level="4"/>
+		<spell id="3160" name="Vivify the Conclave" level="5"/>
+		<spell id="3161" name="Greater Vivify the Conclave" level="6"/>
+		<spell id="3162" name="Superior Vivify the Conclave" level="7"/>
+	</group>
+	<group>
+		<spell id="3163" name="Lesser Acumen of the Conclave" level="4"/>
+		<spell id="3164" name="Acumen of the Conclave" level="5"/>
+		<spell id="3165" name="Greater Acumen of the Conclave" level="6"/>
+		<spell id="3166" name="Superior Acumen of the Conclave" level="7"/>
+	</group>
+	<group>
+		<spell id="3167" name="Lesser Speed the Conclave" level="4"/>
+		<spell id="3168" name="Speed the Conclave" level="5"/>
+		<spell id="3169" name="Greater Speed the Conclave" level="6"/>
+		<spell id="3170" name="Superior Speed the Conclave" level="7"/>
+	</group>
+	<group>
+		<spell id="3171" name="Lesser Volition of the Conclave" level="4"/>
+		<spell id="3172" name="Volition of the Conclave" level="5"/>
+		<spell id="3173" name="Greater Volition of the Conclave" level="6"/>
+		<spell id="3174" name="Superior Volition of the Conclave" level="7"/>
+	</group>
+	<group>
+		<spell id="3175" name="Lesser Empowering the Conclave" level="4"/>
+		<spell id="3176" name="Empowering the Conclave" level="5"/>
+		<spell id="3177" name="Greater Empowering the Conclave" level="6"/>
+		<spell id="3178" name="Superior Empowering the Conclave" level="7"/>
+	</group>
+  <group>
+    <spell id="3499" name="Arcanum Salvaging Self I" level="1"/>
+    <spell id="3500" name="Arcanum Salvaging Self II" level="2"/>
+    <spell id="3501" name="Arcanum Salvaging Self III" level="3"/>
+    <spell id="3502" name="Arcanum Salvaging Self IV" level="4"/>
+    <spell id="3503" name="Arcanum Salvaging Self V" level="5"/>
+    <spell id="3504" name="Arcanum Salvaging Self VI" level="6"/>
+    <spell id="3505" name="Arcanum Salvaging VII" level="7"/>
+    <spell id="3513" name="Nuhmudira's Wisdom I" level="1"/>
+    <spell id="3514" name="Nuhmudira's Wisdom II" level="2"/>
+    <spell id="3515" name="Nuhmudira's Wisdom III" level="3"/>
+    <spell id="3516" name="Nuhmudira's Wisdom IV" level="4"/>
+    <spell id="3517" name="Nuhmudira's Wisdom V" level="5"/>
+    <spell id="3518" name="Nuhmudira's Wisdom VI" level="6"/>
+    <spell id="3519" name="Nuhmudira's Wisdom VII" level="7"/>
+  </group>
+  <group>
+    <spell id="3506" name="Arcanum Enlightenment I" level="1"/>
+    <spell id="3507" name="Arcanum Enlightenment II" level="2"/>
+    <spell id="3508" name="Arcanum Enlightenment III" level="3"/>
+    <spell id="3509" name="Arcanum Enlightenment IV" level="4"/>
+    <spell id="3510" name="Arcanum Enlightenment V" level="5"/>
+    <spell id="3511" name="Arcanum Enlightenment VI" level="6"/>
+    <spell id="3512" name="Arcanum Enlightenment VII" level="7"/>
+    <spell id="3520" name="Nuhmudira's Enlightenment I" level="1"/>
+    <spell id="3521" name="Nuhmudira's Enlightenment II" level="2"/>
+    <spell id="3522" name="Nuhmudira's Enlightenment III" level="3"/>
+    <spell id="3523" name="Nuhmudira's Enlightenment IV" level="4"/>
+    <spell id="3524" name="Nuhmudira's Enlightenment V" level="5"/>
+    <spell id="3525" name="Nuhmudira Enlightenment VI" level="6"/>
+    <spell id="3526" name="Nuhmudira's Enlightenment" level="7"/>
+  </group>
+</spellgroups>

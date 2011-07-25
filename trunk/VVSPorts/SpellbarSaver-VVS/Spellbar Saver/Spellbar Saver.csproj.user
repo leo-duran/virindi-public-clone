@@ -1,0 +1,6 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug D3D|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Decal 3.0\DecalContainer.exe</StartProgram>
+  </PropertyGroup>
+</Project>
