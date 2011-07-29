@@ -136,13 +136,20 @@ namespace VirindiReporter
             cXPCounting.sReportData srd = ClassGroup.XPCounting.GetXPRate();
 
             MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "XP Earned", string.Format("{0:N0}", srd.XP));
+			MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "Luminance Earned", string.Format("{0:N0}", srd.XP_Luminance));
 
             MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "XP/Hour", string.Format("{0:N0} xp/h", srd.XPPerHour));
+			MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "Lum/Hour", string.Format("{0:N0} lum/h", srd.XPPerHour_Luminance));
 
             string xp5min = "---";
-            if (srd.b5mingood)
-                xp5min = string.Format("{0:N0} xp/h", srd.XP5min);
+			string xp5minlum = "---";
+			if (srd.b5mingood)
+			{
+				xp5min = string.Format("{0:N0} xp/h", srd.XP5min);
+				xp5minlum = string.Format("{0:N0} lum/h", srd.XP5Min_Luminance);
+			}
             MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "XP/Hour (5min)", xp5min);
+			MyClasses.VHUDs_Connector.Status_UpdateEntry("VReporter", "Lum/Hour (5min)", xp5minlum);
 
             string runtime = "";
             if (srd.Time.TotalDays >= 1)

@@ -184,6 +184,25 @@ namespace VirindiReporter
 
             /////////////////
 
+			if (srd.XP_Luminance > 0)
+			{
+				sb.Append(" Lum ");
+				sb.Append(string.Format("{0:N0}", srd.XP_Luminance));
+				sb.Append(" LP for ");
+
+				sb.AppendFormat("{0:N0}", srd.XPPerHour_Luminance);
+				sb.Append(" LP/h");
+
+				if (srd.b5mingood)
+				{
+					sb.Append(", 5min ");
+					sb.AppendFormat("{0:N0}", srd.XP5Min_Luminance);
+					sb.Append(" LP/h");
+				}
+
+				sb.Append(".");
+			}
+
             return sb.ToString();
         }
 

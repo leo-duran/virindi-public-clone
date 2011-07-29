@@ -3,7 +3,7 @@
 //
 //Description: XP routine helper class for the Virindi Reporter plugin.
 //
-//This file is Copyright (c) 2010 VirindiPlugins
+//This file is Copyright (c) 2010-2011 VirindiPlugins
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -41,9 +41,15 @@ namespace VirindiReporter
             public TimeSpan Time;
             public double XP5min;
             public bool b5mingood;
+
+			public long XP_Luminance;
+			public double XPPerHour_Luminance;
+			public double XP5Min_Luminance;
         }
         DateTime starttime;
         long startxp;
+		long startxp_luminance;
+		long current_luminance = 0;
         bool started = false;
 
         public cXPCounting (cClassGroup csg)
@@ -52,12 +58,54 @@ namespace VirindiReporter
             timer.Interval = 1000 * 60;
             C = csg;
             C.Core.CharacterFilter.LoginComplete += new EventHandler(CharacterFilter_LoginComplete);
+			C.Core.MessageProcessed += new EventHandler<Decal.Adapter.MessageProcessedEventArgs>(Core_MessageProcessed);
 
             for (int i = 0; i < 6; ++i)
                 lastxp5[i] = -1;
         }
 
+		void Core_MessageProcessed(object sender, Decal.Adapter.MessageProcessedEventArgs e)
+		{
+			//Need this to track luminance
+			switch (e.Message.Type)
+			{
+				case 0x02CF: //Set character qword
+					{
+						int key = e.Message.Value<int>("key");
+						if (key == 0x06)
+						{
+							current_luminance = e.Message.Value<long>("value");
+						}
+					}
+					break;
+				case 0xF7B0: //Ordered message
+					switch (e.Message.Value<int>("event"))
+					{
+						case 0x0013: //Login character
+							{
+								Decal.Adapter.MessageStruct properties = e.Message.Struct("properties");
+								if ((properties.Value<int>("flags") & 0x00000080) > 0)
+								{
+									short qwordcount = properties.Value<short>("qwordCount");
+									for (short i = 0; i < qwordcount; ++i)
+									{
+										int key = properties.Struct("qwords").Struct(i).Value<int>("key");
+										if (key == 0x06)
+										{
+											current_luminance = properties.Struct("qwords").Struct(i).Value<long>("value");
+											break;
+										}
+									}
+								}
+							}
+							break;
+					}
+					break;
+			}
+		}
+
         long[] lastxp5 = new long[6];
+		long[] lastxp5_luminance = new long[6];
         int ptr5 = 0;
 
         void timer_Tick(object sender, EventArgs e)
@@ -66,11 +114,11 @@ namespace VirindiReporter
             if (ptr5 >= 6) ptr5 = 0;
 
             lastxp5[ptr5] = C.Core.CharacterFilter.TotalXP;
+			lastxp5_luminance[ptr5] = current_luminance;
         }
         ~cXPCounting()
         {
-            //Dispose();
-            //C.Core.CharacterFilter.LoginComplete -= new EventHandler(CharacterFilter_LoginComplete);
+			Dispose();
         }
         bool d = false;
         public void Dispose()
@@ -80,6 +128,9 @@ namespace VirindiReporter
 
             timer.Tick -= new EventHandler(timer_Tick);
             timer.Stop();
+
+			C.Core.CharacterFilter.LoginComplete -= new EventHandler(CharacterFilter_LoginComplete);
+			C.Core.MessageProcessed -= new EventHandler<Decal.Adapter.MessageProcessedEventArgs>(Core_MessageProcessed);
         }
 
         void CharacterFilter_LoginComplete(object sender, EventArgs e)
@@ -92,12 +143,16 @@ namespace VirindiReporter
             started = true;
             starttime = DateTime.Now;
             startxp = C.Core.CharacterFilter.TotalXP;
+			startxp_luminance = current_luminance;
 
             timer.Stop();
             timer.Start();
 
-            for (int i = 0; i < 6; ++i)
-                lastxp5[i] = -1;
+			for (int i = 0; i < 6; ++i)
+			{
+				lastxp5[i] = -1;
+				lastxp5_luminance[i] = -1;
+			}
 
             timer_Tick(null, null);
         }
@@ -111,19 +166,18 @@ namespace VirindiReporter
                 srd.XP = C.Core.CharacterFilter.TotalXP - startxp;
                 srd.XPPerHour = srd.XP / srd.Time.TotalHours;
 
-                //int cptr5 = ptr5 - 1;
-                //if (cptr5 < 0) cptr5 = 4;
+				srd.XP_Luminance = current_luminance - startxp_luminance;
+				srd.XPPerHour_Luminance = srd.XP_Luminance / srd.Time.TotalHours;
+
                 int nptr5 = ptr5 + 1;
                 if (nptr5 >= 6) nptr5 = 0;
 
                 srd.XP5min = 12 * (lastxp5[ptr5] - lastxp5[nptr5]);
+				srd.XP5Min_Luminance = 12 * (lastxp5_luminance[ptr5] - lastxp5_luminance[nptr5]);
 
 
 
                 srd.b5mingood = (lastxp5[nptr5] != -1);
-
-                //C.Host.Actions.AddChatText(lastxp5[0].ToString() + ", " + lastxp5[1].ToString() + ", " + lastxp5[2].ToString() + ", " + lastxp5[3].ToString() + ", " + lastxp5[4].ToString() + ", ", 0);
-                //C.Host.Actions.AddChatText(ptr5.ToString(), 0);
             }
 
             return (srd);
