@@ -577,6 +577,11 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
     {
         List<object> iData = new List<object>();
 
+        public Combo()
+        {
+            //TODO: add data values from the xml
+        }
+
         public class ComboIndexer : IComboIndexer
         {
             Combo underlying;
@@ -972,8 +977,7 @@ namespace MyClasses.MetaViewWrappers.VirindiViewServiceHudControls
         {
             get
             {
-                return 0;
-                //return ((VirindiViewService.Controls.HudList)myControl).ColumnCount;
+                return ((VirindiViewService.Controls.HudList)myControl).ColumnCount;
             }
         }
 
