@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<view icon="10667" title="Autowireup Example Plugin" width="392" height="300">
+  <control progid="DecalControls.Notebook" name="Notebook1">
+
+    <page label="Objects">
+      <control progid="DecalControls.FixedLayout" clipped="">
+        <control progid="DecalControls.List" name="lstObjects" left="0" top="0" width="392" height="250">
+          <column progid="DecalControls.IconColumn" name="Icon"/>
+          <column progid="DecalControls.TextColumn" />
+        </control>
+      </control>
+    </page>
+
+    <page label="Other">
+      <control progid="DecalControls.FixedLayout" clipped="">
+        
+      </control>
+    </page>
+    
+  </control>
+</view>
