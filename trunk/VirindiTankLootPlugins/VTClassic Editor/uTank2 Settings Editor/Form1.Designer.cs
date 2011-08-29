@@ -173,7 +173,7 @@ namespace VTClassic
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -182,7 +182,7 @@ namespace VTClassic
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -192,14 +192,14 @@ namespace VTClassic
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(137, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -207,26 +207,26 @@ namespace VTClassic
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -238,34 +238,34 @@ namespace VTClassic
             this.autoSortRulesToolStripMenuItem,
             this.addPackslotRulesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.editToolStripMenuItem.Text = "Rule";
             // 
             // addSalvageRulesToolStripMenuItem
             // 
             this.addSalvageRulesToolStripMenuItem.Name = "addSalvageRulesToolStripMenuItem";
-            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.addSalvageRulesToolStripMenuItem.Text = "Add/Update Salvage Rules";
             this.addSalvageRulesToolStripMenuItem.Click += new System.EventHandler(this.addSalvageRulesToolStripMenuItem_Click);
             // 
             // increaseSalvageWorkmanshipsToolStripMenuItem
             // 
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Name = "increaseSalvageWorkmanshipsToolStripMenuItem";
-            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Text = "Update Workmanship Requirements";
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Click += new System.EventHandler(this.increaseSalvageWorkmanshipsToolStripMenuItem_Click);
             // 
             // autoSortRulesToolStripMenuItem
             // 
             this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
-            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
             this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
             // 
             // addPackslotRulesToolStripMenuItem
             // 
             this.addPackslotRulesToolStripMenuItem.Name = "addPackslotRulesToolStripMenuItem";
-            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
+            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.addPackslotRulesToolStripMenuItem.Text = "Add Packslot Requirements";
             this.addPackslotRulesToolStripMenuItem.Click += new System.EventHandler(this.addPackslotRulesToolStripMenuItem_Click);
             // 
@@ -275,20 +275,20 @@ namespace VTClassic
             this.exportRangesToolStripMenuItem,
             this.importRangesToolStripMenuItem});
             this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
-            this.combineToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.combineToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.combineToolStripMenuItem.Text = "Combine";
             // 
             // exportRangesToolStripMenuItem
             // 
             this.exportRangesToolStripMenuItem.Name = "exportRangesToolStripMenuItem";
-            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.exportRangesToolStripMenuItem.Text = "Export Ranges";
             this.exportRangesToolStripMenuItem.Click += new System.EventHandler(this.exportRangesToolStripMenuItem_Click);
             // 
             // importRangesToolStripMenuItem
             // 
             this.importRangesToolStripMenuItem.Name = "importRangesToolStripMenuItem";
-            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.importRangesToolStripMenuItem.Text = "Import Ranges";
             this.importRangesToolStripMenuItem.Click += new System.EventHandler(this.importRangesToolStripMenuItem_Click);
             // 
@@ -296,7 +296,7 @@ namespace VTClassic
             // 
             this.tabControl1.Controls.Add(this.tabLootRules);
             this.tabControl1.Controls.Add(this.tabSalvageCombine);
-            this.tabControl1.Location = new System.Drawing.Point(0, 27);
+            this.tabControl1.Location = new System.Drawing.Point(0, 50);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(583, 457);
@@ -841,7 +841,6 @@ namespace VTClassic
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
@@ -849,7 +848,7 @@ namespace VTClassic
             this.toolStripTextBox1,
             this.toolStripButton3});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 485);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(582, 23);
             this.toolStrip1.TabIndex = 2;
@@ -873,7 +872,7 @@ namespace VTClassic
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton2.Text = "Paste rule";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -887,7 +886,7 @@ namespace VTClassic
             // 
             this.toolStripTextBox1.AutoToolTip = true;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 23);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 21);
             this.toolStripTextBox1.ToolTipText = "Search for rule by name";
             this.toolStripTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
             // 
@@ -897,7 +896,7 @@ namespace VTClassic
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton3.Text = "Go to next match";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 

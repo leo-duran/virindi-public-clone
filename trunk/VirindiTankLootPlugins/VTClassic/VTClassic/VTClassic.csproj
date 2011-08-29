@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="Decal.Adapter, Version=2.9.6.0, Culture=neutral, PublicKeyToken=bd1c8ce002ce221e, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Decal 3.0\Decal.Adapter.dll</HintPath>
+      <HintPath>..\..\..\..\..\plugins\2960\Decal.Adapter.dll</HintPath>
     </Reference>
     <Reference Include="Decal.Interop.Filters, Version=2.9.6.0, Culture=neutral, PublicKeyToken=481f17d392f1fb65, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -41,9 +41,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="utank2-i, Version=0.3.1.40, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="utank2-i, Version=0.3.1.69, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\VirindiPlugins\Virindi Tank\utank2-i.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Games\VirindiPlugins\VirindiTank\utank2-i.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -44,9 +44,15 @@ namespace VTClassic
             Instance.Host.AddChatText(s);
         }
 
+        internal static void WriteToChat(string s, int c, int w)
+        {
+            if (Instance == null) return;
+            Instance.Host.AddChatText(s, c, w);
+        }
+
         void ExceptionHandler(Exception ex)
         {
-            Host.AddChatText("Exception: " + ex.ToString(), 6, 1);
+            WriteToChat("Exception: " + ex.ToString(), 6, 1);
         }
 
 #if DEBUGMSG
@@ -147,7 +153,7 @@ namespace VTClassic
                         }
                     }
 
-                    Host.AddChatText("Created blank profile " + filename + ".");
+                    WriteToChat("Created blank profile " + filename + ".");
                 }
                 else
                 {
@@ -159,9 +165,9 @@ namespace VTClassic
                         using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
                         {
                             if (LootRules.Read(sr, -1))
-                                Host.AddChatText("Load profile " + filename + " successful (file version " + LootRules.UTLFileVersion.ToString() + ").");
+                                WriteToChat("Load profile " + filename + " successful (file version " + LootRules.UTLFileVersion.ToString() + ").");
                             else
-                                Host.AddChatText("Load profile " + filename + " returned an error. Your entire profile may not have loaded properly.");
+                                WriteToChat("Load profile " + filename + " returned an error. Your entire profile may not have loaded properly.");
                         }
                     }
 
