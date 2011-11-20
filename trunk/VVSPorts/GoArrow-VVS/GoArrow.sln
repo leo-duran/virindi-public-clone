@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoArrow", "GoArrow\GoArrow.csproj", "{8773BE99-06D0-4C16-B9F1-0222640C9798}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GoArrow Installer", "GoArrow Installer\GoArrow Installer.vdproj", "{46DDF2F2-472D-40D2-900A-6AEAB9363900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapSplitter", "MapSplitter\MapSplitter.csproj", "{5B743111-7B56-4850-ADED-2ECE4796EEC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug AC|Any CPU = Debug AC|Any CPU
+		Debug D3D|Any CPU = Debug D3D|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug AC|Any CPU.ActiveCfg = Debug AC|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug AC|Any CPU.Build.0 = Debug AC|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug D3D|Any CPU.ActiveCfg = Debug D3D|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug D3D|Any CPU.Build.0 = Debug D3D|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug|Any CPU.ActiveCfg = Debug D3D|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Debug|Any CPU.Build.0 = Debug D3D|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8773BE99-06D0-4C16-B9F1-0222640C9798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Debug AC|Any CPU.ActiveCfg = Debug
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Debug D3D|Any CPU.ActiveCfg = Debug D3D
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Debug|Any CPU.ActiveCfg = Debug D3D
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Debug|Any CPU.Build.0 = Debug D3D
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Release|Any CPU.ActiveCfg = Release
+		{46DDF2F2-472D-40D2-900A-6AEAB9363900}.Release|Any CPU.Build.0 = Release
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Debug AC|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Debug D3D|Any CPU.ActiveCfg = Debug D3D|Any CPU
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B743111-7B56-4850-ADED-2ECE4796EEC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
