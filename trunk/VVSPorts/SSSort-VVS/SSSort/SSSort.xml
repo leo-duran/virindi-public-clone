@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<view icon="23179" title="SSSort" width="280" height="343">
+		<control progid="DecalControls.FixedLayout" clipped="">
+			<control progid="DecalControls.Button" name="btnBackground" left="240" top="-32" width="56" height="408" background="19722"/>
+			<control progid="DecalControls.FixedLayout" clipped="" id="999123" left="0" top="0" width="240" height="280">
+				<control progid="DecalControls.Notebook" name="nbkMode" left="0" top="88" width="240" height="120">
+				<page label="Scrolls">
+					<control progid="DecalControls.FixedLayout" clipped="">
+						<control progid="DecalControls.List" name="lstScroll" left="0" top="0" width="256" height="100">
+							<column progid="DecalControls.CheckColumn" name="colEnable"/>
+							<column progid="DecalControls.TextColumn" name="colName"/>
+							<column progid="DecalControls.TextColumn" name="colAscDesc"/>
+							<column progid="DecalControls.IconColumn" name="colMoveUp"/>
+							<column progid="DecalControls.IconColumn" name="colMoveDown"/>
+							<column progid="DecalControls.CheckColumn" name="colAscending"/>
+						</control>
+					</control>
+
+				</page>
+				<page label="Salvage">
+					<control progid="DecalControls.FixedLayout" clipped="">
+						<control progid="DecalControls.List" name="lstSalvage" left="0" top="0" width="256" height="100">
+							<column progid="DecalControls.CheckColumn" name="colEnable"/>
+							<column progid="DecalControls.TextColumn" name="colName"/>
+							<column progid="DecalControls.TextColumn" name="colAscDesc"/>
+							<column progid="DecalControls.IconColumn" name="colMoveUp"/>
+							<column progid="DecalControls.IconColumn" name="colMoveDown"/>
+							<column progid="DecalControls.CheckColumn" name="colAscending"/>
+						</control>
+					</control>
+
+				</page>
+				<page label="Mana Stones">
+					<control progid="DecalControls.FixedLayout" clipped="">
+						<control progid="DecalControls.List" name="lstManaStones" left="0" top="0" width="256" height="100">
+							<column progid="DecalControls.CheckColumn" name="colEnable"/>
+							<column progid="DecalControls.TextColumn" name="colName"/>
+							<column progid="DecalControls.TextColumn" name="colAscDesc"/>
+							<column progid="DecalControls.IconColumn" name="colMoveUp"/>
+							<column progid="DecalControls.IconColumn" name="colMoveDown"/>
+							<column progid="DecalControls.CheckColumn" name="colAscending"/>
+						</control>
+					</control>
+
+				</page>
+				</control>
+
+				<control progid="DecalControls.Progress" name="prgProgress" left="8" top="212" width="224" height="16" value="0" maxvalue="100" facecolor="8421504" fillcolor="16777215" textcolor="0" bordercolor="0" border="1" align="Center" pretext="" posttext="" drawtext="0"/>
+				<control progid="DecalControls.StaticText" name="Label3" left="8" top="248" width="224" height="16" justify="Center" text="by Digero of Leafcull"/>
+				<control progid="DecalControls.Checkbox" name="chkSortToBottom" left="8" top="64" width="224" height="16" text="Put sorted items at the bottom of the pack"/>
+				<control progid="DecalControls.StaticText" name="lblPluginNameVer" left="8" top="236" width="224" height="16" justify="Center" fontface="Times New Roman" fontsize="14" fontstyle=" bold" text="SSSort"/>
+				<control progid="DecalControls.PushButton" name="btnAllPacks" left="124" top="20" width="108" height="24" textcolor="16777215" fontface="Times New Roman" fontsize="14" fontstyle=" bold" text="All Packs"/>
+				<control progid="DecalControls.StaticText" name="lblSortItemsIn" left="8" top="4" width="224" height="16" justify="Center" fontface="Times New Roman" fontsize="16" fontstyle=" bold" text="Sort items in:"/>
+				<control progid="DecalControls.StaticText" name="Label2" left="24" top="48" width="208" height="16" justify="Right" text="or click on a pack to sort it >>"/>
+				<control progid="DecalControls.StaticText" name="Label1" left="8" top="260" width="224" height="16" textcolor="16711680" justify="Center" text="http://decal.acasylum.com"/>
+				<control progid="DecalControls.PushButton" name="btnSort" left="8" top="20" width="108" height="24" textcolor="16777215" fontface="Arial" fontsize="14" fontstyle=" bold" text="Selected Pack"/>
+			</control>
+
+			<control progid="DecalControls.FixedLayout" clipped="" left="244" top="4" width="48" height="364">
+				<control progid="DecalControls.Button" name="btnMainPack" left="0" top="0" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack1" left="0" top="36" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack2" left="0" top="70" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack3" left="0" top="104" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack4" left="0" top="138" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack5" left="0" top="172" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack6" left="0" top="206" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack7" left="0" top="240" width="32" height="32"/>
+				<control progid="DecalControls.Button" name="btnPack8" left="0" top="274" width="32" height="32"/>
+			</control>
+
+		</control>
+
+</view>
