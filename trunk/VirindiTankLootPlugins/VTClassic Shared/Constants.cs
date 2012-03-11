@@ -117,6 +117,7 @@ namespace VTClassic
         KeysHeld = 193,
         ElementalDmgBonus = 204,
         ArmorSetID = 265,
+		WeaponMasteryCategory = 353,
         Type = 218103808,
         Icon = 218103809,
         Container = 218103810,
@@ -315,7 +316,8 @@ namespace VTClassic
             return string.Empty;
         }
 
-        public static List<string> FriendlyNames() {
+        public static List<string> FriendlyNames()
+        {
             List<String> r = new List<String>();
 
             foreach (eLootAction e in Enum.GetValues(typeof(eLootAction)))
@@ -489,18 +491,18 @@ namespace VTClassic
         public static SortedDictionary<string, int> getSkillInfo()
         {
             SortedDictionary<string, int> r = new SortedDictionary<string, int>();
-            r.Add("Axe", 1);
-            r.Add("Bow", 2);
-            r.Add("Crossbow", 3);
-            r.Add("Dagger", 4);
-            r.Add("Mace", 5);
+            r.Add("Axe (DEPRECEATED)", 1);
+            r.Add("Bow (DEPRECEATED)", 2);
+            r.Add("Crossbow (DEPRECEATED)", 3);
+            r.Add("Dagger (DEPRECEATED)", 4);
+            r.Add("Mace (DEPRECEATED)", 5);
             r.Add("MeleeD", 6);
             r.Add("MissileD", 7);
-            r.Add("Spear", 9);
-            r.Add("Staff", 10);
-            r.Add("Sword", 11);
-            r.Add("Thrown Weapons", 12);
-            r.Add("Unarmed Combat", 13);
+            r.Add("Spear (DEPRECEATED)", 9);
+            r.Add("Staff (DEPRECEATED)", 10);
+            r.Add("Sword (DEPRECEATED)", 11);
+            r.Add("Thrown Weapons (DEPRECEATED)", 12);
+            r.Add("Unarmed Combat (DEPRECEATED)", 13);
             r.Add("MagicD", 15);
             r.Add("ManaCon", 16);
             r.Add("Creature", 31);
@@ -508,6 +510,35 @@ namespace VTClassic
             r.Add("Life", 33);
             r.Add("War", 34);
             r.Add("Two-Handed Combat", 41);
+            r.Add("Void", 43);
+            r.Add("Heavy Weapons", 44);
+            r.Add("Light Weapons", 45);
+            r.Add("Finesse Weapons", 46);
+            r.Add("Missile Weapons", 47);
+            r.Add("Shield", 48);
+            r.Add("Dual Wield", 49);
+            r.Add("Recklessness", 50);
+            r.Add("Sneak Attack", 51);
+            r.Add("Dirty Fighting", 52);
+
+            return r;
+        }
+
+        public static SortedDictionary<string, int> getMasteryInfo()
+        {
+            SortedDictionary<string, int> r = new SortedDictionary<string, int>();
+
+            r.Add("Unarmed Weapon", 1);
+            r.Add("Sword", 2);
+            r.Add("Axe", 3);
+            r.Add("Mace", 4);
+            r.Add("Spear", 5);
+            r.Add("Dagger", 6);
+            r.Add("Staff", 7);
+            r.Add("Bow", 8);
+            r.Add("Crossbow", 9);
+            r.Add("Thrown", 10);
+            r.Add("Two Handed Combat", 11);
 
             return r;
         }

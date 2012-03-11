@@ -61,6 +61,7 @@ namespace VTClassic
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,6 +140,7 @@ namespace VTClassic
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabLootRules.SuspendLayout();
@@ -173,7 +175,7 @@ namespace VTClassic
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -182,7 +184,7 @@ namespace VTClassic
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -192,14 +194,14 @@ namespace VTClassic
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -207,26 +209,26 @@ namespace VTClassic
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -238,34 +240,34 @@ namespace VTClassic
             this.autoSortRulesToolStripMenuItem,
             this.addPackslotRulesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.editToolStripMenuItem.Text = "Rule";
             // 
             // addSalvageRulesToolStripMenuItem
             // 
             this.addSalvageRulesToolStripMenuItem.Name = "addSalvageRulesToolStripMenuItem";
-            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.addSalvageRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
             this.addSalvageRulesToolStripMenuItem.Text = "Add/Update Salvage Rules";
             this.addSalvageRulesToolStripMenuItem.Click += new System.EventHandler(this.addSalvageRulesToolStripMenuItem_Click);
             // 
             // increaseSalvageWorkmanshipsToolStripMenuItem
             // 
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Name = "increaseSalvageWorkmanshipsToolStripMenuItem";
-            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.increaseSalvageWorkmanshipsToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Text = "Update Workmanship Requirements";
             this.increaseSalvageWorkmanshipsToolStripMenuItem.Click += new System.EventHandler(this.increaseSalvageWorkmanshipsToolStripMenuItem_Click);
             // 
             // autoSortRulesToolStripMenuItem
             // 
             this.autoSortRulesToolStripMenuItem.Name = "autoSortRulesToolStripMenuItem";
-            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.autoSortRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
             this.autoSortRulesToolStripMenuItem.Text = "Auto-Sort Rules";
             this.autoSortRulesToolStripMenuItem.Click += new System.EventHandler(this.autoSortRulesToolStripMenuItem_Click);
             // 
             // addPackslotRulesToolStripMenuItem
             // 
             this.addPackslotRulesToolStripMenuItem.Name = "addPackslotRulesToolStripMenuItem";
-            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.addPackslotRulesToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
             this.addPackslotRulesToolStripMenuItem.Text = "Add Packslot Requirements";
             this.addPackslotRulesToolStripMenuItem.Click += new System.EventHandler(this.addPackslotRulesToolStripMenuItem_Click);
             // 
@@ -275,25 +277,28 @@ namespace VTClassic
             this.exportRangesToolStripMenuItem,
             this.importRangesToolStripMenuItem});
             this.combineToolStripMenuItem.Name = "combineToolStripMenuItem";
-            this.combineToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.combineToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.combineToolStripMenuItem.Text = "Combine";
             // 
             // exportRangesToolStripMenuItem
             // 
             this.exportRangesToolStripMenuItem.Name = "exportRangesToolStripMenuItem";
-            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exportRangesToolStripMenuItem.Text = "Export Ranges";
             this.exportRangesToolStripMenuItem.Click += new System.EventHandler(this.exportRangesToolStripMenuItem_Click);
             // 
             // importRangesToolStripMenuItem
             // 
             this.importRangesToolStripMenuItem.Name = "importRangesToolStripMenuItem";
-            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.importRangesToolStripMenuItem.Text = "Import Ranges";
             this.importRangesToolStripMenuItem.Click += new System.EventHandler(this.importRangesToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabLootRules);
             this.tabControl1.Controls.Add(this.tabSalvageCombine);
             this.tabControl1.Location = new System.Drawing.Point(0, 50);
@@ -301,8 +306,8 @@ namespace VTClassic
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(583, 457);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
+            this.tabControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
             // 
             // tabLootRules
             // 
@@ -330,21 +335,26 @@ namespace VTClassic
             this.button2.Size = new System.Drawing.Size(76, 20);
             this.button2.TabIndex = 16;
             this.button2.Text = "Move Down";
+            this.toolTip1.SetToolTip(this.button2, "Hold the control key down while clicking Move Down to move a rule down by 3x.");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cmdCloneRule
             // 
+            this.cmdCloneRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdCloneRule.Location = new System.Drawing.Point(54, 341);
             this.cmdCloneRule.Name = "cmdCloneRule";
             this.cmdCloneRule.Size = new System.Drawing.Size(54, 23);
             this.cmdCloneRule.TabIndex = 15;
             this.cmdCloneRule.Text = "Clone";
+            this.toolTip1.SetToolTip(this.cmdCloneRule, "Hold the control key down while clicking Clone to insert the cloned rule after th" +
+        "e current selection.");
             this.cmdCloneRule.UseVisualStyleBackColor = true;
             this.cmdCloneRule.Click += new System.EventHandler(this.cmdCloneRule_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.txtSet);
             this.groupBox1.Controls.Add(this.cmbSet);
             this.groupBox1.Controls.Add(this.txtSkill);
@@ -411,11 +421,13 @@ namespace VTClassic
             this.button1.Size = new System.Drawing.Size(78, 20);
             this.button1.TabIndex = 13;
             this.button1.Text = "Move Up";
+            this.toolTip1.SetToolTip(this.button1, "Hold the control key down while clicking Move Up to move a rule up by 3x.");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmdDeleteRule
             // 
+            this.cmdDeleteRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdDeleteRule.Location = new System.Drawing.Point(114, 341);
             this.cmdDeleteRule.Name = "cmdDeleteRule";
             this.cmdDeleteRule.Size = new System.Drawing.Size(54, 23);
@@ -426,6 +438,9 @@ namespace VTClassic
             // 
             // groupRule
             // 
+            this.groupRule.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupRule.Controls.Add(this.label4);
             this.groupRule.Controls.Add(this.button3);
             this.groupRule.Controls.Add(this.txtKeepCount);
@@ -474,16 +489,22 @@ namespace VTClassic
             // 
             // cmdCloneReq
             // 
+            this.cmdCloneReq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdCloneReq.Location = new System.Drawing.Point(83, 320);
             this.cmdCloneReq.Name = "cmdCloneReq";
             this.cmdCloneReq.Size = new System.Drawing.Size(68, 23);
             this.cmdCloneReq.TabIndex = 5;
             this.cmdCloneReq.Text = "Clone";
+            this.toolTip1.SetToolTip(this.cmdCloneReq, "Hold the control key down while clicking Clone to insert the cloned requirement a" +
+        "fter the current selection.");
             this.cmdCloneReq.UseVisualStyleBackColor = true;
             this.cmdCloneReq.Click += new System.EventHandler(this.cmdCloneReq_Click);
             // 
             // groupReqs
             // 
+            this.groupReqs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupReqs.Controls.Add(this.lblValue4);
             this.groupReqs.Controls.Add(this.txtValue4);
             this.groupReqs.Controls.Add(this.txtValue3);
@@ -516,6 +537,8 @@ namespace VTClassic
             // 
             // txtValue4
             // 
+            this.txtValue4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue4.Location = new System.Drawing.Point(6, 112);
             this.txtValue4.Name = "txtValue4";
             this.txtValue4.Size = new System.Drawing.Size(142, 20);
@@ -524,6 +547,8 @@ namespace VTClassic
             // 
             // txtValue3
             // 
+            this.txtValue3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue3.Location = new System.Drawing.Point(5, 230);
             this.txtValue3.Name = "txtValue3";
             this.txtValue3.Size = new System.Drawing.Size(142, 20);
@@ -548,6 +573,8 @@ namespace VTClassic
             // 
             // txtValue2
             // 
+            this.txtValue2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue2.Location = new System.Drawing.Point(6, 191);
             this.txtValue2.Name = "txtValue2";
             this.txtValue2.Size = new System.Drawing.Size(142, 20);
@@ -556,6 +583,8 @@ namespace VTClassic
             // 
             // txtValue
             // 
+            this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue.Location = new System.Drawing.Point(6, 152);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(142, 20);
@@ -667,6 +696,8 @@ namespace VTClassic
             // 
             // lstRequirements
             // 
+            this.lstRequirements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstRequirements.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRequirements.FormattingEnabled = true;
             this.lstRequirements.Location = new System.Drawing.Point(9, 111);
@@ -678,6 +709,7 @@ namespace VTClassic
             // 
             // cmdDeleteReq
             // 
+            this.cmdDeleteReq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdDeleteReq.Location = new System.Drawing.Point(157, 320);
             this.cmdDeleteReq.Name = "cmdDeleteReq";
             this.cmdDeleteReq.Size = new System.Drawing.Size(68, 23);
@@ -688,35 +720,43 @@ namespace VTClassic
             // 
             // cmdNewReq
             // 
+            this.cmdNewReq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdNewReq.Location = new System.Drawing.Point(9, 320);
             this.cmdNewReq.Name = "cmdNewReq";
             this.cmdNewReq.Size = new System.Drawing.Size(68, 23);
             this.cmdNewReq.TabIndex = 1;
             this.cmdNewReq.Text = "New";
+            this.toolTip1.SetToolTip(this.cmdNewReq, "Hold the control key down while clicking New to insert a new requirement after th" +
+        "e current selection.");
             this.cmdNewReq.UseVisualStyleBackColor = true;
             this.cmdNewReq.Click += new System.EventHandler(this.cmdNewReq_Click);
             // 
             // cmdNewRule
             // 
+            this.cmdNewRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdNewRule.Location = new System.Drawing.Point(8, 341);
             this.cmdNewRule.Name = "cmdNewRule";
             this.cmdNewRule.Size = new System.Drawing.Size(40, 23);
             this.cmdNewRule.TabIndex = 10;
             this.cmdNewRule.Text = "New";
+            this.toolTip1.SetToolTip(this.cmdNewRule, "Hold the control key down while clicking New to insert a new rule after the curre" +
+        "nt selection.");
             this.cmdNewRule.UseVisualStyleBackColor = true;
             this.cmdNewRule.Click += new System.EventHandler(this.cmdNewRule_Click);
             // 
             // lstRules
             // 
+            this.lstRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstRules.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRules.FormattingEnabled = true;
             this.lstRules.Location = new System.Drawing.Point(8, 32);
             this.lstRules.Name = "lstRules";
             this.lstRules.Size = new System.Drawing.Size(160, 303);
             this.lstRules.TabIndex = 9;
-            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
             this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
+            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             // 
             // tabSalvageCombine
             // 
@@ -795,6 +835,7 @@ namespace VTClassic
             // 
             // tSC_btnDelete
             // 
+            this.tSC_btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tSC_btnDelete.Location = new System.Drawing.Point(92, 393);
             this.tSC_btnDelete.Name = "tSC_btnDelete";
             this.tSC_btnDelete.Size = new System.Drawing.Size(75, 25);
@@ -805,6 +846,7 @@ namespace VTClassic
             // 
             // tSC_btnNew
             // 
+            this.tSC_btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tSC_btnNew.Location = new System.Drawing.Point(11, 393);
             this.tSC_btnNew.Name = "tSC_btnNew";
             this.tSC_btnNew.Size = new System.Drawing.Size(75, 25);
@@ -815,6 +857,8 @@ namespace VTClassic
             // 
             // tSC_listCombine
             // 
+            this.tSC_listCombine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tSC_listCombine.FormattingEnabled = true;
             this.tSC_listCombine.Location = new System.Drawing.Point(11, 32);
             this.tSC_listCombine.Name = "tSC_listCombine";
@@ -874,6 +918,7 @@ namespace VTClassic
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 20);
             this.toolStripButton2.Text = "Paste rule";
+            this.toolStripButton2.ToolTipText = "Paste rule. Hold the control key down to paste over the current selected rule.";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator2
@@ -886,7 +931,7 @@ namespace VTClassic
             // 
             this.toolStripTextBox1.AutoToolTip = true;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 21);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 23);
             this.toolStripTextBox1.ToolTipText = "Search for rule by name";
             this.toolStripTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
             // 
@@ -900,17 +945,25 @@ namespace VTClassic
             this.toolStripButton3.Text = "Go to next match";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ShowAlways = true;
+            // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 508);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(598, 546);
             this.Name = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1050,9 +1103,12 @@ namespace VTClassic
             if (e.Index > -1)
             {
                 Font fn = e.Font;
-                if (ruleDisabled) {
+                if (ruleDisabled)
+                {
                     fn = new Font(fn, FontStyle.Strikeout);
-                } else {
+                }
+                else
+                {
                     fn = new Font(fn, FontStyle.Regular);
                 }
 
@@ -1243,6 +1299,7 @@ namespace VTClassic
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripTextBox toolStripTextBox1;
         private ToolStripButton toolStripButton3;
+        private ToolTip toolTip1;
 
 
     }

@@ -460,6 +460,20 @@ namespace VTClassic
                     }
                 }
             }
+            else if (vk == IntValueKey.WeaponMasteryCategory)
+            {
+                SortedDictionary<string, int> masteries = GameInfo.getMasteryInfo();
+                if (masteries.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in masteries)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} <= {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
             return string.Format("{0} <= {1}", vk, keyval);
         }
 
@@ -555,6 +569,20 @@ namespace VTClassic
                 if (skillIds.ContainsValue((int)keyval))
                 {
                     foreach (KeyValuePair<string, int> kv in skillIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} >= {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            else if (vk == IntValueKey.WeaponMasteryCategory)
+            {
+                SortedDictionary<string, int> masteries = GameInfo.getMasteryInfo();
+                if (masteries.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in masteries)
                     {
                         if (kv.Value == (int)keyval)
                         {
@@ -1390,6 +1418,20 @@ namespace VTClassic
                     }
                 }
             }
+            else if (vk == IntValueKey.WeaponMasteryCategory)
+            {
+                SortedDictionary<string, int> masteries = GameInfo.getMasteryInfo();
+                if (masteries.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in masteries)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} == {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
             return string.Format("{0} == {1}", vk, keyval);
         }
 
@@ -1485,6 +1527,20 @@ namespace VTClassic
                 if (skillIds.ContainsValue((int)keyval))
                 {
                     foreach (KeyValuePair<string, int> kv in skillIds)
+                    {
+                        if (kv.Value == (int)keyval)
+                        {
+                            return string.Format("{0} != {1} ({2})", vk, keyval, kv.Key);
+                        }
+                    }
+                }
+            }
+            else if (vk == IntValueKey.WeaponMasteryCategory)
+            {
+                SortedDictionary<string, int> masteries = GameInfo.getMasteryInfo();
+                if (masteries.ContainsValue((int)keyval))
+                {
+                    foreach (KeyValuePair<string, int> kv in masteries)
                     {
                         if (kv.Value == (int)keyval)
                         {

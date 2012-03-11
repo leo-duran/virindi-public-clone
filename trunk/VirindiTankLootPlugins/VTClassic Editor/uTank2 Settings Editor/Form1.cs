@@ -42,7 +42,7 @@ namespace VTClassic
     public partial class Form1 : Form
     {
         public const string AppName = "Virindi Tank Loot Editor";
-        public Form1()
+        public Form1(string[] args)
         {
             InitializeComponent();
 
@@ -55,6 +55,9 @@ namespace VTClassic
             RefreshTabData();
 
             InitInfoArea();
+
+            if (args.Length == 1)
+                LoadFile(args[0]);
         }
 
         void RefreshTabData()
@@ -295,7 +298,7 @@ namespace VTClassic
         string GetVTankProfileDirectory()
         {
             string s = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
-            return System.IO.Path.GetFullPath(s);           
+            return System.IO.Path.GetFullPath(s);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,29 +310,63 @@ namespace VTClassic
             od.Filter = "uTank settings files|*.utl";
             od.InitialDirectory = GetVTankProfileDirectory();
             od.ShowDialog();
-            if (od.FileName != "")
+
+            LoadFile(od.FileName);
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                FileName = od.FileName;
-                FileChanged = false;
-                this.Text = AppName + " - " + FileName;
-
-                System.IO.StreamReader pf = new System.IO.StreamReader(FileName);
-                LootRules.Read(pf, 0);
-                pf.Close();
-
-                Working = true;
-                lstRules.Items.Clear();
-                foreach (cLootItemRule ir in LootRules.Rules)
+                string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (fileNames.Length == 1 && fileNames[0].Length >= 5)
                 {
-                    lstRules.Items.Add(ir.name);
+                    string fileExt = fileNames[0].Substring(fileNames[0].Length - 3, 3).ToLower();
+                    if (fileExt == "utl")
+                        e.Effect = DragDropEffects.Move;
                 }
-                Working = false;
-
-                SetCurrentReq(null, 0);
-                SetCurrentRule(null, 0);
-
-                RefreshTabData();
             }
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (fileNames.Length == 1 && fileNames[0].Length >= 5)
+                {
+                    string fileExt = fileNames[0].Substring(fileNames[0].Length - 3, 3).ToLower();
+                    if (fileExt == "utl")
+                        LoadFile(fileNames[0]);
+                }
+            }
+        }
+
+        private void LoadFile(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+                return;
+
+            FileName = fileName;
+            FileChanged = false;
+            this.Text = AppName + " - " + FileName;
+
+            System.IO.StreamReader pf = new System.IO.StreamReader(FileName);
+            LootRules.Read(pf, 0);
+            pf.Close();
+
+            Working = true;
+            lstRules.Items.Clear();
+            foreach (cLootItemRule ir in LootRules.Rules)
+            {
+                lstRules.Items.Add(ir.name);
+            }
+            Working = false;
+
+            SetCurrentReq(null, 0);
+            SetCurrentRule(null, 0);
+
+            RefreshTabData();
         }
 
         bool CheckSave()
@@ -342,13 +379,10 @@ namespace VTClassic
                     case DialogResult.Yes:
                         saveAsToolStripMenuItem_Click(null, null);
                         return saveasres;
-                        //break;
                     case DialogResult.No:
                         return true;
-                        //break;
                     case DialogResult.Cancel:
                         return false;
-                        //break;
                 }
             }
             return true;
@@ -416,7 +450,8 @@ namespace VTClassic
                 {
                     lr.IntRules.Add((iLootRule)r.Clone());
                 }
-                addRuleToList(lr);
+
+                AddRuleToList(lr, CtrlPressed);
             }
         }
 
@@ -426,7 +461,8 @@ namespace VTClassic
             cLootItemRule lr = new cLootItemRule();
             lr.name = "New Rule";
             lr.act = eLootAction.Keep;
-            addRuleToList(lr);
+
+            AddRuleToList(lr, CtrlPressed);
         }
 
         private void cmdDeleteRule_Click(object sender, EventArgs e)
@@ -458,9 +494,18 @@ namespace VTClassic
             FileChanged = true;
             SpellNameMatch lr = new SpellNameMatch();
 
-            CurrentRule.IntRules.Add(lr);
-            lstRequirements.Items.Add(lr.DisplayString());
-            SetCurrentReq(lr, CurrentRule.IntRules.Count-1);
+            if (CtrlPressed && lstRequirements.SelectedIndex != -1)
+            {
+                CurrentRule.IntRules.Insert(lstRequirements.SelectedIndex + 1, lr);
+                lstRequirements.Items.Insert(lstRequirements.SelectedIndex + 1, lr.DisplayString());
+                SetCurrentReq(lr, lstRequirements.SelectedIndex + 1);
+            }
+            else
+            {
+                CurrentRule.IntRules.Add(lr);
+                lstRequirements.Items.Add(lr.DisplayString());
+                SetCurrentReq(lr, CurrentRule.IntRules.Count - 1);
+            }
         }
 
         private void cmdCloneReq_Click(object sender, EventArgs e)
@@ -470,9 +515,18 @@ namespace VTClassic
                 FileChanged = true;
                 iLootRule lr = (iLootRule)CurrentReq.Clone();
 
-                CurrentRule.IntRules.Add(lr);
-                lstRequirements.Items.Add(lr.DisplayString());
-                SetCurrentReq(lr, CurrentRule.IntRules.Count - 1);
+                if (CtrlPressed && lstRequirements.SelectedIndex != -1)
+                {
+                    CurrentRule.IntRules.Insert(lstRequirements.SelectedIndex + 1, lr);
+                    lstRequirements.Items.Insert(lstRequirements.SelectedIndex + 1, lr.DisplayString());
+                    SetCurrentReq(lr, lstRequirements.SelectedIndex + 1);
+                }
+                else
+                {
+                    CurrentRule.IntRules.Add(lr);
+                    lstRequirements.Items.Add(lr.DisplayString());
+                    SetCurrentReq(lr, CurrentRule.IntRules.Count - 1);
+                }
             }
         }
 
@@ -671,8 +725,8 @@ namespace VTClassic
             RefreshColorSample();
 
             Working = false;
-        }      
-        
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (CtrlPressed)
@@ -720,7 +774,7 @@ namespace VTClassic
                     this.alterWorkmanshipReqs(f.act, f.wrk);
                     SetCurrentRule(CurrentRule, CurrentRuleNum);
                 }
-                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }   
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show("Exception: " + ex.ToString()); }
             }
 
             f.Dispose();
@@ -887,7 +941,7 @@ namespace VTClassic
 
                     if (ruleIsNew)
                     {
-                        addRuleToList(lr);
+                        AddRuleToList(lr);
                     }
                     else
                     {
@@ -899,22 +953,19 @@ namespace VTClassic
                     FileChanged = true;
                 }
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch { }
         }
 
         private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            gotoNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum);            
+            GoToNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum);
         }
 
-        private void gotoNextMatchingRule(string s, int start)
+        private void GoToNextMatchingRule(string s, int start)
         {
             if (!String.IsNullOrEmpty(s))
             {
-                int ruleNum = findNextMatchingRule(s, start);
+                int ruleNum = FindNextMatchingRule(s, start);
                 if (ruleNum != -1)
                 {
                     lstRules.TopIndex = ruleNum;
@@ -923,7 +974,7 @@ namespace VTClassic
             }
         }
 
-        private int findNextMatchingRule(string s, int start)
+        private int FindNextMatchingRule(string s, int start)
         {
             int r = -1;
             int f = -1;
@@ -946,14 +997,36 @@ namespace VTClassic
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            gotoNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum + 1); 
+            GoToNextMatchingRule(toolStripTextBox1.Text, CurrentRuleNum + 1);
         }
 
-        private void addRuleToList(cLootItemRule lr)
+        private void AddRuleToList(cLootItemRule lr)
         {
-            LootRules.Rules.Add(lr);
-            lstRules.Items.Add(lr.name);
-            SetCurrentRule(lr, LootRules.Rules.Count - 1);
+            AddRuleToList(lr, false);
+        }
+
+        private void AddRuleToList(cLootItemRule lr, bool addRuleAfterCurrentSelectedRule)
+        {
+            if (addRuleAfterCurrentSelectedRule && lstRules.SelectedIndex != -1)
+            {
+                // This method inserts the new loot rule after the currently selected loot rule in our ListView
+                LootRules.Rules.Insert(lstRules.SelectedIndex + 1, lr);
+                lstRules.Items.Insert(lstRules.SelectedIndex + 1, lr.name);
+                SetCurrentRule(lr, lstRules.SelectedIndex + 1);
+            }
+            else
+            {
+                // This is the standard method
+                LootRules.Rules.Add(lr);
+                lstRules.Items.Add(lr.name);
+                SetCurrentRule(lr, LootRules.Rules.Count - 1);
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!CheckSave())
+                e.Cancel = true;
         }
     }
 }
