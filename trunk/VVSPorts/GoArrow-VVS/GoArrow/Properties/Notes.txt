@@ -3,6 +3,20 @@ To-do:
 	- Arrow context menu
 	
 Changes:
+2.5.0.0
+	-Changed DungeonListURL to http://ac.lastalias.com/maps/dungeon_ids.csv
+	-Changed MapBaseURL to http://ac.lastalias.com/Maps/
+	-Changed the CrossroadsOfDerethURL (Locations Update URL) to http://maps.roogon.com/downloads/GAlocations.xml
+	-Fixed the issue where the Description for the selected destination would not display
+	-Fixed the issue where the Description text would not line wrap correctly
+	-Fixed the issue where the text on the Details | Delete tab would not display correctly
+	-Fixed the issue where the text for removing items on the Favorites & Recent tabs would not display correctly
+	-Changed the color of the text for removing items on the Favorites & Recent tabs to red
+	-Fixed the issue where the warning text on the Update tab would not display correctly
+	-Fixed the format of the Matches found text on the Search tab to display correctly (X - matches found)
+	-Fixed the display layout of the Nearby search on the Atlas | Search tab
+
+
 1.2.0.2
 	- Refactored File Locations.
 	- Switched to SVN on GoogleCode instead of VSS.

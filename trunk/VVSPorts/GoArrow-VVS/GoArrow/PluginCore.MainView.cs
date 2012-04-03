@@ -58,7 +58,7 @@ namespace GoArrow
 		private const string HideDetailsText = "Minimize";
 		private const string ShowDetailsText = "Restore";
 
-		private const string CrossroadsOfDerethUrl = "http://ac.warcry.com/atlas/atlas_xml.php";
+        private const string CrossroadsOfDerethUrl = "http://maps.roogon.com/downloads/GAlocations.xml";
 		private const string ACSpediaUrl = "http://www.acspedia.com/places/places.aspx";
 
 		private const int MinHudOpacity = 64;
@@ -313,8 +313,8 @@ namespace GoArrow
 		//
 		// Atlas > Details > Description Tab
 		//
-		[MyClasses.MetaViewWrappers.MVControlReference("lstLocationDescription")]
-		private MyClasses.MetaViewWrappers.IList lstLocationDescription;
+        [MyClasses.MetaViewWrappers.MVControlReference("lstLocationDescription")]
+        private MyClasses.MetaViewWrappers.IList lstLocationDescription;
 
 		//
 		// Atlas > Details > Modify/Add Location Tab
@@ -1232,7 +1232,7 @@ namespace GoArrow
 				edtModifyDescription.Text = loc.Notes;
 				icon = loc.Icon;
 
-				const int WRAP_WIDTH = 52;
+				const int WRAP_WIDTH = 42;
 				string notes = loc.Notes.Replace("\r", "").Replace("\t", " ");
 				notes = Regex.Replace(notes, "  +", " ");
 				List<string> lines = new List<string>();
@@ -2578,7 +2578,7 @@ namespace GoArrow
 					return;
 				}
 				FillLocationList(lstSearchResults, results, chkSearchShowRelative.Checked);
-				lblSearchMatchesFound.Text = results.Count.ToString("#,0");
+				lblSearchMatchesFound.Text = results.Count.ToString("#,0 - ");
 			}
 			catch (Exception ex) { Util.HandleException(ex); }
 		}
