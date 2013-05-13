@@ -34,6 +34,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.IO;
 
@@ -666,6 +667,16 @@ namespace VTClassic
             Working = true;
 
             CurrentReq.UI_TextValue_Set(txtValue.Text);
+
+            try
+            {
+                txtValue.ForeColor = Color.Black;
+                Regex r = new Regex(txtValue.Text);
+            }
+            catch (Exception ex)
+            {
+                txtValue.ForeColor = Color.OrangeRed;
+            }
 
             lstRequirements.Items[CurrentReqNum] = CurrentReq.DisplayString();
             lstRules.Invalidate();

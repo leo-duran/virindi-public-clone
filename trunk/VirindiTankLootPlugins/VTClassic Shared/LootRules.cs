@@ -111,6 +111,19 @@ namespace VTClassic
         {
             return iUniqueID;
         }
+
+        public Regex createRegexForText(String s)
+        {
+            try
+            {
+                return new Regex(s);
+            }
+            catch (Exception ex)
+            {
+                return new Regex(Regex.Escape(s));
+            }
+        }
+
     }
     #endregion iLootRule abstract class
 
@@ -305,7 +318,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Spell Name Pattern"; }
-        public override void UI_TextValue_Set(string value) { rx = new Regex(value); }
+        public override void UI_TextValue_Set(string value) { rx = createRegexForText(value); }
         public override string UI_TextValue_Get() { return rx.ToString(); }
 #endif
     }
@@ -373,7 +386,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "String Value Pattern"; }
-        public override void UI_TextValue_Set(string value) { rx = new Regex(value); }
+        public override void UI_TextValue_Set(string value) { rx = createRegexForText(value); }
         public override string UI_TextValue_Get() { return rx.ToString(); }
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
@@ -1036,7 +1049,7 @@ namespace VTClassic
 #if VTC_EDITOR
         public override bool UI_TextValue_Uses() { return true; }
         public override string UI_TextValue_Label() { return "Does Match"; }
-        public override void UI_TextValue_Set(string value) { rxDoesMatch = new Regex(value); }
+        public override void UI_TextValue_Set(string value) { rxDoesMatch = createRegexForText(value); }
         public override string UI_TextValue_Get() { return rxDoesMatch.ToString(); }
 
         public override bool UI_TextValue2_Uses() { return true; }

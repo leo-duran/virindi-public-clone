@@ -297,8 +297,8 @@ namespace VTClassic
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabLootRules);
             this.tabControl1.Controls.Add(this.tabSalvageCombine);
             this.tabControl1.Location = new System.Drawing.Point(0, 50);
@@ -306,8 +306,6 @@ namespace VTClassic
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(583, 457);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
-            this.tabControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
             // 
             // tabLootRules
             // 
@@ -348,7 +346,7 @@ namespace VTClassic
             this.cmdCloneRule.TabIndex = 15;
             this.cmdCloneRule.Text = "Clone";
             this.toolTip1.SetToolTip(this.cmdCloneRule, "Hold the control key down while clicking Clone to insert the cloned rule after th" +
-        "e current selection.");
+                    "e current selection.");
             this.cmdCloneRule.UseVisualStyleBackColor = true;
             this.cmdCloneRule.Click += new System.EventHandler(this.cmdCloneRule_Click);
             // 
@@ -439,8 +437,8 @@ namespace VTClassic
             // groupRule
             // 
             this.groupRule.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupRule.Controls.Add(this.label4);
             this.groupRule.Controls.Add(this.button3);
             this.groupRule.Controls.Add(this.txtKeepCount);
@@ -496,15 +494,15 @@ namespace VTClassic
             this.cmdCloneReq.TabIndex = 5;
             this.cmdCloneReq.Text = "Clone";
             this.toolTip1.SetToolTip(this.cmdCloneReq, "Hold the control key down while clicking Clone to insert the cloned requirement a" +
-        "fter the current selection.");
+                    "fter the current selection.");
             this.cmdCloneReq.UseVisualStyleBackColor = true;
             this.cmdCloneReq.Click += new System.EventHandler(this.cmdCloneReq_Click);
             // 
             // groupReqs
             // 
             this.groupReqs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupReqs.Controls.Add(this.lblValue4);
             this.groupReqs.Controls.Add(this.txtValue4);
             this.groupReqs.Controls.Add(this.txtValue3);
@@ -538,7 +536,7 @@ namespace VTClassic
             // txtValue4
             // 
             this.txtValue4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue4.Location = new System.Drawing.Point(6, 112);
             this.txtValue4.Name = "txtValue4";
             this.txtValue4.Size = new System.Drawing.Size(142, 20);
@@ -548,7 +546,7 @@ namespace VTClassic
             // txtValue3
             // 
             this.txtValue3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue3.Location = new System.Drawing.Point(5, 230);
             this.txtValue3.Name = "txtValue3";
             this.txtValue3.Size = new System.Drawing.Size(142, 20);
@@ -574,7 +572,7 @@ namespace VTClassic
             // txtValue2
             // 
             this.txtValue2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue2.Location = new System.Drawing.Point(6, 191);
             this.txtValue2.Name = "txtValue2";
             this.txtValue2.Size = new System.Drawing.Size(142, 20);
@@ -584,7 +582,7 @@ namespace VTClassic
             // txtValue
             // 
             this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue.Location = new System.Drawing.Point(6, 152);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(142, 20);
@@ -697,7 +695,7 @@ namespace VTClassic
             // lstRequirements
             // 
             this.lstRequirements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lstRequirements.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRequirements.FormattingEnabled = true;
             this.lstRequirements.Location = new System.Drawing.Point(9, 111);
@@ -727,7 +725,7 @@ namespace VTClassic
             this.cmdNewReq.TabIndex = 1;
             this.cmdNewReq.Text = "New";
             this.toolTip1.SetToolTip(this.cmdNewReq, "Hold the control key down while clicking New to insert a new requirement after th" +
-        "e current selection.");
+                    "e current selection.");
             this.cmdNewReq.UseVisualStyleBackColor = true;
             this.cmdNewReq.Click += new System.EventHandler(this.cmdNewReq_Click);
             // 
@@ -740,23 +738,23 @@ namespace VTClassic
             this.cmdNewRule.TabIndex = 10;
             this.cmdNewRule.Text = "New";
             this.toolTip1.SetToolTip(this.cmdNewRule, "Hold the control key down while clicking New to insert a new rule after the curre" +
-        "nt selection.");
+                    "nt selection.");
             this.cmdNewRule.UseVisualStyleBackColor = true;
             this.cmdNewRule.Click += new System.EventHandler(this.cmdNewRule_Click);
             // 
             // lstRules
             // 
             this.lstRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lstRules.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstRules.FormattingEnabled = true;
             this.lstRules.Location = new System.Drawing.Point(8, 32);
             this.lstRules.Name = "lstRules";
             this.lstRules.Size = new System.Drawing.Size(160, 303);
             this.lstRules.TabIndex = 9;
+            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             this.lstRules.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstRules_DrawItem);
             this.lstRules.SelectedIndexChanged += new System.EventHandler(this.lstRules_SelectedIndexChanged);
-            this.lstRules.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.lstRules_MouseWheel);
             // 
             // tabSalvageCombine
             // 
@@ -858,7 +856,7 @@ namespace VTClassic
             // tSC_listCombine
             // 
             this.tSC_listCombine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.tSC_listCombine.FormattingEnabled = true;
             this.tSC_listCombine.Location = new System.Drawing.Point(11, 32);
             this.tSC_listCombine.Name = "tSC_listCombine";
@@ -897,8 +895,6 @@ namespace VTClassic
             this.toolStrip1.Size = new System.Drawing.Size(582, 23);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
-            this.toolStrip1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
             // 
             // toolStripButton1
             // 
@@ -958,12 +954,15 @@ namespace VTClassic
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(598, 546);
             this.Name = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyUp);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
