@@ -103,6 +103,7 @@ namespace VTClassic
         WieldReqAttribute = 159,
         WieldReqValue = 160,
         SlayerSpecies = 166,
+        CooldownSeconds = 167,
         NumberItemsSalvagedFrom = 170,
         NumberTimesTinkered = 171,
         DescriptionFormat = 172,
@@ -116,8 +117,26 @@ namespace VTClassic
         FishingSkill = 192,
         KeysHeld = 193,
         ElementalDmgBonus = 204,
+
         ArmorSetID = 265,
-		WeaponMasteryCategory = 353,
+
+        ItemMaxLevel = 319, 
+        CloakChanceType = 352, 
+        WeaponMasteryCategory = 353,
+
+        SummoningGemBuffedSkillReq = 367,
+        SummoningGemLevelReq = 369,
+
+        DamRating = 370,
+        DamResistRating = 371,
+        CritRating = 372,
+        CritResistRating = 373,
+        CritDamRating = 374,
+        CritDamResistRating = 375,
+
+        HealBoostRating = 376, 
+        VitalityRating = 379,
+
         Type = 218103808,
         Icon = 218103809,
         Container = 218103810,
@@ -160,18 +179,7 @@ namespace VTClassic
         PhysicsDataFlags = 218103847,
         ActiveSpellCount = 218103848,
         IconOverlay = 218103849,
-        IconUnderlay = 218103850,
-
-        CooldownSeconds = 167,
-
-        PetSummoningSkillReq = 367,
-        PetLevelReq = 369,
-        PetRatingDam = 370,
-        PetRatingDamResist = 371,
-        PetRatingCrit = 372,
-        PetRatingCritResist = 373,
-        PetRatingCritDam = 374,
-        PetRatingCritDamResist = 375
+        IconUnderlay = 218103850
     }
     public enum DoubleValueKey
     {
@@ -289,7 +297,18 @@ namespace VTClassic
         Salvaging = 40,
         TwoHandedCombat = 41,
         Gearcraft = 42,
-        Summoning = 43
+        Void = 43,
+        HeavyWeapons = 44,
+        LightWeapons = 45,
+        FinesseWeapons = 46,
+        MissileWeapons = 47,
+        Shield = 48,
+        DualWield = 49,
+        Recklessness = 50,
+        SneakAttack = 51,
+        DirtyFighting = 52,
+
+        Summoning = 54
     }
 
     public enum eLootAction
@@ -532,6 +551,7 @@ namespace VTClassic
             r.Add("Recklessness", 50);
             r.Add("Sneak Attack", 51);
             r.Add("Dirty Fighting", 52);
+            r.Add("Summoning", 54);
 
             return r;
         }
