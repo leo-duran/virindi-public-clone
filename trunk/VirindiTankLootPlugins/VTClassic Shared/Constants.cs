@@ -161,6 +161,17 @@ namespace VTClassic
         ActiveSpellCount = 218103848,
         IconOverlay = 218103849,
         IconUnderlay = 218103850,
+
+        CooldownSeconds = 167,
+
+        PetSummoningSkillReq = 367,
+        PetLevelReq = 369,
+        PetRatingDam = 370,
+        PetRatingDamResist = 371,
+        PetRatingCrit = 372,
+        PetRatingCritResist = 373,
+        PetRatingCritDam = 374,
+        PetRatingCritDamResist = 375
     }
     public enum DoubleValueKey
     {
@@ -278,6 +289,7 @@ namespace VTClassic
         Salvaging = 40,
         TwoHandedCombat = 41,
         Gearcraft = 42,
+        Summoning = 43
     }
 
     public enum eLootAction
