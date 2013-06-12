@@ -128,6 +128,8 @@ namespace VTClassic
 			this.tabSalvageCombine = new System.Windows.Forms.TabPage();
 			this.tSC_lblCombineRules = new System.Windows.Forms.Label();
 			this.tSC_groupCRS = new System.Windows.Forms.GroupBox();
+			this.tSC_txtValueMode = new System.Windows.Forms.TextBox();
+			this.tSC_chkValueMode = new System.Windows.Forms.CheckBox();
 			this.tSC_txtCombineRange = new System.Windows.Forms.TextBox();
 			this.tSC_lblCombineRange = new System.Windows.Forms.Label();
 			this.tSC_cmbMaterial = new System.Windows.Forms.ComboBox();
@@ -188,7 +190,7 @@ namespace VTClassic
 			this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
 			this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.newToolStripMenuItem.Text = "&New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
@@ -198,14 +200,14 @@ namespace VTClassic
 			this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
 			this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.openToolStripMenuItem.Text = "&Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator
 			// 
 			this.toolStripSeparator.Name = "toolStripSeparator";
-			this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator.Size = new System.Drawing.Size(137, 6);
 			// 
 			// saveToolStripMenuItem
 			// 
@@ -213,26 +215,26 @@ namespace VTClassic
 			this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.saveToolStripMenuItem.Text = "&Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.saveAsToolStripMenuItem.Text = "Save &As";
 			this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
 			this.exitToolStripMenuItem.Text = "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -312,14 +314,14 @@ namespace VTClassic
 			// exportRangesToolStripMenuItem
 			// 
 			this.exportRangesToolStripMenuItem.Name = "exportRangesToolStripMenuItem";
-			this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exportRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
 			this.exportRangesToolStripMenuItem.Text = "Export Ranges";
 			this.exportRangesToolStripMenuItem.Click += new System.EventHandler(this.exportRangesToolStripMenuItem_Click);
 			// 
 			// importRangesToolStripMenuItem
 			// 
 			this.importRangesToolStripMenuItem.Name = "importRangesToolStripMenuItem";
-			this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.importRangesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
 			this.importRangesToolStripMenuItem.Text = "Import Ranges";
 			this.importRangesToolStripMenuItem.Click += new System.EventHandler(this.importRangesToolStripMenuItem_Click);
 			// 
@@ -813,6 +815,8 @@ namespace VTClassic
 			// 
 			// tSC_groupCRS
 			// 
+			this.tSC_groupCRS.Controls.Add(this.tSC_txtValueMode);
+			this.tSC_groupCRS.Controls.Add(this.tSC_chkValueMode);
 			this.tSC_groupCRS.Controls.Add(this.tSC_txtCombineRange);
 			this.tSC_groupCRS.Controls.Add(this.tSC_lblCombineRange);
 			this.tSC_groupCRS.Controls.Add(this.tSC_cmbMaterial);
@@ -823,6 +827,27 @@ namespace VTClassic
 			this.tSC_groupCRS.TabIndex = 5;
 			this.tSC_groupCRS.TabStop = false;
 			this.tSC_groupCRS.Text = "Combine Range Setting";
+			// 
+			// tSC_txtValueMode
+			// 
+			this.tSC_txtValueMode.Location = new System.Drawing.Point(141, 129);
+			this.tSC_txtValueMode.Name = "tSC_txtValueMode";
+			this.tSC_txtValueMode.Size = new System.Drawing.Size(82, 20);
+			this.tSC_txtValueMode.TabIndex = 5;
+			this.tSC_txtValueMode.Text = "400000";
+			this.tSC_txtValueMode.TextChanged += new System.EventHandler(this.tSC_txtValueMode_TextChanged);
+			this.tSC_txtValueMode.Leave += new System.EventHandler(this.tSC_txtValueMode_Leave);
+			// 
+			// tSC_chkValueMode
+			// 
+			this.tSC_chkValueMode.AutoSize = true;
+			this.tSC_chkValueMode.Location = new System.Drawing.Point(7, 131);
+			this.tSC_chkValueMode.Name = "tSC_chkValueMode";
+			this.tSC_chkValueMode.Size = new System.Drawing.Size(138, 17);
+			this.tSC_chkValueMode.TabIndex = 4;
+			this.tSC_chkValueMode.Text = "Combine for value up to";
+			this.tSC_chkValueMode.UseVisualStyleBackColor = true;
+			this.tSC_chkValueMode.CheckedChanged += new System.EventHandler(this.tSC_chkValueMode_CheckedChanged);
 			// 
 			// tSC_txtCombineRange
 			// 
@@ -1331,6 +1356,8 @@ namespace VTClassic
 		private ToolStripMenuItem editToolStripMenuItem1;
 		private ToolStripMenuItem copyRuleToolStripMenuItem;
 		private ToolStripMenuItem pasteRuleToolStripMenuItem;
+		private CheckBox tSC_chkValueMode;
+		private TextBox tSC_txtValueMode;
 
 
     }

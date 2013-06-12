@@ -1065,6 +1065,12 @@ namespace VTClassic
 			catch { }
 		}
 
+		private void tSC_txtValueMode_Leave(object sender, EventArgs e)
+		{
+
+		}
+
+
 
     }
 }

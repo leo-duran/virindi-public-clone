@@ -8,6 +8,7 @@ namespace VTClassic
     {
         VTClassic.UTLBlockHandlers.UTLBlock_SalvageCombine SalvageBlock { get { return LootRules.ExtraBlockManager.GetFirstBlock("SalvageCombine") as VTClassic.UTLBlockHandlers.UTLBlock_SalvageCombine; } }
         bool Tab_Salvage_Working = false;
+		const int DEFAULT_VALUECOMBINE_VALUE = 390000;
 
         List<int> Tab_Salvage_MaterialComboList;
         void Tab_Salvage_GenerateMaterialComboList()
@@ -34,7 +35,8 @@ namespace VTClassic
             foreach (KeyValuePair<int, string> kp in SalvageBlock.MaterialCombineStrings)
             {
                 Tab_Salvage_lstKeys.Add(kp.Key);
-                tSC_listCombine.Items.Add(String.Format("{0}: {1}", GameInfo.getMaterialName(kp.Key), kp.Value));
+                tSC_listCombine.Items.Add("");
+				UpdateIndexTitle(tSC_listCombine.Items.Count - 1);
             }
 
             tSC_txtDefaultCombine.Text = SalvageBlock.DefaultCombineString;
@@ -46,6 +48,8 @@ namespace VTClassic
         {
             if ((tSC_listCombine.SelectedIndex >= 0) && (tSC_listCombine.SelectedIndex < Tab_Salvage_lstKeys.Count))
             {
+				Tab_Salvage_Working = true;
+
                 int mat = Tab_Salvage_lstKeys[tSC_listCombine.SelectedIndex];
                 tSC_cmbMaterial.SelectedIndex = Tab_Salvage_MaterialComboList.IndexOf(mat);
 
@@ -53,12 +57,33 @@ namespace VTClassic
                 tSC_txtCombineRange.Text = cmb;
 
                 tSC_groupCRS.Visible = true;
+
+				bool valuemode = SalvageBlock.MaterialValueModeValues.ContainsKey(mat);
+				tSC_chkValueMode.Checked = valuemode;
+				tSC_txtValueMode.Visible = valuemode;
+				if (valuemode) tSC_txtValueMode.Text = SalvageBlock.MaterialValueModeValues[mat].ToString();
+
+				Tab_Salvage_Working = false;
             }
             else
             {
                 tSC_groupCRS.Visible = false;
             }
         }
+
+		void UpdateIndexTitle(int i)
+		{
+			int mat = Tab_Salvage_lstKeys[i];
+			Tab_Salvage_Working = true;
+			StringBuilder sb = new StringBuilder();
+			sb.AppendFormat("{0}: {1}", GameInfo.getMaterialName(mat), SalvageBlock.MaterialCombineStrings[mat]);
+			if (SalvageBlock.MaterialValueModeValues.ContainsKey(mat))
+			{
+				sb.AppendFormat(", Val >= {0}", SalvageBlock.MaterialValueModeValues[mat]);
+			}
+			tSC_listCombine.Items[i] = sb.ToString();
+			Tab_Salvage_Working = false;
+		}
 
         private void tSC_listCombine_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -69,6 +94,8 @@ namespace VTClassic
 
         private void tSC_cmbMaterial_SelectedIndexChanged(object sender, EventArgs e)
         {
+			if (Tab_Salvage_Working) return;
+
             if ((tSC_listCombine.SelectedIndex >= 0) && (tSC_listCombine.SelectedIndex < Tab_Salvage_lstKeys.Count))
             {
                 //See if we can do this...there can only be one entry for each mat
@@ -88,9 +115,7 @@ namespace VTClassic
                 SalvageBlock.MaterialCombineStrings.Remove(oldmat);
 
                 //Update list
-                Tab_Salvage_Working = true;
-                tSC_listCombine.Items[tSC_listCombine.SelectedIndex] = String.Format("{0}: {1}", GameInfo.getMaterialName(newmat), SalvageBlock.MaterialCombineStrings[newmat]);
-                Tab_Salvage_Working = false;
+				UpdateIndexTitle(tSC_listCombine.SelectedIndex);
 
                 FileChanged = true;
             }
@@ -98,6 +123,8 @@ namespace VTClassic
 
         private void tSC_txtCombineRange_TextChanged(object sender, EventArgs e)
         {
+			if (Tab_Salvage_Working) return;
+
             if ((tSC_listCombine.SelectedIndex >= 0) && (tSC_listCombine.SelectedIndex < Tab_Salvage_lstKeys.Count))
             {
                 int mat = Tab_Salvage_lstKeys[tSC_listCombine.SelectedIndex];
@@ -106,13 +133,67 @@ namespace VTClassic
                 SalvageBlock.MaterialCombineStrings[mat] = tSC_txtCombineRange.Text;
 
                 //Update list
-                Tab_Salvage_Working = true;
-                tSC_listCombine.Items[tSC_listCombine.SelectedIndex] = String.Format("{0}: {1}", GameInfo.getMaterialName(mat), SalvageBlock.MaterialCombineStrings[mat]);
-                Tab_Salvage_Working = false;
+				UpdateIndexTitle(tSC_listCombine.SelectedIndex);
 
                 FileChanged = true;
             }
         }
+
+		private void tSC_chkValueMode_CheckedChanged(object sender, EventArgs e)
+		{
+			if (Tab_Salvage_Working) return;
+
+			if ((tSC_listCombine.SelectedIndex >= 0) && (tSC_listCombine.SelectedIndex < Tab_Salvage_lstKeys.Count))
+			{
+				tSC_txtValueMode.Visible = tSC_chkValueMode.Checked;
+
+				if (tSC_chkValueMode.Checked)
+				{
+					tSC_txtValueMode.Text = DEFAULT_VALUECOMBINE_VALUE.ToString();
+				}
+
+				int v = 0;
+				if (!int.TryParse(tSC_txtValueMode.Text, out v))
+					v = DEFAULT_VALUECOMBINE_VALUE;
+
+				int mat = Tab_Salvage_lstKeys[tSC_listCombine.SelectedIndex];
+				if (tSC_chkValueMode.Checked)
+				{
+					SalvageBlock.MaterialValueModeValues[mat] = v;
+				}
+				else
+				{
+					if (SalvageBlock.MaterialValueModeValues.ContainsKey(mat))
+						SalvageBlock.MaterialValueModeValues.Remove(mat);
+				}
+
+				UpdateIndexTitle(tSC_listCombine.SelectedIndex);
+
+				FileChanged = true;
+			}
+		}
+
+		private void tSC_txtValueMode_TextChanged(object sender, EventArgs e)
+		{
+			if (Tab_Salvage_Working) return;
+
+			if ((tSC_listCombine.SelectedIndex >= 0) && (tSC_listCombine.SelectedIndex < Tab_Salvage_lstKeys.Count))
+			{
+				int v = 0;
+				if (!int.TryParse(tSC_txtValueMode.Text, out v))
+					v = DEFAULT_VALUECOMBINE_VALUE;
+
+				int mat = Tab_Salvage_lstKeys[tSC_listCombine.SelectedIndex];
+				if (tSC_chkValueMode.Checked)
+				{
+					SalvageBlock.MaterialValueModeValues[mat] = v;
+				}
+
+				UpdateIndexTitle(tSC_listCombine.SelectedIndex);
+
+				FileChanged = true;
+			}
+		}
 
         private void tSC_txtDefaultCombine_TextChanged(object sender, EventArgs e)
         {

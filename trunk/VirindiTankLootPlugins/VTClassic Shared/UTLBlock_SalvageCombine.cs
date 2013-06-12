@@ -31,14 +31,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#if VTC_PLUGIN
+using uTank2.LootPlugins;
+#endif
+
 namespace VTClassic.UTLBlockHandlers
 {
     internal class UTLBlock_SalvageCombine : IUTLFileBlockHandler
     {
         const int SALVAGEBLOCK_FILE_FORMAT_VERSION = 1;
+		static Random rand = new Random();
 
         public string DefaultCombineString = "";
         public Dictionary<int, string> MaterialCombineStrings = new Dictionary<int, string>();
+		public Dictionary<int, int> MaterialValueModeValues = new Dictionary<int, int>();
 
         public UTLBlock_SalvageCombine()
         {
@@ -100,50 +106,60 @@ namespace VTClassic.UTLBlockHandlers
             }
             return Ranges.Count;
         }
+
+		static List<sDoublePair> ParseCombineSting(string pcombinestring)
+		{
+			List<sDoublePair> Ranges = new List<sDoublePair>();
+
+			//Look through the string and delete all characters we don't understand
+			string combinestring = pcombinestring;
+			for (int i = combinestring.Length - 1; i >= 0; --i)
+			{
+				if (Char.IsDigit(combinestring[i])) continue;
+				if (combinestring[i] == ',') continue;
+				if (combinestring[i] == ';') continue;
+				if (combinestring[i] == '-') continue;
+				if (combinestring[i] == '.') continue;
+
+				combinestring.Remove(i, 1);
+			}
+
+			//Split and parse string into ranges
+			string[] toks = combinestring.Split(';', ',');
+			foreach (string tok in toks)
+			{
+				if (tok.Length == 0) continue;
+				string[] numbers = tok.Split('-');
+				if (numbers.Length == 0) continue;
+
+				sDoublePair addpair = new sDoublePair();
+				if (numbers.Length == 1)
+				{
+					addpair.a = double.Parse(numbers[0], System.Globalization.CultureInfo.InvariantCulture);
+					addpair.b = addpair.a;
+				}
+				else
+				{
+					addpair.a = double.Parse(numbers[0], System.Globalization.CultureInfo.InvariantCulture);
+					addpair.b = double.Parse(numbers[1], System.Globalization.CultureInfo.InvariantCulture);
+				}
+				Ranges.Add(addpair);
+			}
+
+			return Ranges;
+		}
+
+		/*
         static bool TestCombineString(double w1, double w2, string pcombinestring)
         {
-            List<sDoublePair> Ranges = new List<sDoublePair>();
-
-            //Look through the string and delete all characters we don't understand
-            string combinestring = pcombinestring;
-            for (int i = combinestring.Length - 1; i >= 0; --i)
-            {
-                if (Char.IsDigit(combinestring[i])) continue;
-                if (combinestring[i] == ',') continue;
-                if (combinestring[i] == ';') continue;
-                if (combinestring[i] == '-') continue;
-                if (combinestring[i] == '.') continue;
-
-                combinestring.Remove(i, 1);
-            }
-
-            //Split and parse string into ranges
-            string[] toks = combinestring.Split(';', ',');
-            foreach (string tok in toks)
-            {
-                if (tok.Length == 0) continue;
-                string[] numbers = tok.Split('-');
-                if (numbers.Length == 0) continue;
-
-                sDoublePair addpair = new sDoublePair();
-                if (numbers.Length == 1)
-                {
-                    addpair.a = double.Parse(numbers[0], System.Globalization.CultureInfo.InvariantCulture);
-                    addpair.b = addpair.a;
-                }
-                else
-                {
-                    addpair.a = double.Parse(numbers[0], System.Globalization.CultureInfo.InvariantCulture);
-                    addpair.b = double.Parse(numbers[1], System.Globalization.CultureInfo.InvariantCulture);
-                }
-                Ranges.Add(addpair);
-            }
+			List<sDoublePair> Ranges = ParseCombineSting(pcombinestring);
 
             //Find out which range we fall into
             return (GetRangeIndex(Ranges, w1) == GetRangeIndex(Ranges, w2));
         }
+		 * */
         #endregion CombineString Parsing
-
+		/*
         public bool CanCombineBags(double bag1workmanship, double bag2workmanship, int material)
         {
             if (MaterialCombineStrings.ContainsKey(material))
@@ -151,6 +167,102 @@ namespace VTClassic.UTLBlockHandlers
             else
                 return TestCombineString(bag1workmanship, bag2workmanship, DefaultCombineString);
         }
+		*/
+
+		string GetCombineString(int material)
+		{
+			if (MaterialCombineStrings.ContainsKey(material))
+				return MaterialCombineStrings[material];
+			else
+				return DefaultCombineString;
+		}
+
+#if VTC_PLUGIN
+		public List<int> TryCombineMultiple(List<GameItemInfo> availablebags)
+		{
+			if (availablebags.Count == 0) return new List<int>();
+
+			int material = availablebags[0].GetValueInt(IntValueKey.Material, 0);
+			List<sDoublePair> ranges = ParseCombineSting(GetCombineString(material));
+
+			//Bin the available bags by which part of the combine string they fit in.
+			Dictionary<int, List<GameItemInfo>> binnedbags = new Dictionary<int, List<GameItemInfo>>();
+			foreach (GameItemInfo zz in availablebags)
+			{
+				int bin = GetRangeIndex(ranges, zz.GetValueDouble(DoubleValueKey.SalvageWorkmanship, 0d));
+				if (!binnedbags.ContainsKey(bin)) binnedbags.Add(bin, new List<GameItemInfo>());
+				binnedbags[bin].Add(zz);
+			}
+
+			foreach (KeyValuePair<int, List<GameItemInfo>> kp in binnedbags)
+			{
+				if (kp.Value.Count < 2) continue;
+
+				//We now have a list of every piece of salvage that can be combined. What should we combine?
+				//Finding the best possible combination of bags is equivalent to the knapsack problem, an NP-complete computational problem.
+				//That is a bit much for something that is called all the time, so we will just use stupid methods of choosing bags.
+				List<int> ret = new List<int>();
+
+				if (MaterialValueModeValues.ContainsKey(material))
+				{
+					//Salvage for money mode.
+
+					//First, we see if we can cap out a bag.
+					int valuemodevalue = MaterialValueModeValues[material];
+					int vsum = 0;
+					int csum = 0;
+
+					foreach (GameItemInfo ii in kp.Value)
+					{
+						ret.Add(ii.Id);
+						vsum += ii.GetValueInt(IntValueKey.Value, 0);
+						csum += ii.GetValueInt(IntValueKey.UsesRemaining, 0);
+					}
+
+					//If we are above the value, combine.
+					if (vsum >= valuemodevalue)
+						return ret;
+
+					//Total bags are below target value. Try combining some without exceeding 100.
+					//In theory this is a hard problem. So to avoid wasting time, we will just randomly try a few possibilities.
+
+					for (int i = 0; i < 12; ++i)
+					{
+						int ind1 = rand.Next(kp.Value.Count);
+						int ind2 = rand.Next(kp.Value.Count);
+						if (ind1 == ind2) continue;
+
+						if ((kp.Value[ind1].GetValueInt(IntValueKey.UsesRemaining, 0) + kp.Value[ind2].GetValueInt(IntValueKey.UsesRemaining, 0)) < 100)
+						{
+							//This pair is good.
+							ret.Clear();
+							ret.Add(kp.Value[ind1].Id);
+							ret.Add(kp.Value[ind2].Id);
+							return ret;
+						}
+					}
+				}
+				else
+				{
+					//Salvage for maximum bags mode.
+					//Just loop and add bags until we are over 100 units.
+
+					int csum = 0;
+
+					foreach (GameItemInfo ii in kp.Value)
+					{
+						ret.Add(ii.Id);
+						csum += ii.GetValueInt(IntValueKey.UsesRemaining, 0);
+						if (csum >= 100) break;
+					}
+
+					return ret;
+				}
+			}
+
+			return new List<int>();
+		}
+#endif
 
         public string BlockTypeID
         {
@@ -159,6 +271,8 @@ namespace VTClassic.UTLBlockHandlers
 
         public void Read(System.IO.StreamReader inf, int len)
         {
+			MaterialValueModeValues.Clear();
+
             string formatversion = inf.ReadLine();
 
             DefaultCombineString = inf.ReadLine();
@@ -171,6 +285,18 @@ namespace VTClassic.UTLBlockHandlers
                 string cmb = inf.ReadLine();
                 MaterialCombineStrings[mat] = cmb;
             }
+
+			//This is all there is for older blocks.
+			if (inf.EndOfStream) return;
+
+			//MaterialValueModeValues.Clear();
+			int nummatvalmodevals = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+			for (int i = 0; i < nummatvalmodevals; ++i)
+			{
+				int k = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+				int v = int.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+				MaterialValueModeValues[k] = v;
+			}
         }
 
         public void Write(CountedStreamWriter inf)
@@ -185,6 +311,14 @@ namespace VTClassic.UTLBlockHandlers
                 inf.WriteLine(kp.Key);
                 inf.WriteLine(kp.Value);
             }
+
+			inf.WriteLine(MaterialValueModeValues.Count);
+			foreach (KeyValuePair<int, int> kp in MaterialValueModeValues)
+			{
+				inf.WriteLine(kp.Key);
+				inf.WriteLine(kp.Value);
+			}
+
         }
     }
 }
