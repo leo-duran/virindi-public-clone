@@ -298,8 +298,13 @@ namespace VTClassic
 
         string GetVTankProfileDirectory()
         {
-            string s = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
-            return System.IO.Path.GetFullPath(s);
+			try
+			{
+				string s = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software\\Decal\\Plugins\\{642F1F48-16BE-48BF-B1D4-286652C4533E}").GetValue("ProfilePath").ToString();
+				return System.IO.Path.GetFullPath(s);
+			}
+			catch { }
+			return null;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -914,57 +919,12 @@ namespace VTClassic
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (CurrentRule != null)
-            {
-                MemoryStream ms = new System.IO.MemoryStream();
-                CountedStreamWriter sw = new CountedStreamWriter(ms);
-                CurrentRule.Write(sw);
-                sw.Flush();
-                ms.Position = 0;
-                using (StreamReader reader = new StreamReader(ms, Encoding.ASCII))
-                {
-                    string contents = reader.ReadToEnd();
-                    if (!String.IsNullOrEmpty(contents))
-                    {
-                        Clipboard.SetText(contents);
-                    }
-                }
-            }
+			CopyCurrentRuleToClipboard();
         }
-
+		
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string t = Clipboard.GetText();
-                if (!String.IsNullOrEmpty(t))
-                {
-                    MemoryStream m = new MemoryStream(Encoding.ASCII.GetBytes(t));
-                    cLootItemRule lr = new cLootItemRule();
-                    bool ruleIsNew = true;
-                    if (CtrlPressed && CurrentRule != null)
-                    {
-                        //MessageBox.Show("replacing current rule");
-                        lr = CurrentRule;
-                        ruleIsNew = false;
-                    }
-                    lr.Read(new StreamReader(m), LootRules.UTLFileVersion);
-
-                    if (ruleIsNew)
-                    {
-                        AddRuleToList(lr);
-                    }
-                    else
-                    {
-                        lstRules.Items[CurrentRuleNum] = lr.name;
-                    }
-                    lstRules.Invalidate();
-                    lstRequirements.Invalidate();
-
-                    FileChanged = true;
-                }
-            }
-            catch { }
+			PasteRuleFromClipboard();
         }
 
         private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -1039,5 +999,72 @@ namespace VTClassic
             if (!CheckSave())
                 e.Cancel = true;
         }
+
+		private void copyRuleToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			CopyCurrentRuleToClipboard();
+		}
+
+		private void pasteRuleToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			PasteRuleFromClipboard();
+		}
+
+		void CopyCurrentRuleToClipboard()
+		{
+			if (CurrentRule != null)
+			{
+				MemoryStream ms = new System.IO.MemoryStream();
+				CountedStreamWriter sw = new CountedStreamWriter(ms);
+				CurrentRule.Write(sw);
+				sw.Flush();
+				ms.Position = 0;
+				using (StreamReader reader = new StreamReader(ms, Encoding.ASCII))
+				{
+					string contents = reader.ReadToEnd();
+					if (!String.IsNullOrEmpty(contents))
+					{
+						Clipboard.SetText(contents);
+					}
+				}
+			}
+		}
+
+		void PasteRuleFromClipboard()
+		{
+			try
+			{
+				string t = Clipboard.GetText();
+				if (!String.IsNullOrEmpty(t))
+				{
+					MemoryStream m = new MemoryStream(Encoding.ASCII.GetBytes(t));
+					cLootItemRule lr = new cLootItemRule();
+					bool ruleIsNew = true;
+					if (CtrlPressed && CurrentRule != null)
+					{
+						//MessageBox.Show("replacing current rule");
+						lr = CurrentRule;
+						ruleIsNew = false;
+					}
+					lr.Read(new StreamReader(m), LootRules.UTLFileVersion);
+
+					if (ruleIsNew)
+					{
+						AddRuleToList(lr);
+					}
+					else
+					{
+						lstRules.Items[CurrentRuleNum] = lr.name;
+					}
+					lstRules.Invalidate();
+					lstRequirements.Invalidate();
+
+					FileChanged = true;
+				}
+			}
+			catch { }
+		}
+
+
     }
 }
