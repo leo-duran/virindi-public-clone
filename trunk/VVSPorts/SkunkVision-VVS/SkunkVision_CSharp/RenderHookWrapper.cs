@@ -53,18 +53,30 @@ namespace SkunkVision_CSharp
 
         public RenderHookWrapper(Decal.Adapter.Wrappers.PluginHost Host)
         {
-            iRenderHook = new RenderHookLib.SVRenderHookClass();
+			bool Is_Direct3D9_Container = false;
+			try
+			{
+				if (string.Compare(System.Diagnostics.Process.GetCurrentProcess().ProcessName, "Direct3D9_Container", StringComparison.OrdinalIgnoreCase) == 0)
+					Is_Direct3D9_Container = true;
+			}
+			catch { }
 
-            //Init renderhook
-            object netsvc = Host.Decal.GetObject("services\\DecalNet.NetService", "{AA405035-E001-4CC3-B43A-156206843D64}");
-            iRenderHook.Init(netsvc);
-            Marshal.ReleaseComObject(netsvc);
-            netsvc = null;
+			//Attempting to hook while running in the d3d container rather than AC will cause a crash.
+			if (!Is_Direct3D9_Container)
+			{
+				iRenderHook = new RenderHookLib.SVRenderHookClass();
 
-            iRenderHook.fEnabled = false;
-            LightColor = iLightColor;
-            SlopeColor = iSlopeColor;
-            WaterColor = iWaterColor;
+				//Init renderhook
+				object netsvc = Host.Decal.GetObject("services\\DecalNet.NetService", "{AA405035-E001-4CC3-B43A-156206843D64}");
+				iRenderHook.Init(netsvc);
+				Marshal.ReleaseComObject(netsvc);
+				netsvc = null;
+
+				iRenderHook.fEnabled = false;
+				LightColor = iLightColor;
+				SlopeColor = iSlopeColor;
+				WaterColor = iWaterColor;
+			}
         }
 
         bool disposed = false;
@@ -75,10 +87,13 @@ namespace SkunkVision_CSharp
 
             GC.SuppressFinalize(this);
 
-            iRenderHook.fEnabled = false;
-            iRenderHook.Finalize();
-            Marshal.ReleaseComObject(iRenderHook);
-            iRenderHook = null;
+			if (iRenderHook != null)
+			{
+				iRenderHook.fEnabled = false;
+				iRenderHook.Finalize();
+				Marshal.ReleaseComObject(iRenderHook);
+				iRenderHook = null;
+			}
         }
 
         ~RenderHookWrapper()

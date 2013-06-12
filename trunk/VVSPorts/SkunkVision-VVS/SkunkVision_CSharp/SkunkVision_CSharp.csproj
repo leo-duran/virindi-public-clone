@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="Decal.Adapter, Version=2.9.6.0, Culture=neutral, PublicKeyToken=bd1c8ce002ce221e, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Decal 3.0\Decal.Adapter.dll</HintPath>
+      <HintPath>..\..\..\..\..\plugins\2960\Decal.Adapter.dll</HintPath>
     </Reference>
     <Reference Include="Decal.Interop.Net, Version=2.9.6.0, Culture=neutral, PublicKeyToken=481f17d392f1fb65, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -41,37 +41,37 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VirindiViewService, Version=1.0.0.19, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="VirindiViewService, Version=1.0.0.42, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\VirindiPlugins\VirindiViewService\VirindiViewService.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\games\VirindiPlugins\VirindiViewService\VirindiViewService.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\SharedCode\HudViews\MyDialog_Base.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\AddonControls\MyDialog_Base.cs">
       <Link>SharedCode\MyDialog_Base.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\MyDialog_ColorQuery.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\AddonControls\MyDialog_ColorQuery.cs">
       <Link>SharedCode\MyDialog_ColorQuery.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\MyDialog_MessageBox.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\AddonControls\MyDialog_MessageBox.cs">
       <Link>SharedCode\MyDialog_MessageBox.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\MyDialog_StringQuery.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\AddonControls\MyDialog_StringQuery.cs">
       <Link>SharedCode\MyDialog_StringQuery.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\ViewSystemSelector.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\ViewSystemSelector.cs">
       <Link>SharedCode\ViewSystemSelector.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\Wrapper.cs">
       <Link>SharedCode\Wrapper.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_Decal.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\Wrapper_Decal.cs">
       <Link>SharedCode\Wrapper_Decal.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_MyHuds.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\Wrapper_MyHuds.cs">
       <Link>SharedCode\Wrapper_MyHuds.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\SharedCode\HudViews\Wrapper_WireupHelper.cs">
+    <Compile Include="..\..\..\ViewServiceConnector\Wrapper_WireupHelper.cs">
       <Link>SharedCode\Wrapper_WireupHelper.cs</Link>
     </Compile>
     <Compile Include="MainView.cs" />
