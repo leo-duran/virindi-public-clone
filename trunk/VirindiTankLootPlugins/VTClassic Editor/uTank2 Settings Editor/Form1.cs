@@ -201,14 +201,22 @@ namespace VTClassic
                 RequirementComboEntries.Clear();
 
                 Array arr = Enum.GetValues(typeof(eLootRuleType));
-                foreach (int it in arr)
-                {
-                    eLootRuleType lrt = ((eLootRuleType)it);
-                    iLootRule lr = LootRuleCreator.CreateLootRule(lrt);
-                    if (lr == null) continue;
+				SortedList<string, eLootRuleType> incomingrules = new SortedList<string, eLootRuleType>();
+				foreach (int it in arr)
+				{
+					eLootRuleType lrt = ((eLootRuleType)it);
+					iLootRule lr = LootRuleCreator.CreateLootRule(lrt);
+					if (lr == null) continue;
 
-                    AddRequirementComboEntry(lr.FriendlyName(), lrt);
-                }
+					if (lrt == eLootRuleType.DisabledRule)
+						AddRequirementComboEntry(lr.FriendlyName(), lrt);
+					else
+						incomingrules[lr.FriendlyName()] = lrt;
+				}
+				foreach (KeyValuePair<string, eLootRuleType> kp in incomingrules)
+				{
+					AddRequirementComboEntry(kp.Key, kp.Value);
+				}
 
 
                 cmbReqType.SelectedIndex = GetRequirementComboIndexForRuleType((eLootRuleType)cr.GetRuleType());
