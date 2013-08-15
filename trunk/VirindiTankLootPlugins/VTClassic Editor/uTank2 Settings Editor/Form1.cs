@@ -481,16 +481,7 @@ namespace VTClassic
 
         private void cmdDeleteRule_Click(object sender, EventArgs e)
         {
-            if (CurrentRule == null) return;
-            FileChanged = true;
-
-            Working = true;
-
-            LootRules.Rules.RemoveAt(CurrentRuleNum);
-            lstRules.Items.RemoveAt(CurrentRuleNum);
-            SetCurrentRule(null, 0);
-
-            Working = false;
+			DeleteCurrentRule();
         }
 
         private void lstRequirements_SelectedIndexChanged(object sender, EventArgs e)
@@ -1002,6 +993,33 @@ namespace VTClassic
             }
         }
 
+		private void DeleteCurrentRule()
+		{
+			if (CurrentRule == null) return;
+
+			DeleteRule(CurrentRuleNum);
+		}
+
+		private void DeleteRule(int ind)
+		{
+			FileChanged = true;
+
+			Working = true;
+
+			LootRules.Rules.RemoveAt(ind);
+			lstRules.Items.RemoveAt(ind);
+			if (ind == CurrentRuleNum)
+			{
+				SetCurrentRule(null, 0);
+			}
+			else if ((CurrentRuleNum > ind) && (CurrentRuleNum >= 0))
+			{
+				--CurrentRuleNum;
+			}
+
+			Working = false;
+		}
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!CheckSave())
@@ -1010,11 +1028,25 @@ namespace VTClassic
 
 		private void copyRuleToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			//If a textbox is focused let that handle ctrl-c and ctrl-v
+			if (CtrlPressed && (ActiveControl != null) && (ActiveControl.GetType() == typeof(TextBox)))
+			{
+				((TextBox)ActiveControl).Copy();
+				return;
+			}
+
 			CopyCurrentRuleToClipboard();
 		}
 
 		private void pasteRuleToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			//If a textbox is focused let that handle ctrl-c and ctrl-v
+			if (CtrlPressed && (ActiveControl != null) && (ActiveControl.GetType() == typeof(TextBox)))
+			{
+				((TextBox)ActiveControl).Paste();
+				return;
+			}
+
 			PasteRuleFromClipboard();
 		}
 
@@ -1050,8 +1082,6 @@ namespace VTClassic
 					bool ruleIsNew = true;
 					if (CtrlPressed && CurrentRule != null)
 					{
-						//MessageBox.Show("replacing current rule");
-						lr = CurrentRule;
 						ruleIsNew = false;
 					}
 					lr.Read(new StreamReader(m), LootRules.UTLFileVersion);
@@ -1062,7 +1092,9 @@ namespace VTClassic
 					}
 					else
 					{
-						lstRules.Items[CurrentRuleNum] = lr.name;
+						int oldind = CurrentRuleNum;
+						AddRuleToList(lr, true);
+						DeleteRule(oldind);
 					}
 					lstRules.Invalidate();
 					lstRequirements.Invalidate();
