@@ -149,7 +149,7 @@ namespace VTClassic
         SimilarColorArmorType = 15,
         SlotSimilarColor = 16,
         SlotExactPalette = 17,
-        
+
         //Character reqs, not based on the item
         CharacterSkillGE = 1000,
         CharacterMainPackEmptySlotsGE = 1001,
@@ -157,14 +157,14 @@ namespace VTClassic
         CharacterLevelLE = 1003,
         CharacterBaseSkill = 1004,
 
-		//Mag's requirement types
-		BuffedMedianDamageGE = 2000, // Melee Weapon
-		BuffedMissileDamageGE = 2001,
-		BuffedLongValKeyGE = 2003,
-		BuffedDoubleValKeyGE = 2005,
-		CalcdBuffedTinkedDamageGE = 2006,
-		TotalRatingsGE = 2007,
-		CalcedBuffedTinkedTargetMeleeGE = 2008,
+        //Mag's requirement types
+        BuffedMedianDamageGE = 2000, // Melee Weapon
+        BuffedMissileDamageGE = 2001,
+        BuffedLongValKeyGE = 2003,
+        BuffedDoubleValKeyGE = 2005,
+        CalcdBuffedTinkedDamageGE = 2006,
+        TotalRatingsGE = 2007,
+        CalcedBuffedTinkedTargetMeleeGE = 2008,
 
         DisabledRule = 9999,
     }
@@ -201,14 +201,14 @@ namespace VTClassic
                 case eLootRuleType.CharacterLevelLE: return new CharacterLevelLE();
                 case eLootRuleType.CharacterBaseSkill: return new CharacterBaseSkill();
 
-				//Mag's requirement types
-				case eLootRuleType.BuffedMedianDamageGE: return new BuffedMedianDamageGE();
-				case eLootRuleType.BuffedMissileDamageGE: return new BuffedMissileDamageGE();
-				case eLootRuleType.BuffedLongValKeyGE: return new BuffedLongValKeyGE();
-				case eLootRuleType.BuffedDoubleValKeyGE: return new BuffedDoubleValKeyGE();
-				case eLootRuleType.CalcdBuffedTinkedDamageGE: return new CalcdBuffedTinkedDamageGE();
-				case eLootRuleType.TotalRatingsGE: return new TotalRatingsGE();
-				case eLootRuleType.CalcedBuffedTinkedTargetMeleeGE: return new CalcedBuffedTinkedTargetMeleeGE();
+                //Mag's requirement types
+                case eLootRuleType.BuffedMedianDamageGE: return new BuffedMedianDamageGE();
+                case eLootRuleType.BuffedMissileDamageGE: return new BuffedMissileDamageGE();
+                case eLootRuleType.BuffedLongValKeyGE: return new BuffedLongValKeyGE();
+                case eLootRuleType.BuffedDoubleValKeyGE: return new BuffedDoubleValKeyGE();
+                case eLootRuleType.CalcdBuffedTinkedDamageGE: return new CalcdBuffedTinkedDamageGE();
+                case eLootRuleType.TotalRatingsGE: return new TotalRatingsGE();
+                case eLootRuleType.CalcedBuffedTinkedTargetMeleeGE: return new CalcedBuffedTinkedTargetMeleeGE();
 
                 case eLootRuleType.DisabledRule: return new DisabledRule(true);
 
@@ -893,7 +893,7 @@ namespace VTClassic
 
         public override string DisplayString()
         {
-            return string.Format("ObjectClass = {0}", vk); 
+            return string.Format("ObjectClass = {0}", vk);
         }
 
         public override string FriendlyName()
@@ -990,7 +990,7 @@ namespace VTClassic
         public Regex rxDoesNotMatch = new Regex("");
         public int Count = 1;
 
-        public SpellMatch() {  }
+        public SpellMatch() { }
         public SpellMatch(Regex p, Regex n, int c) { rxDoesMatch = p; rxDoesNotMatch = n; Count = c; }
 
         public override eLootRuleType GetRuleType() { return eLootRuleType.SpellMatch; }
@@ -1328,7 +1328,7 @@ namespace VTClassic
 
             return slots;
         }
-        
+
         public override bool Match(GameItemInfo id)
         {
             return (CalculateFreeMainPackSlots() >= keyval);
@@ -1731,7 +1731,7 @@ namespace VTClassic
         public int maxskill = 999;
 
         public CharacterBaseSkill() { }
-        public CharacterBaseSkill(VTCSkillID v, int min, int max) {vk = v; minskill = min; maxskill = max; }
+        public CharacterBaseSkill(VTCSkillID v, int min, int max) { vk = v; minskill = min; maxskill = max; }
 
         public override eLootRuleType GetRuleType() { return eLootRuleType.CharacterBaseSkill; }
 
@@ -1865,7 +1865,7 @@ namespace VTClassic
 
         public override bool UI_ActsOnCombo_Uses() { return true; }
         public override string UI_ActsOnCombo_Label() { return "Status"; }
-        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return new ReadOnlyCollection<string>(new String[] {"Disabled", "Enabled"}); }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return new ReadOnlyCollection<string>(new String[] { "Disabled", "Enabled" }); }
         public override int UI_ActsOnCombo_Get() { return b ? 0 : 1; }
         public override void UI_ActsOnCombo_Set(int index) { b = index < 1; }
         public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.White; }
@@ -2362,514 +2362,514 @@ namespace VTClassic
     }
     #endregion SlotExactPalette
 
-	#region Mag's computed requirements
-	
-	#region BuffedMedianDamageGE
-	internal class BuffedMedianDamageGE : iLootRule
-	{
-		public double keyval = 0d;
+    #region Mag's computed requirements
 
-		public BuffedMedianDamageGE() { }
-		public BuffedMedianDamageGE(int k) { keyval = k; }
+    #region BuffedMedianDamageGE
+    internal class BuffedMedianDamageGE : iLootRule
+    {
+        public double keyval = 0d;
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedMedianDamageGE; }
+        public BuffedMedianDamageGE() { }
+        public BuffedMedianDamageGE(int k) { keyval = k; }
+
+        public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedMedianDamageGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			int maxdamage = magItemInfo.GetBuffedLogValueKey(IntValueKey.MaxDamage);
+            int maxdamage = cinfo.GetBuffedLogValueKey(IntValueKey.MaxDamage);
 
-			double variance = id.GetValueDouble(DoubleValueKey.Variance, 0.0);
-			double mindamage = maxdamage - (variance * maxdamage);
-			return (mindamage + maxdamage) / 2 >= keyval;
-		}
+            double variance = id.GetValueDouble(DoubleValueKey.Variance, 0.0);
+            double mindamage = maxdamage - (variance * maxdamage);
+            return (mindamage + maxdamage) / 2 >= keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			if (id.ObjectClass == ObjectClass.MeleeWeapon || id.ObjectClass == ObjectClass.MissileWeapon)
-			{
-				hasdecision = false;
-				ismatch = false;        //Doesn't matter, just have to assign
-			}
-			else
-			{
-				hasdecision = true;
-				ismatch = false;
-			}
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (id.ObjectClass == ObjectClass.MeleeWeapon || id.ObjectClass == ObjectClass.MissileWeapon)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return String.Format("Buffed Median Damage >= {0}", keyval);
-		}
+        public override string DisplayString()
+        {
+            return String.Format("Buffed Median Damage >= {0}", keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Calced Buffed Median Damage >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Calced Buffed Median Damage >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Calced Buffed Median Damage"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Calced Buffed Median Damage"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
-	}
-	#endregion BuffedMedianDamageGE
+    }
+    #endregion BuffedMedianDamageGE
 
-	#region BuffedMissileDamageGE
-	internal class BuffedMissileDamageGE : iLootRule
-	{
-		public double keyval = 0d;
+    #region BuffedMissileDamageGE
+    internal class BuffedMissileDamageGE : iLootRule
+    {
+        public double keyval = 0d;
 
-		public BuffedMissileDamageGE() { }
-		public BuffedMissileDamageGE(int k) { keyval = k; }
+        public BuffedMissileDamageGE() { }
+        public BuffedMissileDamageGE(int k) { keyval = k; }
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedMissileDamageGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedMissileDamageGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			return magItemInfo.BuffedMissileDamage >= keyval;
-		}
+            return cinfo.BuffedMissileDamage >= keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			if (id.ObjectClass == ObjectClass.MissileWeapon)
-			{
-				hasdecision = false;
-				ismatch = false;        //Doesn't matter, just have to assign
-			}
-			else
-			{
-				hasdecision = true;
-				ismatch = false;
-			}
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (id.ObjectClass == ObjectClass.MissileWeapon)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return String.Format("Buffed Missile Damage >= {0}", keyval);
-		}
+        public override string DisplayString()
+        {
+            return String.Format("Buffed Missile Damage >= {0}", keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Calced Buffed Missile Damage >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Calced Buffed Missile Damage >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Calced Buffed Missile Damage"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Calced Buffed Missile Damage"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
-	}
-	#endregion BuffedMissileDamageGE
+    }
+    #endregion BuffedMissileDamageGE
 
-	#region BuffedLongValKeyGE
-	internal class BuffedLongValKeyGE : iLootRule
-	{
-		public double keyval = 0d;
-		public IntValueKey vk = IntValueKey.MaxDamage;
+    #region BuffedLongValKeyGE
+    internal class BuffedLongValKeyGE : iLootRule
+    {
+        public double keyval = 0d;
+        public IntValueKey vk = IntValueKey.MaxDamage;
 
-		public BuffedLongValKeyGE() { }
-		public BuffedLongValKeyGE(double k, IntValueKey v) { keyval = k; vk = v; }
+        public BuffedLongValKeyGE() { }
+        public BuffedLongValKeyGE(double k, IntValueKey v) { keyval = k; vk = v; }
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedLongValKeyGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedLongValKeyGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			int val = magItemInfo.GetBuffedLogValueKey(vk);
+            int val = cinfo.GetBuffedLogValueKey(vk);
 
-			return val >= keyval;
-		}
+            return val >= keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			hasdecision = false;
-			ismatch = false;
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-			vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+            vk = (IntValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-			inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return string.Format("Buffed {0} >= {1}", vk, keyval);
-		}
+        public override string DisplayString()
+        {
+            return string.Format("Buffed {0} >= {1}", vk, keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Buffed Long Value Key >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Buffed Long Value Key >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Buffed Long Value"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Buffed Long Value"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 
-		List<IntValueKey> BuffedKeys = new List<IntValueKey> ( new IntValueKey[]{ IntValueKey.ArmorLevel, IntValueKey.MaxDamage });
-		List<string> BuffedKeyNames = new List<string> (new string[]{ IntValueKey.ArmorLevel.ToString(), IntValueKey.MaxDamage.ToString() });
+        List<IntValueKey> BuffedKeys = new List<IntValueKey>(new IntValueKey[] { IntValueKey.ArmorLevel, IntValueKey.MaxDamage });
+        List<string> BuffedKeyNames = new List<string>(new string[] { IntValueKey.ArmorLevel.ToString(), IntValueKey.MaxDamage.ToString() });
 
-		public override bool UI_ActsOnCombo_Uses() { return true; }
-		public override string UI_ActsOnCombo_Label() { return "Acts on"; }
-		public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return BuffedKeyNames.AsReadOnly(); }
-		public override int UI_ActsOnCombo_Get() { return BuffedKeys.IndexOf(vk); }
-		public override void UI_ActsOnCombo_Set(int index) { vk = BuffedKeys[index]; }
-		public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.DarkRed; }
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return BuffedKeyNames.AsReadOnly(); }
+        public override int UI_ActsOnCombo_Get() { return BuffedKeys.IndexOf(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = BuffedKeys[index]; }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.DarkRed; }
 #endif
-	}
-	#endregion BuffedLongValKeyGE
+    }
+    #endregion BuffedLongValKeyGE
 
-	#region BuffedDoubleValKeyGE
-	internal class BuffedDoubleValKeyGE : iLootRule
-	{
-		public double keyval = 0d;
-		public DoubleValueKey vk = DoubleValueKey.AttackBonus;
+    #region BuffedDoubleValKeyGE
+    internal class BuffedDoubleValKeyGE : iLootRule
+    {
+        public double keyval = 0d;
+        public DoubleValueKey vk = DoubleValueKey.AttackBonus;
 
-		public BuffedDoubleValKeyGE() { }
-		public BuffedDoubleValKeyGE(double k, DoubleValueKey v) { keyval = k; vk = v; }
+        public BuffedDoubleValKeyGE() { }
+        public BuffedDoubleValKeyGE(double k, DoubleValueKey v) { keyval = k; vk = v; }
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedDoubleValKeyGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.BuffedDoubleValKeyGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			double val = magItemInfo.GetBuffedDoubleValueKey(vk);
+            double val = cinfo.GetBuffedDoubleValueKey(vk);
 
-			return (float)val >= (float)keyval;
-		}
+            return (float)val >= (float)keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			hasdecision = false;
-			ismatch = false;
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            hasdecision = false;
+            ismatch = false;
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-			vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+            vk = (DoubleValueKey)Convert.ToUInt32(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-			inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+            inf.WriteLine(Convert.ToString((int)vk, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return string.Format("Buffed {0} >= {1}", vk, keyval);
-		}
+        public override string DisplayString()
+        {
+            return string.Format("Buffed {0} >= {1}", vk, keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Buffed Double Value Key >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Buffed Double Value Key >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Buffed Double Value"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Buffed Double Value"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 
-		List<DoubleValueKey> BuffedKeys = new List<DoubleValueKey>(new DoubleValueKey[] { DoubleValueKey.AttackBonus, DoubleValueKey.ElementalDamageVersusMonsters, DoubleValueKey.ManaCBonus, DoubleValueKey.MeleeDefenseBonus });
-		List<string> BuffedKeyNames = new List<string>(new string[] { DoubleValueKey.AttackBonus.ToString(), DoubleValueKey.ElementalDamageVersusMonsters.ToString(), DoubleValueKey.ManaCBonus.ToString(), DoubleValueKey.MeleeDefenseBonus.ToString() });
+        List<DoubleValueKey> BuffedKeys = new List<DoubleValueKey>(new DoubleValueKey[] { DoubleValueKey.AttackBonus, DoubleValueKey.ElementalDamageVersusMonsters, DoubleValueKey.ManaCBonus, DoubleValueKey.MeleeDefenseBonus });
+        List<string> BuffedKeyNames = new List<string>(new string[] { DoubleValueKey.AttackBonus.ToString(), DoubleValueKey.ElementalDamageVersusMonsters.ToString(), DoubleValueKey.ManaCBonus.ToString(), DoubleValueKey.MeleeDefenseBonus.ToString() });
 
-		public override bool UI_ActsOnCombo_Uses() { return true; }
-		public override string UI_ActsOnCombo_Label() { return "Acts on"; }
-		public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return BuffedKeyNames.AsReadOnly(); }
-		public override int UI_ActsOnCombo_Get() { return BuffedKeys.IndexOf(vk); }
-		public override void UI_ActsOnCombo_Set(int index) { vk = BuffedKeys[index]; }
-		public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.DarkRed; }
+        public override bool UI_ActsOnCombo_Uses() { return true; }
+        public override string UI_ActsOnCombo_Label() { return "Acts on"; }
+        public override ReadOnlyCollection<string> UI_ActsOnCombo_Options() { return BuffedKeyNames.AsReadOnly(); }
+        public override int UI_ActsOnCombo_Get() { return BuffedKeys.IndexOf(vk); }
+        public override void UI_ActsOnCombo_Set(int index) { vk = BuffedKeys[index]; }
+        public override System.Drawing.Color UI_ActsOnCombo_OptionColors(int index) { return System.Drawing.Color.DarkRed; }
 #endif
-	}
-	#endregion BuffedDoubleValKeyGE
+    }
+    #endregion BuffedDoubleValKeyGE
 
-	#region CalcdBuffedTinkedDamageGE
-	internal class CalcdBuffedTinkedDamageGE : iLootRule
-	{
-		public double keyval = 0d;
+    #region CalcdBuffedTinkedDamageGE
+    internal class CalcdBuffedTinkedDamageGE : iLootRule
+    {
+        public double keyval = 0d;
 
-		public CalcdBuffedTinkedDamageGE() { }
-		public CalcdBuffedTinkedDamageGE(int k) { keyval = k; }
+        public CalcdBuffedTinkedDamageGE() { }
+        public CalcdBuffedTinkedDamageGE(int k) { keyval = k; }
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.CalcdBuffedTinkedDamageGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CalcdBuffedTinkedDamageGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			return magItemInfo.CalcedBuffedTinkedDamage >= keyval;
-		}
+            return cinfo.CalcedBuffedTinkedDamage >= keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			if (id.ObjectClass == ObjectClass.MeleeWeapon || id.ObjectClass == ObjectClass.MissileWeapon)
-			{
-				hasdecision = false;
-				ismatch = false;        //Doesn't matter, just have to assign
-			}
-			else
-			{
-				hasdecision = true;
-				ismatch = false;
-			}
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (id.ObjectClass == ObjectClass.MeleeWeapon || id.ObjectClass == ObjectClass.MissileWeapon)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return String.Format("Calced Buffed Tinked Dmg >= {0}", keyval);
-		}
+        public override string DisplayString()
+        {
+            return String.Format("Calced Buffed Tinked Dmg >= {0}", keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Calced Buffed Tinked Dmg >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Calced Buffed Tinked Dmg >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Calced Buffed Tinked Damage"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Calced Buffed Tinked Damage"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
-	}
-	#endregion CalcdBuffedTinkedDamageGE
+    }
+    #endregion CalcdBuffedTinkedDamageGE
 
-	#region TotalRatingsGE
-	internal class TotalRatingsGE : iLootRule
-	{
-		public double keyval = 0d;
+    #region TotalRatingsGE
+    internal class TotalRatingsGE : iLootRule
+    {
+        public double keyval = 0d;
 
-		public TotalRatingsGE() { }
-		public TotalRatingsGE(int k) { keyval = k; }
+        public TotalRatingsGE() { }
+        public TotalRatingsGE(int k) { keyval = k; }
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.TotalRatingsGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.TotalRatingsGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			return magItemInfo.TotalRatings >= keyval;
-		}
+            return cinfo.TotalRatings >= keyval;
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			//if (id.ObjectClass == ObjectClass.Misc | id.ObjectClass == ObjectClass.Armor | id.ObjectClass == ObjectClass.Clothing | id.ObjectClass == ObjectClass.Jewelry)
-			{
-				hasdecision = false;
-				ismatch = false;        //Doesn't matter, just have to assign
-			}/*
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            //if (id.ObjectClass == ObjectClass.Misc | id.ObjectClass == ObjectClass.Armor | id.ObjectClass == ObjectClass.Clothing | id.ObjectClass == ObjectClass.Jewelry)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }/*
 			else
 			{
 				hasdecision = true;
 				ismatch = false;
 			}*/
-		}
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            keyval = GameInfo.HaxConvertDouble(inf.ReadLine());
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(Convert.ToString(keyval, System.Globalization.CultureInfo.InvariantCulture));
+        }
 
-		public override string DisplayString()
-		{
-			return String.Format("Calced Total Ratings >= {0}", keyval);
-		}
+        public override string DisplayString()
+        {
+            return String.Format("Calced Total Ratings >= {0}", keyval);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Calced Total Ratings >=";
-		}
+        public override string FriendlyName()
+        {
+            return "Calced Total Ratings >=";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Calced Total Ratings"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
-		public override string UI_TextValue_Get() { return keyval.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Calced Total Ratings"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out keyval); }
+        public override string UI_TextValue_Get() { return keyval.ToString(); }
 #endif
-	}
-	#endregion TotalRatingsGE
+    }
+    #endregion TotalRatingsGE
 
-	#region CalcedBuffedTinkedTargetMeleeGE
-	internal class CalcedBuffedTinkedTargetMeleeGE : iLootRule
-	{
-		double targetCalcedBuffedTinkedDoT;
-		double targetBuffedMeleeDefenseBonus;
-		double targetBuffedAttackBonus;
+    #region CalcedBuffedTinkedTargetMeleeGE
+    internal class CalcedBuffedTinkedTargetMeleeGE : iLootRule
+    {
+        double targetCalcedBuffedTinkedDoT;
+        double targetBuffedMeleeDefenseBonus;
+        double targetBuffedAttackBonus;
 
-		public override eLootRuleType GetRuleType() { return eLootRuleType.CalcedBuffedTinkedTargetMeleeGE; }
+        public override eLootRuleType GetRuleType() { return eLootRuleType.CalcedBuffedTinkedTargetMeleeGE; }
 
 #if VTC_PLUGIN
-		public override bool Match(GameItemInfo id)
-		{
-			ComputedItemInfo magItemInfo = new ComputedItemInfo(id);
+        public override bool Match(GameItemInfo id)
+        {
+            ComputedItemInfo cinfo = new ComputedItemInfo(id);
 
-			return magItemInfo.CanReachTargetValues(targetCalcedBuffedTinkedDoT, targetBuffedMeleeDefenseBonus, targetBuffedAttackBonus);
-		}
+            return cinfo.CanReachTargetValues(targetCalcedBuffedTinkedDoT, targetBuffedMeleeDefenseBonus, targetBuffedAttackBonus);
+        }
 
-		public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
-		{
-			if (id.ObjectClass == ObjectClass.MeleeWeapon)
-			{
-				hasdecision = false;
-				ismatch = false;        //Doesn't matter, just have to assign
-			}
-			else
-			{
-				hasdecision = true;
-				ismatch = false;
-			}
-		}
+        public override void EarlyMatch(GameItemInfo id, out bool hasdecision, out bool ismatch)
+        {
+            if (id.ObjectClass == ObjectClass.MeleeWeapon)
+            {
+                hasdecision = false;
+                ismatch = false;        //Doesn't matter, just have to assign
+            }
+            else
+            {
+                hasdecision = true;
+                ismatch = false;
+            }
+        }
 #endif
 
-		public override void Read(System.IO.StreamReader inf, int profileversion)
-		{
-			targetCalcedBuffedTinkedDoT = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-			targetBuffedMeleeDefenseBonus = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-			targetBuffedAttackBonus = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
-		}
+        public override void Read(System.IO.StreamReader inf, int profileversion)
+        {
+            targetCalcedBuffedTinkedDoT = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            targetBuffedMeleeDefenseBonus = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+            targetBuffedAttackBonus = double.Parse(inf.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+        }
 
-		public override void Write(CountedStreamWriter inf)
-		{
-			inf.WriteLine(targetCalcedBuffedTinkedDoT);
-			inf.WriteLine(targetBuffedMeleeDefenseBonus);
-			inf.WriteLine(targetBuffedAttackBonus);
-		}
+        public override void Write(CountedStreamWriter inf)
+        {
+            inf.WriteLine(targetCalcedBuffedTinkedDoT);
+            inf.WriteLine(targetBuffedMeleeDefenseBonus);
+            inf.WriteLine(targetBuffedAttackBonus);
+        }
 
-		public override string DisplayString()
-		{
-			return String.Format("Melee Target: {0} DoT: {1} md, {2} a", targetCalcedBuffedTinkedDoT, targetBuffedMeleeDefenseBonus, targetBuffedAttackBonus);
-		}
+        public override string DisplayString()
+        {
+            return String.Format("Melee Target: {0} DoT: {1} md, {2} a", targetCalcedBuffedTinkedDoT, targetBuffedMeleeDefenseBonus, targetBuffedAttackBonus);
+        }
 
-		public override string FriendlyName()
-		{
-			return "Calced Buffed Tinked Target Melee";
-		}
+        public override string FriendlyName()
+        {
+            return "Calced Buffed Tinked Target Melee";
+        }
 
-		public override bool MayRequireID()
-		{
-			return true;
-		}
+        public override bool MayRequireID()
+        {
+            return true;
+        }
 
 #if VTC_EDITOR
-		public override bool UI_TextValue_Uses() { return true; }
-		public override string UI_TextValue_Label() { return "Target Calced Buffed Tinked DoT"; }
-		public override void UI_TextValue_Set(string value) { double.TryParse(value, out targetCalcedBuffedTinkedDoT); }
-		public override string UI_TextValue_Get() { return targetCalcedBuffedTinkedDoT.ToString(); }
+        public override bool UI_TextValue_Uses() { return true; }
+        public override string UI_TextValue_Label() { return "Target Calced Buffed Tinked DoT"; }
+        public override void UI_TextValue_Set(string value) { double.TryParse(value, out targetCalcedBuffedTinkedDoT); }
+        public override string UI_TextValue_Get() { return targetCalcedBuffedTinkedDoT.ToString(); }
 
-		public override bool UI_TextValue2_Uses() { return true; }
-		public override string UI_TextValue2_Label() { return "Target Buffed Melee Defense Bonus"; }
-		public override void UI_TextValue2_Set(string value) { double.TryParse(value, out targetBuffedMeleeDefenseBonus); }
-		public override string UI_TextValue2_Get() { return targetBuffedMeleeDefenseBonus.ToString(); }
+        public override bool UI_TextValue2_Uses() { return true; }
+        public override string UI_TextValue2_Label() { return "Target Buffed Melee Defense Bonus"; }
+        public override void UI_TextValue2_Set(string value) { double.TryParse(value, out targetBuffedMeleeDefenseBonus); }
+        public override string UI_TextValue2_Get() { return targetBuffedMeleeDefenseBonus.ToString(); }
 
-		public override bool UI_TextValue3_Uses() { return true; }
-		public override string UI_TextValue3_Label() { return "Target Buffed Attack Bonus"; }
-		public override void UI_TextValue3_Set(string value) { double.TryParse(value, out targetBuffedAttackBonus); }
-		public override string UI_TextValue3_Get() { return targetBuffedAttackBonus.ToString(); }
+        public override bool UI_TextValue3_Uses() { return true; }
+        public override string UI_TextValue3_Label() { return "Target Buffed Attack Bonus"; }
+        public override void UI_TextValue3_Set(string value) { double.TryParse(value, out targetBuffedAttackBonus); }
+        public override string UI_TextValue3_Get() { return targetBuffedAttackBonus.ToString(); }
 #endif
-	}
-	#endregion CalcedBuffedTinkedTargetMeleeGE
-	
-	#endregion Mag's computed requirements
+    }
+    #endregion CalcedBuffedTinkedTargetMeleeGE
 
-	#endregion LootRule classes
+    #endregion Mag's computed requirements
 
-	#region cLootItemRule (requirement set) and cLootRules (rule set)
-	//A set of rules with an action attached
+    #endregion LootRule classes
+
+    #region cLootItemRule (requirement set) and cLootRules (rule set)
+    //A set of rules with an action attached
     internal class cLootItemRule : iSettingsCollection
     {
         public List<iLootRule> IntRules = new List<iLootRule>();

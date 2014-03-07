@@ -447,7 +447,7 @@ namespace VTClassic
                 case IntValueKey.PackSlots: return false;
                 case IntValueKey.MissileType: return false;
                 case IntValueKey.Value: return false;
-                case IntValueKey.Unknown10: return false;
+                //case IntValueKey.Unknown10: return false;
                 case IntValueKey.UsageMask: return false;
                 case IntValueKey.IconOutline: return false;
                 case IntValueKey.EquipType: return false;
@@ -460,8 +460,8 @@ namespace VTClassic
                 case IntValueKey.EquipableSlots: return false;
                 case IntValueKey.EquippedSlots: return false;
                 case IntValueKey.Coverage: return false;
-                case IntValueKey.Unknown100000: return false;
-                case IntValueKey.Unknown800000: return false;
+                //case IntValueKey.Unknown100000: return false;
+                //case IntValueKey.Unknown800000: return false;
                 case IntValueKey.Unknown8000000: return false;
                 //case IntValueKey.Burden: return false;
                 //case IntValueKey.OwnedBy: return false;

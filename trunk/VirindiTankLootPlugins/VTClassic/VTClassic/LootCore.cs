@@ -34,7 +34,7 @@ using uTank2.LootPlugins;
 
 namespace VTClassic
 {
-    public class LootCore: uTank2.LootPlugins.LootPluginBase, uTank2.LootPlugins.ILootPluginCapability_SalvageCombineDecision2
+    public class LootCore : uTank2.LootPlugins.LootPluginBase, uTank2.LootPlugins.ILootPluginCapability_SalvageCombineDecision2
     {
         internal static LootCore Instance;
 
@@ -198,7 +198,7 @@ namespace VTClassic
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -244,7 +244,7 @@ namespace VTClassic
             }
         }
 
-		/*
+        /*
         #region ILootPluginCapability_SalvageCombineDecision Members
 
         public bool CanCombineBags(double bag1workmanship, double bag2workmanship, int material)
@@ -255,17 +255,17 @@ namespace VTClassic
         }
 
         #endregion
-		*/
+        */
 
-		#region ILootPluginCapability_SalvageCombineDecision2 Members
+        #region ILootPluginCapability_SalvageCombineDecision2 Members
 
-		public List<int> ChooseBagsToCombine(List<GameItemInfo> availablebags)
-		{
-			UTLBlockHandlers.UTLBlock_SalvageCombine CombineBlock = LootRules.ExtraBlockManager.GetFirstBlock("SalvageCombine") as UTLBlockHandlers.UTLBlock_SalvageCombine;
+        public List<int> ChooseBagsToCombine(List<GameItemInfo> availablebags)
+        {
+            UTLBlockHandlers.UTLBlock_SalvageCombine CombineBlock = LootRules.ExtraBlockManager.GetFirstBlock("SalvageCombine") as UTLBlockHandlers.UTLBlock_SalvageCombine;
 
-			return CombineBlock.TryCombineMultiple(availablebags);
-		}
+            return CombineBlock.TryCombineMultiple(availablebags);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
