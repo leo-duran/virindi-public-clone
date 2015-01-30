@@ -125,9 +125,11 @@ namespace MyClasses
         /// <param name="categoryname">The preset name. Should already be initialized by InitializeCategory().</param>
         /// <param name="text">The output chat text.</param>
         /// <param name="color">The default AC console color ID.</param>
-        /// <param name="windows">The default target window, 0=auto, 1=main, 2=float1</param>
+        /// <param name="windows">The default target windows, 0=auto, 1=main, 2=float1</param>
         public static void SendChatTextCategorized(string categoryname, string text, int color, params int[] windows)
 		{
+			if ((windows == null) || (windows.Length == 0)) windows = new int[] { 1 };
+
 			if (IsVCSPresent(Host))
 			{
 				Curtain_SendChatTextCategorized(categoryname, text, color, windows);
