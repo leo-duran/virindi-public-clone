@@ -67,7 +67,8 @@ namespace VTClassic
         }
 
         string FileName = "";
-        bool FileChanged = false;
+		DateTimeOffset LastBackup = DateTimeOffset.MinValue;
+        bool iFileChanged = false;
         cLootRules LootRules = new cLootRules();
         cLootItemRule CurrentRule;
         int CurrentRuleNum;
@@ -364,6 +365,7 @@ namespace VTClassic
             FileName = fileName;
             FileChanged = false;
             this.Text = AppName + " - " + FileName;
+			LastBackup = DateTimeOffset.MinValue;
 
             System.IO.StreamReader pf = new System.IO.StreamReader(FileName);
             LootRules.Read(pf, 0);
@@ -402,6 +404,28 @@ namespace VTClassic
             return true;
         }
 
+		bool FileChanged
+		{
+			get { return iFileChanged; }
+			set
+			{
+				iFileChanged = value;
+				if (value)
+				{
+					if (!string.IsNullOrEmpty(FileName))
+					{
+						if ((DateTimeOffset.Now - LastBackup).TotalMinutes > 5d)
+						{
+							LastBackup = DateTimeOffset.Now;
+							CountedStreamWriter pf = new CountedStreamWriter(FileName + "." + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".bak");
+							LootRules.Write(pf);
+							pf.Close();
+						}
+					}
+				}
+			}
+		}
+
         void DoSave()
         {
             FileChanged = false;
@@ -434,6 +458,7 @@ namespace VTClassic
                 this.Text = AppName + " - " + FileName;
                 DoSave();
                 saveasres = true;
+				LastBackup = DateTimeOffset.MinValue;
             }
         }
 
@@ -923,7 +948,7 @@ namespace VTClassic
 		
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-			PasteRuleFromClipboard();
+			PasteRuleFromClipboard(true);
         }
 
         private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -1047,7 +1072,7 @@ namespace VTClassic
 				return;
 			}
 
-			PasteRuleFromClipboard();
+			PasteRuleFromClipboard(true);
 		}
 
 		void CopyCurrentRuleToClipboard()
@@ -1064,17 +1089,41 @@ namespace VTClassic
 					string contents = reader.ReadToEnd();
 					if (!String.IsNullOrEmpty(contents))
 					{
-						Clipboard.SetText(contents);
+						//Need to make sure corrupt rules don't get pasted.
+						System.Security.Cryptography.SHA256Managed c = new System.Security.Cryptography.SHA256Managed();
+						System.Text.UTF8Encoding e = new UTF8Encoding();
+						byte[] rep = e.GetBytes(contents);
+						string hashstr = Convert.ToBase64String(c.ComputeHash(rep));
+
+						Clipboard.SetText(hashstr + "#" + contents);
 					}
 				}
 			}
 		}
 
-		void PasteRuleFromClipboard()
+		void PasteRuleFromClipboard(bool checkhash)
 		{
 			try
 			{
-				string t = Clipboard.GetText();
+				string raw_t = Clipboard.GetText();
+				
+				//Split it up
+				if (string.IsNullOrEmpty(raw_t)) { MessageBox.Show("Invalid rule format in clipboard."); return; }
+				string[] split_raw_t = raw_t.Split('#');
+				if (split_raw_t.Length < 2) { MessageBox.Show("Invalid rule format in clipboard."); return; }
+				string t_proposed_hash = split_raw_t[0];
+				string t = string.Join("#", split_raw_t, 1, split_raw_t.Length - 1);
+
+				//Verify hash
+				System.Security.Cryptography.SHA256Managed c = new System.Security.Cryptography.SHA256Managed();
+				System.Text.UTF8Encoding e = new UTF8Encoding();
+				byte[] rep = e.GetBytes(t);
+				string hashstr = Convert.ToBase64String(c.ComputeHash(rep));
+				if (checkhash)
+				{
+					if (!string.Equals(hashstr, t_proposed_hash, StringComparison.Ordinal)) { MessageBox.Show("Invalid rule format in clipboard."); return; }
+				}
+
 				if (!String.IsNullOrEmpty(t))
 				{
 					MemoryStream m = new MemoryStream(Encoding.ASCII.GetBytes(t));
@@ -1108,6 +1157,11 @@ namespace VTClassic
 		private void tSC_txtValueMode_Leave(object sender, EventArgs e)
 		{
 
+		}
+
+		private void pasteRuleUncheckedDangerousToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			PasteRuleFromClipboard(false);
 		}
 
 
