@@ -34,7 +34,7 @@ using uTank2.LootPlugins;
 
 namespace VTClassic
 {
-    public class LootCore : uTank2.LootPlugins.LootPluginBase, uTank2.LootPlugins.ILootPluginCapability_SalvageCombineDecision2
+    public class LootCore : uTank2.LootPlugins.LootPluginBase, uTank2.LootPlugins.ILootPluginCapability_SalvageCombineDecision2, uTank2.LootPlugins.ILootPluginCapability_GetExtraOptions
     {
         internal static LootCore Instance;
 
@@ -264,6 +264,15 @@ namespace VTClassic
             UTLBlockHandlers.UTLBlock_SalvageCombine CombineBlock = LootRules.ExtraBlockManager.GetFirstBlock("SalvageCombine") as UTLBlockHandlers.UTLBlock_SalvageCombine;
 
             return CombineBlock.TryCombineMultiple(availablebags);
+        }
+
+        #endregion
+
+        #region ILootPluginCapability_GetExtraOptions Members
+
+        public eLootPluginExtraOption GetExtraOptions()
+        {
+            return eLootPluginExtraOption.HideEditorCheckbox;
         }
 
         #endregion
