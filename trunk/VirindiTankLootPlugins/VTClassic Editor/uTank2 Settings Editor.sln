@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.57
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uTank2 Settings Editor", "uTank2 Settings Editor\uTank2 Settings Editor.csproj", "{2D2D68BC-C028-4D66-8FDD-8D47AF9F0A09}"
 EndProject
 Global

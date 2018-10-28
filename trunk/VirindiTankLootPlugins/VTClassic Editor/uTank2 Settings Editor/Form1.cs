@@ -473,7 +473,16 @@ namespace VTClassic
             if (Working) return;
 
             if (lstRules.SelectedIndex >= 0)
+            {
+                cLootItemRule selectedRule = LootRules.Rules[lstRules.SelectedIndex];
                 SetCurrentRule(LootRules.Rules[lstRules.SelectedIndex], lstRules.SelectedIndex);
+
+                if (Form.ModifierKeys == Keys.Control)
+                {
+                    DisableRule(selectedRule);
+                }
+
+            }
             else
                 SetCurrentRule(null, 0);
         }
@@ -911,27 +920,7 @@ namespace VTClassic
         {
             if (CurrentRule != null)
             {
-                bool disabled = false;
-                List<iLootRule> remove = new List<iLootRule>();
-                foreach (iLootRule req in CurrentRule.IntRules)
-                {
-                    if (req.GetRuleType() == eLootRuleType.DisabledRule)
-                    {
-                        disabled = disabled || ((DisabledRule)req).b;
-                        remove.Add(req);
-                    }
-                }
-                foreach (iLootRule req in remove)
-                {
-                    CurrentRule.IntRules.Remove(req);
-                }
-
-                if (!disabled)
-                {
-                    CurrentRule.IntRules.Add(new DisabledRule(true));
-                }
-                SetCurrentRule(CurrentRule, CurrentRuleNum);
-                FileChanged = true;
+                this.DisableRule(CurrentRule);
             }
 
         }
@@ -1044,6 +1033,32 @@ namespace VTClassic
 
 			Working = false;
 		}
+
+        private void DisableRule(cLootItemRule ruleToDisable)
+        {
+            bool disabled = false;
+            List<iLootRule> remove = new List<iLootRule>();
+            foreach (iLootRule req in ruleToDisable.IntRules)
+            {
+                if (req.GetRuleType() == eLootRuleType.DisabledRule)
+                {
+                    disabled = disabled || ((DisabledRule)req).b;
+                    remove.Add(req);
+                }
+            }
+            foreach (iLootRule req in remove)
+            {
+                ruleToDisable.IntRules.Remove(req);
+            }
+
+            if (!disabled)
+            {
+                ruleToDisable.IntRules.Add(new DisabledRule(true));
+            }
+            SetCurrentRule(ruleToDisable, CurrentRuleNum);
+            FileChanged = true;
+
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
